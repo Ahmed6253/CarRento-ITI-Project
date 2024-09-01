@@ -1,9 +1,9 @@
 <template>
    <!-- navbar start -->
   <div class="mx-4 md:mx-20">
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <nav>
       <div
-        class="max-w-screen-xl py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full shadow mt-6"
+        class="  max-w-screen-xl py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full shadow mt-6"
       >
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="../imagesNavfoot/logo.png" class="h-8" alt="Flowbite Logo" />
@@ -14,7 +14,7 @@
           <!-- login button -->
           <button
             type="button"
-            class="px-8 py-3 bg-primary_color hidden md:block text-white rounded-full"
+            class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
           >
             login
           </button>
@@ -45,7 +45,7 @@
           id="navbar-user"
         >
           <ul
-            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
           >
             <li>
               <a
@@ -58,14 +58,14 @@
             <li>
               <a
                 href="#"
-                class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+                class="block py-2 px-3 text-gray-900 hover:bg-gray-100  md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
                 >Cars</a
               >
             </li>
             <li>
               <a
                 href="#"
-                class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+                class="block py-2 px-3 text-gray-900 hover:bg-gray-100  md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
                 >About</a
               >
             </li>
