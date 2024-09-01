@@ -1,16 +1,24 @@
 <template>
-  <NavBarVue/>
+  <NavBar></NavBar>
   <router-view></router-view>
-  
-  
+  <FooterComp></FooterComp>
+
 </template>
 
 <script>
-import NavBarVue from './components/NavBar.vue';
+import NavBar from "./components/NavBar.vue";
+import FooterComp from "./components/FooterComp.vue";
 export default {
   name: "App",
   components: {
-    NavBarVue
+    NavBar,
+    FooterComp
+
   },
+ 
 };
 </script>
+<style scoped>
+
+
+</style>
