@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 
+
 const routes = [
   {
     path: "/",
