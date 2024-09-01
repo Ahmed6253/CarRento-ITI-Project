@@ -20,6 +20,14 @@ module.exports = {
         green_hover: "#34D399",
         warning: "#F97316",
         warning_hover: "#FF9F5C",
+        values_hover:"#EFF6FF",
+      },
+      backgroundPosition: {
+        'custom-60': '0px 210px',
+        'custom-20-40': '20px 40px',
+      },
+      backgroundImage: {
+        'radial-one-color': 'radial-gradient(circle,#DBEAFE 0%, transparent 100%)',
       },
        backgroundImage: {
         'split-half': 'linear-gradient(to right, #F9FAFB 50%, #E4E4E4 50%)',
@@ -29,6 +37,7 @@ module.exports = {
 
       },
     },
+    
   },
   plugins: [],
 };

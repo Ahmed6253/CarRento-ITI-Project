@@ -14,7 +14,7 @@
           <!-- login button -->
           <button
             type="button"
-            class="px-8 py-3 bg-primary_color hidden md:block text-white rounded-full"
+            class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
           >
             login
           </button>
