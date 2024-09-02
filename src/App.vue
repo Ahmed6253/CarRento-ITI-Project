@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-split-half pt-4 px-0"><NavBar class="mt-4"></NavBar></div>
+  <div class="bg-bg_color pt-1"><NavBar></NavBar></div>
   <router-view></router-view>
   <FooterComp></FooterComp>
 

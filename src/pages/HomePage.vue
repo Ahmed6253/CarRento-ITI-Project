@@ -1,23 +1,24 @@
 <template class="bg-bg_color">
   <!-- ------------------------------------hero section--------------------------------- -->
   <div class="bg-split-half max-h-fit">
-    <div class="container mx-auto px-20">
-      <div class="bg-hero-bg bg-right-bottom bg-no-repeat px-0 pt-12 pb-96">
+    <div class="container mx-4 md:mx-20">
+      <div class="lg:bg-hero-bg lg:bg-right-bottom bg-no-repeat px-0 pt-12 pb-32 lg:pb-96 text-center lg:text-left">
         <h1 class="text-6xl">Rent your perfect car with a big discount</h1>
         <button class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl">Rent now</button>
+        <img src="../assets/home-images/hero.png"  alt="hero-car" class="lg:hidden">
       </div>
     </div>  
   </div>
 
   <div class="bg-quarter-split">
-    <div class="container mx-auto px-20 py-10">
+    <div class="container mx-auto px-4 md:px-10 lg:px-20 py-10">
       <SearchCard class="mt-0"></SearchCard>
     </div>
   </div>
 
   <!-- -----------------------------------logo separator------------------------------------->
   <section class="bg-white py-5 my-0">
-    <div class="container mx-auto px-20">
+    <div class="containermx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
         <div class="logo-container">
           <img src="../assets/home-images/Mercedes.png" alt="mercedes" class="w-fit">
@@ -44,13 +45,13 @@
   <!-- ------------------------easy steps ----------------------------------- -->
 
   <section class="bg-bg_color py-24 my-0 text-center">
-    <div class="container mx-auto px-20">
+    <div class="container mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Easy steps to rent your perfect car</h2>
       <p class="w-75% text-[16px]">Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.</p>
 
-      <div class="px-32 flex flex-wrap py-16">
+      <div class=" flex flex-wrap py-16 text-center">
        <div class="wrapper">
-        <div class="blue-circle lg:ms-8">
+        <div class="blue-circle">
           <img src="../assets/home-images/icons/location.png">
         </div>
         <h3 class="mt-4 text-[16px] font-medium">Choose Location</h3>
@@ -61,7 +62,7 @@
        </div>
 
        <div class="wrapper">
-        <div class="blue-circle lg:ms-8">
+        <div class="blue-circle ">
           <img src="../assets/home-images/icons/calendar.png">
         </div>
         <h3 class="mt-4 text-[16px] font-medium">Choose day and Time</h3>
@@ -72,11 +73,11 @@
        </div>
 
        <div class="wrapper">
-        <div class="blue-circle lg:ms-8">
+        <div class="blue-circle">
           <img src="../assets/home-images/icons/car.png">
         </div>
         <h3 class="mt-4 text-[16px] font-medium">Choose a car</h3>
-        <p class="text-gray-500 text-[12px]">Browse our fleet and find the perfect vehicle with your preferred options.</p>
+        <p class="text-gray-500 text-[12px] ">Browse our fleet and find the perfect vehicle with your preferred with your preferred options.</p>
        </div>
       </div>
     </div>
@@ -85,7 +86,7 @@
 
    <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
    <section class="bg-bg_color pt-0 pb-24 my-0 text-center">
-    <div class="container mx-auto px-20">
+    <div class="container mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.</p>
       <div class="flex justify-end my-3">
@@ -114,9 +115,9 @@
 
 
    <section class="bg-bg_color pt-0 pb-24 my-0">
-    <div class="container mx-auto px-20">
+    <div class="container mx-4 md:mx-20">
      <div class="bg-white rounded-3xl custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]">
-      <div class="bg-rent-bg bg-right-bottom bg-no-repeat px-0 pt-12 pb-40">
+      <div class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40">
         <h1 class="text-6xl">Rent your perfect car with a big discount</h1>
         <button class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl">Rent now</button>
       </div>
@@ -127,7 +128,7 @@
     <!-- ---------------------------------why choose us--------------------------- -->
 
     <section class="bg-bg_color pt-0 pb-24 my-0">
-      <div class="container mx-auto px-20">
+      <div class="container mx-4 md:mx-20">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-1/2">
            <h1 class="text-4xl">Rent your perfect car with a big discount</h1>
@@ -144,7 +145,7 @@
 
             <div class="w-1/2 p-1">
               <div class="py-6 px-4 bg-white hover:bg-blue-50 rounded-2xl custom-shadow">
-                <h3 class="text-[24px] font-medium mb-2">Competitive Rates</h3>
+                <h3 class="text-[24px] font-medium mb-2">Competitive Pricing</h3>
                 <p class="text-gray-500 text-[12px]">Enjoy affordable rental prices without compromising on quality or service.</p>
               </div>
             </div>

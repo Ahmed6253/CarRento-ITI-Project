@@ -26,10 +26,8 @@ module.exports = {
         'custom-60': '0px 210px',
         'custom-20-40': '20px 40px',
       },
-      backgroundImage: {
-        'radial-one-color': 'radial-gradient(circle,#DBEAFE 0%, transparent 100%)',
-      },
        backgroundImage: {
+        'radial-one-color': 'radial-gradient(circle,#DBEAFE 0%, transparent 100%)',
         'split-half': 'linear-gradient(to right, #F9FAFB 50%, #E4E4E4 50%)',
         'quarter-split': 'linear-gradient(to left, #E4E4E4 50%, #F9FAFB 50%), linear-gradient(to bottom, #E4E4E4 50%, #F9FAFB 50%)',
         'rent-bg': "url('@/assets/home-images/rent-car.png')",

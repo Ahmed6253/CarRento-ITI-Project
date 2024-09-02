@@ -1,7 +1,7 @@
 <template>
    <!-- navbar start -->
   <div class="mx-4 md:mx-20">
-    <nav class=" border-gray-200 my-0">
+    <nav class=" border-gray-200">
       <div
         class="max-w-screen-xl  dark:bg-gray-900 bg-white py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full shadow"
       >
