@@ -1,5 +1,6 @@
 <template>
-  <SearchCard />
+  <div class="md:mx-10 mx-4 lg:mx-20">
+    <SearchCard></SearchCard>
   <section class="grid gap-4 grid-cols-4 text-poppins">
     <div class="lg:block hidden">
       <FilterCard />
@@ -37,6 +38,8 @@
       </div>
     </div>
   </section>
+  </div>
+  
 </template>
 
 <script>

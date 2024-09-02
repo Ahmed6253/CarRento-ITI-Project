@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="bg-radial-one-color rounded-2xl bg-white shadow grid lg:grid-cols-2 ">
+      <div class="bg-radial-one-color rounded-2xl bg-white custom-shadow grid lg:grid-cols-2 ">
         <div class="  bg-custom-20-40">
           <div class="md:mb-48 md:w-7/12 md:ms-12 md:mt-20 p-4">
             <h1 class="md:text-6xl text-4xl text-primary_color mb-4">Join Us</h1>

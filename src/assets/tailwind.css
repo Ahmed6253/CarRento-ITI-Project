@@ -43,7 +43,7 @@
     @apply text-center md:text-base text-sm text-Paragraph_color pt-2;
   }
   .card-style{
-    @apply rounded-2xl bg-white shadow;
+    @apply rounded-2xl bg-white custom-shadow;
   }
   .semi-header{
     @apply text-3xl text-primary_color;
@@ -67,5 +67,20 @@
   }
   .label-style {
     @apply text-primary_color font-medium text-lg;
+  }
+  .car-info{
+    @apply flex mt-8;
+  }
+  .car-info-paragraph{
+    @apply ms-2 text-primary_color;
+  }
+  .info-header{
+    @apply font-medium text-2xl mb-4;
+  }
+  .info-sub-header{
+    @apply text-xl text-primary_color mb-1;
+  }
+  .total-info{
+    @apply flex justify-between font-medium text-2xl mb-6;
   }
 }
