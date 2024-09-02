@@ -4,7 +4,7 @@
     <div class="mx-4 md:mx-20">
       <!-- section one  -->
       <div
-        class="flex flex-col md:flex-row lg:justify-between items-center border-b-[1px] py-6 border-white"
+        class="flex justify-between flex-col md:flex-row items-center border-b-[1px] py-6 border-white"
       >
         <div class="w-full md:w-4/12">
           <p class="text-base font-semibold">
@@ -15,7 +15,7 @@
             nisi at elit venenatis fringilla. Cras ut semper quam.
           </p>
         </div>
-        <div class="gap-4 flex flex-col sm:flex-row pt-3 md:pt-0 w-full sm:w-4/12">
+        <div class="gap-4 flex flex-col sm:flex-row pt-3 md:pt-0 w-full md:w-auto">
           <input
             type="text"
             placeholder="Enter your email"

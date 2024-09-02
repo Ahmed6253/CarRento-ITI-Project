@@ -1,5 +1,6 @@
 <template>
   <div class="mx-20">
+    <!-- profile picture start -->
     <div class="mt-12 w-fit mx-auto relative">
       <img class="" src="../imagesNavfoot/User.svg" alt="" />
       <img
@@ -8,6 +9,8 @@
         alt=""
       />
     </div>
+    <!-- profile picture end  -->
+    <!-- section one start -->
   </div>
 </template>
 
