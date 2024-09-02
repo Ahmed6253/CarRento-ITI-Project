@@ -7,10 +7,10 @@ import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarsPage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import ProfilePage from "./pages/ProfilePage.vue";
+import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
-
 
 const routes = [
   {
@@ -28,6 +28,10 @@ const routes = [
   {
     path: "/about",
     component: AboutPage,
+  },
+  {
+    path: "/checkout",
+    component: CheckoutPage,
   },
   {
     path: "/profile",
