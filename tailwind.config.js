@@ -25,6 +25,7 @@ module.exports = {
       backgroundPosition: {
         'custom-60': '0px 210px',
         'custom-20-40': '20px 40px',
+        'custom-130': '130px 0px',
       },
       backgroundImage: {
         'radial-one-color': 'radial-gradient(circle,#DBEAFE 0%, transparent 100%)',
