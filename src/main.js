@@ -6,7 +6,6 @@ import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarsPage.vue";
 import AboutPage from "./pages/AboutPage.vue";
-import CheckoutPage from "./pages/CheckoutPage.vue";
 import ProfilePage from "./pages/ProfilePage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
@@ -27,10 +26,6 @@ const routes = [
   {
     path: "/about",
     component: AboutPage,
-  },
-  {
-    path: "cars/:id/checkout",
-    component: CheckoutPage,
   },
   {
     path: "/profile",
