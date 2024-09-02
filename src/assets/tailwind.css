@@ -11,7 +11,7 @@
     background: url('./images/about.png') lightgray 50% / cover no-repeat;
   }
   .values_card{
-    @apply py-6 ps-4 pe-6  rounded-2xl bg-white shadow hover:bg-values_hover lg:w-52 2xl:w-72 xl:w-64  md:w-72 text-center md:text-left w-full mb-4 h-40;
+    @apply py-6 ps-4 pe-6  card-style hover:bg-values_hover lg:w-52 2xl:w-72 xl:w-64  md:w-72 text-center md:text-left w-full mb-4 h-40;
   }
   .car-bg {
     background: url('./images/about-car.png') no-repeat;
@@ -27,6 +27,12 @@
   }
   .res-parapgraph{
     @apply text-center md:text-base text-sm text-Paragraph_color pt-2;
+  }
+  .card-style{
+    @apply rounded-2xl bg-white shadow;
+  }
+  .semi-header{
+    @apply text-3xl text-primary_color;
   }
   
 }
