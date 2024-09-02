@@ -1,14 +1,18 @@
 <template>
-  <div class="font-poppins lg:px-[80px] px-4 bg-bg_color">
-    <nav>nav</nav>
-    <router-view></router-view>
-  </div>
-  <footer class="text-">footer</footer>
+  <div class="bg-bg_color pt-1"><NavBar></NavBar></div>
+  <router-view></router-view>
+  <FooterComp></FooterComp>
 </template>
 
 <script>
+import NavBar from "./components/NavBar.vue";
+import FooterComp from "./components/FooterComp.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    NavBar,
+    FooterComp,
+  },
 };
 </script>
+<style scoped></style>
