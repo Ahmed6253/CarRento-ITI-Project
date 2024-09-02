@@ -3,7 +3,7 @@
   <div class="mx-4 md:mx-20">
     <nav>
       <div
-        class="  max-w-screen-xl py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full shadow mt-6"
+        class="  max-w-screen-xl py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6"
       >
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="../imagesNavfoot/logo.png" class="h-8" alt="Flowbite Logo" />
