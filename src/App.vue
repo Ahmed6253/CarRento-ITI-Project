@@ -2,7 +2,6 @@
   <div class="bg-bg_color pt-1"><NavBar></NavBar></div>
   <router-view></router-view>
   <FooterComp></FooterComp>
-
 </template>
 
 <script>
@@ -12,13 +11,8 @@ export default {
   name: "App",
   components: {
     NavBar,
-    FooterComp
-
+    FooterComp,
   },
- 
 };
 </script>
-<style scoped>
-
-
-</style>
+<style scoped></style>

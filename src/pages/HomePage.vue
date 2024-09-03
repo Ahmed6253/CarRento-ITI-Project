@@ -11,7 +11,7 @@
   </div>
 
   <div class="bg-quarter-split">
-    <div class="container mx-auto px-4 md:px-10 lg:px-20 py-10">
+    <div class=" mx-auto px-4 md:px-10 lg:px-20 py-10">
       <SearchCard class="mt-0"></SearchCard>
     </div>
   </div>

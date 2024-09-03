@@ -39,7 +39,7 @@
       <label class="label-style" for="pickup-date">Pick-up Date</label><br />
       <input type="date" id="pickup-date" class="input-style" />
       <img
-        src=""
+        src="../assets/calendar.svg"
         alt=""
         class="w-5 absolute right-4 top-12"
       />
@@ -48,7 +48,7 @@
       <label class="label-style" for="dropoff-date">Drop-off Date</label><br />
       <input type="date" id="dropoff-date" class="input-style" />
       <img
-        src=""
+        src="../assets/calendar.svg"
         alt=""
         class="w-5 absolute right-4 top-12"
       />
@@ -67,4 +67,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+input[type="date"]::-webkit-calendar-picker-indicator {
+  z-index: 99999;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  color: rgb(156 163 175);
+}
+</style>
