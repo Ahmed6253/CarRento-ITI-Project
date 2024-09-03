@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-bg_color">
-    <div class="container px-4 md:px-10 mx-auto pt-16 pb-14">
+  <div class="bg-bg_color mx-0 px-0">
+    <div class="container px-4 mx-auto pt-16 pb-14">
 
       <!-- ------------------------------------------upper bars------------------------------------------- -->
       <div class="flex flex-nowrap">
