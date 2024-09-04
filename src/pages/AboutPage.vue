@@ -4,8 +4,8 @@
     <div class="about-bg  md:h-[400px] h-[250px] flex-shrink-0 flex items-center">
       <h1 class="  text-primary_color text-center md:text-7xl text-4xl font-normal mx-auto ">About Us</h1>
     </div>
-    <div class="md:mx-10 mx-4 lg:mx-20">
-      <div class="mt-20 w-6/12 mx-auto mb-48">
+    <div class="md:mx-10 mx-4 lg:mx-20 pb-12">
+      <div class="mt-20 lg:w-6/12 w-full mx-auto mb-48">
         <h3 class="res-header">Our Story</h3>
         <p class="res-parapgraph">"At Car Rento, we're passionate about providing
           hassle-free
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="bg-radial-one-color rounded-2xl bg-white shadow grid lg:grid-cols-2 ">
+      <div class="bg-radial-one-color rounded-3xl bg-white custom-shadow grid lg:grid-cols-2 p-6 md:p-0">
         <div class="  bg-custom-20-40">
           <div class="md:mb-48 md:w-7/12 md:ms-12 md:mt-20 p-4">
             <h1 class="md:text-6xl text-4xl text-primary_color mb-4">Join Us</h1>
@@ -66,11 +66,13 @@
           </div>
         </div>
 
-        <div class="car-bg lg:bg-custom-60 w-full h-96 lg:h-auto md:bg-custom-130"></div>
+        <div class="md:car-bg lg:bg-custom-60 w-full md:h-96 h-0 lg:h-auto md:bg-custom-130"></div>
       </div>
     </div>
   </div>
 
+
+  
 
 </template>
 
