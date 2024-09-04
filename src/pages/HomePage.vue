@@ -1,7 +1,7 @@
 <template class="bg-bg_color">
   <!-- ------------------------------------hero section--------------------------------- -->
   <div class="bg-split-half max-h-fit">
-    <div class=" mx-4 md:mx-20">
+    <div class="mx-4 md:mx-20">
       <div class="lg:bg-hero-bg lg:bg-right-bottom bg-no-repeat px-0 pt-12 pb-32 lg:pb-96 text-center lg:text-left">
         <h1 class="text-6xl">Rent your perfect car with a big discount</h1>
         <button class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl">Rent now</button>
@@ -18,7 +18,7 @@
 
   <!-- -----------------------------------logo separator------------------------------------->
   <section class="bg-white py-5 my-0">
-    <div class="mx-4 md:mx-20">
+   <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
         <div class="logo-container">
           <img src="../assets/home-images/Mercedes.png" alt="mercedes" class="w-fit">
@@ -45,7 +45,7 @@
   <!-- ------------------------easy steps ----------------------------------- -->
 
   <section class="bg-bg_color py-24 my-0 text-center">
-    <div class=" mx-4 md:mx-20">
+    <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Easy steps to rent your perfect car</h2>
       <p class="w-75% text-[16px]">Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.</p>
 
@@ -86,7 +86,7 @@
 
    <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
    <section class="bg-bg_color pt-0 pb-24 my-0 text-center">
-    <div class=" mx-4 md:mx-20">
+    <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.</p>
       <div class="flex justify-end my-3">
@@ -115,7 +115,7 @@
 
 
    <section class="bg-bg_color pt-0 pb-24 my-0">
-    <div class=" mx-4 md:mx-20">
+    <div class="mx-4 md:mx-20">
      <div class="bg-white rounded-3xl custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]">
       <div class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40">
         <h1 class="text-6xl">Rent your perfect car with a big discount</h1>
@@ -128,7 +128,7 @@
     <!-- ---------------------------------why choose us--------------------------- -->
 
     <section class="bg-bg_color pt-0 pb-24 my-0">
-      <div class=" mx-4 md:mx-20">
+      <div class="mx-4 md:mx-20">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-1/2">
            <h1 class="text-4xl">Rent your perfect car with a big discount</h1>
