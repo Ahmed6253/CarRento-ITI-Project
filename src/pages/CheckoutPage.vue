@@ -21,12 +21,12 @@
       </div>
 
       <!-- ---------------------------------------review your booking---------------------------------------- -->
-       <div class="flex justify-start md:justify-between flex-col lg:flex-row pt-24">
-        <div class="flex py-3 lg:py-0 px-0">
-          <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6">
+       <div class="flex justify-start md:justify-between flex-col lg:flex-row pt-24 ps-3">
+        <div class="py-3 lg:py-0 px-0 flex items-center">
+          <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6 h-6">
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
-        <p class="text-xl px-0 mx-0">Total: LE <span class="text-4xl font-semibold">12,125</span>.63</p>
+        <p class="text-xl px-0 mx-0 mb-4">Total: LE <span class="text-4xl font-semibold">12,125</span>.63</p>
        </div>
        <h3 class="text-2xl mt-10 hidden lg:block">ID verification</h3>
 
@@ -140,7 +140,7 @@
        <!-- ------------------------------------form end ----------------------------------------------------- -->
 
         <!-- ---------------------------------order details card-------------------------------------------- -->
-        <aside class="w-full lg:w-1/3 p-3 ">
+        <aside class="w-full lg:w-1/3 p-3">
          <OrderDetailsCard/>
         </aside>
        </div>

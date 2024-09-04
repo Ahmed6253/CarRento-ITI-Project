@@ -1,9 +1,9 @@
 <template>
-            <div class="car-sum-comp custom-shadow flex lg:flex-col items-center">
-            <section class="w-1/2 lg:w-full p-0">
-             <img src="../assets/home-images/red-car.svg" alt="car image">
+            <div class="car-sum-comp custom-shadow flex flex-col-reverse md:flex-row lg:flex-col items-center p-4 w-full">
+            <section class="w-full md:w-1/2 lg:w-full p-0">
+             <img src="../assets/home-images/red-car.svg" alt="car image" >
             </section>
-            <section class="px-8 py-0">
+            <section class="px-8 py-0 w-full md:w-1/2 lg:w-full mt-4">
               <h3 class="text-[25px] font-bold text-start pt-0 pb-6">
                 Mercedes-Benz AMG
               </h3>
