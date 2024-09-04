@@ -1,12 +1,16 @@
 <template>
-   <!-- navbar start -->
+  <!-- navbar start -->
   <div class="mx-4 md:mx-20">
-    <nav class=" border-gray-200">
+    <nav class="border-gray-200">
       <div
-        class="  max-w-screen-xl py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6"
+        class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6"
       >
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="../imagesNavfoot/logo.png" class="h-8" alt="Flowbite Logo" />
+          <img
+            src="../imagesNavfoot/logo.png"
+            class="h-8"
+            alt="Flowbite Logo"
+          />
         </a>
         <div
           class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-3"
@@ -45,11 +49,11 @@
           id="navbar-user"
         >
           <ul
-            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
           >
             <li>
               <a
-                href="#"
+                href="/"
                 class="block py-2 px-3 text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
                 aria-current="page"
                 >Home</a
@@ -57,14 +61,14 @@
             </li>
             <li>
               <a
-                href="#"
+                href="/cars"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
                 >Cars</a
               >
             </li>
             <li>
               <a
-                href="#"
+                href="/about"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
                 >About</a
               >
@@ -78,7 +82,7 @@
             </li>
             <li>
               <a
-                href="#"
+                href="/profile"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
                 >Profile</a
               >
@@ -97,7 +101,6 @@ export default {
   data() {
     return {
       showMenu: false,
-
     };
   },
   methods: {

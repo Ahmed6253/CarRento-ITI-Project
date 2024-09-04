@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
-import CarPage from "./pages/CarsPage.vue";
+import CarPage from "./pages/CarPage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import ProfilePage from "./pages/ProfilePage.vue";
 import CheckoutPage from "./pages/CheckoutPage.vue";
