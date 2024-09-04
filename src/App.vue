@@ -12,8 +12,7 @@ export default {
   name: "App",
   components: {
     NavBar,
-    FooterComp
-
+    FooterComp,
   },
  
 };

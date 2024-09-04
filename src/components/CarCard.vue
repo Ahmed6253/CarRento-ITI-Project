@@ -19,7 +19,6 @@
               <span>Price</span>
               <span>1449 LE<span class="text-gray-500">/day</span></span>
             </div>
-
             <button class="bg-primary_color hover:bg-primary_hover text-white w-full py-2.5 rounded-3xl">Rent now</button>
           </div>
 </template>

@@ -11,14 +11,14 @@
   </div>
 
   <div class="bg-quarter-split">
-    <div class="container mx-auto px-4 md:px-10 lg:px-20 py-10">
+    <div class="container mx-4 md:mx-20 py-10">
       <SearchCard class="mt-0"></SearchCard>
     </div>
   </div>
 
   <!-- -----------------------------------logo separator------------------------------------->
   <section class="bg-white py-5 my-0">
-    <div class="containermx-4 md:mx-20">
+    <div class="container mx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
         <div class="logo-container">
           <img src="../assets/home-images/Mercedes.png" alt="mercedes" class="w-fit">
