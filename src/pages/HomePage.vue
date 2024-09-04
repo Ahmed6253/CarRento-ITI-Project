@@ -2,7 +2,7 @@
   <!-- ------------------------------------hero section--------------------------------- -->
   <div class="bg-split-half max-h-fit">
     <div class="mx-4 md:mx-20">
-      <div class="px-0 pt-12 text-center lg:text-left">
+      <div class="px-0 pt-12 text-left">
         <h1 class="lg:text-6xl text-4xl">
           Rent your perfect car with <br />
           a big discount
@@ -31,27 +31,43 @@
   <section class="bg-white py-5 my-0">
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
-        <div class="logo-container">
+        <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
           <img
             src="../assets/home-images/Mercedes.png"
             alt="mercedes"
-            class="w-fit"
+            class="mx-auto"
           />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Porsche.png" alt="Porsche" />
+          <img
+            src="../assets/home-images/Porsche.png"
+            alt="Porsche"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Kia.png" alt="kia" />
+          <img src="../assets/home-images/Kia.png" alt="kia" class="mx-auto" />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Nissan.png" alt="nissan" />
+          <img
+            src="../assets/home-images/Nissan.png"
+            alt="nissan"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Fiat.png" alt="fiat" />
+          <img
+            src="../assets/home-images/Fiat.png"
+            alt="fiat"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Vector.png" alt="vector" />
+          <img
+            src="../assets/home-images/Vector.png"
+            alt="vector"
+            class="mx-auto"
+          />
         </div>
       </div>
     </div>
@@ -127,14 +143,17 @@
         find the perfect vehicle for your needs.
       </p>
       <div class="flex justify-end my-3">
-        <div class="rounded-md p-3 mx-1 bg-black">
+        <button class="rounded-md p-3 mx-1 bg-black" id="slide-next">
           <img src="../assets/home-images/icons/arrow-right.png" alt="" />
-        </div>
-        <div class="rounded-md p-3 mx-1 bg-black">
+        </button>
+        <button class="rounded-md p-3 mx-1 bg-black" id="slide-prev">
           <img src="../assets/home-images/icons/arrow-left.png" alt="" />
-        </div>
+        </button>
       </div>
-      <div class="flex gap-2">
+      <div
+        class="flex gap-2 overflow-hidden py-3"
+        :style="{ transform: `translateX(${offset}px)` }"
+      >
         <CarCard v-for="car in cars" :key="car.id" :car="car" />
       </div>
     </div>
@@ -238,6 +257,9 @@ export default {
   data() {
     return {
       cars: [],
+      currentIndex: 0,
+      cardWidth: 0,
+      offset: 0,
     };
   },
   created() {
