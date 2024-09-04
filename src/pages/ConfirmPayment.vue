@@ -1,20 +1,20 @@
 <template class="bg-bg_color">
 
-    <div class="md:mx-10 mx-4 lg:mx-20 my-20 ">
+    <div class="md:mx-10 mx-4 lg:mx-20 mt-52 mb-24">
 
         <div class="flex flex-nowrap mb-20">
             <div class="p-bar-container">
-                <div class="p-bar-full">
+                <div class="p-bar-full ">
                 </div>
             </div>
 
             <div class="p-bar-container">
-                <div class="p-bar-full">
+                <div class="p-bar-full ">
                 </div>
             </div>
 
             <div class="p-bar-container">
-                <div class="p-bar-full">
+                <div class="p-bar-full ">
                 </div>
             </div>
         </div>
@@ -26,13 +26,13 @@
                     <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="black" />
                 </svg>
             </router-link>
-            <h4 class="semi-header font-medium">Confirm payment</h4>
+            <h4 class="semi-header font-medium ">Confirm payment</h4>
         </div>
 
 
 
         <div class="card-style">
-            <div class="grid grid-cols-2 p-11">
+            <div class="md:grid grid-cols-2 md:p-11 p-8">
                 <div>
                     <h2 class="font-semibold semi-header">Mercedes-Benz AMG</h2>
                     <div class="grid grid-cols-2">
@@ -87,7 +87,7 @@
                                 </g>
                             </svg>
 
-                            <p class="car-info-paragraph">Air conditionar</p>
+                            <p class="car-info-paragraph">Air conditioner</p>
                         </div>
 
                         <div class="car-info">
@@ -155,59 +155,59 @@
                     </div>
                 </div>
                 <div>
-                    <img src="../assets/images/car-info.png" class="ms-20" />
+                    <img src="../assets/images/car-info.png" class="md:ms-20 mt-10 md:mt-12 ms-0 w-10/12 md:w-11/12 lg:w-3/4" />
                 </div>
             </div>
 
             <hr class="bg-line_color h-0.5">
 
-            <div class="p-11 mb-16">
+            <div class="md:p-11 p-8 mb-16">
                 <h2 class="info-header">Personal information</h2>
                 <div class="mb-3">
                     <h4 class="info-sub-header">Name</h4>
-                    <p class="text-Paragraph_color">Aya Khaled</p>
+                    <p class="info-paragraph">Aya Khaled</p>
                 </div>
 
                 <div>
                     <h4 class="info-sub-header">Location</h4>
-                    <p class="text-Paragraph_color">Cairo, Egypt</p>
+                    <p class="info-paragraph">Cairo, Egypt</p>
                 </div>
             </div>
 
             <hr class="bg-line_color h-0.5">
 
-            <div class="p-11 mb-16">
+            <div class="md:p-11 p-8 mb-16">
                 <h2 class="info-header">Order information</h2>
                 <div class="mb-3">
                     <h4 class="info-sub-header">Pick-up location</h4>
-                    <p class="text-Paragraph_color">Cairo, Egypt</p>
+                    <p class="info-paragraph">Cairo, Egypt</p>
                 </div>
 
                 <div class="mb-3">
                     <h4 class="info-sub-header">Pick-up date</h4>
-                    <p class="text-Paragraph_color">26/08/2024</p>
+                    <p class="info-paragraph">26/08/2024</p>
                 </div>
 
                 <div class="mb-3">
                     <h4 class="info-sub-header">Drop-off date</h4>
-                    <p class="text-Paragraph_color">26/09/2024</p>
+                    <p class="info-paragraph">26/09/2024</p>
                 </div>
 
                 <div class="mb-3">
                     <h4 class="info-sub-header">2 Infant child seat </h4>
-                    <p class="text-Paragraph_color">1050 LE added</p>
+                    <p class="info-paragraph">1050 LE added</p>
                 </div>
 
                 <div class="mb-3">
                     <h4 class="info-sub-header">Collision damage protection</h4>
-                    <p class="text-Paragraph_color">5034 LE added</p>
+                    <p class="info-paragraph">5034 LE added</p>
                 </div>
             </div>
 
         </div>
 
         <div class="card-style">
-            <div class="p-11">
+            <div class="md:p-11 p-8">
                 <div class="total-info">
                     <p>Total</p>
                     <p>1800</p>
@@ -234,7 +234,7 @@
 
         </div>
 
-        <button class="bg-green w-full text-white h-20 rounded-lg mt-10 font-semibold">Confirm Info</button>
+        <button class="bg-green w-full text-white h-12  rounded-lg  mt-6 font-semibold">Confirm Info</button>
     </div>
 
 

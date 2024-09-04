@@ -46,7 +46,7 @@
     @apply rounded-2xl bg-white custom-shadow;
   }
   .semi-header{
-    @apply text-3xl text-primary_color;
+    @apply  md:text-2xl text-xl text-primary_color;
   }
   
 
@@ -72,16 +72,19 @@
     @apply flex mt-8;
   }
   .car-info-paragraph{
-    @apply ms-2 text-primary_color;
+    @apply ms-2 text-primary_color text-sm md:text-base;
   }
   .info-header{
-    @apply font-medium text-2xl mb-4;
+    @apply font-medium md:text-2xl text-lg mb-4;
   }
   .info-sub-header{
-    @apply text-xl text-primary_color mb-1;
+    @apply md:text-xl text-base text-primary_color mb-1;
+  }
+  .info-paragraph{
+    @apply text-Paragraph_color text-sm md:text-base;
   }
   .total-info{
-    @apply flex justify-between font-medium text-2xl mb-6;
+    @apply flex justify-between font-medium md:text-2xl text-xl mb-6;
   }
 
   .car-sum-comp{
