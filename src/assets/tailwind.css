@@ -83,4 +83,8 @@
   .total-info{
     @apply flex justify-between font-medium text-2xl mb-6;
   }
+
+  .car-sum-comp{
+    @apply w-full rounded-2xl text-center bg-white;
+  }
 }
