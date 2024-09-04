@@ -11,6 +11,7 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import login from "./pages/login.vue"
 
 const routes = [
   {
@@ -49,6 +50,11 @@ const routes = [
     path: "/confirmpayment",
     component: ConfirmPayment,
   },
+  {
+    path: "/login",
+    component: login,
+  },
+
 ];
 
 const router = createRouter({
