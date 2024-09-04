@@ -2,7 +2,7 @@
   <div
     class="lg:max-w-[308px] max-w-[85%] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between"
   >
-    <div class="rating flex justify-end gap-1">
+    <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
         <path
           class="fill-Paragraph_color"
@@ -43,6 +43,7 @@
     </div>
 
     <button
+      @click="$router.push(`/cars/${car.id}`)"
       class="bg-primary_color hover:bg-primary_hover text-white w-full py-2.5 rounded-3xl"
     >
       Rent now
@@ -53,7 +54,7 @@
 <script>
 export default {
   name: "CarCard",
-  props: ["car"],
+  props: ["car", "carKey"],
   methods: {
     getImagePath(prop) {
       try {
