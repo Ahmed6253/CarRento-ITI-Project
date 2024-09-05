@@ -40,19 +40,35 @@
           />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Porsche.png" alt="Porsche" class="mx-auto"/>
+          <img
+            src="../assets/home-images/Porsche.png"
+            alt="Porsche"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Kia.png" alt="kia" class="mx-auto"/>
+          <img src="../assets/home-images/Kia.png" alt="kia" class="mx-auto" />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Nissan.png" alt="nissan" class="mx-auto"/>
+          <img
+            src="../assets/home-images/Nissan.png"
+            alt="nissan"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Fiat.png" alt="fiat" class="mx-auto"/>
+          <img
+            src="../assets/home-images/Fiat.png"
+            alt="fiat"
+            class="mx-auto"
+          />
         </div>
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
-          <img src="../assets/home-images/Vector.png" alt="vector" class="mx-auto"/>
+          <img
+            src="../assets/home-images/Vector.png"
+            alt="vector"
+            class="mx-auto"
+          />
         </div>
       </div>
     </div>

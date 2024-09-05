@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-bg_color pt-1"><NavBar></NavBar></div>
-  <router-view></router-view>
-  <FooterComp></FooterComp>
+  <div class="bg-bg_color">
+    <NavBar class="pt-1"></NavBar>
+    <router-view></router-view>
+    <FooterComp></FooterComp>
+  </div>
 </template>
 
 <script>
