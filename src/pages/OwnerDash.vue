@@ -4,6 +4,10 @@
 
 <script>
 export default {
-  name: "OwnerDash",
-};
+  name: "OwnerDash"
+}
 </script>
+
+<style>
+
+</style>
