@@ -21,6 +21,7 @@
           <button
             type="button"
             class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
+            @click="openModal"
           >
             login
           </button>
@@ -99,17 +100,29 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: "NavBar",
   data() {
     return {
       showMenu: false,
+      
+      
     };
   },
+  computed: {
+        ...mapState(['isModalOpen'])
+    },
+ 
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
     },
+    openModal(){
+      this.$store.dispatch('openModal');
+      console.log(1)
+    }
+    
   },
 };
 </script>
