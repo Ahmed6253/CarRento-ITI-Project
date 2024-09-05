@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
+import store from './Store.js';
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarPage.vue";
@@ -62,4 +63,4 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(store).mount("#app");

@@ -57,7 +57,7 @@
         <!-- third colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
           <p class="text-base font-semibold">Company</p>
-          <p class="text-xs">About Us</p>
+          <router-link class="text-xs" to="/about">About Us</router-link>
           <p class="text-xs">Blog</p>
           <p class="text-xs">FAQ</p>
         </div>
