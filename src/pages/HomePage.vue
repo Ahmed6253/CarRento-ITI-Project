@@ -10,6 +10,7 @@
         </h1>
         <button
           class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl"
+          @click="scrollToSearchCard"
         >
           Rent now
         </button>
@@ -22,7 +23,7 @@
     </div>
   </div>
 
-  <div class="bg-quarter-split">
+  <div class="bg-quarter-split" id="search-card">
     <div class="mx-auto px-4 md:px-10 lg:px-20 py-10">
       <SearchCard class="mt-0"></SearchCard>
     </div>
@@ -76,7 +77,7 @@
 
   <!-- ------------------------easy steps ----------------------------------- -->
 
-  <section class="bg-bg_color py-24 my-0 text-center">
+  <section class="bg-bg_color pt-24 p-16 my-0 text-center">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">
         Easy steps to rent your perfect car
@@ -136,7 +137,7 @@
   </section>
 
   <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
- <section class="bg-bg_color pt-0 pb-24 my-0 text-center">
+ <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">
@@ -175,10 +176,6 @@
           <swiper-slide v-for="car in cars" :key="car.id" class="p-3">
             <CarCard :car="car"/>
           </swiper-slide>
-                    <swiper-slide v-for="car in cars" :key="car.id" class="p-3">
-            <CarCard :car="car"/>
-          </swiper-slide>
-          <div class="swiper-pagination w-full"></div>
         </swiper>
       </div>
     </div>
@@ -283,5 +280,11 @@ export default {
         console.log(e);
       });
   },
+  methods: {
+      scrollToSearchCard(){
+      const searchcard = document.getElementById("search-card");
+      searchcard.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 };
 </script>

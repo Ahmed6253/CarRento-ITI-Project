@@ -6,11 +6,13 @@
         class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6"
       >
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
+          <router-link to="/">
+            <img
             src="../imagesNavfoot/logo.png"
             class="h-8"
             alt="Flowbite Logo"
           />
+          </router-link>
         </a>
         <div
           class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-3"
@@ -23,7 +25,7 @@
             login
           </button>
           <!-- user picture  -->
-          <button
+          <router-link to="profile"
             type="button"
             class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
           >
@@ -32,7 +34,7 @@
               src="../imagesNavfoot/User.png"
               alt="user photo"
             />
-          </button>
+          </router-link>
           <!-- Dropdown menu -->
           <button
             @click="showMenu = !showMenu"
@@ -52,26 +54,27 @@
             class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
           >
             <li>
-              <a
-                href="/"
-                class="block py-2 px-3 text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
+              <router-link to="/"
+                class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+                active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
                 aria-current="page"
-                >Home</a
+                >Home</router-link
               >
             </li>
             <li>
-              <a
+              <router-link to="/cars"
                 href="/cars"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
-                >Cars</a
+                active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
+                >Cars</router-link
               >
             </li>
             <li>
-              <a
-                href="/about"
+              <router-link to="/about"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
-                >About</a
-              >
+                active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
+                >About</router-link
+                >
             </li>
             <li>
               <a
@@ -82,9 +85,9 @@
             </li>
             <li>
               <a
-                href="/profile"
+                href="#"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-                >Profile</a
+                ><router-link to="profile">Profile</router-link></a
               >
             </li>
           </ul>
