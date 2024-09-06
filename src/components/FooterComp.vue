@@ -11,8 +11,7 @@
             Get the latest offers and updates
           </p>
           <p class="text-xs pt-1 md:pt-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet
-            nisi at elit venenatis fringilla. Cras ut semper quam.
+            Stay informed with our exclusive deals, latest car models, and special promotions tailored just for you. Subscribe now!
           </p>
         </div>
         <div class="gap-4 flex flex-col sm:flex-row pt-3 md:pt-0 w-full md:w-auto">
@@ -32,14 +31,15 @@
       >
         <!-- first colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-5/12 py-3 md:py-0">
-          <img
+          <a href="/">
+            <img
             class="w-2/12"
             src="../imagesNavfoot/logo2.png"
             alt="logo car rento"
           />
+          </a>
           <p class="text-xs w-full md:w-5/12">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, Sed laoreet
-            lorem ibsum.
+            Reliable car rentals, offering comfort and style for every journey you take.
           </p>
           <div class="flex gap-3">
             <img src="../imagesNavfoot/facebook.png" alt="" />
@@ -50,16 +50,16 @@
         <!-- second colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
           <p class="text-base font-semibold">Support</p>
-          <p class="text-xs">Pricing</p>
-          <p class="text-xs">Insights</p>
-          <p class="text-xs">Plans</p>
+          <a href="/cars" class="text-xs">Pricing</a>
+          <a href="/cars" class="text-xs">Insights</a>
+          <a href="/cars" class="text-xs">Plans</a>
         </div>
         <!-- third colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
           <p class="text-base font-semibold">Company</p>
-          <p class="text-xs">About Us</p>
-          <p class="text-xs">Blog</p>
-          <p class="text-xs">FAQ</p>
+          <a href="/about" class="text-xs">About Us</a>
+          <a href="/about" class="text-xs">Blog</a>
+          <a href="/about" class="text-xs">FAQ</a>
         </div>
         <!-- fourth colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
@@ -74,21 +74,21 @@
             >
           </p>
           <p class="text-xs">
-            <span class="flex"
+            <a href="mailto:inquire@carrento.com" class="flex"
               ><img
                 class="w-4 h-4 mr-2"
                 src="../imagesNavfoot/sms.png"
                 alt=""
-              />inquire@carrento.com</span
+              />inquire@carrento.com</a
             >
           </p>
           <p class="text-xs">
-            <span class="flex"
+            <a class="flex" href="https://maps.app.goo.gl/xENjCAT8guw1yiYu6" target=”_blank”
               ><img
                 class="w-4 h-4 mr-2"
                 src="../imagesNavfoot/location.png"
                 alt=""
-              />123 inquire carrento com</span
+              />123 inquire carrento com</a
             >
           </p>
         </div>

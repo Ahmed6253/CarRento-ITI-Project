@@ -9,11 +9,13 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";
+import login from "./pages/login.vue";
 export default {
   name: "App",
   components: {
     NavBar,
     FooterComp,
+    login,
   },
 };
 </script>
