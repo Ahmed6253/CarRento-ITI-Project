@@ -2,6 +2,7 @@
   <div class="bg-bg_color">
     <NavBar v-if="!$route.meta.hideNavFoot" class="pt-1"></NavBar>
     <router-view></router-view>
+    <login v-if="$store.state.isModalOpen"></login>
     <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
   </div>
 </template>
