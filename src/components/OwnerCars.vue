@@ -1,0 +1,509 @@
+<template>
+  <div class="text-primary_color flex flex-col relative">
+    <button
+      @click="isAdding = true"
+      class="bg-green hover:bg-green_hover text-white px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
+    >
+      <img src="../assets/ownerDashImges/add.svg" /> Add Car
+    </button>
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase">
+          <tr>
+            <th scope="col" class="px-6 py-3">Car Model</th>
+            <th scope="col" class="px-6 py-3">Brand</th>
+            <th scope="col" class="px-6 py-3">Color</th>
+            <th scope="col" class="px-6 py-3">Type</th>
+            <th scope="col" class="px-6 py-3">Price</th>
+            <th scope="col" class="px-6 py-3">Number</th>
+            <th scope="col" class="px-6 py-3">Set Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="car in cars"
+            :key="car"
+            class="bg-white border-b rounded-2xl"
+          >
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+            >
+              {{ car.name }}
+            </th>
+            <td class="px-6 py-4">{{ car.brand }}</td>
+            <td class="px-6 py-4">{{ car.color }}</td>
+            <td class="px-6 py-4">{{ car.type }}</td>
+            <td class="px-6 py-4">{{ car.price }} LE</td>
+            <td class="px-6 py-4">{{ car.number }}</td>
+            <td class="pl-6 py-4">
+              <button
+                class="bg-green hover:bg-green_hover rounded text-white p-2"
+              >
+                Available
+              </button>
+            </td>
+            <td class="pr-6 py-4">
+              <button class="bg-red hover:bg-red_hover rounded text-white p-2">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <form
+        @submit.prevent
+        v-if="isAdding"
+        class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-45%] bg-white rounded-2xl w-full custom-shadow p-10 mt-4 transition-all"
+      >
+        <!-- first form -->
+        <div v-if="!nextForm" class="flex justify-between flex-wrap">
+          <div class="w-[47%]">
+            <label for="carModel">Car Model</label><br />
+            <input
+              type="text"
+              v-model="carOptions.name"
+              id="carModel"
+              name="carModel"
+              placeholder="Car Model"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+          <div class="w-[47%]">
+            <label for="brand">Brand</label>
+            <select
+              v-model="carOptions.brand"
+              name="brand"
+              id="brand"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            >
+              <option value="ACURA">ACURA</option>
+              <option value="ASTON MARTIN">ASTON MARTIN</option>
+              <option value="AUDI">AUDI</option>
+              <option value="BENTLEY">BENTLEY</option>
+              <option value="BMW">BMW</option>
+              <option value="BUICK">BUICK</option>
+              <option value="CADILLAC">CADILLAC</option>
+              <option value="CHEVROLET">CHEVROLET</option>
+              <option value="CHRYSLER">CHRYSLER</option>
+              <option value="DODGE">DODGE</option>
+              <option value="FERRARI">FERRARI</option>
+              <option value="FORD">FORD</option>
+              <option value="GMC">GMC</option>
+              <option value="HONDA">HONDA</option>
+              <option value="HUMMER">HUMMER</option>
+              <option value="HYUNDAI">HYUNDAI</option>
+              <option value="INFINITI">INFINITI</option>
+              <option value="ISUZU">ISUZU</option>
+              <option value="JAGUAR">JAGUAR</option>
+              <option value="JEEP">JEEP</option>
+              <option value="KIA">KIA</option>
+              <option value="LAMBORGHINI">LAMBORGHINI</option>
+              <option value="LAND ROVER">LAND ROVER</option>
+              <option value="LEXUS">LEXUS</option>
+              <option value="LINCOLN">LINCOLN</option>
+              <option value="LOTUS">LOTUS</option>
+              <option value="MASERATI">MASERATI</option>
+              <option value="MAYBACH">MAYBACH</option>
+              <option value="MAZDA">MAZDA</option>
+              <option value="MERCEDES-BENZ">MERCEDES-BENZ</option>
+              <option value="MERCURY">MERCURY</option>
+              <option value="MINI">MINI</option>
+              <option value="MITSUBISHI">MITSUBISHI</option>
+              <option value="NISSAN">NISSAN</option>
+              <option value="PONTIAC">PONTIAC</option>
+              <option value="PORSCHE">PORSCHE</option>
+              <option value="ROLLS-ROYCE">ROLLS-ROYCE</option>
+              <option value="SAAB">SAAB</option>
+              <option value="SATURN">SATURN</option>
+              <option value="SUBARU">SUBARU</option>
+              <option value="SUZUKI">SUZUKI</option>
+              <option value="TOYOTA">TOYOTA</option>
+              <option value="VOLKSWAGEN">VOLKSWAGEN</option>
+              <option value="VOLVO">VOLVO</option>
+            </select>
+          </div>
+          <div class="w-[47%]">
+            <label for="color">Color</label>
+            <input
+              v-model="carOptions.color"
+              type="text"
+              id="color"
+              name="color"
+              placeholder="Color"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+          <div class="w-[47%]">
+            <label for="type">Type</label>
+            <select
+              v-model="carOptions.type"
+              name="type"
+              id="type"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            >
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="Hatchback">Hatchback</option>
+              <option value="Coupe">Coupe</option>
+              <option value="Crossover">Crossover</option>
+              <option value="Convertible">Convertible</option>
+              <option value="Truck">Truck</option>
+              <option value="Van">Van</option>
+            </select>
+          </div>
+          <div class="w-[47%]">
+            <label for="price">Price</label>
+            <input
+              v-model="carOptions.price"
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Price"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+          <div class="w-[47%]">
+            <label for="number">Number</label>
+            <input
+              v-model="carOptions.number"
+              type="text"
+              id="number"
+              name="number"
+              placeholder="Number"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+
+          <div class="w-[47%]">
+            <label for="fuel">Fuel Type</label>
+            <select
+              v-model="carOptions.fuel"
+              name="fuel"
+              id="fuel"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            >
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Gas</option>
+              <option value="Electric">Electric</option>
+            </select>
+          </div>
+
+          <div class="w-full hidden">
+            <label for="description">Description</label>
+            <textarea
+              v-model="carOptions.description"
+              name="description"
+              id="description"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            ></textarea>
+          </div>
+          <div class="w-full hidden">
+            <label for="image">Image</label>
+            <input
+              type="file"
+              id="image"
+              ref="image"
+              name="image"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+          <div class="self-end">
+            <button
+              @click="nextForm = true"
+              class="bg-green hover:bg-green_hover text-white px-10 py-2.5 my-4 rounded-lg mr-2"
+            >
+              Next
+            </button>
+            <button
+              @click="isAdding = false"
+              class="bg-red hover:bg-red_hover text-white px-8 py-2.5 rounded-lg"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <!-- second form -->
+
+        <div v-if="nextForm" class="flex justify-between flex-wrap -m-4">
+          <div class="w-full">
+            <label for="gear">Gear</label><br />
+            <input
+              @click="carOptions.manualOrAuto = 'Automatic'"
+              name="gear"
+              type="button"
+              id="automatic"
+              value="Automatic"
+              :class="
+                carOptions.manualOrAuto === 'Automatic'
+                  ? style.activeOption
+                  : style.unActiveOption
+              "
+            />
+            <input
+              @click="carOptions.manualOrAuto = 'Manual'"
+              name="gear"
+              type="button"
+              id="manual"
+              value="Manual"
+              :class="
+                carOptions.manualOrAuto === 'Manual'
+                  ? style.activeOption
+                  : style.unActiveOption
+              "
+            />
+          </div>
+          <div class="w-full">
+            <label for="morefeatures">Add More Features</label><br />
+            <input
+              @click="
+                carFeatures.airConditioning = !carFeatures.airConditioning
+              "
+              name="morefeatures"
+              type="button"
+              id="air-conditioning"
+              value="Air conditioning"
+              :class="
+                carFeatures.airConditioning
+                  ? style.activeOption
+                  : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.GPS = !carFeatures.GPS"
+              name="morefeatures"
+              type="button"
+              id="GPS"
+              value="GPS"
+              :class="
+                carFeatures.GPS ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.ABS = !carFeatures.ABS"
+              name="morefeatures"
+              type="button"
+              id="ABS"
+              value="ABS"
+              :class="
+                carFeatures.ABS ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.monitor = !carFeatures.monitor"
+              name="morefeatures"
+              type="button"
+              id="monitor"
+              value="Monitor"
+              :class="
+                carFeatures.monitor ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.sunroof = !carFeatures.sunroof"
+              name="morefeatures"
+              type="button"
+              id="sunroof"
+              value="Sunroof"
+              :class="
+                carFeatures.sunroof ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.heater = !carFeatures.heater"
+              name="morefeatures"
+              type="button"
+              id="heater"
+              value="Heater"
+              :class="
+                carFeatures.heater ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.airbag = !carFeatures.airbag"
+              name="morefeatures"
+              type="button"
+              id="airbag"
+              value="Airbag"
+              :class="
+                carFeatures.airbag ? style.activeOption : style.unActiveOption
+              "
+            />
+            <input
+              @click="carFeatures.wifi = !carFeatures.wifi"
+              name="morefeatures"
+              type="button"
+              id="wifi"
+              value="Wifi"
+              :class="
+                carFeatures.wifi ? style.activeOption : style.unActiveOption
+              "
+            />
+          </div>
+
+          <div class="w-full">
+            <label for="image">Image</label>
+            <input
+              type="file"
+              ref="image"
+              id="image"
+              name="image"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            />
+          </div>
+          <div class="w-full">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              v-model="carOptions.description"
+              id="description"
+              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+            ></textarea>
+          </div>
+          <div class="self-end ml-auto">
+            <button
+              @click="addCar()"
+              class="bg-green hover:bg-green_hover text-white px-10 py-2.5 mr-2 rounded-lg"
+            >
+              Add Car
+            </button>
+            <button
+              @click="nextForm = false"
+              class="bg-red hover:bg-red_hover text-white px-8 py-2.5 rounded-lg"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
+import { storage } from "@/firebase";
+import { ref, uploadBytes } from "firebase/storage";
+import axios from "axios";
+export default {
+  name: "OnwerCars",
+  data() {
+    return {
+      carOptions: {
+        price: "",
+        brand: "",
+        name: "",
+        color: "",
+        type: "",
+        number: "",
+        description: "",
+        fuel: "",
+        manualOrAuto: "Automatic",
+      },
+      cars: [],
+      style: {
+        unActiveOption:
+          "bg-slate-100 border border-border_color text-primary_color text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
+        activeOption:
+          "bg-primary_color border border-border_color text-white text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
+      },
+      isAdding: false,
+      nextForm: false,
+
+      carFeatures: {
+        airConditioning: false,
+        GPS: false,
+        ABS: false,
+        monitor: false,
+        sunroof: false,
+        heater: false,
+        airbag: false,
+        wifi: false,
+      },
+    };
+  },
+  created() {
+    axios
+      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
+      .then((response) => {
+        this.cars = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+  methods: {
+    uploadImage(id) {
+      const storageRef = ref(storage, `cars/${id}`);
+      uploadBytes(storageRef, this.$refs.image.files[0]);
+    },
+
+    addCar() {
+      const newCar = {
+        ...this.carOptions,
+        features: this.carFeatures,
+        id: this.carOptions.number,
+      };
+
+      if (
+        newCar.price &&
+        newCar.brand &&
+        newCar.name &&
+        newCar.color &&
+        newCar.type &&
+        newCar.number &&
+        newCar.description &&
+        newCar.fuel &&
+        this.$refs.image.files[0]
+      ) {
+        for (let car in this.cars) {
+          if (this.cars[car].id === newCar.id) {
+            return;
+          }
+          this.uploadImage(newCar.id);
+          axios
+            .put(
+              `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
+              newCar
+            )
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+          this.isAdding = false;
+          this.nextForm = false;
+          this.carOptions = {
+            price: "",
+            brand: "",
+            name: "",
+            color: "",
+            type: "",
+            number: "",
+            description: "",
+            fuel: "",
+            manualOrAuto: "Automatic",
+          };
+
+          this.carFeatures = {
+            airConditioning: false,
+            GPS: false,
+            ABS: false,
+            monitor: false,
+            sunroof: false,
+            heater: false,
+            airbag: false,
+            wifi: false,
+          };
+          console.log("Car Added");
+        }
+      } else {
+        console.log("Please fill all the fields");
+      }
+    },
+  },
+};
+</script>

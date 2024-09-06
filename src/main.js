@@ -11,6 +11,7 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import { Store } from "./Store";
 
 const routes = [
   {
@@ -42,8 +43,11 @@ const routes = [
     component: AdminDash,
   },
   {
-    path: "/ownerDashboard",
+    path: "/ownerdash",
     component: OwnerDash,
+    meta: {
+      hideNavFoot: true,
+    },
   },
   {
     path: "/confirmpayment",
@@ -56,4 +60,4 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(Store).use(router).mount("#app");

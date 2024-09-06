@@ -1,8 +1,8 @@
 <template>
   <div class="bg-bg_color">
-    <NavBar class="pt-1"></NavBar>
+    <NavBar v-if="!$route.meta.hideNavFoot" class="pt-1"></NavBar>
     <router-view></router-view>
-    <FooterComp></FooterComp>
+    <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
   </div>
 </template>
 
