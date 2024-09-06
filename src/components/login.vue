@@ -87,6 +87,7 @@
       <div class="flex gap-3 ml-9 justify-start items-center">
         <p class="text-primary_color font-semibold text-3xl">welcome back!</p>
       </div>
+      <form @submit.prevent>
       <div class="flex flex-col ml-9">
         <label class="text-base pt-3 text-primary_color font-medium pb-1" for=""
           >Email address</label
@@ -95,20 +96,24 @@
           class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]"
           type="email"
           placeholder="Enter your Email address"
+          name="email"
+          v-model = "email"
         />
-        <label class="text-base pt-3 text-primary_color font-medium pb-1" for=""
+        <label class="text-base pt-3 text-primary_color font-medium pb-1" for="password"
           >Password</label
         >
         <input
           class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]"
           type="text"
           placeholder="Enter your password"
+          v-model = "password"
+          name="password"
         />
       </div>
       <div class="ml-9 flex flex-col gap-3">
         <div class="flex gap-2 items-center py-1">
           <label class="">
-            <input type="checkbox" class="input" id="sedan" value="sedan" />
+            <input type="checkbox" class="input" id="rememberUser" value="rememberUser" v-model="rememberUser" />
             <span class="custom-checkbox"></span>
           </label>
           <p>
@@ -116,11 +121,14 @@
           </p>
         </div>
         <button
+          type="submit"
+          @click="login"
           class="text-white text-base bg-primary_color w-full py-3 rounded-lg"
         >
           login
         </button>
       </div>
+    </form>
       <div class="ml-9 flex items-center pt-4 gap-3">
         <div class="h-[1px] w-full bg-border_color"></div>
 
@@ -146,8 +154,51 @@
   </div>
 </template>
 <script>
+import axios from "axios"
+
 export default {
-  name: "LoginPage",
+  name: "LoginPage",  
+
+  data(){
+    return{
+      userFlag: "",
+      email: "",
+      password: "",
+      RememberUser: "",
+    }
+  },
+  methods: {
+    login() {
+      axios
+      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/owner.json")
+      .then((res)=> {
+        if(this.userFlag === "owner"){
+          for (let user of res.data){
+            if(
+              user.email === this.email && 
+              user.password === this.password &&
+              user.type === "owner"
+            ){
+              this.$router.push("/ownerDashboard");
+              return;
+            }
+            else if(
+              user.email === this.email && 
+              user.password === this.password &&
+              user.type === "user"
+            ){
+              this.$router.push("/");
+              return;
+            }
+          }
+          alert("you're not registered, Let's sign you up")
+        }
+      })
+      .catch((error)=>{
+        console.error(error)
+      });
+
+  }
 };
 </script>
 <style scoped>
