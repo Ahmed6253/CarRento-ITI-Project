@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
-import store from './Store.js';
+
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarPage.vue";
@@ -12,7 +12,7 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
-import login from "./pages/login.vue"
+import store from "./store";
 
 const routes = [
   {
@@ -44,18 +44,16 @@ const routes = [
     component: AdminDash,
   },
   {
-    path: "/ownerDashboard",
+    path: "/ownerdash",
     component: OwnerDash,
+    meta: {
+      hideNavFoot: true,
+    },
   },
   {
     path: "/confirmpayment",
     component: ConfirmPayment,
   },
-  {
-    path: "/login",
-    component: login,
-  },
-
 ];
 
 const router = createRouter({
@@ -63,4 +61,4 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).use(store).mount("#app");
+createApp(App).use(store).use(router).mount("#app");
