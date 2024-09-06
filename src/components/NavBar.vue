@@ -79,7 +79,7 @@
             </li>
             <li>
               <a
-                href="#"
+                @click="openModal"
                 class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
                 >Login</a
               >
