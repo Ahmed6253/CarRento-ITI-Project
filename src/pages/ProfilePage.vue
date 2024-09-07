@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-4 md:mx-20">
+  <div class="mx-4 md:mx-20 pt-32">
     <!-- profile picture start -->
     <div class="mt-12 w-fit mx-auto relative">
       <img class="" src="../imagesNavfoot/User.svg" alt="" />
@@ -21,15 +21,15 @@
       <div class="flex flex-col md:flex-row justify-between pt-3">
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Name</p>
-          <p class="text-xl text-primary_color">Abobakr Sobhy</p>
+          <p class="text-xl text-primary_color">{{name}}</p>
         </div>
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Phone number</p>
-          <p class="text-xl text-primary_color">+201289378490</p>
+          <p class="text-xl text-primary_color">{{phoneNo}}</p>
         </div>
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Email</p>
-          <p class="text-xl text-primary_color">abdhhi@outlook.com</p>
+          <p class="text-xl text-primary_color">{{email}}</p>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
           class="custom-shadow rounded-xl flex items-center justify-between py-6 px-6 mt-6"
         >
           <div class="flex flex-col gap-x-16">
-            <div class="flex-col md:flex-row   gap-16">
+            <div class="flex-col md:flex-row gap-16">
               <div class="py-3">
                 <p class="text-xl font-semibold text-primary_color">
                   card Number
@@ -141,12 +141,18 @@
               </button>
             </div>
           </div>
-          <div><img class="hidden md:block" src="../imagesNavfoot/visa.png" alt="" /></div>
+          <div>
+            <img
+              class="hidden md:block"
+              src="../imagesNavfoot/visa.png"
+              alt=""
+            />
+          </div>
         </div>
       </div>
       <div>
         <button
-          class="bg-red w-full md:w-auto  px-6 py-2.5 my-6 hover:bg-red_hover text-white rounded-lg"
+          class="bg-red w-full md:w-auto px-6 py-2.5 my-6 hover:bg-red_hover text-white rounded-lg"
         >
           Delete account
         </button>
@@ -159,7 +165,26 @@
 <script>
 export default {
   name: "ProfilePage",
+
+  data(){
+    return{
+      name: "",
+      phoneNo:"",
+      email:"",
+      currentUser:{}
+    }
+  },
+
+  // methods:{
+    // getData(){
+    //   this.currentUser = sessionStorage.getItem("currentUser");
+    //   this.name = this.currentUser.name;
+    //   this.email = this.currentUser.email;
+    //   this.phoneNo = this.currentUser.phoneNo;
+    // }
+  // }
 };
+
 </script>
 
 <style lang="scss" scoped></style>

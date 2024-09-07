@@ -1,19 +1,22 @@
 <template>
-  <div class="bg-bg_color">
-    <NavBar class="pt-1 sticky top-0 z-100"></NavBar>
-    <router-view></router-view>
-    <FooterComp></FooterComp>
-  </div>
+  <NavBar
+    v-if="!$route.meta.hideNavFoot"
+    class="fixed w-[90%] z-40 right-1/2 translate-x-1/2"
+  ></NavBar>
+  <router-view></router-view>
+  <login v-if="$store.state.isModalOpen"></login>
+  <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
 </template>
 <script>
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";
+import login from "./pages/login.vue";
 export default {
   name: "App",
   components: {
     NavBar,
     FooterComp,
-
+    login,
   },
 };
 </script>
