@@ -97,28 +97,41 @@
           <img src="../imagesNavfoot/arrow_back.svg" alt="" @click="closeModal" class="lg:pt-2 pt-0 pb-2 pb-4" />
           <p class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3">welcome back!</p>
         </div>
+
+
+        <form @submit.prevent="loginFun">
+
         <div class="flex flex-col lg:ml-9 mx-auto">
           <label class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1" for="">Email address</label>
-          <input class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]" type="email"
-            placeholder="Enter your Email address" />
+          <input class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]" 
+          type="email"
+          placeholder="Enter your Email address"
+          v-model="form.email"/>
+
           <label class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1" for="">Password</label>
-          <input class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]" type="text"
-            placeholder="Enter your password" />
+          <input class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]" type="password"
+            placeholder="Enter your password"
+            v-model="form.password"/>
         </div>
+
         <div class="lg:ml-9 mx-auto flex flex-col gap-3">
           <div class="flex gap-2 items-center py-1">
             <label class="">
-              <input type="checkbox" class="input" id="sedan" value="sedan" />
-              <span class="custom-checkbox"></span>
+              <input type="checkbox" class="accent-gray-900" id="remembeUser" value="rememberUser"
+              v-model="form.rememberUser" />
             </label>
             <p>
               Remember me
             </p>
           </div>
-          <button class="text-white text-base bg-primary_color w-full py-3 rounded-lg">
+
+          <button type="submit" class="text-white text-base bg-primary_color w-full py-3 rounded-lg">
             login
           </button>
         </div>
+      </form>
+
+
         <div class="lg:ml-9 mx-auto flex items-center pt-4 gap-3">
           <div class="h-[1px] w-full bg-border_color"></div>
 
@@ -162,6 +175,8 @@ export default {
         password: "",
         confirmPassword: "",
         role: "",
+        currentUser: {},
+        rememberUser: false,
       },
     }
   },
@@ -249,40 +264,56 @@ export default {
         });
     },
 
+    // ---------------------------------login functions------------------------------------
+    loginFun() {
+    axios.get('https://carrento-9ea05-default-rtdb.firebaseio.com/users.json')
+    .then((response) => {
+      console.log(response.data)
+      const users = response.data;  // The users object from your JSON file
+      const foundUser = Object.values(users).find(user => 
+        user.email === this.email && user.password === this.password
+      );
+      
+
+      if (foundUser) {
+        this.currentUser = foundUser;
+        
+        // whether to save the user data or not
+        if (this.rememberUser) {
+          localStorage.setItem('currentUser', JSON.stringify(foundUser));
+        }
+        else{
+          sessionStorage.setItem('currentUser', JSON.stringify(foundUser));
+        }
+
+        //redirect based on role
+        if(foundUser.role == "renter"){
+          this.closeModal();
+          this.$router.push('/');
+        }
+        else if(foundUser.role == "owner"){
+          this.closeModal();
+          this.$router.push('/ownerdash');
+        }
+
+      } else {
+        // If no user matches, display an error
+        alert("You're not a registered user, let's sign you up")
+        this.checkrole();
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching users:', error);
+    });
+}
+
+
   }
+
 };
 </script>
 <style scoped>
-.input[type="checkbox"] {
-  /* display: none; */
-}
 
-.custom-checkbox {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 1.8px solid #6b7280;
-  border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-}
-
-.custom-checkbox::after {
-  content: "";
-  position: absolute;
-  top: 54%;
-  left: 50%;
-  transform: translate(-55%, -55%);
-  width: 8px;
-  height: 8px;
-  background-color: #6b7280;
-  border-radius: 2px;
-  opacity: 0;
-}
-
-.input[type="checkbox"]:checked+.custom-checkbox::after {
-  opacity: 1;
-}
 
 .error {
   border: 2px solid red;
