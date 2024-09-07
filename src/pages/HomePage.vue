@@ -85,13 +85,13 @@
         find the perfect vehicle for your needs.
       </p>
 
-      <div class="flex flex-wrap py-16 text-center">
-        <div class="wrapper">
+      <div class="flex flex-col md:flex-row py-16 text-center">
+        <div class="wrapper ">
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
           </div>
           <h3 class="mt-4 text-[16px] font-medium">Choose Location</h3>
-          <p class="text-gray-500 text-[12px]">
+          <p class="text-gray-500  text-center text-[12px]">
             choose your desired pickup and drop-off from wide range of locations
             to suit your needs
           </p>
@@ -154,7 +154,7 @@
         class="flex gap-2 overflow-hidden py-3"
         :style="{ transform: `translateX(${offset}px)` }"
       >
-        <CarCard v-for="car in cars" :key="car.id" :car="car" />
+        <CarCard class="z-1" v-for="car in cars" :key="car.id" :car="car" />
       </div>
     </div>
   </section>
@@ -257,9 +257,7 @@ export default {
   data() {
     return {
       cars: [],
-      currentIndex: 0,
-      cardWidth: 0,
-      offset: 0,
+
     };
   },
   created() {
