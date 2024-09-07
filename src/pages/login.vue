@@ -24,61 +24,69 @@
 
       </div>
       <img v-if="!signup && !OwnerorUser" src="../assets/login.png" class="w-6/12 rounded-lg hidden lg:block">
-      <div v-if="signup && !OwnerorUser && role == 'user'" class="signUp lg:w-6/12 w-full p-4 ">
+      <div v-if="signup && !OwnerorUser" class="signUp lg:w-6/12 w-full p-4 ">
         <div class="flex gap-3 justify-start items-center">
           <img src="../imagesNavfoot/arrow_back.svg" alt="" @click="closeModal" />
           <p class="text-primary_color font-semibold lg:text-2xl text-lg">Get Started Now</p>
         </div>
-        <div class="flex flex-col lg:ml-9 mx-auto">
-          <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Name</label>
-          <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="text"
-            placeholder="Enter your name" v-model.trim.lazy="form.userName" required />
-          <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Email
-            address</label>
-          <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="email"
-            placeholder="Enter your Email address" v-model.trim.lazy="form.email" required />
-          <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Password</label>
-          <input class="lg:py-3 py-1 pl-4 lg:text-base text-sm rounded-lg border-border_color border-[1px]"
-            type="Password" placeholder="Enter your password" v-model.trim.lazy="form.password" required />
-          <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Confirm
-            password</label>
-          <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="password"
-            placeholder="Re-enter your password" v-model.trim.lazy="form.confirmPassword" required />
-        </div>
-        <div class="lg:ml-9 mx-auto flex flex-col gap-3">
-          <div class="flex gap-2 items-center py-1">
-            <label class="">
-              <input type="checkbox" class="input" id="sedan" value="sedan" required />
-              <span class="custom-checkbox"></span>
-            </label>
-            <p>
-              I agree to the
-              <router-link class="text-primary_color underline font-medium" to="/">terms & policy</router-link>
+
+        <form @submit.prevent="signUp">
+
+          <div class="flex flex-col lg:ml-9 mx-auto">
+            <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Name</label>
+            <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="text"
+              placeholder="Enter your name" v-model.trim="form.userName" :class="{ 'error': nameError }" @input="validateName"/>
+            <p v-if="nameError" class="error-message">Name must be at least 3 characters and contain letters only.</p>
+            <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Email
+              address</label>
+            <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="email"
+              placeholder="Enter your Email address" v-model.trim="form.email" :class="{ 'error': emailError }" @input="validateEmail"/>
+            <p v-if="emailError" class="error-message">Please enter a valid email.</p>
+
+            <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Password</label>
+            <input class="lg:py-3 py-1 pl-4 lg:text-base text-sm rounded-lg border-border_color border-[1px]"
+              type="Password" placeholder="Enter your password" v-model.trim="form.password"
+              :class="{ 'error': passwordError }" @input="validatePassword"/>
+            <p v-if="passwordError" class="error-message">Password must be at least 6 characters and contain letters and numbers.</p>
+            <label class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1" for="">Confirm
+              password</label>
+            <input class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]" type="password"
+              placeholder="Re-enter your password" v-model.trim="form.confirmPassword" />
+          </div>
+          <div class="lg:ml-9 mx-auto flex flex-col gap-3">
+            <div class="flex gap-2 items-center py-1">
+              <label class="">
+                <input type="checkbox" class="input" id="sedan" value="sedan" name="sedan" required />
+                <span class="custom-checkbox"></span>
+              </label>
+              <p>
+                I agree to the
+                <router-link class="text-primary_color underline font-medium" to="/">terms & policy</router-link>
+              </p>
+            </div>
+            <button type="submit" class="text-white text-base bg-primary_color w-full lg:py-3 py-2 rounded-lg ">
+              sign up
+            </button>
+          </div>
+          <div class="lg:ml-9  mx-auto flex items-center lg:pt-4 pt-1 gap-3">
+            <div class="h-[1px] w-full bg-border_color"></div>
+
+            <p class="text-base text-primary_color">Or</p>
+
+            <div class="h-[1px] w-full bg-border_color"></div>
+          </div>
+          <div class="lg:ml-9 mx-auto lg:pt-4 pt-1 flex gap-8 justify-center">
+            <img src="../imagesNavfoot/Google.svg" alt="" />
+            <img src="../imagesNavfoot/facebook.svg" alt="" />
+          </div>
+          <div class="lg:ml-9 mx-auto flex lg:pt-3 pt-1 justify-center">
+            <p class="lg:text-xl text-base">
+              Have an account?
+              <button class="text-primary_color lg:text-xl text-base underline font-medium" @click="signup = false">Sign
+                In</button>
             </p>
           </div>
-          <button @click="signUp"
-            class="text-white text-base bg-primary_color w-full lg:py-3 py-2 rounded-lg ">
-            sign up
-          </button>
-        </div>
-        <div class="lg:ml-9  mx-auto flex items-center lg:pt-4 pt-1 gap-3">
-          <div class="h-[1px] w-full bg-border_color"></div>
-
-          <p class="text-base text-primary_color">Or</p>
-
-          <div class="h-[1px] w-full bg-border_color"></div>
-        </div>
-        <div class="lg:ml-9 mx-auto lg:pt-4 pt-1 flex gap-8 justify-center">
-          <img src="../imagesNavfoot/Google.svg" alt="" />
-          <img src="../imagesNavfoot/facebook.svg" alt="" />
-        </div>
-        <div class="lg:ml-9 mx-auto flex lg:pt-3 pt-1 justify-center">
-          <p class="lg:text-xl text-base">
-            Have an account?
-            <button class="text-primary_color lg:text-xl text-base underline font-medium" @click="signup = false">Sign
-              In</button>
-          </p>
-        </div>
+        </form>
       </div>
 
       <img v-if="signup && !OwnerorUser" src="../assets/login.png" class="w-6/12 rounded-lg hidden lg:block">
@@ -144,6 +152,9 @@ export default {
     return {
       signup: false,
       OwnerorUser: false,
+      emailError: false,
+      nameError: false,
+      passwordError: false,
       form: {
         id: "",
         userName: "",
@@ -159,6 +170,9 @@ export default {
   },
   methods: {
     closeModal() {
+      if (this.form.role == "owner") {
+        this.$router.push('/ownerDash');
+      }
       this.signup = false;
       this.$store.dispatch('closeModal');
       this.OwnerorUser = false;
@@ -170,35 +184,53 @@ export default {
     setrole(type) {
       this.$store.dispatch('setrole', type)
       this.form.role = type;
-      if (type == 'user') {
-        this.OwnerorUser = false;
-        this.signup = true;
-      }
+
+      this.OwnerorUser = false;
+      this.signup = true;
+
     },
-    signUp() {
+    validateName(){
       const nameRegex = /^[A-Za-z\s]{3,}$/;
+      
       if (!nameRegex.test(this.form.userName)) {
-        alert("Name must be at least 3 characters and contain letters only.");
+        this.nameError = true;
+        console.log(1)
         return;
       }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.form.email)) {
-        alert("Invalid email format.");
-        return;
+      else{
+        this.nameError = false;
+        console.log(2)
       }
-
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-      if (!passwordRegex.test(this.form.password)) {
-        alert("Password must be at least 6 characters and contain letters and numbers.");
-        return;
-      }
-
       if (this.form.password !== this.form.confirmPassword) {
         alert("Passwords do not match.");
         return;
       }
+      
 
+    },
+    validatePassword()  {
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      if (!passwordRegex.test(this.form.password)) {
+        this.passwordError = true;
+        return;
+      }
+      else{
+        this.passwordError= false;
+      }
+    },
+    validateEmail() {
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(this.form.email)) {
+        this.emailError = true;
+        return;
+      }
+      else{
+        this.emailError = false;
+      }
+    },
+    signUp() {
+      
       this.form.id = this.form.email.replace(/[@.]/g, '');
       axios.put(`https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.form.id}.json`, {
         id: this.form.id,
@@ -206,10 +238,11 @@ export default {
         email: this.form.email,
         password: this.form.password,
         confirmPassword: this.form.confirmPassword,
-        role:this.form.role
+        role: this.form.role
       })
         .then(response => {
           console.log(response.data);
+          this.closeModal();
         })
         .catch(error => {
           console.error(error);
@@ -221,7 +254,7 @@ export default {
 </script>
 <style scoped>
 .input[type="checkbox"] {
-  display: none;
+  /* display: none; */
 }
 
 .custom-checkbox {
@@ -249,5 +282,14 @@ export default {
 
 .input[type="checkbox"]:checked+.custom-checkbox::after {
   opacity: 1;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
 }
 </style>
