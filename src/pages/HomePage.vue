@@ -1,7 +1,6 @@
-
 <template>
   <!-- ------------------------------------hero section--------------------------------- -->
-  <div class="bg-split-half max-h-fit">
+  <div class="bg-split-half max-h-fit pt-32">
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 text-left">
         <h1 class="lg:text-6xl text-4xl">
@@ -111,8 +110,8 @@
           </div>
           <h3 class="mt-4 text-[16px] font-medium">Choose day and Time</h3>
           <p class="text-gray-500 text-[12px]">
-            Select your preferred pick-up and drop-off dates and times, let's find
-            your best availability.
+            Select your preferred pick-up and drop-off dates and times, let's
+            find your best availability.
           </p>
         </div>
         <div class="w-1/5 ps-2 hidden lg:block">
@@ -137,7 +136,7 @@
   </section>
 
   <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
- <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
+  <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">
@@ -145,36 +144,51 @@
         find the perfect vehicle for your needs.
       </p>
 
-      <div class="mt-5">
+      <div class="mt-5 cursor-grab">
         <swiper
           :slidesPerView="1"
           :spaceBetween="10"
-          :loop="true"
           :pagination="{
             clickable: true,
           }"
           :breakpoints="{
             '640': {
               slidesPerView: 1,
-              spaceBetween: 10,
+              spaceBetween: 5,
+              pagination: {
+                clickable: true,
+                dynamicBullets: true,
+              },
             },
             '768': {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             '1024': {
               slidesPerView: 4,
-              spaceBetween: 30,
+              spaceBetween: 0,
             },
           }"
           :autoplay="{
-            delay: 3000,
+            delay: 2500,
             disableOnInteraction: false,
           }"
           class="mySwiper"
         >
-          <swiper-slide v-for="car in cars" :key="car.id" class="p-3">
-            <CarCard :car="car"/>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
           </swiper-slide>
         </swiper>
       </div>
@@ -257,8 +271,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 
 // Import Swiper styles
-import "swiper/css";  // Core Swiper styles
-import "swiper/css/pagination";  // Styles for pagination
+import "swiper/css"; // Core Swiper styles
+import "swiper/css/pagination"; // Styles for pagination
 
 // Install the modules
 SwiperCore.use([Autoplay, Pagination]);
@@ -281,10 +295,10 @@ export default {
       });
   },
   methods: {
-      scrollToSearchCard(){
+    scrollToSearchCard() {
       const searchcard = document.getElementById("search-card");
       searchcard.scrollIntoView({ behavior: "smooth" });
-    }
-  }
+    },
+  },
 };
 </script>

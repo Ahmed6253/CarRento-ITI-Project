@@ -1,5 +1,5 @@
 <template>
-  <div class="md:px-[80px] px-5 md:my-14 my-6">
+  <div class="md:px-[80px] px-5 pt-32 pb-14">
     <div class="flex w-full gap-2">
       <svg
         class="w-1/3"

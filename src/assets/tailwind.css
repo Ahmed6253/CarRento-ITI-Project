@@ -93,8 +93,6 @@
   .car-sum-comp {
     @apply w-full rounded-2xl text-center bg-white;
   }
-
-  
 }
 
 * {
