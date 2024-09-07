@@ -21,15 +21,15 @@
       <div class="flex flex-col md:flex-row justify-between pt-3">
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Name</p>
-          <p class="text-xl text-primary_color">Abobakr Sobhy</p>
+          <p class="text-xl text-primary_color">{{name}}</p>
         </div>
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Phone number</p>
-          <p class="text-xl text-primary_color">+201289378490</p>
+          <p class="text-xl text-primary_color">{{phoneNo}}</p>
         </div>
         <div class="py-3">
           <p class="text-base text-Paragraph_color">Email</p>
-          <p class="text-xl text-primary_color">abdhhi@outlook.com</p>
+          <p class="text-xl text-primary_color">{{email}}</p>
         </div>
       </div>
     </div>
@@ -159,7 +159,26 @@
 <script>
 export default {
   name: "ProfilePage",
+
+  data(){
+    return{
+      name: "",
+      phoneNo:"",
+      email:"",
+      currentUser:{}
+    }
+  },
+
+  // methods:{
+    // getData(){
+    //   this.currentUser = sessionStorage.getItem("currentUser");
+    //   this.name = this.currentUser.name;
+    //   this.email = this.currentUser.email;
+    //   this.phoneNo = this.currentUser.phoneNo;
+    // }
+  // }
 };
+
 </script>
 
 <style lang="scss" scoped></style>
