@@ -98,19 +98,19 @@
           <input class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]" 
           type="email"
           placeholder="Enter your Email address"
-          v-model="form.email"/>
+          v-model="loginMail"/>
 
           <label class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1" for="">Password</label>
           <input class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]" type="password"
             placeholder="Enter your password"
-            v-model="form.password"/>
+            v-model="loginPass"/>
         </div>
 
         <div class="lg:ml-9 mx-auto flex flex-col gap-3">
           <div class="flex gap-2 items-center py-1">
             <label class="">
               <input type="checkbox" class="accent-gray-900" id="remembeUser" value="rememberUser"
-              v-model="form.rememberUser" />
+              v-model="rememberUser" />
             </label>
             <p>
               Remember me
@@ -165,8 +165,10 @@ export default {
         confirmPassword: "",
         role: "",
         currentUser: {},
-        rememberUser: false,
       },
+      rememberUser: false,
+      loginMail:"",
+      loginPass:""
     }
   },
   computed: {
@@ -238,7 +240,7 @@ export default {
       console.log(response.data)
       const users = response.data;  // The users object from your JSON file
       const foundUser = Object.values(users).find(user => 
-        user.email === this.email && user.password === this.password
+        user.email === this.loginMail && user.password === this.loginPass
       );
       
 
@@ -273,8 +275,6 @@ export default {
       console.error('Error fetching users:', error);
     });
 }
-
-
   }
 
 };

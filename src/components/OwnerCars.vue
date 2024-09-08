@@ -52,7 +52,7 @@
         </tbody>
       </table>
     </div>
-    <div>
+    <div class="mt-20">
       <form
         @submit.prevent
         v-if="isAdding"

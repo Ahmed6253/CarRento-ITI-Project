@@ -12,6 +12,8 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import AdminLogin from "./pages/AdminLogin.vue";
+
 import store from "./store";
 
 const routes = [
@@ -42,6 +44,16 @@ const routes = [
   {
     path: "/admin",
     component: AdminDash,
+    meta: {
+      hideNavFoot: true,
+    },
+  },
+  {
+    path: "/adminlogin",
+    component: AdminLogin,
+    meta: {
+      hideNavFoot: true,
+    },
   },
   {
     path: "/ownerdash",
