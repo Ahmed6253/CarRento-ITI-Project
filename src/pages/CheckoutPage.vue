@@ -23,7 +23,7 @@
       <!-- ---------------------------------------review your booking---------------------------------------- -->
        <div class="flex justify-start md:justify-between flex-col lg:flex-row pt-24 ps-3">
         <div class="py-3 lg:py-0 px-0 flex items-center">
-          <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6 h-6">
+          <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6 h-6 cursor-pointer" @click="$router.push(`/cars/${this.car.id}`)">
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
         <p class="text-xl px-0 mx-0 mb-4">Total: LE <span class="text-4xl font-semibold">12,125</span>.63</p>
@@ -58,8 +58,8 @@
                   <span>Upload Your Photo </span>
                   <img src="../assets/home-images/icons/document-upload.svg" alt="" class="w-6">
                 </label>
-                <input type="file" id="front-id" name="front-id" class="hidden" @change="handleFileChange">
-                <span class="border-1"> {{ fileName }}</span>
+                <input type="file" id="front-id" name="front-id" class="hidden" @change="handleFileChange($event,1)">
+                <span class="border-1"> {{ firstFileName }}</span>
               </div>
             </section>
 
@@ -67,12 +67,12 @@
             <section class="w-full md:w-1/2 pe-28">
               <h3 class="text-2xl mb-3">Back-side photo of ID</h3>
               <div class="upload-file mb-6">
-                <label for="front-id" class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between">
+                <label for="back-id" class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between">
                   <span>Upload Your Photo </span>
                   <img src="../assets/home-images/icons/document-upload.svg" alt="" class="w-6">
                 </label>
-                <input type="file" id="back-id" name="back-id" class="hidden" @change="handleFileChange">
-                <span class="border-1"> {{ fileName }}</span>
+                <input type="file" id="back-id" name="back-id" class="hidden" @change="handleFileChange($event,2)">
+                <span class="border-1"> {{ secondFileName }}</span>
               </div>
             </section>
 
@@ -131,7 +131,7 @@
               <label for="save-details" class="text-[20px] ps-4">save my details for future purchases</label>
             </section>
 
-            <input type="submit" value="Confirm info" class="rounded-lg mt-8 text-white w-full bg-green py-[10px]">
+            <button class="rounded-lg mt-8 text-white w-full bg-green py-[10px]" @click="$router.push('confirmpayment')">Confirm info</button>
 
           </div>
           </form>
@@ -150,7 +150,8 @@
 </template>
 
 <script>
-import OrderDetailsCard from "../components/OrderDetailsCard.vue"
+import OrderDetailsCard from "../components/OrderDetailsCard.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   components: {OrderDetailsCard},
@@ -158,14 +159,30 @@ export default {
 
   data(){
     return{
-      fileName : ''
+      firstFileName : '',
+      secondFileName : '',
+      car:{},
+      additionalFeatures:{},
     };
   },
+  computed: {
+    ...mapGetters(['getcar','getfeatures'])  
+  },
+  created(){
+    this.car=this.getcar; 
+    this.additionalFeatures=this.getfeatures;
+  },
   methods: {
-    handleFileChange(event){
-      const file = event.target.files[0];
-      this.fileName = file? file.name : ''
+    handleFileChange(event,num){
+      const firstFile = event.target.files[0];
+      if(num==1){
+        this.firstFileName = firstFile? firstFile.name : '';
+      }
+      else if(num==2){
+        this.secondFileName = firstFile? firstFile.name : '';
+      }
     }
   },
+  
 };
 </script>
