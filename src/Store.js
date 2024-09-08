@@ -4,7 +4,7 @@ let store = createStore({
   state() {
     return {
       isModalOpen: false,
-      role: "",
+      logedIn: false,
     };
   },
   mutations: {
@@ -14,8 +14,16 @@ let store = createStore({
     closeModal(state) {
       state.isModalOpen = false;
     },
-    setrole(state, type) {
-      state.role = type;
+
+    SetInOrOut(state) {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user) {
+        state.logedIn = true;
+      } else {
+        state.logedIn = false;
+      }
     },
   },
   actions: {
@@ -25,13 +33,9 @@ let store = createStore({
     closeModal({ commit }) {
       commit("closeModal");
     },
-    setrole({ commit }, type) {
-      commit("setrole", type);
-    },
-  },
-  getters: {
-    getrole(state) {
-      return state.role;
+
+    setInOrOut({ commit }) {
+      commit("SetInOrOut");
     },
   },
 });

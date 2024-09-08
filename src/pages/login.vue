@@ -4,14 +4,14 @@
     class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
   >
     <div
-      class="flex custom-shadow m-4 lg:h-[680px] rounded-2xl mx-auto lg:w-[1064px] w-[364px] h-[464px] bg-white"
+      class="flex custom-shadow m-4 rounded-2xl mx-auto w-[80%] max-h-screen bg-white overflow-auto"
     >
       <div v-if="OwnerorUser" class="mx-auto my-auto p-6">
         <img src="../imagesNavfoot/arrow_back.svg" alt="" @click="closeModal" />
         <h1 class="text-3xl text-center mb-10 font-bold">Are you?</h1>
         <div class="flex gap-9">
           <div>
-            <button @click="setrole('user')">
+            <button @click="setrole('renter')">
               <img src="../assets/user.png" />
               <p class="text-center text-2xl mt-6">Car Renter</p>
             </button>
@@ -45,7 +45,7 @@
           <div class="flex flex-col lg:ml-9 mx-auto">
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
-              for=""
+              for="name"
               >Name</label
             >
             <input
@@ -53,15 +53,15 @@
               type="text"
               placeholder="Enter your name"
               v-model.trim="form.userName"
+              @blur="validateName"
               :class="{ error: nameError }"
-              @input="validateName"
             />
             <p v-if="nameError" class="error-message">
               Name must be at least 3 characters and contain letters only.
             </p>
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
-              for=""
+              for="email"
               >Email address</label
             >
             <input
@@ -69,8 +69,8 @@
               type="email"
               placeholder="Enter your Email address"
               v-model.trim="form.email"
+              @blur="validateEmail"
               :class="{ error: emailError }"
-              @input="validateEmail"
             />
             <p v-if="emailError" class="error-message">
               Please enter a valid email.
@@ -78,7 +78,7 @@
 
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
-              for=""
+              for="password"
               >Password</label
             >
             <input
@@ -87,7 +87,7 @@
               placeholder="Enter your password"
               v-model.trim="form.password"
               :class="{ error: passwordError }"
-              @input="validatePassword"
+              @blur="validatePassword"
             />
             <p v-if="passwordError" class="error-message">
               Password must be at least 6 characters and contain letters and
@@ -95,7 +95,7 @@
             </p>
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
-              for=""
+              for="confirmpassword"
               >Confirm password</label
             >
             <input
@@ -103,20 +103,28 @@
               type="password"
               placeholder="Re-enter your password"
               v-model.trim="form.confirmPassword"
+              @blur="validatePasswordConfirm"
+              :class="{ error: confirmPasswordError }"
             />
+            <p v-if="confirmPasswordError" class="error-message">
+              Passwords do not match.
+            </p>
           </div>
-          <div class="lg:ml-9 mx-auto flex flex-col gap-3">
-            <div class="flex gap-2 items-center py-1">
+          <div class="lg:ml-9 mx-auto flex flex-col gap-3 pt-1">
+            <div
+              :class="
+                agreeError
+                  ? 'flex gap-2 items-center py-1 border-red border rounded-lg px-2'
+                  : 'flex gap-2 items-center py-1'
+              "
+            >
               <label class="">
                 <input
                   type="checkbox"
-                  class="input"
-                  id="sedan"
-                  value="sedan"
-                  name="sedan"
-                  required
+                  id="agree"
+                  class="accent-gray-900"
+                  @click="agree = !agree"
                 />
-                <span class="custom-checkbox"></span>
               </label>
               <p>
                 I agree to the
@@ -168,14 +176,17 @@
 
       <div
         v-if="!signup && !OwnerorUser"
-        class="login lg:w-6/12 w-full px-4 lg:pt-24 lg:py-12 py-6"
+        class="login lg:w-6/12 w-full px-4 lg:pt-16 lg:py-12 py-6"
       >
+        <p v-if="userExist" class="text-red lg:ml-9 mb-4">
+          You already have an account
+        </p>
         <div class="flex gap-3 lg:ml-9 justify-start items-center">
           <img
             src="../imagesNavfoot/arrow_back.svg"
             alt=""
             @click="closeModal"
-            class="lg:pt-2 pt-0 pb-2 pb-4"
+            class="lg:pt-2 pt-0 pb-2"
           />
           <p class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3">
             welcome back!
@@ -186,7 +197,7 @@
           <div class="flex flex-col lg:ml-9 mx-auto">
             <label
               class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1"
-              for=""
+              for="log-email"
               >Email address</label
             >
             <input
@@ -194,14 +205,16 @@
               type="email"
               placeholder="Enter your Email address"
               v-model="form.email"
+              id="log-email"
             />
 
             <label
               class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1"
-              for=""
+              for="log-password"
               >Password</label
             >
             <input
+              id="log-password"
               class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]"
               type="password"
               placeholder="Enter your password"
@@ -222,6 +235,8 @@
               </label>
               <p>Remember me</p>
             </div>
+            <p v-if="loginError" class="text-red">All fields are required</p>
+            <p v-if="worngPassword" class="text-red">Worng Password</p>
 
             <button
               type="submit"
@@ -266,11 +281,18 @@ export default {
   name: "LoginPage",
   data() {
     return {
+      loginError: false,
+      worngPassword: false,
       signup: false,
       OwnerorUser: false,
       emailError: false,
       nameError: false,
       passwordError: false,
+      agree: false,
+      agreeError: false,
+      confirmPasswordError: false,
+      userExist: false,
+
       form: {
         id: "",
         userName: "",
@@ -284,7 +306,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isModalOpen", "role"]),
+    ...mapState(["isModalOpen"]),
   },
   methods: {
     closeModal() {
@@ -300,40 +322,46 @@ export default {
       this.OwnerorUser = true;
     },
     setrole(type) {
-      this.$store.dispatch("setrole", type);
       this.form.role = type;
-
       this.OwnerorUser = false;
       this.signup = true;
     },
     validateName() {
       const nameRegex = /^[A-Za-z\s]{3,}$/;
 
-      if (!nameRegex.test(this.form.userName)) {
+      if (!nameRegex.test(this.form.userName) || this.form.userName === "") {
         this.nameError = true;
-        console.log(1);
         return;
       } else {
         this.nameError = false;
-        console.log(2);
-      }
-      if (this.form.password !== this.form.confirmPassword) {
-        alert("Passwords do not match.");
-        return;
       }
     },
     validatePassword() {
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-      if (!passwordRegex.test(this.form.password)) {
+      if (
+        !passwordRegex.test(this.form.password) ||
+        this.form.password === ""
+      ) {
         this.passwordError = true;
         return;
       } else {
         this.passwordError = false;
       }
     },
+    validatePasswordConfirm() {
+      if (
+        this.form.password !== this.form.confirmPassword ||
+        this.form.confirmPassword === ""
+      ) {
+        this.confirmPasswordError = true;
+        return;
+      } else {
+        this.confirmPasswordError = false;
+      }
+    },
     validateEmail() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.form.email)) {
+      if (!emailRegex.test(this.form.email) || this.form.email === "") {
         this.emailError = true;
         return;
       } else {
@@ -342,60 +370,106 @@ export default {
     },
     signUp() {
       this.form.id = this.form.email.replace(/[@.]/g, "");
+      const userData = {
+        id: this.form.id,
+        userName: this.form.userName,
+        email: this.form.email,
+        password: this.form.password,
+        role: this.form.role,
+      };
+      if (userData.userName === "") {
+        this.nameError = true;
+        return;
+      } else if (userData.email === "") {
+        this.emailError = true;
+        return;
+      } else if (userData.password === "") {
+        this.passwordError = true;
+        return;
+      } else if (this.form.confirmPassword === "") {
+        this.confirmPasswordError = true;
+        return;
+      } else if (!this.agree) {
+        this.agreeError = true;
+        return;
+      }
+
       axios
-        .put(
-          `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.form.id}.json`,
-          {
-            id: this.form.id,
-            userName: this.form.userName,
-            email: this.form.email,
-            password: this.form.password,
-            confirmPassword: this.form.confirmPassword,
-            role: this.form.role,
-          }
+        .get(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${userData.id}.json`
         )
         .then((response) => {
-          console.log(response.data);
-          this.closeModal();
-        })
-        .catch((error) => {
-          console.error(error);
+          if (response.data) {
+            this.signup = false;
+            this.OwnerorUser = false;
+            this.userExist = true;
+            this.form.password = "";
+            this.form.confirmPassword = "";
+            this.form.userName = "";
+            return;
+          } else {
+            axios
+              .put(
+                `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.form.id}.json`,
+                userData
+              )
+              .then(() => {
+                sessionStorage.setItem("currentUser", JSON.stringify(userData));
+                if (this.form.role == "owner") {
+                  this.$router.push(`/ownerDash/${this.form.id}`);
+                }
+                this.closeModal();
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
         });
     },
 
     // ---------------------------------login functions------------------------------------
     loginFun() {
+      if (this.form.email === "" || this.form.password === "") {
+        this.loginError = true;
+        return;
+      } else {
+        this.loginError = false;
+      }
+      const id = this.form.email.replace(/[@.]/g, "");
+
       axios
-        .get("https://carrento-9ea05-default-rtdb.firebaseio.com/users.json")
+        .get(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${id}.json`
+        )
         .then((response) => {
-          console.log(response.data);
-          const users = response.data; // The users object from your JSON file
-          const foundUser = Object.values(users).find(
-            (user) =>
-              user.email === this.email && user.password === this.password
-          );
+          this.form.currentUser = response.data;
 
-          if (foundUser) {
-            this.currentUser = foundUser;
-
-            // whether to save the user data or not
-            if (this.rememberUser) {
-              localStorage.setItem("currentUser", JSON.stringify(foundUser));
+          if (this.form.currentUser) {
+            if (this.form.currentUser.password !== this.form.password) {
+              this.worngPassword = true;
+              return;
+            }
+            if (this.form.rememberUser) {
+              localStorage.setItem(
+                "currentUser",
+                JSON.stringify(this.form.currentUser)
+              );
             } else {
-              sessionStorage.setItem("currentUser", JSON.stringify(foundUser));
+              sessionStorage.setItem(
+                "currentUser",
+                JSON.stringify(this.form.currentUser)
+              );
             }
 
             //redirect based on role
-            if (foundUser.role == "renter") {
+            if (this.form.currentUser.role == "renter") {
               this.closeModal();
-              this.$router.push("/");
-            } else if (foundUser.role == "owner") {
+            } else if (this.form.currentUser.role == "owner") {
               this.closeModal();
-              this.$router.push("/ownerdash");
+              this.$router.push("/ownerDash/" + this.form.currentUser.id);
             }
+            this.$store.dispatch("setInOrOut");
           } else {
-            // If no user matches, display an error
-            alert("You're not a registered user, let's sign you up");
             this.checkrole();
           }
         })

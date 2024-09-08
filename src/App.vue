@@ -19,6 +19,9 @@ export default {
     FooterComp,
     login,
   },
+  created() {
+    this.$store.dispatch("setInOrOut");
+  },
 };
 </script>
 <style scoped></style>
