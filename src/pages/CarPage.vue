@@ -1,5 +1,5 @@
 <template>
-  <div class="md:px-[80px] px-5 md:my-14 my-6">
+  <div class="md:px-[80px] px-5 pt-32 pb-14">
     <div class="flex w-full gap-2">
       <svg class="w-1/3" width="416" height="8" viewBox="0 0 416 8" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect class="fill-primary_color" width="416" height="8" rx="4" fill="#D1D5DB" />

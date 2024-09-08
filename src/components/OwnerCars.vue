@@ -191,14 +191,40 @@
             </select>
           </div>
 
-          <div class="w-full hidden">
-            <label for="description">Description</label>
-            <textarea
-              v-model="carOptions.description"
-              name="description"
-              id="description"
+          <div class="w-[47%]">
+            <label for="pickup-location">Location</label>
+            <select
               class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
-            ></textarea>
+              id="pickup-location"
+            >
+              <option>Cairo</option>
+              <option>Alexandria</option>
+              <option>Giza</option>
+              <option>Qalyubia</option>
+              <option>Port Said</option>
+              <option>Suez</option>
+              <option>Gharbia</option>
+              <option>Dakahlia</option>
+              <option>Asyut</option>
+              <option>Fayoum</option>
+              <option>Sharqia</option>
+              <option>Ismailia</option>
+              <option>Aswan</option>
+              <option>Beheira</option>
+              <option>Minya</option>
+              <option>Damietta</option>
+              <option>Luxor</option>
+              <option>Qena</option>
+              <option>Beni Suef</option>
+              <option>Sohag</option>
+              <option>Monufia</option>
+              <option>Red Sea</option>
+              <option>Kafr el-Sheikh</option>
+              <option>North Sinai</option>
+              <option>Matruh</option>
+              <option>New Valley</option>
+              <option>South Sinai</option>
+            </select>
           </div>
           <div class="w-full hidden">
             <label for="image">Image</label>
