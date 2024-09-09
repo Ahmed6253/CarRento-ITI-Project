@@ -42,7 +42,7 @@
         <section class="grid grid-col-1">
           <div v-for="(feature, index) in additionalFeatures" :key="index" class="flex gap-4">
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">1025 LE added</p>
+            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{this.addPrices[index]}} LE added</p>
           </div>
 
         </section>
@@ -69,14 +69,17 @@ export default {
       car: {},
       additionalFeatures: {},
       url: "",
+      addPrices: {
+      },
     }
   },
   computed: {
-    ...mapGetters(['getcar', 'getfeatures'])
+    ...mapGetters(['getcar', 'getfeatures','getfeaturesprices'])
   },
   created() {
     this.car = this.getcar;
     this.additionalFeatures = this.getfeatures;
+    this.addPrices = this.getfeaturesprices
     getDownloadURL(ref(storage, `cars/${this.getcar.id}`)).then(
       (download_url) => (this.url = download_url)
     );

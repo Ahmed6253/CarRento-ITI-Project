@@ -6,7 +6,19 @@ let store = createStore({
       isModalOpen: false,
       role: "",
       car:{},
-      additionalFeatures:{},
+      additionalFeatures:{
+        driver:false,
+        protection:  false,
+        infantSeat:  false,
+        toddlerSeat: false,
+      },
+      additionalFeaturesPrices:{
+        driver:  500 ,
+        protection:  1500 ,
+        infantSeat:  150 ,
+        toddlerSeat:  200 ,
+      },
+      LegalName:"",
     };
   },
   mutations: {
@@ -25,6 +37,9 @@ let store = createStore({
     setfeatures(state, features) {
       state.additionalFeatures = features;
     },
+    setlegalname(state, ln) {
+      state.LegalName = ln;
+    },
   },
   actions: {
     openModal({ commit }) {
@@ -42,6 +57,9 @@ let store = createStore({
     setfeatures({ commit }, features) {
       commit("setfeatures", features);
     },
+    setlegalname({ commit },ln) {
+      commit("setlegalname", ln);
+    },
   },
   getters: {
     getrole(state) {
@@ -52,6 +70,12 @@ let store = createStore({
     },
     getfeatures(state) {
       return state.additionalFeatures;
+    },
+    getlegalname(state) {
+      return state.LegalName;
+    },
+    getfeaturesprices(state) {
+      return state.additionalFeaturesPrices;
     },
   },
 });

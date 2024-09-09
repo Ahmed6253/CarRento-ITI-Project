@@ -12,6 +12,7 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import PaymentFailed from "./components/PaymentFailed.vue";
 import store from "./store";
 
 const routes = [
@@ -56,6 +57,10 @@ const routes = [
   {
     path: "/confirmpayment",
     component: ConfirmPayment,
+  },
+  {
+    path: "/cancel",
+    component: PaymentFailed,
   },
 ];
 

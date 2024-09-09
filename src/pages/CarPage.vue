@@ -16,18 +16,31 @@
       <img class="lg:w-[400px] w-full mx-auto lg:mx-0 rounded-lg border border-border_color custom-shadow" :src="url" />
       <div class="w-full lg:w-80 lg:mx-0 mx-auto">
         <h1 class="text-primary_color text-2xl font-bold">{{ car.name }}</h1>
-        <div class="flex flex-wrap w-[500px]" >
-          <div v-for="(feature, index) in car.features" :key="index">
-            <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
-              <img :src="getImagePath(index)" class="h-6 w-6 " />
-              <p class="text-center text-primary_color">{{ index }}</p>
-            </span>
+        <div class=" w-[500px]">
+          <div class="flex flex-wrap">
+            <div v-for="(feature, index) in car.features" :key="index">
+              <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
+                <img :src="getImagePath(index)" class="h-6 w-6 " />
+                <p class="text-center text-primary_color">{{ index }}</p>
+              </span>
+            </div>
           </div>
 
-          <!-- <span class="flex gap-2 w-[150px]" v-for="(prop, index) in car.properties" :key="index"><img
-              :src="getImagePath(prop)" />
-            <p class="text-center text-primary_color">{{ prop }}</p>
-          </span> -->
+
+          <div class="flex gap-4 mt-6">
+            <div class="flex gap-2 w-[150px] "><img src="../assets/CarpageImages/Transmition.svg" class="h-6 w-6 " />
+              <p class="text-center text-primary_color">{{ this.car.manualOrAuto }}</p>
+            </div>
+
+            <div class="flex gap-2 w-[150px]"><img src="../assets/CarpageImages/fuel.svg" class="h-6 w-6 " />
+              <p class="text-center text-primary_color">{{ this.car.fuel }}</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="flex  mt-4">
+          <h3 class="text-primary_color me-6">Price:</h3><span class="text-blue-500 font-bold me-2">{{ car.price
+            }}</span> <span class="text-primary_color">EGP</span>
         </div>
       </div>
       <div class="w-full xl:w-72 mx-auto xl:mx-0 bg-white custom-shadow rounded-2xl p-6 flex flex-col gap-4">
@@ -59,7 +72,10 @@
           <img src="../assets/edit.svg" alt="" @click="$router.push('/cars')" class="cursor-pointer" />
         </div>
       </div>
-
+      <div class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]">
+        <h1 class="text-blue-500 text-2xl mb-6">Description</h1>
+        <p>{{ this.car.description }}</p>
+      </div>
       <!-- section two -->
       <div class="bg-white custom-shadow rounded-2xl md:p-8 p-4 flex flex-col gap-2 w-full xl:w-[73%]">
         <h1 class="text-primary_color text-2xl font-bold mb-4">
@@ -67,7 +83,7 @@
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
           <label class="mr-4">
             <input type="checkbox" class="accent-gray-900" id="driver" value="driver"
-              v-model="AdditonalFeatures.driver" />
+              v-model="additionalFeatures.driver" />
             <label class="text-primary_color ml-3" for="driver">Private driver</label><br />
           </label>
           <p class="text-Paragraph_color">
@@ -77,7 +93,7 @@
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
           <label class="mr-4">
             <input type="checkbox" class="accent-gray-900" id="toddler-seat" value="toddler-seat"
-              v-model="AdditonalFeatures.toddlerSeat" />
+              v-model="additionalFeatures.toddlerSeat" />
             <label class="text-primary_color ml-3" for="toddler-seat">Toddler Child Seat</label><br />
           </label>
           <p class="text-Paragraph_color">
@@ -87,7 +103,7 @@
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
           <label class="mr-4">
             <input type="checkbox" class="accent-gray-900" id="infant-seat" value="infant-seat"
-              v-model="AdditonalFeatures.infantSeat" />
+              v-model="additionalFeatures.infantSeat" />
             <label class="text-primary_color ml-3" for="infant-seat">Infant Child Seat</label><br />
           </label>
           <p class="text-Paragraph_color">
@@ -97,7 +113,7 @@
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
           <label class="mr-4">
             <input type="checkbox" id="protection" value="protection" class="accent-gray-900"
-              v-model="AdditonalFeatures.protection" />
+              v-model="additionalFeatures.protection" />
             <label class="text-primary_color ml-3" for="protection">Collision Damage Protection</label><br />
           </label>
           <p class="text-Paragraph_color">
@@ -105,6 +121,8 @@
           </p>
         </div>
       </div>
+
+
       <!-- section three -->
       <div class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]">
         <h1 class="text-primary_color text-2xl font-bold mb-4">
@@ -113,11 +131,11 @@
         <div class="flex flex-col gap-3">
           <div>
             <h2 class="font-semibold text-lg text-primary_color">Name</h2>
-            <p class="text-Paragraph_color">{{this.owner.userName}}</p>
+            <p class="text-Paragraph_color">{{ this.owner.userName }}</p>
           </div>
           <div>
             <h2 class="font-semibold text-lg text-primary_color">Location</h2>
-            <p class="text-Paragraph_color">Cairo, Egypt</p>
+            <p class="text-Paragraph_color">{{ this.car.location }}</p>
           </div>
           <div>
             <h2 class="font-semibold text-lg text-primary_color">Reviews</h2>
@@ -143,25 +161,31 @@ import axios from "axios";
 import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   name: "CarPage",
   data() {
     return {
       car: "",
-      AdditonalFeatures: {
-        driver: false,
-        protection: false,
-        infantSeat: false,
-        toddlerSeat: false
+      additionalFeatures: {
+        driver:false,
+        protection:  false,
+        infantSeat:  false,
+        toddlerSeat: false,
       },
+     
       url: "",
       owner: "",
+      Order: {},
     };
   },
   computed: {
-    ...mapState(['car'])
+    ...mapState(['car']),
+
+    ...mapGetters(['getfeatures'])
   },
   async created() {
+    this.additionalFeatures = this.$store.getters.getfeatures;
     await axios
       .get(
         `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${this.$route.params.id}.json`
@@ -169,7 +193,6 @@ export default {
       .then((response) => {
         this.car = response.data;
         this.setcar(this.car);
-        this.setfeatures(this.AdditonalFeatures);
         console.log(this.car.id)
         getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
           (download_url) => (this.url = download_url)
@@ -185,7 +208,7 @@ export default {
         console.log(this.car)
       });
 
-      
+
 
 
   },
@@ -199,7 +222,13 @@ export default {
       }
     },
     booknow() {
-      this.$router.push('/checkout');
+      this.setfeatures(this.additionalFeatures);
+      this.order = { car: this.car, additionalFeatures: this.additionalFeatures ,featurePrices: this.addPrices};
+
+      localStorage.setItem('order', JSON.stringify(this.order));
+      console.log('local ', JSON.parse(localStorage.getItem('order')));
+      // console.log("write in vue x",this.$store.getters.getfeatures);
+      this.$router.push(`checkout/${this.car.id}`);
     },
     setcar(car) {
       this.$store.dispatch('setcar', car);
@@ -212,7 +241,8 @@ export default {
   },
 
   mounted() {
-
+    this.additionalFeatures = this.getfeatures;
+    // console.log("12", this.additionalFeatures);
   },
 };
 </script>
@@ -230,9 +260,9 @@ export default {
   border-radius: 2px;
   position: relative;
   cursor: pointer;
-}a
+}
 
-.custom-checkbox::after {
+a .custom-checkbox::after {
   content: "";
   position: absolute;
   top: 54%;
