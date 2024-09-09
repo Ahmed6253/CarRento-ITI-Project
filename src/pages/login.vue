@@ -278,8 +278,6 @@ export default {
         password: "",
         confirmPassword: "",
         role: "",
-        currentUser: {},
-        rememberUser: false,
       },
     };
   },
