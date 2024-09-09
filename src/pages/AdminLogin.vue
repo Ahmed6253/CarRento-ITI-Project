@@ -109,20 +109,19 @@ export default{
       console.log(`Error fetching data: ${error}`);
     });
 },
-// checkAuthentication() {
-//     const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-//     console.log('Saved user:', savedUser); // Debug line
+checkAuthentication() {
+    const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    console.log('Saved user:', savedUser); // Debug line
 
-//     if (!savedUser) {
-//       alert("Please login first");
-//       this.$router.push('/adminlogin');
-//     }
-//   }
+    if (savedUser) {
+      this.$router.push('/admin');
+    }
+  }
 
   },
 
-  // mounted(){
-  //   this.checkAuthentication();
-  // },
+  mounted(){
+    this.checkAuthentication();
+  },
 }
 </script>
