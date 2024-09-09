@@ -39,6 +39,7 @@
             <th scope="col" class="px-6 py-3">
               <button
                 class="bg-red w-full py-2.5 px-5 hover:bg-red_hover text-white rounded-lg"
+                @click ="blockUser"
               >
                 Block account
               </button>
@@ -68,6 +69,7 @@
             <th scope="col" class="px-6 py-3">
               <button
                 class="bg-red w-full py-2.5 px-5 hover:bg-red_hover text-white rounded-lg"
+                @click ="blockUser(owner)"
               >
                 Block account
               </button>
@@ -90,6 +92,7 @@ export default {
       shown: "renter",
       owners:[],
       renters:[],
+      blocked:[],
     };
   },
 
@@ -110,9 +113,22 @@ export default {
             }
           }
       }).catch((err)=>console.log(err))
-
-
     },
+
+
+    blockUser(userToBlock){
+      const descision = confirm("Are you sure you want to block this user?")
+      if(descision){
+        if (userToBlock.role === 'owner') {
+        this.owners = this.owners.filter(owner => owner.id !== userToBlock.id);
+      } else if (userToBlock.role === 'renter') {
+        this.renters = this.renters.filter(renter => renter.id !== userToBlock.id);
+      }
+
+      // Add user to the blocked list
+      this.blocked.push(userToBlock);
+      }
+    }
   },
 };
 </script>

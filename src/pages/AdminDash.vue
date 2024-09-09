@@ -141,15 +141,20 @@ export default {
     
   },
 
-  mounted(){
-      // Check both localStorage and sessionStorage for the currentUser
-      const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-      
-      if (!savedUser) {
-        // If no user is found, redirect to the admin login page
-        this.$router.push('/adminlogin');
-      }
+  created() {
+  try {
+    const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    
+    if (!savedUser) {
+      alert("Login to your account to continue");
+      this.$router.push('/adminlogin');
+    }
+  } catch (error) {
+    console.error("Error checking user storage:", error);
+    this.$router.push('/adminlogin');
   }
+}
+
 };
 </script>
 
