@@ -33,7 +33,7 @@ const routes = [
     component: AboutPage,
   },
   {
-    path: "/cars/checkout/:id",
+    path: "/checkout",
     component: CheckoutPage,
   },
   {

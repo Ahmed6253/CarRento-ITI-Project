@@ -300,6 +300,7 @@ export default {
         password: "",
         confirmPassword: "",
         role: "",
+        blocked: false,
       },
     };
   },

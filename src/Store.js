@@ -44,6 +44,9 @@ let store = createStore({
     setrole({ commit }, type) {
       commit("setrole", type);
     },
+    setInOrOut({ commit }) {
+      commit("SetInOrOut");
+    },
   },
   getters: {
     getrole(state) {
