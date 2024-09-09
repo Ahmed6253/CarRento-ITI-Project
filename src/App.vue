@@ -7,7 +7,6 @@
   <login v-if="$store.state.isModalOpen"></login>
   <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
 </template>
-
 <script>
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";

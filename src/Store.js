@@ -5,6 +5,8 @@ let store = createStore({
     return {
       isModalOpen: false,
       logedIn: false,
+      car: {},
+      additionalFeatures: {},
     };
   },
   mutations: {
@@ -25,6 +27,12 @@ let store = createStore({
         state.logedIn = false;
       }
     },
+    setcar(state, car) {
+      state.car = car;
+    },
+    setfeatures(state, features) {
+      state.additionalFeatures = features;
+    },
   },
   actions: {
     openModal({ commit }) {
@@ -33,9 +41,19 @@ let store = createStore({
     closeModal({ commit }) {
       commit("closeModal");
     },
-
-    setInOrOut({ commit }) {
-      commit("SetInOrOut");
+    setrole({ commit }, type) {
+      commit("setrole", type);
+    },
+  },
+  getters: {
+    getrole(state) {
+      return state.role;
+    },
+    getcar(state) {
+      return state.car;
+    },
+    getfeatures(state) {
+      return state.additionalFeatures;
     },
   },
 });

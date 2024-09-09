@@ -54,6 +54,9 @@ const routes = [
   {
     path: "/admin",
     component: AdminDash,
+    meta: {
+      hideNavFoot: true,
+    },
   },
   {
     path: "/ownerdash/:id",
