@@ -80,14 +80,13 @@
                 class="w-full py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(owner)"
               >
-                {{ owner.blocked ? 'Blocked' : 'Block account' }}
+                {{ owner.blocked ? 'Unblock' : 'Block account' }}
               </button>
             </th>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 </template>
 
@@ -100,7 +99,6 @@ export default {
       shown: "renter",
       owners: [],
       renters: [],
-      blocked: [],
     };
   },
 
@@ -121,35 +119,21 @@ export default {
             } else if (user.role === "renter") {
               this.renters.push(user);
             }
-
-            // Add to blocked list if already blocked
-            if (user.blocked) {
-              this.blocked.push(user);
-            }
           }
         })
         .catch((err) => console.log(err));
     },
 
     toggleBlockUser(user) {
-      if (!user.blocked) {
-        // Show a confirmation before blocking the user
-        const confirmBlock = confirm(
-          `Are you sure you want to block ${user.userName}?`
-        );
-        if (confirmBlock) {
-          user.blocked = true;
-          this.updateBlockStatus(user);
-        }
-      } else {
-        // Unblock the user if already blocked
-        const confirmUnblock = confirm(
-          `Are you sure you want to unblock ${user.userName}?`
-        );
-        if (confirmUnblock) {
-          user.blocked = false;
-          this.updateBlockStatus(user);
-        }
+      const confirmMessage = user.blocked
+        ? `Are you sure you want to unblock ${user.userName}?`
+        : `Are you sure you want to block ${user.userName}?`;
+
+      const confirmAction = confirm(confirmMessage);
+
+      if (confirmAction) {
+        user.blocked = !user.blocked;
+        this.updateBlockStatus(user);
       }
     },
 
@@ -161,34 +145,9 @@ export default {
           { blocked: user.blocked }
         )
         .then(() => {
-          // Update the UI after the database has been updated
-          if (user.blocked) {
-            this.blockUser(user);
-          } else {
-            this.unblockUser(user);
-          }
+          console.log(`${user.blocked ? 'Blocked' : 'Unblocked'} user: ${user.userName}`);
         })
         .catch((err) => console.log(err));
-    },
-
-    blockUser(user) {
-      // Remove the user from their original list and add to the blocked list
-      if (user.role === "owner") {
-        this.owners = this.owners.filter((o) => o.id !== user.id);
-      } else if (user.role === "renter") {
-        this.renters = this.renters.filter((r) => r.id !== user.id);
-      }
-      this.blocked.push(user);
-    },
-
-    unblockUser(user) {
-      // Remove the user from the blocked list and add back to their original list
-      this.blocked = this.blocked.filter((u) => u.id !== user.id);
-      if (user.role === "owner") {
-        this.owners.push(user);
-      } else if (user.role === "renter") {
-        this.renters.push(user);
-      }
     },
   },
 };

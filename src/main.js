@@ -60,7 +60,7 @@ const routes = [
       hideNavFoot: true,
     },
     beforeEnter(to,from,next){
-      const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+      const savedUser = localStorage.getItem('currentAdmin') || sessionStorage.getItem('currentAdmin');
       if(!savedUser){
         next('/adminlogin');
       }

@@ -90,13 +90,13 @@ export default{
       );
 
       if (foundAdmin) {
-        this.currentUser = foundAdmin;
+        this.currentAdmin = foundAdmin;
 
         // Save the admin data based on 'rememberUser' flag
         if (this.rememberUser) {
-          localStorage.setItem('currentUser', JSON.stringify(foundAdmin));
+          localStorage.setItem('currentAdmin', JSON.stringify(foundAdmin));
         } else {
-          sessionStorage.setItem('currentUser', JSON.stringify(foundAdmin));
+          sessionStorage.setItem('currentAdmin', JSON.stringify(foundAdmin));
         }
 
         // Redirect to admin dashboard
@@ -110,7 +110,7 @@ export default{
     });
 },
 checkAuthentication() {
-    const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+    const savedUser = localStorage.getItem('currentAdmin') || sessionStorage.getItem('currentAdmin');
     console.log('Saved user:', savedUser); // Debug line
 
     if (savedUser) {

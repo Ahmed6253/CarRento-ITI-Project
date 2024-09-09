@@ -116,9 +116,9 @@ export default {
     return {
       fold: false,
       activeSection: "overview",
-      userName: localStorage.currentUser
-        ? JSON.parse(localStorage.getItem("currentUser")).name
-        : JSON.parse(sessionStorage.getItem("currentUser")).name,
+      userName: localStorage.currentAdmin
+        ? JSON.parse(localStorage.getItem("currentAdmin")).name
+        : JSON.parse(sessionStorage.getItem("currentAdmin")).name,
     };
   },
 
@@ -126,8 +126,8 @@ export default {
     logout(){
       const logoutConfirm = confirm("Are you sure you want to log out?")
       if(logoutConfirm){
-      localStorage.removeItem("currentUser");
-      sessionStorage.removeItem("currentUser");
+      localStorage.removeItem("currentAdmin");
+      sessionStorage.removeItem("currentAdmin");
       this.$router.push("/adminlogin")
       }
       else{
