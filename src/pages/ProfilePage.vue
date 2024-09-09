@@ -24,12 +24,12 @@
           <p class="text-xl text-primary_color">{{name}}</p>
         </div>
         <div class="py-3">
-          <p class="text-base text-Paragraph_color">Phone number</p>
-          <p class="text-xl text-primary_color">{{phoneNo}}</p>
-        </div>
-        <div class="py-3">
           <p class="text-base text-Paragraph_color">Email</p>
           <p class="text-xl text-primary_color">{{email}}</p>
+        </div>
+        <div class="py-3">
+          <p class="text-base text-Paragraph_color">Account Status</p>
+          <p class="text-xl text-green">Active</p>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
         <p class="text-3xl font-semibold">Settings and Privacy</p>
         <div class="flex gap-x-16 items-center py-5">
           <p class="text-xl text-primary_color">Password</p>
-          <p class="pt-2">**************</p>
+          <p class="pt-2">{{password}}</p>
           <img class="w-8 h-8" src="../imagesNavfoot/edit.png" alt="" />
         </div>
       </div>
@@ -169,20 +169,22 @@ export default {
   data(){
     return{
       name: "",
-      phoneNo:"",
       email:"",
-      currentUser:{}
+      password:"",
     }
   },
 
-  // methods:{
-    // getData(){
-    //   this.currentUser = sessionStorage.getItem("currentUser");
-    //   this.name = this.currentUser.name;
-    //   this.email = this.currentUser.email;
-    //   this.phoneNo = this.currentUser.phoneNo;
-    // }
-  // }
+  mounted() {
+  // Retrieve the currentUser from localStorage or sessionStorage
+  const storedUser = localStorage.getItem("currentUser") || sessionStorage.getItem("currentUser");
+    this.currentUser = JSON.parse(storedUser);
+    this.name = this.currentUser.userName ;
+    this.email = this.currentUser.email ;
+    const pass = this.currentUser.password ;
+    this.password = pass.replace(/./g, '*');
+}
+
+
 };
 
 </script>
