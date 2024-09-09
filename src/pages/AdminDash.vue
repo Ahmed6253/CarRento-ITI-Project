@@ -1,14 +1,14 @@
 U
 <template>
-  <div class="flex gap-x-12 h-screen">
-    <nav
+  <div class="flex">
+    <nav class="h-[100vh] fixed top-0 left-0"
       :class="
         fold
           ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen  transition-all'
           : 'custom-shadow rounded-e-3xl w-1/4 min-h-screen transition-all'
       "
     >
-      <div class="flex justify-between py-6 px-8">
+      <div class="flex justify-between py-6 px-10">
         <img v-if="!fold" src="../assets/logo.svg" alt="" />
         <img v-if="fold" src="../assets/logoHalf.svg" alt="" />
         <img
@@ -22,9 +22,11 @@ U
         />
       </div>
       <hr />
-      <div @click="if (fold) fold = !fold;" class="flex flex-col py-6 px-6">
-        <div class="flex flex-col h-full">
-          <!-------------------------------------------------- overview -------------------------------------------------->
+      <div
+        @click="if (fold) fold = !fold;"
+        class="flex flex-col justify-between h-[85%] py-6 px-10"
+      >
+        <div class="flex flex-col gap-y-6">
           <div
             @click="activeSection = 'overview'"
             :class="
@@ -51,12 +53,10 @@ U
             </svg>
             <p :class="fold ? 'hidden' : 'block'">Overview</p>
           </div>
-
-          <!-------------------------------------------------- Users -------------------------------------------------->
           <div
-            @click="activeSection = 'Users'"
+            @click="activeSection = 'users'"
             :class="
-              activeSection == 'Users'
+              activeSection == 'users'
                 ? 'activeSection'
                 : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
             "
@@ -68,53 +68,41 @@ U
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g id="vuesax/bold/frame">
-                <g id="frame">
-                  <path
-                    id="Vector"
-                    d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
-                    :class="
-                      activeSection === 'overview'
-                        ? 'fill-primary_color'
-                        : 'fill-white'
-                    "
-                    fill="#292D32"
-                  />
-                  <path
-                    id="Vector_2"
-                    d="M17.08 14.1499C14.29 12.2899 9.73999 12.2899 6.92999 14.1499C5.65999 14.9999 4.95999 16.1499 4.95999 17.3799C4.95999 18.6099 5.65999 19.7499 6.91999 20.5899C8.31999 21.5299 10.16 21.9999 12 21.9999C13.84 21.9999 15.68 21.5299 17.08 20.5899C18.34 19.7399 19.04 18.5999 19.04 17.3599C19.03 16.1299 18.34 14.9899 17.08 14.1499Z"
-                    :class="
-                      activeSection === 'overview'
-                        ? 'fill-primary_color'
-                        : 'fill-white'
-                    "
-                  />
-                </g>
-              </g>
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                :class="
+                  activeSection === 'users'
+                    ? 'fill-white'
+                    : 'fill-primary_color'
+                "
+              />
             </svg>
             <p :class="fold ? 'hidden' : 'block'">Users</p>
           </div>
         </div>
         <div
-          class="flex gap-x-4 p-[10px] mt-72 rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-          <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+          <p :class="fold ? 'hidden' : 'text-primary_color'" @click="logout">Log out</p>
         </div>
       </div>
     </nav>
-    <section class="mx-[20px] mt-10 w-full">
-      <h1 class="text-primary_color text-2xl">
+    <section class="mt-9" :class="fold ? 'ms-40 pe-0' : 'ms-96 pe-5'">
+      <h1 class="text-primary_color text-2xl mb-10" :class="fold ? 'ms-3' : 'ms-5'">
         <span class="font-bold">Hello, </span>
-        Abobakr Sobhy
+        {{ userName }}
       </h1>
-      <DashChart v-if="activeSection === 'overview'" />
-      <DashUsers v-if="activeSection === 'Users'" />
+      <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
+
+      <DashChart v-if="activeSection === 'overview'"/>
+      <DashUsers v-if="activeSection === 'users'" />
     </section>
   </div>
 </template>
 
 <script>
+
 import DashChart from "@/components/DashChart.vue";
 import DashUsers from "@/components/DashUsers.vue";
 export default {
@@ -123,11 +111,35 @@ export default {
     DashChart,
     DashUsers,
   },
+
   data() {
     return {
       fold: false,
       activeSection: "overview",
+      userName: localStorage.currentUser
+        ? JSON.parse(localStorage.getItem("currentUser")).name
+        : JSON.parse(sessionStorage.getItem("currentUser")).name,
     };
   },
+
+  methods:{
+    logout(){
+      const logoutConfirm = confirm("Are you sure you want to log out?")
+      if(logoutConfirm){
+      localStorage.removeItem("currentUser");
+      sessionStorage.removeItem("currentUser");
+      window.location.reload()
+      }
+      else{
+        return;
+      }
+
+    }
+    
+  },
+
+
 };
 </script>
+
+<style></style>

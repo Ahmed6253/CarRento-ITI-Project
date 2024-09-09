@@ -12,6 +12,8 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import AdminLogin from "./pages/AdminLogin.vue";
+
 import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
 
@@ -54,6 +56,22 @@ const routes = [
   {
     path: "/admin",
     component: AdminDash,
+    meta: {
+      hideNavFoot: true,
+    },
+    beforeEnter(to,from,next){
+      const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+      if(!savedUser){
+        next('/adminlogin');
+      }
+      else{
+        next();
+      }
+    }
+  },
+  {
+    path: "/adminlogin",
+    component: AdminLogin,
     meta: {
       hideNavFoot: true,
     },
