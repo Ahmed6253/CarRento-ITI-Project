@@ -128,7 +128,7 @@ export default {
       if(logoutConfirm){
       localStorage.removeItem("currentUser");
       sessionStorage.removeItem("currentUser");
-      window.location.reload()
+      this.$router.push("/adminlogin")
       }
       else{
         return;
