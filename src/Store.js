@@ -4,9 +4,9 @@ let store = createStore({
   state() {
     return {
       isModalOpen: false,
-      role: "",
-      car:{},
-      additionalFeatures:{},
+      logedIn: false,
+      car: {},
+      additionalFeatures: {},
     };
   },
   mutations: {
@@ -16,8 +16,16 @@ let store = createStore({
     closeModal(state) {
       state.isModalOpen = false;
     },
-    setrole(state, type) {
-      state.role = type;
+
+    SetInOrOut(state) {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user) {
+        state.logedIn = true;
+      } else {
+        state.logedIn = false;
+      }
     },
     setcar(state, car) {
       state.car = car;
@@ -36,11 +44,8 @@ let store = createStore({
     setrole({ commit }, type) {
       commit("setrole", type);
     },
-    setcar({ commit }, car) {
-      commit("setcar", car);
-    },
-    setfeatures({ commit }, features) {
-      commit("setfeatures", features);
+    setInOrOut({ commit }) {
+      commit("SetInOrOut");
     },
   },
   getters: {

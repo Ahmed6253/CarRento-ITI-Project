@@ -38,13 +38,21 @@
             <td class="px-6 py-4">{{ car.number }}</td>
             <td class="pl-6 py-4">
               <button
-                class="bg-green hover:bg-green_hover rounded text-white p-2"
+                @click="setAvalability(car.id)"
+                :class="
+                  car.available
+                    ? 'bg-green hover:bg-green_hover rounded text-white p-2'
+                    : 'bg-Placeholder_color hover:bg-Placeholder_color rounded text-white p-2'
+                "
               >
-                Available
+                {{ car.available ? "Available" : " Not Available" }}
               </button>
             </td>
             <td class="pr-6 py-4">
-              <button class="bg-red hover:bg-red_hover rounded text-white p-2">
+              <button
+                @click="deleteCar(car.id)"
+                class="bg-red hover:bg-red_hover rounded text-white p-2"
+              >
                 Delete
               </button>
             </td>
@@ -115,6 +123,7 @@
               <option value="NISSAN">NISSAN</option>
               <option value="PONTIAC">PONTIAC</option>
               <option value="PORSCHE">PORSCHE</option>
+              <option value="Renault">Renault</option>
               <option value="ROLLS-ROYCE">ROLLS-ROYCE</option>
               <option value="SAAB">SAAB</option>
               <option value="SATURN">SATURN</option>
@@ -123,6 +132,8 @@
               <option value="TOYOTA">TOYOTA</option>
               <option value="VOLKSWAGEN">VOLKSWAGEN</option>
               <option value="VOLVO">VOLVO</option>
+              <option value="WILLIAMS">WILLIAMS</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div class="w-[47%]">
@@ -194,6 +205,7 @@
           <div class="w-[47%]">
             <label for="pickup-location">Location</label>
             <select
+              v-model="carOptions.location"
               class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
               id="pickup-location"
             >
@@ -415,9 +427,11 @@ import { ref, uploadBytes } from "firebase/storage";
 import axios from "axios";
 export default {
   name: "OnwerCars",
+  props: ["id"],
   data() {
     return {
       carOptions: {
+        available: true,
         price: "",
         brand: "",
         name: "",
@@ -425,10 +439,12 @@ export default {
         type: "",
         number: "",
         description: "",
+        owner: this.id,
+        location: "",
         fuel: "",
         manualOrAuto: "Automatic",
       },
-      cars: [],
+      cars: {},
       style: {
         unActiveOption:
           "bg-slate-100 border border-border_color text-primary_color text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
@@ -451,16 +467,39 @@ export default {
     };
   },
   created() {
-    axios
-      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
-      .then((response) => {
-        this.cars = response.data;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    this.getCars();
   },
   methods: {
+    getCars() {
+      axios
+        .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
+        .then((response) => {
+          for (let car in response.data) {
+            if (response.data[car].owner === this.id) {
+              this.cars[car] = response.data[car];
+            }
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    setAvalability(id) {
+      axios
+        .put(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${id}.json`,
+          {
+            ...this.cars[id],
+            available: !this.cars[id].available,
+          }
+        )
+        .then(() => {
+          this.cars[id].available = !this.cars[id].available;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     uploadImage(id) {
       const storageRef = ref(storage, `cars/${id}`);
       uploadBytes(storageRef, this.$refs.image.files[0]);
@@ -485,7 +524,7 @@ export default {
         this.$refs.image.files[0]
       ) {
         for (let car in this.cars) {
-          if (this.cars[car].id === newCar.id) {
+          if (this.cars[car].number === newCar.number) {
             return;
           }
           this.uploadImage(newCar.id);
@@ -494,9 +533,6 @@ export default {
               `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
               newCar
             )
-            .then((response) => {
-              console.log(response);
-            })
             .catch((e) => {
               console.log(e);
             });
@@ -524,10 +560,28 @@ export default {
             airbag: false,
             wifi: false,
           };
-          console.log("Car Added");
+
+          this.getCars();
         }
       } else {
         console.log("Please fill all the fields");
+      }
+    },
+
+    deleteCar(id) {
+      const agree = confirm("Are you sure you want to delete this car?");
+
+      if (agree) {
+        axios
+          .delete(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${id}.json`
+          )
+          .then(() => {
+            this.getCars();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       }
     },
   },

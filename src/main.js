@@ -15,6 +15,7 @@ import ConfirmPayment from "./pages/ConfirmPayment.vue";
 import AdminLogin from "./pages/AdminLogin.vue";
 
 import store from "./store";
+import ErrorPage from "./pages/ErrorPage.vue";
 
 const routes = [
   {
@@ -34,12 +35,23 @@ const routes = [
     component: AboutPage,
   },
   {
-    path: "/cars/checkout/:id",
+    path: "/checkout",
     component: CheckoutPage,
   },
   {
-    path: "/profile",
+    path: "/profile/:id",
     component: ProfilePage,
+    beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user && user.role === "renter") {
+        next();
+      } else {
+        next("/error");
+        console.log("user not logged in");
+      }
+    },
   },
   {
     path: "/admin",
@@ -65,16 +77,29 @@ const routes = [
     },
   },
   {
-    path: "/ownerdash",
+    path: "/ownerdash/:id",
     component: OwnerDash,
     meta: {
       hideNavFoot: true,
+    },
+    beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user && user.role === "owner") {
+        next();
+      } else {
+        next("/error");
+        console.log("user not logged in");
+      }
     },
   },
   {
     path: "/confirmpayment",
     component: ConfirmPayment,
   },
+
+  { path: "/:pathMatch(.*)*", component: ErrorPage, alias: "/error" },
 ];
 
 const router = createRouter({
