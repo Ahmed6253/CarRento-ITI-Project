@@ -126,12 +126,9 @@ export default {
     logout(){
       const logoutConfirm = confirm("Are you sure you want to log out?")
       if(logoutConfirm){
-        if(localStorage.getItem("currentUser")){
-        localStorage.removeItem("currentUser");
-      }else if(sessionStorage.getItem("currentUser")){
-        sessionStorage.removeItem("currentUser");
-      }
-      this.$router.push("/adminlogin")
+      localStorage.removeItem("currentUser");
+      sessionStorage.removeItem("currentUser");
+      window.location.reload()
       }
       else{
         return;
@@ -141,19 +138,6 @@ export default {
     
   },
 
-  created() {
-  try {
-    const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-    
-    if (!savedUser) {
-      alert("Login to your account to continue");
-      this.$router.push('/adminlogin');
-    }
-  } catch (error) {
-    console.error("Error checking user storage:", error);
-    this.$router.push('/adminlogin');
-  }
-}
 
 };
 </script>
