@@ -1,6 +1,7 @@
+U
 <template>
-  <div class="flex h-auto">
-    <nav
+  <div class="flex">
+    <nav class="h-[100vh] fixed top-0 left-0"
       :class="
         fold
           ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen  transition-all'
@@ -87,27 +88,28 @@
         </div>
       </div>
     </nav>
-    <section class="mx-[20px] mt-9 w-full">
-      <h1 class="text-primary_color text-2xl mb-10">
+    <section class="mt-9" :class="fold ? 'ms-40 pe-0' : 'ms-96 pe-5'">
+      <h1 class="text-primary_color text-2xl mb-10" :class="fold ? 'ms-3' : 'ms-5'">
         <span class="font-bold">Hello, </span>
         {{ userName }}
       </h1>
-      <AdminUsers v-if="activeSection === 'users'" />
-      <AdminOverview v-if="activeSection === 'overview'" />
+      <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
+
+      <DashChart v-if="activeSection === 'overview'"/>
+      <DashUsers v-if="activeSection === 'users'" />
     </section>
   </div>
 </template>
 
 <script>
-import AdminOverview from "../components/AdminOverview.vue";
-import AdminUsers from "../components/AdminUsers.vue";
 
+import DashChart from "@/components/DashChart.vue";
+import DashUsers from "@/components/DashUsers.vue";
 export default {
   name: "AdminDash",
-
   components: {
-    AdminOverview,
-    AdminUsers,
+    DashChart,
+    DashUsers,
   },
 
   data() {
@@ -137,6 +139,16 @@ export default {
 
     }
     
+  },
+
+  mounted(){
+      // Check both localStorage and sessionStorage for the currentUser
+      const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+      
+      if (!savedUser) {
+        // If no user is found, redirect to the admin login page
+        this.$router.push('/adminlogin');
+      }
   }
 };
 </script>

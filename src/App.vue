@@ -1,12 +1,12 @@
 <template>
-  <div class="bg-bg_color">
-    <NavBar v-if="!$route.meta.hideNavFoot" class="pt-1"></NavBar>
-    <router-view></router-view>
-    <login v-if="$store.state.isModalOpen"></login>
-    <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
-  </div>
+  <NavBar
+    v-if="!$route.meta.hideNavFoot"
+    class="fixed w-[90%] z-40 right-1/2 translate-x-1/2"
+  ></NavBar>
+  <router-view></router-view>
+  <login v-if="$store.state.isModalOpen"></login>
+  <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
 </template>
-
 <script>
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";

@@ -1,7 +1,6 @@
 <template>
   <div class="mx-4 md:mx-20 lg:mx-44 lg:px-32 py-32  min-h-screen">
     <div>
-      <img src="/src/imagesNavfoot/logo.png" alt="">
       <p
         class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3 text-center"
       >
@@ -109,18 +108,21 @@ export default{
     .catch((error) => {
       console.log(`Error fetching data: ${error}`);
     });
-}
+},
+// checkAuthentication() {
+//     const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+//     console.log('Saved user:', savedUser); // Debug line
+
+//     if (!savedUser) {
+//       alert("Please login first");
+//       this.$router.push('/adminlogin');
+//     }
+//   }
 
   },
 
-  mounted() {
-    // Check if a user is already logged in (exists in localStorage)
-    const savedUser = localStorage.getItem('currentUser');
-    
-    if (savedUser) {
-      // If a user is found, parse the user data and redirect to the admin dashboard
-      this.$router.push('/admin');
-    }
-  },
+  // mounted(){
+  //   this.checkAuthentication();
+  // },
 }
 </script>

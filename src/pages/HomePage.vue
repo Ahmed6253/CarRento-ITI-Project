@@ -1,7 +1,6 @@
-
 <template>
   <!-- ------------------------------------hero section--------------------------------- -->
-  <div class="bg-split-half max-h-fit">
+  <div class="bg-split-half max-h-fit pt-32">
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 text-left">
         <h1 class="lg:text-6xl text-4xl">
@@ -87,13 +86,13 @@
         find the perfect vehicle for your needs.
       </p>
 
-      <div class="flex flex-wrap py-16 text-center">
+      <div class="flex flex-col md:flex-row py-16 text-center">
         <div class="wrapper">
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
           </div>
           <h3 class="mt-4 text-[16px] font-medium">Choose Location</h3>
-          <p class="text-gray-500 text-[12px]">
+          <p class="text-gray-500 text-center text-[12px]">
             choose your desired pickup and drop-off from wide range of locations
             to suit your needs
           </p>
@@ -111,8 +110,8 @@
           </div>
           <h3 class="mt-4 text-[16px] font-medium">Choose day and Time</h3>
           <p class="text-gray-500 text-[12px]">
-            Select your preferred pick-up and drop-off dates and times, let's find
-            your best availability.
+            Select your preferred pick-up and drop-off dates and times, let's
+            find your best availability.
           </p>
         </div>
         <div class="w-1/5 ps-2 hidden lg:block">
@@ -137,49 +136,84 @@
   </section>
 
   <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
- <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
+  <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">
         Renting a car with us is a breeze! Simply browse our extensive fleet to
         find the perfect vehicle for your needs.
       </p>
-
-      <div class="mt-5">
+      <div class="mt-5 cursor-grab">
         <swiper
-          :slidesPerView="1"
-          :spaceBetween="10"
-          :loop="true"
+          :cssMode="true"
+          :navigation="{}"
           :pagination="{
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 3,
           }"
+          :mousewheel="true"
+          :keyboard="true"
+          :spaceBetween="10"
+          :loop="true"
+          :centeredSlides="true"
+          :slidesPerGroup="1"
+          :modules="modules"
           :breakpoints="{
             '640': {
-              slidesPerView: 1,
-              spaceBetween: 10,
+              slidesPerView: 2,
+              spaceBetween: 5,
+              pagination: {
+                clickable: true,
+                dynamicBullets: true,
+              },
             },
             '768': {
-              slidesPerView: 2,
-              spaceBetween: 20,
+              slidesPerView: 3,
+              spaceBetween: 10,
             },
             '1024': {
               slidesPerView: 4,
-              spaceBetween: 30,
+              spaceBetween: 0,
             },
           }"
           :autoplay="{
-            delay: 3000,
+            delay: 2500,
             disableOnInteraction: false,
           }"
           class="mySwiper"
         >
-          <swiper-slide v-for="car in cars" :key="car.id" class="p-3">
-            <CarCard :car="car"/>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
+          </swiper-slide>
+          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
+            <CarCard :car="car" />
           </swiper-slide>
         </swiper>
       </div>
     </div>
   </section>
+
+
+  <section class="bg-bg_color pt-0 pb-24 my-0">
+    <div class="mx-4 md:mx-20">
+     <div class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]">
+      <div class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40">
+        <h1 class="text-6xl mb-7">Rent your perfect car with a big discount</h1>
+        <router-link class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl">Rent now</router-link >
+      </div>
+     </div>
+    </div>
+    </section>
 
   <!-- ---------------------------------why choose us--------------------------- -->
 
@@ -254,17 +288,23 @@ import CarCard from "../components/CarCard.vue";
 
 // Import Swiper core and modules
 import { Swiper, SwiperSlide } from "swiper/vue";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
 
 // Import Swiper styles
-import "swiper/css";  // Core Swiper styles
-import "swiper/css/pagination";  // Styles for pagination
+import "swiper/css";
 
-// Install the modules
-SwiperCore.use([Autoplay, Pagination]);
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// import required modules
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 
 export default {
-  components: { SearchCard, CarCard, Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, SearchCard, CarCard },
+  setup() {
+    return {
+      modules: [Navigation, Pagination, Mousewheel, Keyboard],
+    };
+  },
   data() {
     return {
       cars: [],
@@ -281,10 +321,10 @@ export default {
       });
   },
   methods: {
-      scrollToSearchCard(){
+    scrollToSearchCard() {
       const searchcard = document.getElementById("search-card");
       searchcard.scrollIntoView({ behavior: "smooth" });
-    }
-  }
+    },
+  },
 };
 </script>
