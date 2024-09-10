@@ -375,6 +375,7 @@ export default {
         email: this.form.email,
         password: this.form.password,
         role: this.form.role,
+        blocked: false,
       };
       if (userData.userName === "") {
         this.nameError = true;
@@ -442,7 +443,11 @@ export default {
         )
         .then((response) => {
           this.form.currentUser = response.data;
-
+          if(this.form.currentUser.blocked){
+            alert("Your account has been blocked. Please contact us for more details.")
+            window.location.reload();
+            return;
+          }
           if (this.form.currentUser) {
             if (this.form.currentUser.password !== this.form.password) {
               this.worngPassword = true;

@@ -143,7 +143,7 @@ export default {
       if (logoutConfirm) {
         localStorage.removeItem("currentAdmin");
         sessionStorage.removeItem("currentAdmin");
-        window.location.reload();
+        this.$router.push("/adminlogin");
       } else {
         return;
       }

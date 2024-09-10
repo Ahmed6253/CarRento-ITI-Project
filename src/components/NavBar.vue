@@ -29,7 +29,7 @@
         <a
           @click="showProfile()"
           type="button"
-          class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer"
         >
           <img
             class="rounded-full"
@@ -122,13 +122,18 @@ export default {
     },
     openModal() {
       if (this.logedIn) {
+        const logoutConfirm = confirm("Are you sure you want to log out?");
+        if (logoutConfirm) {       
         localStorage.removeItem("currentUser");
         sessionStorage.removeItem("currentUser");
         this.setInOrOut();
         this.$router.push("/");
       } else {
-        this.$store.dispatch("openModal");
+        return;
       }
+        }
+
+      this.$store.dispatch("openModal");
     },
     setInOrOut() {
       this.$store.dispatch("setInOrOut");

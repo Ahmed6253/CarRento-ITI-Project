@@ -1,6 +1,6 @@
 <template>
   <!-- ------------------------------------hero section--------------------------------- -->
-  <div class="bg-split-half max-h-fit pt-32">
+  <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 text-left">
         <h1 class="lg:text-6xl text-4xl">
@@ -22,14 +22,14 @@
     </div>
   </div>
 
-  <div class="bg-quarter-split" id="search-card">
+  <div class="bg-quarter-split pt-32" id="search-card">
     <div class="mx-auto px-4 md:px-10 lg:px-20 py-10">
       <SearchCard class="mt-0"></SearchCard>
     </div>
   </div>
 
   <!-- -----------------------------------logo separator------------------------------------->
-  <section class="bg-white py-5 my-0">
+  <section class="bg-white py-5 my-0 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
@@ -76,7 +76,7 @@
 
   <!-- ------------------------easy steps ----------------------------------- -->
 
-  <section class="bg-bg_color pt-24 p-16 my-0 text-center">
+  <section class="bg-bg_color pt-24 p-16 my-0 text-center animate-fade-up">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">
         Easy steps to rent your perfect car
@@ -203,7 +203,9 @@
     </div>
   </section>
 
-  <section class="bg-bg_color pt-0 pb-24 my-0">
+  <!-- ------------------------------------------rent your perfect car-------------------------------- -->
+
+  <section class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div
         class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]"
@@ -225,7 +227,7 @@
 
   <!-- ---------------------------------why choose us--------------------------- -->
 
-  <section class="bg-bg_color pt-0 pb-24 my-0">
+  <section class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap">
         <div class="w-full lg:w-1/2">
@@ -299,7 +301,6 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -328,11 +329,37 @@ export default {
         console.log(e);
       });
   },
+  mounted() {
+    this.observeElements();
+  },
   methods: {
     scrollToSearchCard() {
       const searchcard = document.getElementById("search-card");
       searchcard.scrollIntoView({ behavior: "smooth" });
     },
+    observeElements() {
+      const options = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      // Target elements to animate
+      const animatedElements = document.querySelectorAll(".animate-fade-up");
+
+      animatedElements.forEach((el) => {
+        observer.observe(el);
+      });
+    },
   },
 };
 </script>
+
+<style scoped></style>
