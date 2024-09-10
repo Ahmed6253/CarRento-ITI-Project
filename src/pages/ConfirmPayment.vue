@@ -15,9 +15,7 @@
     </div>
 
     <div class="flex mb-8">
-      <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6 h-6 cursor-pointer"
-        @click="$router.push(`/cars/checkout/${this.car.id}`)">
-      <h4 class="semi-header font-medium">Oder Info</h4>
+      <h4 class="semi-header font-medium">Order Info</h4>
     </div>
 
     <div class="card-style">
@@ -26,7 +24,7 @@
           <h2 class="font-semibold semi-header">{{ this.car.name }}</h2>
           <div class="w-[400px] mt-6">
             <div class="flex flex-wrap">
-              <div v-for="(feature, index) in car.features" :key="index" >
+              <div v-for="(feature, index) in car.features" :key="index">
                 <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
                   <img :src="getImagePath(index)" class="h-6 w-6 " />
                   <p class="text-center text-primary_color">{{ index }}</p>
@@ -66,12 +64,12 @@
         <h2 class="info-header">Personal information</h2>
         <div class="mb-3">
           <h4 class="info-sub-header">Name</h4>
-          <p class="info-paragraph">{{this.personalName}}</p>
+          <p class="info-paragraph">{{ this.personalName }}</p>
         </div>
 
         <div>
           <h4 class="info-sub-header">Location</h4>
-          <p class="info-paragraph">{{this.car.location}} , Egypt</p>
+          <p class="info-paragraph">{{ this.car.location }} , Egypt</p>
         </div>
       </div>
 
@@ -81,7 +79,7 @@
         <h2 class="info-header">Order information</h2>
         <div class="mb-3">
           <h4 class="info-sub-header">Pick-up location</h4>
-          <p class="info-paragraph">{{this.car.location}} , Egypt</p>
+          <p class="info-paragraph">{{ this.car.location }} , Egypt</p>
         </div>
 
         <div class="mb-3">
@@ -97,7 +95,7 @@
         <section class="grid grid-col-1">
           <div v-for="(feature, index) in additionalFeatures" :key="index" class="flex gap-4">
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{this.addPrices[index]}} LE added</p>
+            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{ this.addPrices[index] }} LE added</p>
           </div>
         </section>
         <!-- <div class="mb-3">
@@ -116,7 +114,7 @@
       <div class="md:p-11 p-8">
         <div class="total-info">
           <p>Total</p>
-          <p>{{this.totalPrice}}</p>
+          <p>{{ this.totalPrice }}</p>
         </div>
         <div class="total-info">
           <p>Service</p>
@@ -135,7 +133,7 @@
 
       <div class="total-info p-11">
         <p>Total</p>
-        <p>{{this.total2Price}}</p>
+        <p>{{ this.total2Price }}</p>
       </div>
     </div>
 
@@ -150,6 +148,7 @@
 import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { mapGetters } from 'vuex';
+import axios from "axios";
 export default {
   name: "ConfirmPaymentPage",
   data() {
@@ -160,23 +159,43 @@ export default {
       addPrices: {},
       totalPrice: 0,
       personalName: "",
-      total2Price:0,
+      total2Price: 0,
     }
   },
   computed: {
-    ...mapGetters([ 'getlegalname'])
+    ...mapGetters(['getlegalname'])
   },
-  created() {
+  async created() {
     const order = JSON.parse(localStorage.getItem('order'));
     this.car = order.car;
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
-    this.totalPrice=order.TotalPrice;
+    this.totalPrice = order.TotalPrice;
     this.personalName = localStorage.getItem('legalName');
     this.gettotal();
     getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
       (download_url) => (this.url = download_url)
     );
+
+
+    /////////////////////////////////////////////////////////////////////////
+    await axios
+      .post(
+        `https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`,
+        {
+          carId: this.car.id,
+          status: 'pending',
+          renterName: this.personalName,
+          paymentStatus: 'done',
+          owner: this.car.owner,
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
   methods: {
     getImagePath(prop) {
@@ -187,8 +206,8 @@ export default {
         return ""; // Return a placeholder or empty string if image not found
       }
     },
-    gettotal(){
-      this.total2Price=this.totalPrice+500+100+20000;
+    gettotal() {
+      this.total2Price = this.totalPrice + 500 + 100 + 20000;
     }
   },
 };

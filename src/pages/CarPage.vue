@@ -193,10 +193,12 @@ export default {
       .then((response) => {
         this.car = response.data;
         this.setcar(this.car);
-        console.log(this.car.id)
+        console.log("car id is : ",this.car.id)
         getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
           (download_url) => (this.url = download_url)
         );
+      }).catch((error) => {
+        console.error("اوعى",error);
       });
 
     await axios
@@ -241,7 +243,7 @@ export default {
   },
 
   mounted() {
-    this.additionalFeatures = this.getfeatures;
+    // this.additionalFeatures = this.getfeatures;
     // console.log("12", this.additionalFeatures);
   },
 };
