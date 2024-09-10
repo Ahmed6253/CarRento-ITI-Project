@@ -6,18 +6,18 @@
     </div>
     <hr class="border-[1px] -mt-1" />
 
-    <!-- ----------------------------------paument method------------------------------- -->
+    <!-- ----------------------------------price------------------------------- -->
     <div class="p-6">
       <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">Payment Method</h3>
+        <h3 class="text-primary_color font-semibold mb-2">Price</h3>
         <label class="mr-4">
-          <input type="checkbox" id="cash" value="cash" />
+          <input type="radio" id="lowToHigh" value="lowToHigh" name="price-range" class="accent-primary_color" v-model="priceFilter">
         </label>
-        <label class="text-Paragraph_color" for="cash">Cash</label><br />
+        <label class="text-Paragraph_color" for="lowToHigh">Low to High</label><br />
         <label class="mr-4">
-          <input type="checkbox" id="card" value="card" />
+          <input type="radio" id="highToLow" value="highToLow" name="price-range" class="accent-primary_color" v-model="priceFilter"/>
         </label>
-        <label class="text-Paragraph_color" for="card">Card</label><br />
+        <label class="text-Paragraph_color" for="highToLow">High to Low</label><br />
       </div>
 
 <!-- ----------------------------------------car type-------------------------------------------------- -->
@@ -28,7 +28,7 @@
         </label>
         <label class="text-Paragraph_color" for="sedan">Sedan</label><br />
         <label class="mr-4">
-          <input type="checkbox" class="input" id="suv" value="suv" />
+          <input type="checkbox" id="suv" value="suv" />
         </label>
         <label class="text-Paragraph_color" for="suv">SUV</label><br />
         <label class="mr-4">
@@ -52,9 +52,21 @@
         <label class="text-Paragraph_color" for="crossover">Crossover</label
         ><br />
         <label class="mr-4">
-          <input type="checkbox" class="input" id="coupe" value="coupe" />
+          <input type="checkbox" id="coupe" value="coupe" />
         </label>
         <label class="text-Paragraph_color" for="coupe">Coupe</label><br />
+        <label class="mr-4">
+          <input type="checkbox" id="coupe" value="coupe" />
+        </label>
+        <label class="text-Paragraph_color" for="coupe">Convertible</label><br />
+        <label class="mr-4">
+          <input type="checkbox" id="coupe" value="coupe" />
+        </label>
+        <label class="text-Paragraph_color" for="coupe">Truck</label><br />
+        <label class="mr-4">
+          <input type="checkbox" id="coupe" value="coupe" />
+        </label>
+        <label class="text-Paragraph_color" for="coupe">Van</label><br />
       </div>
 
       <!--  ----------------------------------------brands------------------------------------------ -->
@@ -97,6 +109,10 @@
 <script>
 export default {
   name: "FilterCard",
+
+  data(){
+
+  }
 };
 </script>
 

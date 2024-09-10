@@ -19,6 +19,9 @@
             class="absolute right-5 top-5 w-5 cursor-pointer"
             @click="search"
           />
+          <div v-if="searchFail" class="text-red mt-2 text-center w-full">
+            The model you're searching for doesn't seem to be available, browse through similar models
+          </div>
         </div>
         <div class="flex items-center gap-6 relative">
           <img
@@ -76,6 +79,7 @@ export default {
       searchInput: "",
       searchOutput: [],
       searchFlag: false,
+      searchFail: false,
     };
   },
   created() {
@@ -124,6 +128,7 @@ export default {
         this.searchFlag = true;
       } else {
         this.searchFlag = false;
+        this.searchFail = true;
         console.log(
           "The model you're searching for doesn't seem to be available, browse through similar models"
         );
