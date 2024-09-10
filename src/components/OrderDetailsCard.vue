@@ -60,7 +60,7 @@
       </div>
 
       <div class="flex justify-between mb-6">
-        <section class="grid grid-col-1">
+        <section class="grid grid-col-1" v-if="additionalFeatures">
           <div
             v-for="(feature, index) in additionalFeatures"
             :key="index"
@@ -91,6 +91,7 @@ import { mapGetters } from "vuex";
 import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 export default {
+  props: ["carId"],
   name: "OrderDetailsCard",
   data() {
     return {

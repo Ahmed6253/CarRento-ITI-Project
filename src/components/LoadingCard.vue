@@ -27,7 +27,7 @@
     </p>
 
     <div
-      class="flex justify-start flex-wrap pb-4 border-b-[1px] border-gray-300 gap-2 w-full"
+      class="flex justify-between flex-wrap pb-4 border-b-[1px] border-gray-300 gap-2 w-full"
     >
       <span v-for="(prop, index) in features" :key="index">
         <div
@@ -35,9 +35,7 @@
           class="flex gap-1 text-[11px] text-center justify-start w-fit px-1 pt-1"
         >
           <img :src="getImagePath(prop)" alt="" class="w-[13px]" />
-          <p class="mt-0.5 text-[10px]">
-            {{ prop === "Airconditioner" ? "Air Conditioner" : prop }}
-          </p>
+          <p class="mt-0.5 text-[10px]">{{ prop }}</p>
         </div></span
       >
     </div>
@@ -56,34 +54,4 @@
   </div>
 </template>
 
-<script>
-import { storage } from "@/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
-export default {
-  name: "CarCard",
-  props: ["car", "carKey"],
-  methods: {
-    getImagePath(prop) {
-      try {
-        return require(`../assets/CarpageImages/${prop}.svg`);
-      } catch (e) {
-        console.error(`Image for ${prop} not found.`);
-        return ""; // Return a placeholder or empty string if image not found
-      }
-    },
-  },
-  mounted() {
-    getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
-      (download_url) => (this.url = download_url)
-    );
-  },
-  data() {
-    return {
-      url: "",
-      features: Object.keys(this.car.features).filter(
-        (key) => this.car.features[key] === true
-      ),
-    };
-  },
-};
-</script>
+<script></script>

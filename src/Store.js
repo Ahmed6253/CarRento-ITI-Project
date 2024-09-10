@@ -47,6 +47,12 @@ let store = createStore({
     setInOrOut({ commit }) {
       commit("SetInOrOut");
     },
+    setcar({ commit }, car) {
+      commit("setcar", car);
+    },
+    setfeatures({ commit }, features) {
+      commit("setfeatures", features);
+    },
   },
   getters: {
     getrole(state) {
