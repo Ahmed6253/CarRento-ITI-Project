@@ -36,7 +36,7 @@ const routes = [
     component: AboutPage,
   },
   {
-    path: "/checkout",
+    path: "/cars/checkout/:id",
     component: CheckoutPage,
   },
   {
