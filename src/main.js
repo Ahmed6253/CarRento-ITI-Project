@@ -59,15 +59,16 @@ const routes = [
     meta: {
       hideNavFoot: true,
     },
-    beforeEnter(to,from,next){
-      const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
-      if(!savedUser){
-        next('/adminlogin');
-      }
-      else{
+    beforeEnter(to, from, next) {
+      const savedUser =
+        localStorage.getItem("currentAdmin") ||
+        sessionStorage.getItem("currentAdmin");
+      if (!savedUser) {
+        next("/adminlogin");
+      } else {
         next();
       }
-    }
+    },
   },
   {
     path: "/adminlogin",

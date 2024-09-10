@@ -1,7 +1,8 @@
 U
 <template>
-  <div class="flex">
-    <nav class="h-[100vh] fixed top-0 left-0"
+  <div class="lg:flex hidden">
+    <nav
+      class="h-[100vh] sticky top-0 left-0"
       :class="
         fold
           ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen  transition-all'
@@ -84,25 +85,39 @@ U
           class="flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-          <p :class="fold ? 'hidden' : 'text-primary_color'" @click="logout">Log out</p>
+          <p :class="fold ? 'hidden' : 'text-primary_color'" @click="logout">
+            Log out
+          </p>
         </div>
       </div>
     </nav>
-    <section class="mt-9" :class="fold ? 'ms-40 pe-0' : 'ms-96 pe-5'">
-      <h1 class="text-primary_color text-2xl mb-10" :class="fold ? 'ms-3' : 'ms-5'">
+    <section class="mt-9 mx-5">
+      <h1
+        class="text-primary_color text-2xl mb-10"
+        :class="fold ? 'ms-3' : 'ms-5'"
+      >
         <span class="font-bold">Hello, </span>
         {{ userName }}
       </h1>
       <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
 
-      <DashChart v-if="activeSection === 'overview'"/>
+      <DashChart v-if="activeSection === 'overview'" />
       <DashUsers v-if="activeSection === 'users'" />
     </section>
+  </div>
+  <div
+    class="flex flex-col items-center lg:hidden gap-10 font-semibold text-lg"
+  >
+    <img class="w-1/2" src="../assets/error.png" alt="" />
+
+    <h2 class="text-center">
+      This dashboard won't be accessible with this screen size you need to use
+      larger screen!
+    </h2>
   </div>
 </template>
 
 <script>
-
 import DashChart from "@/components/DashChart.vue";
 import DashUsers from "@/components/DashUsers.vue";
 export default {
@@ -116,29 +131,25 @@ export default {
     return {
       fold: false,
       activeSection: "overview",
-      userName: localStorage.currentUser
-        ? JSON.parse(localStorage.getItem("currentUser")).name
-        : JSON.parse(sessionStorage.getItem("currentUser")).name,
+      userName:
+        JSON.parse(localStorage.getItem("currentAdmin")).name ||
+        JSON.parse(sessionStorage.getItem("currentAdmin")).name,
     };
   },
 
-  methods:{
-    logout(){
-      const logoutConfirm = confirm("Are you sure you want to log out?")
-      if(logoutConfirm){
-      localStorage.removeItem("currentUser");
-      sessionStorage.removeItem("currentUser");
-      window.location.reload()
-      }
-      else{
+  methods: {
+    logout() {
+      const logoutConfirm = confirm("Are you sure you want to log out?");
+      if (logoutConfirm) {
+        localStorage.removeItem("currentAdmin");
+        sessionStorage.removeItem("currentAdmin");
+        window.location.reload();
+      } else {
         return;
       }
-
-    }
-    
+    },
   },
-
-
+  created() {},
 };
 </script>
 

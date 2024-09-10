@@ -16,7 +16,7 @@
 
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
-    <img class="fmt-2 max-h-[200px]" :src="url" />
+    <img class="mt-2 h-[180px]" :src="url" />
     <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
       {{ car.name }}
     </h3>

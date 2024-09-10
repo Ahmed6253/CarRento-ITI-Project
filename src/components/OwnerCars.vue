@@ -1,7 +1,12 @@
 <template>
   <div class="text-primary_color flex flex-col relative">
     <button
-      @click="isAdding = true"
+      @click="
+        isAdding = true;
+        sformError = false;
+        fformError = false;
+        carExists = false;
+      "
       class="bg-green hover:bg-green_hover text-white px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
     >
       <img src="../assets/ownerDashImges/add.svg" /> Add Car
@@ -23,7 +28,7 @@
           <tr
             v-for="car in cars"
             :key="car"
-            class="bg-white border-b rounded-2xl"
+            class="bg-white border-b rounded-2xl animated"
           >
             <th
               scope="row"
@@ -179,7 +184,7 @@
           <div class="w-[47%]">
             <label for="number">Number</label>
             <input
-              v-model="carOptions.number"
+              v-model.trim="carOptions.number"
               type="text"
               id="number"
               name="number"
@@ -250,7 +255,7 @@
           </div>
           <div class="self-end">
             <button
-              @click="nextForm = true"
+              @click="next()"
               class="bg-green hover:bg-green_hover text-white px-10 py-2.5 my-4 rounded-lg mr-2"
             >
               Next
@@ -263,6 +268,7 @@
             </button>
           </div>
         </div>
+        <p class="text-red" v-if="fformError">All fields are required</p>
 
         <!-- second form -->
 
@@ -297,15 +303,13 @@
           <div class="w-full">
             <label for="morefeatures">Add More Features</label><br />
             <input
-              @click="
-                carFeatures.airConditioning = !carFeatures.airConditioning
-              "
+              @click="carFeatures.Airconditioner = !carFeatures.Airconditioner"
               name="morefeatures"
               type="button"
               id="air-conditioning"
               value="Air conditioning"
               :class="
-                carFeatures.airConditioning
+                carFeatures.Airconditioner
                   ? style.activeOption
                   : style.unActiveOption
               "
@@ -416,6 +420,12 @@
             </button>
           </div>
         </div>
+        <p class="text-red" v-if="sformError">
+          You need to add a description and an image
+        </p>
+        <p class="text-red" v-if="carExist">
+          A car with this number already exists
+        </p>
       </form>
     </div>
   </div>
@@ -423,7 +433,7 @@
 
 <script>
 import { storage } from "@/firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, deleteObject } from "firebase/storage";
 import axios from "axios";
 export default {
   name: "OnwerCars",
@@ -432,6 +442,7 @@ export default {
     return {
       carOptions: {
         available: true,
+        rating: 0,
         price: "",
         brand: "",
         name: "",
@@ -453,9 +464,12 @@ export default {
       },
       isAdding: false,
       nextForm: false,
+      fformError: false,
+      sformError: false,
+      carExist: "",
 
       carFeatures: {
-        airConditioning: false,
+        Airconditioner: false,
         GPS: false,
         ABS: false,
         monitor: false,
@@ -470,13 +484,33 @@ export default {
     this.getCars();
   },
   methods: {
+    next() {
+      if (
+        this.carOptions.name &&
+        this.carOptions.price &&
+        this.carOptions.color &&
+        this.carOptions.type &&
+        this.carOptions.number &&
+        this.carOptions.fuel &&
+        this.carOptions.location &&
+        this.carOptions.brand
+      ) {
+        this.nextForm = true;
+        this.fformError = false;
+      } else {
+        this.fformError = true;
+      }
+    },
     getCars() {
       axios
         .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
         .then((response) => {
-          for (let car in response.data) {
-            if (response.data[car].owner === this.id) {
-              this.cars[car] = response.data[car];
+          if (response.data) {
+            for (let car in response.data) {
+              if (response.data[car].owner === this.id) {
+                this.cars[car] = response.data[car];
+                console.log(Object.values(this.cars));
+              }
             }
           }
         })
@@ -501,70 +535,75 @@ export default {
         });
     },
     uploadImage(id) {
+      console.log(this.$refs.image.files[0]);
       const storageRef = ref(storage, `cars/${id}`);
-      uploadBytes(storageRef, this.$refs.image.files[0]);
+      uploadBytes(storageRef, this.$refs.image.files[0]).then((snapshot) => {
+        console.log(snapshot);
+      });
     },
 
     addCar() {
       const newCar = {
         ...this.carOptions,
+        number: this.carOptions.number.replace(/ /g, ""),
         features: this.carFeatures,
-        id: this.carOptions.number,
+        id: this.carOptions.number.replace(/ /g, ""),
       };
 
-      if (
-        newCar.price &&
-        newCar.brand &&
-        newCar.name &&
-        newCar.color &&
-        newCar.type &&
-        newCar.number &&
-        newCar.description &&
-        newCar.fuel &&
-        this.$refs.image.files[0]
-      ) {
-        for (let car in this.cars) {
-          if (this.cars[car].number === newCar.number) {
+      if (newCar.description && this.$refs.image.files[0]) {
+        if (Object.keys(this.cars).length > 0) {
+          this.carExist = Object.values(this.cars).some(
+            (car) => car.number === newCar.number
+          );
+
+          if (this.carExist) {
             return;
           }
-          this.uploadImage(newCar.id);
-          axios
-            .put(
-              `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
-              newCar
-            )
-            .catch((e) => {
-              console.log(e);
-            });
-          this.isAdding = false;
-          this.nextForm = false;
-          this.carOptions = {
-            price: "",
-            brand: "",
-            name: "",
-            color: "",
-            type: "",
-            number: "",
-            description: "",
-            fuel: "",
-            manualOrAuto: "Automatic",
-          };
-
-          this.carFeatures = {
-            airConditioning: false,
-            GPS: false,
-            ABS: false,
-            monitor: false,
-            sunroof: false,
-            heater: false,
-            airbag: false,
-            wifi: false,
-          };
-
-          this.getCars();
         }
+
+        this.uploadImage(newCar.id);
+        axios
+          .put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
+            newCar
+          )
+          .then(() => {
+            this.cars[newCar.id] = newCar;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        this.isAdding = false;
+        this.nextForm = false;
+
+        this.carOptions = {
+          price: "",
+          brand: "",
+          name: "",
+          color: "",
+          type: "",
+          number: "",
+          description: "",
+          fuel: "",
+          manualOrAuto: "Automatic",
+        };
+
+        this.carFeatures = {
+          airConditioning: false,
+          GPS: false,
+          ABS: false,
+          monitor: false,
+          sunroof: false,
+          heater: false,
+          airbag: false,
+          wifi: false,
+        };
+        console.log(newCar);
+
+        this.sformError = false;
+        this.carExists = false;
       } else {
-        console.log("Please fill all the fields");
+        this.sformError = true;
       }
     },
 
@@ -577,7 +616,8 @@ export default {
             `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${id}.json`
           )
           .then(() => {
-            this.getCars();
+            delete this.cars[id];
+            deleteObject(ref(storage, `cars/${id}`));
           })
           .catch((e) => {
             console.log(e);
@@ -587,3 +627,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.animated {
+  animation: animat 0.5s;
+}
+@keyframes animat {
+  0% {
+    opacity: 0;
+    background-color: white;
+  }
+  100% {
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+</style>
