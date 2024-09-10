@@ -94,11 +94,12 @@ export default {
     return {
       car: {},
       additionalFeatures: {},
-      url: "",
+      // url: "",
       addPrices: {
       },
     }
   },
+  
   computed: {
     ...mapGetters(['getcar', 'getfeatures','getfeaturesprices'])
   },

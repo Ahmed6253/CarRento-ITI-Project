@@ -246,6 +246,7 @@ export default {
       addPrices: {
       },
       totalPrice: 0,
+      url:"",
 
     };
   },
