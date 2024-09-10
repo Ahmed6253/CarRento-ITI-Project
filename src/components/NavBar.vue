@@ -23,20 +23,20 @@
           class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
           @click="openModal"
         >
-          login
+          {{ logedIn ? "Logout" : "Login" }}
         </button>
         <!-- user picture  -->
-        <router-link
-          to="/profile"
+        <a
+          @click="showProfile()"
           type="button"
-          class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer"
         >
           <img
             class="rounded-full"
             src="../imagesNavfoot/User.png"
             alt="user photo"
           />
-        </router-link>
+        </a>
         <!-- Dropdown menu -->
         <button
           @click="showMenu = !showMenu"
@@ -84,14 +84,15 @@
           <li>
             <a
               class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-              >Login</a
+              @click="openModal"
+              >{{ logedIn ? "Logout" : "Login" }}</a
             >
           </li>
           <li>
             <a
-              href="/profile"
+              @click="showProfile()"
               class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-              ><router-link to="profile">Profile</router-link></a
+              >Profile</a
             >
           </li>
         </ul>
@@ -112,7 +113,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isModalOpen"]),
+    ...mapState(["isModalOpen", "logedIn"]),
   },
 
   methods: {
@@ -120,8 +121,36 @@ export default {
       this.showMenu = !this.showMenu;
     },
     openModal() {
+      if (this.logedIn) {
+        const logoutConfirm = confirm("Are you sure you want to log out?");
+        if (logoutConfirm) {       
+        localStorage.removeItem("currentUser");
+        sessionStorage.removeItem("currentUser");
+        this.setInOrOut();
+        this.$router.push("/");
+      } else {
+        return;
+      }
+        }
+
       this.$store.dispatch("openModal");
-      console.log(1);
+    },
+    setInOrOut() {
+      this.$store.dispatch("setInOrOut");
+    },
+    showProfile() {
+      if (!this.logedIn) {
+        this.$store.dispatch("openModal");
+      } else {
+        const user =
+          JSON.parse(localStorage.getItem("currentUser")) ||
+          JSON.parse(sessionStorage.getItem("currentUser"));
+        if (user.role === "owner") {
+          this.$router.push(`/ownerDash/${user.id}`);
+        } else {
+          this.$router.push(`/profile/${user.id}`);
+        }
+      }
     },
   },
 };

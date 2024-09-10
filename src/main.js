@@ -13,7 +13,10 @@ import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
 import PaymentFailed from "./components/PaymentFailed.vue";
+import AdminLogin from "./pages/AdminLogin.vue";
+
 import store from "./store";
+import ErrorPage from "./pages/ErrorPage.vue";
 
 const routes = [
   {
@@ -33,12 +36,23 @@ const routes = [
     component: AboutPage,
   },
   {
-    path: "/cars/checkout/:id",
+    path: "/checkout",
     component: CheckoutPage,
   },
   {
-    path: "/profile",
+    path: "/profile/:id",
     component: ProfilePage,
+    beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user && user.role === "renter") {
+        next();
+      } else {
+        next("/error");
+        console.log("user not logged in");
+      }
+    },
   },
   {
     path: "/admin",
@@ -46,12 +60,40 @@ const routes = [
     meta: {
       hideNavFoot: true,
     },
+    beforeEnter(to, from, next) {
+      const savedUser =
+        localStorage.getItem("currentAdmin") ||
+        sessionStorage.getItem("currentAdmin");
+      if (!savedUser) {
+        next("/adminlogin");
+      } else {
+        next();
+      }
+    },
   },
   {
-    path: "/ownerdash",
+    path: "/adminlogin",
+    component: AdminLogin,
+    meta: {
+      hideNavFoot: true,
+    },
+  },
+  {
+    path: "/ownerdash/:id",
     component: OwnerDash,
     meta: {
       hideNavFoot: true,
+    },
+    beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user && user.role === "owner") {
+        next();
+      } else {
+        next("/error");
+        console.log("user not logged in");
+      }
     },
   },
   {
@@ -62,6 +104,8 @@ const routes = [
     path: "/cancel",
     component: PaymentFailed,
   },
+
+  { path: "/:pathMatch(.*)*", component: ErrorPage, alias: "/error" },
 ];
 
 const router = createRouter({

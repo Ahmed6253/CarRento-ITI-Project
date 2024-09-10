@@ -1,10 +1,10 @@
 <template>
-  <div class="flex h-auto">
+  <div class="hidden lg:flex">
     <nav
       :class="
         fold
-          ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen  transition-all'
-          : 'custom-shadow rounded-e-3xl w-1/4 min-h-screen transition-all'
+          ? 'custom-shadow rounded-e-3xl w-[120px] h-screen transition-all sticky top-0'
+          : 'custom-shadow rounded-e-3xl w-1/4 h-screen transition-all sticky top-0'
       "
     >
       <div class="flex justify-between py-6 px-10">
@@ -134,6 +134,7 @@
           </div>
         </div>
         <div
+          @click="logOut()"
           class="flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer"
         >
           <img src="../assets/ownerDashImges/logOut.svg" alt="" />
@@ -141,15 +142,26 @@
         </div>
       </div>
     </nav>
-    <section class="mx-[20px] mt-10 w-full">
+
+    <section class="mx-5 mt-10 w-full">
       <h1 class="text-primary_color text-2xl mb-10">
         <span class="font-bold">Hello, </span>
-        Ahmed Abdelmonaem
+        {{ currUser.userName }}
       </h1>
-      <OwnerCars v-if="activeSection === 'cars'" />
-      <OwnerOrders v-if="activeSection === 'orders'" />
-      <OwnerOverview v-if="activeSection === 'overview'" />
+      <OwnerCars v-if="activeSection === 'cars'" :id="currUser.id" />
+      <OwnerOrders v-if="activeSection === 'orders'" :id="currUser.id" />
+      <OwnerOverview v-if="activeSection === 'overview'" :id="currUser.id" />
     </section>
+  </div>
+  <div
+    class="flex flex-col items-center lg:hidden gap-10 font-semibold text-lg"
+  >
+    <img class="w-1/2" src="../assets/error.png" alt="" />
+
+    <h2 class="text-center">
+      This dashboard won't be accessible with this screen size you need to use
+      larger screen!
+    </h2>
   </div>
 </template>
 
@@ -157,7 +169,6 @@
 import OwnerCars from "@/components/OwnerCars.vue";
 import OwnerOrders from "@/components/OwnerOrders.vue";
 import OwnerOverview from "@/components/OwnerOverview.vue";
-
 
 export default {
   name: "OwnerDash",
@@ -168,13 +179,23 @@ export default {
   },
   data() {
     return {
-      fold: false,
+      fold: true,
       activeSection: "overview",
+      currUser: "",
     };
   },
- 
-  
+  created() {
+    this.currUser =
+      JSON.parse(localStorage.getItem("currentUser")) ||
+      JSON.parse(sessionStorage.getItem("currentUser"));
+  },
+  methods: {
+    logOut() {
+      localStorage.removeItem("currentUser");
+      sessionStorage.removeItem("currentUser");
+      this.$store.dispatch("setInOrOut");
+      this.$router.push("/");
+    },
+  },
 };
 </script>
-
-<style></style>
