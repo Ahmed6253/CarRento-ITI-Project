@@ -12,6 +12,7 @@ import CheckoutPage from "./pages/CheckoutPage.vue";
 import AdminDash from "./pages/AdminDash.vue";
 import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
+import PaymentFailed from "./components/PaymentFailed.vue";
 import AdminLogin from "./pages/AdminLogin.vue";
 
 import store from "./store";
@@ -35,7 +36,7 @@ const routes = [
     component: AboutPage,
   },
   {
-    path: "/checkout",
+    path: "/cars/checkout/:id",
     component: CheckoutPage,
   },
   {
@@ -98,6 +99,10 @@ const routes = [
   {
     path: "/confirmpayment",
     component: ConfirmPayment,
+  },
+  {
+    path: "/cancel",
+    component: PaymentFailed,
   },
 
   { path: "/:pathMatch(.*)*", component: ErrorPage, alias: "/error" },

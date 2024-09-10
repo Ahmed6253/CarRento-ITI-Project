@@ -4,9 +4,21 @@ let store = createStore({
   state() {
     return {
       isModalOpen: false,
-      logedIn: false,
-      car: {},
-      additionalFeatures: {},
+      role: "",
+      car:{},
+      additionalFeatures:{
+        driver:false,
+        protection:  false,
+        infantSeat:  false,
+        toddlerSeat: false,
+      },
+      additionalFeaturesPrices:{
+        driver:  500 ,
+        protection:  1500 ,
+        infantSeat:  150 ,
+        toddlerSeat:  200 ,
+      },
+      LegalName:"",
     };
   },
   mutations: {
@@ -16,22 +28,17 @@ let store = createStore({
     closeModal(state) {
       state.isModalOpen = false;
     },
-
-    SetInOrOut(state) {
-      const user =
-        JSON.parse(localStorage.getItem("currentUser")) ||
-        JSON.parse(sessionStorage.getItem("currentUser"));
-      if (user) {
-        state.logedIn = true;
-      } else {
-        state.logedIn = false;
-      }
+    setrole(state, type) {
+      state.role = type;
     },
     setcar(state, car) {
       state.car = car;
     },
     setfeatures(state, features) {
       state.additionalFeatures = features;
+    },
+    setlegalname(state, ln) {
+      state.LegalName = ln;
     },
   },
   actions: {
@@ -44,8 +51,14 @@ let store = createStore({
     setrole({ commit }, type) {
       commit("setrole", type);
     },
-    setInOrOut({ commit }) {
-      commit("SetInOrOut");
+    setcar({ commit }, car) {
+      commit("setcar", car);
+    },
+    setfeatures({ commit }, features) {
+      commit("setfeatures", features);
+    },
+    setlegalname({ commit },ln) {
+      commit("setlegalname", ln);
     },
     setcar({ commit }, car) {
       commit("setcar", car);
@@ -63,6 +76,12 @@ let store = createStore({
     },
     getfeatures(state) {
       return state.additionalFeatures;
+    },
+    getlegalname(state) {
+      return state.LegalName;
+    },
+    getfeaturesprices(state) {
+      return state.additionalFeaturesPrices;
     },
   },
 });

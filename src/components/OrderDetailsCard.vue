@@ -67,9 +67,7 @@
             class="flex gap-4"
           >
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">
-              1025 LE added
-            </p>
+            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{this.addPrices[index]}} LE added</p>
           </div>
         </section>
         <button class="w-6">
@@ -98,15 +96,18 @@ export default {
       car: {},
       additionalFeatures: {},
       url: "",
-    };
+      addPrices: {
+      },
+    }
   },
   computed: {
-    ...mapGetters(["getcar", "getfeatures"]),
+    ...mapGetters(['getcar', 'getfeatures','getfeaturesprices'])
   },
   created() {
     this.car = this.getcar;
     console.log(this.getcar);
     this.additionalFeatures = this.getfeatures;
+    this.addPrices = this.getfeaturesprices
     getDownloadURL(ref(storage, `cars/${this.getcar.id}`)).then(
       (download_url) => (this.url = download_url)
     );

@@ -71,15 +71,27 @@ export default {
         return ""; // Return a placeholder or empty string if image not found
       }
     },
+    setfeatures(features) {
+      this.$store.dispatch('setfeatures', features);
+    },
   },
   mounted() {
     getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
       (download_url) => (this.url = download_url)
     );
   },
+  created() {
+    this.setfeatures(this.additionalFeatures);
+  },
   data() {
     return {
       url: "",
+      additionalFeatures: {
+        driver: false,
+        protection: false,
+        infantSeat: false,
+        toddlerSeat: false
+      },
       features: Object.keys(this.car.features).filter(
         (key) => this.car.features[key] === true
       ),
