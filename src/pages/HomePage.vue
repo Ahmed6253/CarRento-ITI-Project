@@ -143,7 +143,7 @@
         Renting a car with us is a breeze! Simply browse our extensive fleet to
         find the perfect vehicle for your needs.
       </p>
-      <div class="mt-5 cursor-grab">
+      <div class="mt-5">
         <swiper
           :cssMode="true"
           :navigation="{}"
@@ -168,11 +168,11 @@
                 dynamicBullets: true,
               },
             },
-            '768': {
+            '1024': {
               slidesPerView: 3,
               spaceBetween: 10,
             },
-            '1024': {
+            '1400': {
               slidesPerView: 4,
               spaceBetween: 0,
             },
@@ -207,14 +207,23 @@
 
   <section class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up">
     <div class="mx-4 md:mx-20">
-     <div class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]">
-      <div class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40">
-        <h1 class="text-6xl mb-7">Rent your perfect car with a big discount</h1>
-        <router-link class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl">Rent now</router-link >
+      <div
+        class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]"
+      >
+        <div
+          class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40"
+        >
+          <h1 class="text-6xl mb-7">
+            Rent your perfect car with a big discount
+          </h1>
+          <router-link
+            class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl"
+            >Rent now</router-link
+          >
+        </div>
       </div>
-     </div>
     </div>
-    </section>
+  </section>
 
   <!-- ---------------------------------why choose us--------------------------- -->
 
@@ -281,7 +290,6 @@
     </div>
   </section>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -354,7 +362,4 @@ export default {
 };
 </script>
 
-
-<style scoped>
-
-</style>
+<style scoped></style>

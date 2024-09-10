@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="hidden lg:flex">
     <nav
       :class="
         fold
@@ -152,6 +152,16 @@
       <OwnerOrders v-if="activeSection === 'orders'" :id="currUser.id" />
       <OwnerOverview v-if="activeSection === 'overview'" :id="currUser.id" />
     </section>
+  </div>
+  <div
+    class="flex flex-col items-center lg:hidden gap-10 font-semibold text-lg"
+  >
+    <img class="w-1/2" src="../assets/error.png" alt="" />
+
+    <h2 class="text-center">
+      This dashboard won't be accessible with this screen size you need to use
+      larger screen!
+    </h2>
   </div>
 </template>
 
