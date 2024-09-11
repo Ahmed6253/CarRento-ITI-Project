@@ -4,7 +4,7 @@
     class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
   >
     <div
-      class="flex custom-shadow m-4 lg:h-[680px] rounded-2xl mx-auto lg:w-[1064px] w-[364px] h-[464px] bg-white"
+      class="flex custom-shadow m-4 max-h-screen overflow-scroll  rounded-2xl mx-auto lg:w-[1064px] w-[364px]  bg-white"
     >
       <div v-if="OwnerorUser" class="mx-auto my-auto p-6">
         <img src="../imagesNavfoot/arrow_back.svg" alt="" @click="closeModal" />
