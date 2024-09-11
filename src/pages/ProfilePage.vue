@@ -163,6 +163,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "ProfilePage",
 
@@ -171,7 +173,24 @@ export default {
       name: "",
       email:"",
       password:"",
+      id:'',
+      UserOrders: [],
     }
+  },
+  created() {
+    axios.get('https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json')
+    .then((response) => {
+      // console.log(response.data);
+      for(let order in response.data){
+        // console.log(response.data[order]);
+        if(response.data[order].renterName === this.id){
+          console.log("hello")
+        }
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   },
 
   mounted() {
@@ -181,6 +200,7 @@ export default {
     this.name = this.currentUser.userName ;
     this.email = this.currentUser.email ;
     const pass = this.currentUser.password ;
+    this.id = this.currentUser.id ;
     this.password = pass.replace(/./g, '*');
 }
 
