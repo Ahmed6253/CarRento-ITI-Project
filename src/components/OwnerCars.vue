@@ -1,7 +1,12 @@
 <template>
   <div class="text-primary_color flex flex-col relative">
     <button
-      @click="isAdding = true"
+      @click="
+        isAdding = true;
+        sformError = false;
+        fformError = false;
+        carExists = false;
+      "
       class="bg-green hover:bg-green_hover text-white px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
     >
       <img src="../assets/ownerDashImges/add.svg" /> Add Car
@@ -23,7 +28,7 @@
           <tr
             v-for="car in cars"
             :key="car"
-            class="bg-white border-b rounded-2xl"
+            class="bg-white border-b rounded-2xl animated"
           >
             <th
               scope="row"
@@ -38,13 +43,21 @@
             <td class="px-6 py-4">{{ car.number }}</td>
             <td class="pl-6 py-4">
               <button
-                class="bg-green hover:bg-green_hover rounded text-white p-2"
+                @click="setAvalability(car.id)"
+                :class="
+                  car.available
+                    ? 'bg-green hover:bg-green_hover rounded text-white p-2'
+                    : 'bg-Placeholder_color hover:bg-Placeholder_color rounded text-white p-2'
+                "
               >
-                Available
+                {{ car.available ? "Available" : " Not Available" }}
               </button>
             </td>
             <td class="pr-6 py-4">
-              <button class="bg-red hover:bg-red_hover rounded text-white p-2">
+              <button
+                @click="deleteCar(car.id)"
+                class="bg-red hover:bg-red_hover rounded text-white p-2"
+              >
                 Delete
               </button>
             </td>
@@ -52,7 +65,7 @@
         </tbody>
       </table>
     </div>
-    <div>
+    <div class="mt-20">
       <form
         @submit.prevent
         v-if="isAdding"
@@ -115,6 +128,7 @@
               <option value="NISSAN">NISSAN</option>
               <option value="PONTIAC">PONTIAC</option>
               <option value="PORSCHE">PORSCHE</option>
+              <option value="Renault">Renault</option>
               <option value="ROLLS-ROYCE">ROLLS-ROYCE</option>
               <option value="SAAB">SAAB</option>
               <option value="SATURN">SATURN</option>
@@ -123,6 +137,8 @@
               <option value="TOYOTA">TOYOTA</option>
               <option value="VOLKSWAGEN">VOLKSWAGEN</option>
               <option value="VOLVO">VOLVO</option>
+              <option value="WILLIAMS">WILLIAMS</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           <div class="w-[47%]">
@@ -168,7 +184,7 @@
           <div class="w-[47%]">
             <label for="number">Number</label>
             <input
-              v-model="carOptions.number"
+              v-model.trim="carOptions.number"
               type="text"
               id="number"
               name="number"
@@ -194,6 +210,7 @@
           <div class="w-[47%]">
             <label for="pickup-location">Location</label>
             <select
+              v-model="carOptions.location"
               class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
               id="pickup-location"
             >
@@ -238,7 +255,7 @@
           </div>
           <div class="self-end">
             <button
-              @click="nextForm = true"
+              @click="next()"
               class="bg-green hover:bg-green_hover text-white px-10 py-2.5 my-4 rounded-lg mr-2"
             >
               Next
@@ -251,6 +268,7 @@
             </button>
           </div>
         </div>
+        <p class="text-red" v-if="fformError">All fields are required</p>
 
         <!-- second form -->
 
@@ -285,15 +303,13 @@
           <div class="w-full">
             <label for="morefeatures">Add More Features</label><br />
             <input
-              @click="
-                carFeatures.airConditioning = !carFeatures.airConditioning
-              "
+              @click="carFeatures.Airconditioner = !carFeatures.Airconditioner"
               name="morefeatures"
               type="button"
               id="air-conditioning"
               value="Air conditioning"
               :class="
-                carFeatures.airConditioning
+                carFeatures.Airconditioner
                   ? style.activeOption
                   : style.unActiveOption
               "
@@ -404,6 +420,12 @@
             </button>
           </div>
         </div>
+        <p class="text-red" v-if="sformError">
+          You need to add a description and an image
+        </p>
+        <p class="text-red" v-if="carExist">
+          A car with this number already exists
+        </p>
       </form>
     </div>
   </div>
@@ -411,13 +433,16 @@
 
 <script>
 import { storage } from "@/firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, deleteObject } from "firebase/storage";
 import axios from "axios";
 export default {
   name: "OnwerCars",
+  props: ["id"],
   data() {
     return {
       carOptions: {
+        available: true,
+        rating: 0,
         price: "",
         brand: "",
         name: "",
@@ -425,10 +450,12 @@ export default {
         type: "",
         number: "",
         description: "",
+        owner: this.id,
+        location: "",
         fuel: "",
         manualOrAuto: "Automatic",
       },
-      cars: [],
+      cars: {},
       style: {
         unActiveOption:
           "bg-slate-100 border border-border_color text-primary_color text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
@@ -437,9 +464,12 @@ export default {
       },
       isAdding: false,
       nextForm: false,
+      fformError: false,
+      sformError: false,
+      carExist: "",
 
       carFeatures: {
-        airConditioning: false,
+        Airconditioner: false,
         GPS: false,
         ABS: false,
         monitor: false,
@@ -451,85 +481,165 @@ export default {
     };
   },
   created() {
-    axios
-      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
-      .then((response) => {
-        this.cars = response.data;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    this.getCars();
   },
   methods: {
+    next() {
+      if (
+        this.carOptions.name &&
+        this.carOptions.price &&
+        this.carOptions.color &&
+        this.carOptions.type &&
+        this.carOptions.number &&
+        this.carOptions.fuel &&
+        this.carOptions.location &&
+        this.carOptions.brand
+      ) {
+        this.nextForm = true;
+        this.fformError = false;
+      } else {
+        this.fformError = true;
+      }
+    },
+    getCars() {
+      axios
+        .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
+        .then((response) => {
+          if (response.data) {
+            for (let car in response.data) {
+              if (response.data[car].owner === this.id) {
+                this.cars[car] = response.data[car];
+                console.log(Object.values(this.cars));
+              }
+            }
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    setAvalability(id) {
+      axios
+        .put(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${id}.json`,
+          {
+            ...this.cars[id],
+            available: !this.cars[id].available,
+          }
+        )
+        .then(() => {
+          this.cars[id].available = !this.cars[id].available;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     uploadImage(id) {
+      console.log(this.$refs.image.files[0]);
       const storageRef = ref(storage, `cars/${id}`);
-      uploadBytes(storageRef, this.$refs.image.files[0]);
+      uploadBytes(storageRef, this.$refs.image.files[0]).then((snapshot) => {
+        console.log(snapshot);
+      });
     },
 
     addCar() {
       const newCar = {
         ...this.carOptions,
+        number: this.carOptions.number.replace(/ /g, ""),
         features: this.carFeatures,
-        id: this.carOptions.number,
+        id: this.carOptions.number.replace(/ /g, ""),
       };
 
-      if (
-        newCar.price &&
-        newCar.brand &&
-        newCar.name &&
-        newCar.color &&
-        newCar.type &&
-        newCar.number &&
-        newCar.description &&
-        newCar.fuel &&
-        this.$refs.image.files[0]
-      ) {
-        for (let car in this.cars) {
-          if (this.cars[car].id === newCar.id) {
+      if (newCar.description && this.$refs.image.files[0]) {
+        if (Object.keys(this.cars).length > 0) {
+          this.carExist = Object.values(this.cars).some(
+            (car) => car.number === newCar.number
+          );
+
+          if (this.carExist) {
             return;
           }
-          this.uploadImage(newCar.id);
-          axios
-            .put(
-              `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
-              newCar
-            )
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-          this.isAdding = false;
-          this.nextForm = false;
-          this.carOptions = {
-            price: "",
-            brand: "",
-            name: "",
-            color: "",
-            type: "",
-            number: "",
-            description: "",
-            fuel: "",
-            manualOrAuto: "Automatic",
-          };
-
-          this.carFeatures = {
-            airConditioning: false,
-            GPS: false,
-            ABS: false,
-            monitor: false,
-            sunroof: false,
-            heater: false,
-            airbag: false,
-            wifi: false,
-          };
-          console.log("Car Added");
         }
+
+        this.uploadImage(newCar.id);
+        axios
+          .put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${newCar.id}.json`,
+            newCar
+          )
+          .then(() => {
+            this.cars[newCar.id] = newCar;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+        this.isAdding = false;
+        this.nextForm = false;
+
+        this.carOptions = {
+          price: "",
+          brand: "",
+          name: "",
+          color: "",
+          type: "",
+          number: "",
+          description: "",
+          fuel: "",
+          manualOrAuto: "Automatic",
+        };
+
+        this.carFeatures = {
+          airConditioning: false,
+          GPS: false,
+          ABS: false,
+          monitor: false,
+          sunroof: false,
+          heater: false,
+          airbag: false,
+          wifi: false,
+        };
+        console.log(newCar);
+
+        this.sformError = false;
+        this.carExists = false;
       } else {
-        console.log("Please fill all the fields");
+        this.sformError = true;
+      }
+    },
+
+    deleteCar(id) {
+      const agree = confirm("Are you sure you want to delete this car?");
+
+      if (agree) {
+        axios
+          .delete(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${id}.json`
+          )
+          .then(() => {
+            delete this.cars[id];
+            deleteObject(ref(storage, `cars/${id}`));
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       }
     },
   },
 };
 </script>
+
+<style>
+.animated {
+  animation: animat 0.5s;
+}
+@keyframes animat {
+  0% {
+    opacity: 0;
+    background-color: white;
+  }
+  100% {
+    opacity: 1;
+    background-color: transparent;
+  }
+}
+</style>

@@ -2,101 +2,110 @@
   <div class="col-span-1 bg-white rounded-3xl custom-shadow h-fit">
     <div class="flex justify-between p-6">
       <h3 class="text-primary_color font-semibold">Filter</h3>
-      <button class="text-Paragraph_color cursor-pointer">Clear all</button>
+      <button @click="applyFilters" class="cursor-pointer text-green">
+        Apply Filters
+      </button>
+      <button class="text-warning_hover cursor-pointer" @click="clearFilters">Clear all</button>
     </div>
     <hr class="border-[1px] -mt-1" />
+
     <div class="p-6">
-      <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">Payment Method</h3>
+    <!-- ----------------------------------------car price--------------------------------- -->
+      <!-- <div class="mb-4">
+        <h3 class="text-primary_color font-semibold mb-2">Price</h3>
         <label class="mr-4">
-          <input type="checkbox" class="input" id="cash" value="cash" />
-          <span class="custom-checkbox"></span>
+          <input type="radio" id="lowToHigh" value="lowToHigh" name="price-range" class="accent-primary_color" v-model="priceFilter">
         </label>
-        <label class="text-Paragraph_color" for="cash">Cash</label><br />
+        <label class="text-Paragraph_color" for="lowToHigh">Low to High</label><br />
         <label class="mr-4">
-          <input type="checkbox" class="input" id="card" value="card" />
-          <span class="custom-checkbox"></span>
+          <input type="radio" id="highToLow" value="highToLow" name="price-range" class="accent-primary_color" v-model="priceFilter"/>
         </label>
-        <label class="text-Paragraph_color" for="card">Card</label><br />
-      </div>
+        <label class="text-Paragraph_color" for="highToLow">High to Low</label><br />
+      </div> -->
+
+    <!-- ----------------------------------car type------------------------------- -->
       <div class="mb-4">
         <h3 class="text-primary_color font-semibold mb-2">Car Type</h3>
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="sedan" value="sedan" />
-          <span class="custom-checkbox"></span>
+        
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="sedan" value="sedan" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Sedan</span>
         </label>
-        <label class="text-Paragraph_color" for="sedan">Sedan</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="suv" value="suv" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="suv" value="suv" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">SUV</span>
         </label>
-        <label class="text-Paragraph_color" for="suv">SUV</label><br />
-        <label class="mr-4">
-          <input
-            type="checkbox"
-            class="input"
-            id="hatchback"
-            value="hatchback"
-          />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="hatchback" value="hatchback" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Hatchback</span>
         </label>
-        <label class="text-Paragraph_color" for="hatchback">Hatchback</label
-        ><br />
-        <label class="mr-4">
-          <input
-            type="checkbox"
-            class="input"
-            id="crossover"
-            value="crossover"
-          />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="crossover" value="crossover" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Crossover</span>
         </label>
-        <label class="text-Paragraph_color" for="crossover">Crossover</label
-        ><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="coupe" value="coupe" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="coupe" value="coupe" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Coupe</span>
         </label>
-        <label class="text-Paragraph_color" for="coupe">Coupe</label><br />
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="convertible" value="convertible" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Convertible</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="truck" value="truck" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Truck</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="van" value="van" class="mr-2 accent-primary_color" v-model="selectedCarTypes" @change="logValue"/>
+          <span class="text-Paragraph_color">Van</span>
+        </label>
       </div>
+
+      <!--  ----------------------------------------brands------------------------------------------ -->
       <div class="mb-4">
         <h3 class="text-primary_color font-semibold mb-2">Brands</h3>
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="toyota" value="toyota" />
-          <span class="custom-checkbox"></span>
+        
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="toyota" value="toyota" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Toyota</span>
         </label>
-        <label class="text-Paragraph_color" for="toyota">Toyota</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="nissan" value="nissan" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="nissan" value="nissan" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Nissan</span>
         </label>
-        <label class="text-Paragraph_color" for="nissan">Nissan</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="mercedes" value="mercedes" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="mercedes" value="mercedes" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Mercedes</span>
         </label>
-        <label class="text-Paragraph_color" for="mercedes">Mercedes</label
-        ><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="bmw" value="bmw" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="bmw" value="bmw" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">BMW</span>
         </label>
-        <label class="text-Paragraph_color" for="bmw">BMW</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="hyundai" value="hyundai" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="hyundai" value="hyundai" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Hyundai</span>
         </label>
-        <label class="text-Paragraph_color" for="hyundai">Hyundai</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="kia" value="kia" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="kia" value="kia" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Kia</span>
         </label>
-        <label class="text-Paragraph_color" for="kia">Kia</label><br />
-        <label class="mr-4">
-          <input type="checkbox" class="input" id="audi" value="audi" />
-          <span class="custom-checkbox"></span>
+
+        <label class="flex items-center mb-2">
+          <input type="checkbox" id="audi" value="audi" class="mr-2 accent-primary_color" v-model="selectedBrands" @change="logValue"/>
+          <span class="text-Paragraph_color">Audi</span>
         </label>
-        <label class="text-Paragraph_color" for="audi">Audi</label><br />
       </div>
     </div>
   </div>
@@ -105,38 +114,46 @@
 <script>
 export default {
   name: "FilterCard",
+
+  data(){
+    return{
+    filtersArray: [],
+    selectedCarTypes: [],
+    selectedBrands: [],
+
+    }
+  },
+
+  methods:{
+    logValue(event){
+      if(event.target.checked){
+        this.filtersArray.push(event.target.id)
+      }
+      else{
+        this.filtersArray.splice(this.filtersArray.indexOf(event.target.id), 1)
+      }
+
+      console.log(this.filtersArray);
+    },
+
+    applyFilters(){
+      this.$store.dispatch("applyFilters", this.filtersArray);
+    },
+
+    clearFilters() {
+      // Logic to clear all filters
+      this.filtersArray = [];
+      this.selectedCarTypes = [],
+      this.selectedBrands = [],
+
+      console.log(this.filtersArray);
+
+      this.$store.dispatch("clearFilters");  // Clear the filters in the store as well
+    },
+  }
 };
 </script>
 
 <style>
-.input[type="checkbox"] {
-  display: none;
-}
 
-.custom-checkbox {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 1.8px solid #6b7280;
-  border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-}
-
-.custom-checkbox::after {
-  content: "";
-  position: absolute;
-  top: 54%;
-  left: 50%;
-  transform: translate(-55%, -55%);
-  width: 8px;
-  height: 8px;
-  background-color: #6b7280;
-  border-radius: 2px;
-  opacity: 0;
-}
-
-.input[type="checkbox"]:checked + .custom-checkbox::after {
-  opacity: 1;
-}
 </style>

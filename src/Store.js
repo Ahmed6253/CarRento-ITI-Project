@@ -5,6 +5,22 @@ let store = createStore({
     return {
       isModalOpen: false,
       role: "",
+      car: {},
+      additionalFeatures: {
+        driver: false,
+        protection: false,
+        infantSeat: false,
+        toddlerSeat: false,
+      },
+      additionalFeaturesPrices: {
+        driver: 500,
+        protection: 1500,
+        infantSeat: 150,
+        toddlerSeat: 200,
+      },
+      LegalName:"",
+
+      storeFiltersArray: [],
     };
   },
   mutations: {
@@ -17,8 +33,36 @@ let store = createStore({
     setrole(state, type) {
       state.role = type;
     },
+    setcar(state, car) {
+      state.car = car;
+    },
+    setfeatures(state, features) {
+      state.additionalFeatures = features;
+    },
+    setlegalname(state, ln) {
+      state.LegalName = ln;
+    },
+
+    //filters mutations
+    APPLY_FILTER(state, filtersArray) {
+      state.storeFiltersArray = filtersArray
+    },
+
+    CLEAR_FILTERS(state){
+      state.storeFiltersArray = []
+    }
+    //filters mutations end
   },
   actions: {
+    //filters actions
+    applyFilters({ commit }, filtersArray){
+      commit("APPLY_FILTER", filtersArray);
+    },
+    clearFilters({ commit }) {
+      commit("CLEAR_FILTERS");
+    },
+    //end filter actions
+
     openModal({ commit }) {
       commit("openModal");
     },
@@ -28,10 +72,31 @@ let store = createStore({
     setrole({ commit }, type) {
       commit("setrole", type);
     },
+    setcar({ commit }, car) {
+      commit("setcar", car);
+    },
+    setfeatures({ commit }, features) {
+      commit("setfeatures", features);
+    },
+    setlegalname({ commit }, ln) {
+      commit("setlegalname", ln);
+    },
   },
   getters: {
     getrole(state) {
       return state.role;
+    },
+    getcar(state) {
+      return state.car;
+    },
+    getfeatures(state) {
+      return state.additionalFeatures;
+    },
+    getlegalname(state) {
+      return state.LegalName;
+    },
+    getfeaturesprices(state) {
+      return state.additionalFeaturesPrices;
     },
   },
 });
