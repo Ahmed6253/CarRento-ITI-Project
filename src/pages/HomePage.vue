@@ -217,6 +217,7 @@
             Rent your perfect car with a big discount
           </h1>
           <router-link
+            to="/cars"
             class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl"
             >Rent now</router-link
           >

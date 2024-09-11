@@ -14,9 +14,12 @@ import OwnerDash from "./pages/OwnerDash.vue";
 import ConfirmPayment from "./pages/ConfirmPayment.vue";
 import PaymentFailed from "./components/PaymentFailed.vue";
 import AdminLogin from "./pages/AdminLogin.vue";
-
 import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
+
+const user =
+  JSON.parse(localStorage.getItem("currentUser")) ||
+  JSON.parse(sessionStorage.getItem("currentUser"));
 
 const routes = [
   {
@@ -38,14 +41,18 @@ const routes = [
   {
     path: "/cars/checkout/:id",
     component: CheckoutPage,
+    beforeEnter: (from, to, next) => {
+      if (user) {
+        next();
+      } else {
+        next("/error");
+      }
+    },
   },
   {
     path: "/profile/:id",
     component: ProfilePage,
     beforeEnter: (from, to, next) => {
-      const user =
-        JSON.parse(localStorage.getItem("currentUser")) ||
-        JSON.parse(sessionStorage.getItem("currentUser"));
       if (user && user.role === "renter") {
         next();
       } else {
@@ -60,7 +67,7 @@ const routes = [
     meta: {
       hideNavFoot: true,
     },
-    beforeEnter(to, from, next) {
+    beforeEnter(from, to, next) {
       const savedUser =
         localStorage.getItem("currentAdmin") ||
         sessionStorage.getItem("currentAdmin");
@@ -85,9 +92,6 @@ const routes = [
       hideNavFoot: true,
     },
     beforeEnter: (from, to, next) => {
-      const user =
-        JSON.parse(localStorage.getItem("currentUser")) ||
-        JSON.parse(sessionStorage.getItem("currentUser"));
       if (user && user.role === "owner") {
         next();
       } else {
@@ -99,6 +103,14 @@ const routes = [
   {
     path: "/confirmpayment",
     component: ConfirmPayment,
+    beforeEnter: (from, to, next) => {
+      const fullName = JSON.parse(sessionStorage.getItem("legalName"));
+      if (fullName) {
+        next();
+      } else {
+        next("/error");
+      }
+    },
   },
   {
     path: "/cancel",

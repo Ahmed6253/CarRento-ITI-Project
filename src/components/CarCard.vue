@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lg:max-w-[308px] max-w-[85%] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+    class="max-w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
   >
     <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -16,7 +16,7 @@
 
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
-    <img class="mt-2 h-[180px]" :src="url" />
+    <img class="mt-2 h-[180px] max-w-[308px]" :src="url" />
     <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
       {{ car.name }}
     </h3>
@@ -72,7 +72,7 @@ export default {
       }
     },
     setfeatures(features) {
-      this.$store.dispatch('setfeatures', features);
+      this.$store.dispatch("setfeatures", features);
     },
   },
   mounted() {
@@ -90,7 +90,7 @@ export default {
         driver: false,
         protection: false,
         infantSeat: false,
-        toddlerSeat: false
+        toddlerSeat: false,
       },
       features: Object.keys(this.car.features).filter(
         (key) => this.car.features[key] === true
