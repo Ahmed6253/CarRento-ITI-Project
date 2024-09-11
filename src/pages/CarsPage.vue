@@ -1,6 +1,7 @@
 <template>
   <div class="lg:px-[80px] px-[20px] pt-32 pb-14">
     <SearchCard />
+
     <section class="grid gap-4 grid-cols-4 text-poppins">
       <div class="lg:block hidden">
         <FilterCard />
@@ -57,10 +58,13 @@
       </div>
     </section>
   </div>
+
 </template>
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
+
 import FilterCard from "@/components/FilterCard.vue";
 import SearchCard from "@/components/SearchCard.vue";
 import CarCard from "@/components/CarCard.vue";
@@ -96,6 +100,12 @@ export default {
     // Get search data from localStorage for filtering
     // this.cardSearchFilter();
   },
+
+  //filters logic start
+  computed:{
+    ...mapState(["storeFiltersArray"]),
+  },
+
   methods: {
     // Fetch stored search data (like location) from localStorage
     cardSearchFilter() {
@@ -110,6 +120,8 @@ export default {
     //     );
     //   }
     },
+
+    
 
     // Search cars based on user input
     search() {
