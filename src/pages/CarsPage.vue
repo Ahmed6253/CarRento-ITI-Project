@@ -121,6 +121,8 @@ export default {
     //   }
     },
 
+    
+
     // Search cars based on user input
     search() {
       this.searchOutput = []; // Clear previous search results

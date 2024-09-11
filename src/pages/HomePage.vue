@@ -317,6 +317,7 @@ export default {
   data() {
     return {
       cars: [],
+      fetchErorr: false,
     };
   },
   created() {
@@ -326,7 +327,7 @@ export default {
         this.cars = response.data;
       })
       .catch((e) => {
-        console.log(e);
+        this.fetchErorr = e;
       });
   },
   mounted() {

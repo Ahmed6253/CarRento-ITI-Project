@@ -17,14 +17,22 @@
       </div>
 
       <!-- ---------------------------------------review your booking---------------------------------------- -->
-      <div class="flex justify-start md:justify-between flex-col lg:flex-row pt-24 ps-3">
+      <div
+        class="flex justify-start md:justify-between flex-col lg:flex-row pt-24 ps-3"
+      >
         <div class="py-3 lg:py-0 px-0 flex items-center">
-          <img src="../assets/home-images/icons/arrow_back_24px.svg" alt="" class="w-6 h-6 cursor-pointer"
-            @click="$router.push(`/cars/${this.car.id}`)">
+          <img
+            src="../assets/home-images/icons/arrow_back_24px.svg"
+            alt=""
+            class="w-6 h-6 cursor-pointer"
+            @click="$router.push(`/cars/${this.car.id}`)"
+          />
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
         <p class="text-xl px-0 mx-0 mb-4">
-          Total: LE <span class="text-4xl font-semibold">{{ this.totalPrice }}</span>.00
+          Total: LE
+          <span class="text-4xl font-semibold">{{ this.totalPrice }}</span
+          >.00
         </p>
       </div>
       <h3 class="text-2xl mt-10 hidden lg:block">ID verification</h3>
@@ -40,39 +48,74 @@
           <div class="flex justify-between flex-wrap">
             <section class="w-full md:w-1/2 pe-28">
               <h3 class="text-2xl mb-3 w-full">First name</h3>
-              <input type="text" placeholder="Enter your legal first name" name="f-name" id="f-name"
+              <input
+                type="text"
+                placeholder="Enter your legal first name"
+                name="f-name"
+                id="f-name"
                 class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                v-model="firstName" />
+                v-model="firstName"
+              />
             </section>
 
             <section class="w-full md:w-1/2 pe-28">
               <h3 class="text-2xl mb-3 w-full">Last name</h3>
-              <input type="text" placeholder="Enter your legal last name" name="l-name" id="l-name"
+              <input
+                type="text"
+                placeholder="Enter your legal last name"
+                name="l-name"
+                id="l-name"
                 class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                v-model="secondName" />
+                v-model="secondName"
+              />
             </section>
 
             <section class="w-full md:w-1/2 pe-28">
               <h3 class="text-2xl mb-3">Front-side photo of ID</h3>
               <div class="upload-file mb-6">
-                <label for="front-id" class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between">
+                <label
+                  for="front-id"
+                  class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between"
+                >
                   <span>Upload Your Photo </span>
-                  <img src="../assets/home-images/icons/document-upload.svg" alt="" class="w-6">
+                  <img
+                    src="../assets/home-images/icons/document-upload.svg"
+                    alt=""
+                    class="w-6"
+                  />
                 </label>
-                <input type="file" id="front-id" name="front-id" class="hidden" @change="handleFileChange($event, 1)">
+                <input
+                  type="file"
+                  id="front-id"
+                  name="front-id"
+                  class="hidden"
+                  @change="handleFileChange($event, 1)"
+                />
                 <span class="border-1"> {{ firstFileName }}</span>
               </div>
             </section>
 
-
             <section class="w-full md:w-1/2 pe-28">
               <h3 class="text-2xl mb-3">Back-side photo of ID</h3>
               <div class="upload-file mb-6">
-                <label for="back-id" class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between">
+                <label
+                  for="back-id"
+                  class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between"
+                >
                   <span>Upload Your Photo </span>
-                  <img src="../assets/home-images/icons/document-upload.svg" alt="" class="w-6">
+                  <img
+                    src="../assets/home-images/icons/document-upload.svg"
+                    alt=""
+                    class="w-6"
+                  />
                 </label>
-                <input type="file" id="back-id" name="back-id" class="hidden" @change="handleFileChange($event, 2)">
+                <input
+                  type="file"
+                  id="back-id"
+                  name="back-id"
+                  class="hidden"
+                  @change="handleFileChange($event, 2)"
+                />
                 <span class="border-1"> {{ secondFileName }}</span>
               </div>
             </section>
@@ -188,13 +231,22 @@
                 >
               </section> -->
 
-            <stripe-checkout ref="checkoutRef" mode="payment" :pk="publishableKey" :line-items="lineItems"
-              :success-url="successURL" :cancel-url="cancelURL" @loading="v => loading = v" />
-            <button class="rounded-lg mt-8 text-white w-full me-28 bg-green py-[10px]" @click="confirminfo">Pay
-              Now</button>
-
+            <stripe-checkout
+              ref="checkoutRef"
+              mode="payment"
+              :pk="publishableKey"
+              :line-items="lineItems"
+              :success-url="successURL"
+              :cancel-url="cancelURL"
+              @loading="(v) => (loading = v)"
+            />
+            <button
+              class="rounded-lg mt-8 text-white w-full me-28 bg-green py-[10px]"
+              @click="confirminfo"
+            >
+              Pay Now
+            </button>
           </div>
-
         </div>
 
         <!-- ------------------------------------form end ----------------------------------------------------- -->
@@ -213,48 +265,50 @@ import OrderDetailsCard from "../components/OrderDetailsCard.vue";
 import axios from "axios";
 import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
-import { mapGetters } from 'vuex';
-import { mapState } from 'vuex';
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
-
-
+import { mapGetters } from "vuex";
+import { mapState } from "vuex";
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
 
 export default {
   components: { OrderDetailsCard, StripeCheckout },
   name: "CheckoutPage",
 
   data() {
-    this.publishableKey = "pk_test_51PwRObP0Cf7C3nbxE0eAkp8fyZMex6IBMPPN8d1pUiwKr19hvfwOpuDL8j1FB400fqqu7Z8MKlxa8iTU1k7DzaPF00ox6ArmnI";
+    this.publishableKey =
+      "pk_test_51PwRObP0Cf7C3nbxE0eAkp8fyZMex6IBMPPN8d1pUiwKr19hvfwOpuDL8j1FB400fqqu7Z8MKlxa8iTU1k7DzaPF00ox6ArmnI";
     return {
       loading: false,
       lineItems: [
         {
-          price: 'price_1PwVBVP0Cf7C3nbxoDfzFY16',
+          price: "price_1PwVBVP0Cf7C3nbxoDfzFY16",
           quantity: 1,
-        }
+        },
       ],
-      successURL: 'http://localhost:8080/confirmpayment',
-      cancelURL: 'http://localhost:8080/cancel',
+      successURL: "http://localhost:8080/confirmpayment",
+      cancelURL: "http://localhost:8080/cancel",
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      firstFileName: '',
-      secondFileName: '',
+      firstFileName: "",
+      secondFileName: "",
       car: {},
       additionalFeatures: {},
-      firstName: '',
-      secondName: '',
-      addPrices: {
-      },
+      firstName: "",
+      secondName: "",
+      addPrices: {},
       totalPrice: 0,
-
     };
   },
   computed: {
-    ...mapGetters(['getcar', 'getfeatures', 'getlegalname', 'getfeaturesprices']),
-    ...mapState(['LegalName']),
+    ...mapGetters([
+      "getcar",
+      "getfeatures",
+      "getlegalname",
+      "getfeaturesprices",
+    ]),
+    ...mapState(["LegalName"]),
   },
   created() {
-    // this.car=this.getcar; 
+    // this.car=this.getcar;
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
 
@@ -265,9 +319,14 @@ export default {
       .then((response) => {
         this.car = response.data;
         this.getPrice();
-        this.order = { car: this.car, additionalFeatures: this.additionalFeatures, featurePrices: this.addPrices, TotalPrice: this.totalPrice };
-        localStorage.setItem('order', JSON.stringify(this.order));
-        console.log("1")
+        this.order = {
+          car: this.car,
+          additionalFeatures: this.additionalFeatures,
+          featurePrices: this.addPrices,
+          TotalPrice: this.totalPrice,
+        };
+        localStorage.setItem("order", JSON.stringify(this.order));
+        console.log("1");
         getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
           (download_url) => (this.url = download_url)
         );
@@ -278,18 +337,17 @@ export default {
     handleFileChange(event, num) {
       const firstFile = event.target.files[0];
       if (num == 1) {
-        this.firstFileName = firstFile ? firstFile.name : '';
-      }
-      else if (num == 2) {
-        this.secondFileName = firstFile ? firstFile.name : '';
+        this.firstFileName = firstFile ? firstFile.name : "";
+      } else if (num == 2) {
+        this.secondFileName = firstFile ? firstFile.name : "";
       }
     },
     setlegalname(fn, ln) {
-      this.$store.dispatch('setlegalname', fn, ln);
+      this.$store.dispatch("setlegalname", fn, ln);
     },
     confirminfo() {
-      this.setlegalname(this.firstName + ' ' + this.secondName);
-      localStorage.setItem('legalName', this.firstName + ' ' + this.secondName);
+      this.setlegalname(this.firstName + " " + this.secondName);
+      localStorage.setItem("legalName", this.firstName + " " + this.secondName);
       console.log(this.firstName, this.secondName);
       this.$refs.checkoutRef.redirectToCheckout();
       // this.$router.push('/confirmpayment');
@@ -302,12 +360,11 @@ export default {
         }
       }
       this.totalPrice += parseInt(this.car.price);
-    }
+    },
   },
   mounted() {
-    this.firstName = this.getlegalname.split(' ')[0];
-    this.secondName = this.getlegalname.split(' ')[1];
+    this.firstName = this.getlegalname.split(" ")[0];
+    this.secondName = this.getlegalname.split(" ")[1];
   },
-
 };
 </script>
