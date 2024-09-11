@@ -118,37 +118,35 @@ export default {
   data(){
     return{
     filtersArray: [],
+    
     selectedCarTypes: [],
     selectedBrands: [],
-
     }
   },
 
   methods:{
-    logValue(event){
-      if(event.target.checked){
-        this.filtersArray.push(event.target.id)
-      }
-      else{
-        this.filtersArray.splice(this.filtersArray.indexOf(event.target.id), 1)
-      }
 
-      console.log(this.filtersArray);
+    // Apply filters and send the selected car types and brands to Vuex store
+    applyFilters() {
+      // Dispatch both car types and brands to Vuex store separately
+      this.$store.dispatch("setCarTypes", this.selectedCarTypes);
+      this.$store.dispatch("setBrands", this.selectedBrands);
+
+      console.log("Car Types:", this.selectedCarTypes);
+      console.log("Brands:", this.selectedBrands);
     },
 
-    applyFilters(){
-      this.$store.dispatch("applyFilters", this.filtersArray);
-    },
+// Clear filters and reset arrays
+clearFilters() {
+      // Reset both selectedCarTypes and selectedBrands
+      this.selectedCarTypes = [];
+      this.selectedBrands = [];
 
-    clearFilters() {
-      // Logic to clear all filters
-      this.filtersArray = [];
-      this.selectedCarTypes = [],
-      this.selectedBrands = [],
+      console.log("Cleared filters");
 
-      console.log(this.filtersArray);
-
-      this.$store.dispatch("clearFilters");  // Clear the filters in the store as well
+      // Dispatch the clear filters action for both car types and brands in the store
+      this.$store.dispatch("clearCarTypes");
+      this.$store.dispatch("clearBrands");
     },
   }
 };
