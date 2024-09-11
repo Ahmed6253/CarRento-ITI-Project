@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+    class="rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
   >
     <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -86,6 +86,10 @@ export default {
   data() {
     return {
       url: "",
+      fullStyle:
+        " w-full rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all",
+      fixedStyle:
+        "w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all",
       additionalFeatures: {
         driver: false,
         protection: false,
