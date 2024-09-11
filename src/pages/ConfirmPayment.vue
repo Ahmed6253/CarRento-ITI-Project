@@ -165,6 +165,9 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
   name: "ConfirmPaymentPage",
+  beforeUnmount() {
+    sessionStorage.removeItem("orderStatus");
+  },
   data() {
     return {
       car: "",

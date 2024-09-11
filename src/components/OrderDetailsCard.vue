@@ -59,8 +59,11 @@
         </button>
       </div>
 
-      <div class="flex justify-between mb-6">
-        <section class="grid grid-col-1" v-if="additionalFeatures">
+      <div
+        class="flex justify-between mb-6"
+        v-if="Object.values(additionalFeatures).some((value) => value === true)"
+      >
+        <section class="grid grid-col-1">
           <div
             v-for="(feature, index) in additionalFeatures"
             :key="index"
@@ -77,7 +80,7 @@
             src="../assets/home-images/icons/edit.svg"
             alt=""
             class="w-full"
-            @click="$router.push(`/cars/${car.id}`)"
+            @click="$router.go(-1)"
           />
         </button>
       </div>
@@ -107,6 +110,7 @@ export default {
 
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
+    console.log(this.additionalFeatures);
   },
 };
 </script>

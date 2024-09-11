@@ -119,6 +119,7 @@
                 <span class="border-1"> {{ secondFileName }}</span>
               </div>
             </section>
+            <p class="text-red" v-if="nameError">All fields are required</p>
 
             <stripe-checkout
               v-if="stripeOn"
@@ -182,6 +183,7 @@ export default {
       firstFileName: "",
       secondFileName: "",
       stripeOn: false,
+      nameError: false,
       url: "",
       car: {},
       additionalFeatures: {},
@@ -244,15 +246,22 @@ export default {
       this.$store.dispatch("setlegalname", fn, ln);
     },
     async confirminfo() {
-      this.stripeOn = true;
-      await this.setlegalname(this.firstName + " " + this.secondName);
-      sessionStorage.setItem(
-        "legalName",
-        this.firstName + " " + this.secondName
-      );
-      console.log(this.firstName, this.secondName);
-      this.$refs.checkoutRef.redirectToCheckout();
-      // this.$router.push('/confirmpayment');
+      if (this.firstName == "" || this.secondName == "") {
+        this.nameError = true;
+        return;
+      } else {
+        this.nameError = false;
+        this.stripeOn = true;
+        await this.setlegalname(this.firstName + " " + this.secondName);
+        sessionStorage.setItem(
+          "legalName",
+          this.firstName + " " + this.secondName
+        );
+        sessionStorage.setItem("orderStatus", JSON.stringify("confirm"));
+        console.log(this.firstName, this.secondName);
+        this.$refs.checkoutRef.redirectToCheckout();
+        // this.$router.push('/confirmpayment');
+      }
     },
     getPrice() {
       for (let i in this.additionalFeatures) {
