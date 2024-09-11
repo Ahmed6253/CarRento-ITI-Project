@@ -102,6 +102,7 @@ export default {
       addPrices: {},
     };
   },
+  
   computed: {
     ...mapGetters(["getcar", "getfeatures", "getfeaturesprices"]),
   },
