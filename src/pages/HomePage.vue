@@ -24,7 +24,7 @@
 
   <div class="bg-quarter-split pt-32" id="search-card">
     <div class="mx-auto px-4 md:px-10 lg:px-20 py-10">
-      <SearchCard class="mt-0"></SearchCard>
+      <SearchCard class="mt-0" @search-location="cardSearchFilter"></SearchCard>
     </div>
   </div>
 

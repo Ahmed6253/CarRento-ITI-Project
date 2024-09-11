@@ -1,6 +1,6 @@
 <template>
   <div class="lg:px-[80px] px-[20px] pt-32 pb-14">
-    <SearchCard />
+    <SearchCard @search-location="cardSearchFilter"/>
 
     <section class="grid gap-4 grid-cols-4 text-poppins">
       <div class="lg:block hidden">
@@ -47,6 +47,12 @@
         <div v-if="filtersCarFlag" class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2">
           <CarCard v-for="car in filtersCardResult" :key="car.id" :car="car" />
         </div>
+
+        <!-- Search Card Results -->
+        <div v-else-if="cardLocationFlag" class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2">
+          <CarCard v-for="car in matchedLocation" :key="car.id" :car="car" />
+        </div>
+
 
         <!-- Default Cars List -->
         <div
@@ -95,6 +101,10 @@ export default {
       searchFlag: false,
       searchFail: false,
 
+      location:"",
+      cardLocationFlag: false,
+      matchedLocation: [],
+
       filtersCardResult : [],
       filtersCarFlag : false,
     };
@@ -122,9 +132,14 @@ export default {
   methods: {
     // Fetch stored search data (like location) from localStorage
     cardSearchFilter() {
-      this.orderLocation = localStorage.getItem("orderLocation");
-      this.orderPickupDate = localStorage.getItem("pickupDate");
-      this.orderDropoffDate = localStorage.getItem("dropoffDate");
+      this.location = localStorage.getItem("orderLocation");
+
+      this.matchedLocation = Object.values(this.cars).filter((car) => {
+        return car.location.toLowerCase() === this.location.toLocaleLowerCase();
+      });
+      console.log(this.matchedLocation);
+      this.cardLocationFlag = true;
+      return this.matchedLocation;      
     },
 
 
