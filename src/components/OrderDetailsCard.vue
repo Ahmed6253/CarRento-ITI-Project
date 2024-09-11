@@ -4,7 +4,7 @@
   >
     <section class="w-full md:w-1/2 lg:w-full p-0">
       <img
-        :src="url"
+        :src="imgUrl"
         alt="car image"
         class="rounded-lg border border-border_color custom-shadow"
       />
@@ -67,7 +67,9 @@
             class="flex gap-4"
           >
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{this.addPrices[index]}} LE added</p>
+            <p class="text-gray-500 text-[16px] text-start" v-if="feature">
+              {{ this.addPrices[index] }} LE added
+            </p>
           </div>
         </section>
         <button class="w-6">
@@ -86,31 +88,25 @@
 <script>
 import { mapGetters } from "vuex";
 
-import { storage } from "@/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
 export default {
-  props: ["carId"],
+  props: ["imgUrl"],
   name: "OrderDetailsCard",
   data() {
     return {
       car: {},
       additionalFeatures: {},
       url: "",
-      addPrices: {
-      },
-    }
+      addPrices: {},
+    };
   },
   computed: {
-    ...mapGetters(['getcar', 'getfeatures','getfeaturesprices'])
+    ...mapGetters(["getcar", "getfeatures", "getfeaturesprices"]),
   },
   created() {
-    this.car = this.getcar;
-    console.log(this.getcar);
+    this.car = JSON.parse(sessionStorage.getItem("car"));
+
     this.additionalFeatures = this.getfeatures;
-    this.addPrices = this.getfeaturesprices
-    getDownloadURL(ref(storage, `cars/${this.getcar.id}`)).then(
-      (download_url) => (this.url = download_url)
-    );
+    this.addPrices = this.getfeaturesprices;
   },
 };
 </script>
