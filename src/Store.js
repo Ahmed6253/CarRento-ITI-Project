@@ -19,6 +19,8 @@ let store = createStore({
         toddlerSeat:  200 ,
       },
       LegalName:"",
+
+      storeFiltersArray: [],
     };
   },
   mutations: {
@@ -40,8 +42,27 @@ let store = createStore({
     setlegalname(state, ln) {
       state.LegalName = ln;
     },
+
+    //filters mutations
+    APPLY_FILTER(state, filtersArray) {
+      state.storeFiltersArray = filtersArray
+    },
+
+    CLEAR_FILTERS(state){
+      state.storeFiltersArray = []
+    }
+    //filters mutations end
   },
   actions: {
+    //filters actions
+    applyFilters({ commit }, filtersArray){
+      commit("APPLY_FILTER", filtersArray);
+    },
+    clearFilters({ commit }) {
+      commit("CLEAR_FILTERS");
+    },
+    //end filter actions
+
     openModal({ commit }) {
       commit("openModal");
     },

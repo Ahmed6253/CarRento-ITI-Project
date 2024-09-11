@@ -2,10 +2,10 @@
   <div class="col-span-1 bg-white rounded-3xl custom-shadow h-fit">
     <div class="flex justify-between p-6">
       <h3 class="text-primary_color font-semibold">Filter</h3>
-      <button @click="applyFilter" class="cursor-pointer text-green">
+      <button @click="applyFilters" class="cursor-pointer text-green">
         Apply Filters
       </button>
-      <button class="text-warning_hover cursor-pointer" @click="clearFilter">Clear all</button>
+      <button class="text-warning_hover cursor-pointer" @click="clearFilters">Clear all</button>
     </div>
     <hr class="border-[1px] -mt-1" />
 
@@ -118,6 +118,8 @@ export default {
   data(){
     return{
     filtersArray: [],
+    selectedCarTypes: [],
+    selectedBrands: [],
 
     }
   },
@@ -132,7 +134,22 @@ export default {
       }
 
       console.log(this.filtersArray);
-    }
+    },
+
+    applyFilters(){
+      this.$store.dispatch("applyFilters", this.filtersArray);
+    },
+
+    clearFilters() {
+      // Logic to clear all filters
+      this.filtersArray = [];
+      this.selectedCarTypes = [],
+      this.selectedBrands = [],
+
+      console.log(this.filtersArray);
+
+      this.$store.dispatch("clearFilters");  // Clear the filters in the store as well
+    },
   }
 };
 </script>
