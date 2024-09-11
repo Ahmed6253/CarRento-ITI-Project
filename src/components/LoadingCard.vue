@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+    class="lg:max-w-[308px] max-w-[85%] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
   >
     <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -16,18 +16,14 @@
 
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
-    <img class="mt-2 h-[180px] max-w-[308px]" :src="url" />
-    <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
-      {{ car.name }}
-    </h3>
+    <img class="mt-2 h-[180px]" :src="url" />
+    <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5"></h3>
     <p
       class="text-Paragraph_color text-[11px] text-start pb-2 h-[50px] overflow-hidden"
-    >
-      {{ car.description }}
-    </p>
+    ></p>
 
     <div
-      class="flex justify-start flex-wrap pb-4 border-b-[1px] border-gray-300 gap-2 w-full"
+      class="flex justify-between flex-wrap pb-4 border-b-[1px] border-gray-300 gap-2 w-full"
     >
       <span v-for="(prop, index) in features" :key="index">
         <div
@@ -35,9 +31,7 @@
           class="flex gap-1 text-[11px] text-center justify-start w-fit px-1 pt-1"
         >
           <img :src="getImagePath(prop)" alt="" class="w-[13px]" />
-          <p class="mt-0.5 text-[10px]">
-            {{ prop === "Airconditioner" ? "Air Conditioner" : prop }}
-          </p>
+          <p class="mt-0.5 text-[10px]">{{ prop }}</p>
         </div></span
       >
     </div>
@@ -57,45 +51,7 @@
 </template>
 
 <script>
-import { storage } from "@/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
 export default {
-  name: "CarCard",
-  props: ["car", "carKey"],
-  methods: {
-    getImagePath(prop) {
-      try {
-        return require(`../assets/CarpageImages/${prop}.svg`);
-      } catch (e) {
-        console.error(`Image for ${prop} not found.`);
-        return ""; // Return a placeholder or empty string if image not found
-      }
-    },
-    setfeatures(features) {
-      this.$store.dispatch("setfeatures", features);
-    },
-  },
-  mounted() {
-    getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
-      (download_url) => (this.url = download_url)
-    );
-  },
-  created() {
-    this.setfeatures(this.additionalFeatures);
-  },
-  data() {
-    return {
-      url: "",
-      additionalFeatures: {
-        driver: false,
-        protection: false,
-        infantSeat: false,
-        toddlerSeat: false,
-      },
-      features: Object.keys(this.car.features).filter(
-        (key) => this.car.features[key] === true
-      ),
-    };
-  },
+  name: "LoadingCard",
 };
 </script>

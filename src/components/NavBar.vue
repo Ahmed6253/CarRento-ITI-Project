@@ -23,7 +23,7 @@
           class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
           @click="openModal"
         >
-          {{ logedIn ? "Logout" : "Login" }}
+          {{ loggedIn ? "Logout" : "Login" }}
         </button>
         <!-- user picture  -->
         <a
@@ -84,8 +84,8 @@
           <li>
             <a
               class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-              @click="openModal"
-              >{{ logedIn ? "Logout" : "Login" }}</a
+              @click="openModal()"
+              >{{ loggedIn ? "Logout" : "Login" }}</a
             >
           </li>
           <li>
@@ -113,7 +113,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isModalOpen", "logedIn"]),
+    ...mapState(["isModalOpen", "loggedIn"]),
   },
 
   methods: {
@@ -121,25 +121,25 @@ export default {
       this.showMenu = !this.showMenu;
     },
     openModal() {
-      if (this.logedIn) {
+      if (this.loggedIn) {
         const logoutConfirm = confirm("Are you sure you want to log out?");
-        if (logoutConfirm) {       
-        localStorage.removeItem("currentUser");
-        sessionStorage.removeItem("currentUser");
-        this.setInOrOut();
-        this.$router.push("/");
-      } else {
-        return;
-      }
+        if (logoutConfirm) {
+          localStorage.removeItem("currentUser");
+          sessionStorage.removeItem("currentUser");
+          this.setInOrOut();
+          this.$router.push("/");
+        } else {
+          return;
         }
-
-      this.$store.dispatch("openModal");
+      } else {
+        this.$store.dispatch("openModal");
+      }
     },
     setInOrOut() {
       this.$store.dispatch("setInOrOut");
     },
     showProfile() {
-      if (!this.logedIn) {
+      if (!this.loggedIn) {
         this.$store.dispatch("openModal");
       } else {
         const user =

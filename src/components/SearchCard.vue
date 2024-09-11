@@ -3,9 +3,8 @@
     class="flex w-full justify-between gap-5 p-[45px] rounded-3xl my-5 custom-shadow bg-white flex-wrap"
   >
     <div class="flex flex-col md:w-64 w-full">
-      <label for="pickup-location" class="label-style">Pick-up Location</label
-      ><br />
-      <select class="input-style p-[11px]" id="pickup-location">
+      <label for="pickup-location" class="label-style">Pick-up Location</label><br />
+      <select class="input-style p-[11px]" id="pickup-location" v-model="location">
         <option>Cairo</option>
         <option>Alexandria</option>
         <option>Giza</option>
@@ -37,7 +36,13 @@
     </div>
     <div class="flex flex-col relative md:w-64 w-full">
       <label class="label-style" for="pickup-date">Pick-up Date</label><br />
-      <input type="date" id="pickup-date" class="input-style" />
+      <input
+        type="date"
+        id="pickup-date"
+        class="input-style"
+        v-model="pickupDate"
+        @change="validateInputs"
+      />
       <img
         src="../assets/calendar.svg"
         alt=""
@@ -46,24 +51,82 @@
     </div>
     <div class="flex flex-col md:w-64 w-full relative">
       <label class="label-style" for="dropoff-date">Drop-off Date</label><br />
-      <input type="date" id="dropoff-date" class="input-style" />
+      <input
+        type="date"
+        id="dropoff-date"
+        class="input-style"
+        v-model="dropoffDate"
+        @change="validateInputs"
+      />
       <img
         src="../assets/calendar.svg"
         alt=""
         class="w-5 absolute right-4 top-12"
       />
     </div>
+
     <button
       class="bg-primary_color px-[56px] py-[11px] text-white rounded-lg self-end hover:bg-primary_hover md:w-auto w-full"
+      @click.prevent="submitSearch"
+      :disabled="isDisabled"
     >
       Search
     </button>
+
+    <div v-if="errorMessage" class="text-red mt-2 text-center w-full">
+      {{ errorMessage }}
+    </div>
   </section>
 </template>
 
 <script>
 export default {
   name: "SearchCard",
+
+  data() {
+    return {
+      pickupDate: "",
+      dropoffDate: "",
+      location: "",
+      errorMessage: "",
+      isDisabled: true,
+    };
+  },
+
+  methods: {
+    validateInputs() {
+      this.errorMessage = "";
+      this.isDisabled = false;
+
+      // Ensure all fields are filled
+
+      // Validate that the pick-up date is not later than the drop-off date
+      const pickup = new Date(this.pickupDate);
+      const dropoff = new Date(this.dropoffDate);
+
+      if (pickup > dropoff) {
+        this.errorMessage = "Pick-up date cannot be later than the drop-off date.";
+        this.isDisabled = true;
+        return;
+      }
+    },
+
+    submitSearch() {
+      if (!this.isDisabled) {
+        if (!this.location || !this.pickupDate || !this.dropoffDate) {
+        this.errorMessage = "All fields must be filled.";
+        this.isDisabled = true;
+        return;
+      }
+        // Save the order and navigate
+        localStorage.setItem("orderLocation", this.location);
+        localStorage.setItem("orderPickUp",this.pickupDate)
+        localStorage.setItem("orderDropOff",this.dropoffDate)
+        window.location.reload();
+        this.$router.push("/cars");
+      }
+    },
+  },
 };
 </script>
 

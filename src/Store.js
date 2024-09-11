@@ -5,23 +5,36 @@ let store = createStore({
     return {
       isModalOpen: false,
       role: "",
-      car:{},
-      additionalFeatures:{
-        driver:false,
-        protection:  false,
-        infantSeat:  false,
+      loggedIn: false,
+      car: {},
+      additionalFeatures: {
+        driver: false,
+        protection: false,
+        infantSeat: false,
         toddlerSeat: false,
       },
-      additionalFeaturesPrices:{
-        driver:  500 ,
-        protection:  1500 ,
-        infantSeat:  150 ,
-        toddlerSeat:  200 ,
+      additionalFeaturesPrices: {
+        driver: 500,
+        protection: 1500,
+        infantSeat: 150,
+        toddlerSeat: 200,
       },
       LegalName:"",
+
+      storeFiltersArray: [],
     };
   },
   mutations: {
+    setInOrOut(state) {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user) {
+        state.loggedIn = !state.loggedIn;
+      } else {
+        state.loggedIn = false;
+      }
+    },
     openModal(state) {
       state.isModalOpen = true;
     },
@@ -40,8 +53,27 @@ let store = createStore({
     setlegalname(state, ln) {
       state.LegalName = ln;
     },
+
+    //filters mutations
+    APPLY_FILTER(state, filtersArray) {
+      state.storeFiltersArray = filtersArray
+    },
+
+    CLEAR_FILTERS(state){
+      state.storeFiltersArray = []
+    }
+    //filters mutations end
   },
   actions: {
+    //filters actions
+    applyFilters({ commit }, filtersArray){
+      commit("APPLY_FILTER", filtersArray);
+    },
+    clearFilters({ commit }) {
+      commit("CLEAR_FILTERS");
+    },
+    //end filter actions
+
     openModal({ commit }) {
       commit("openModal");
     },
@@ -57,8 +89,11 @@ let store = createStore({
     setfeatures({ commit }, features) {
       commit("setfeatures", features);
     },
-    setlegalname({ commit },ln) {
+    setlegalname({ commit }, ln) {
       commit("setlegalname", ln);
+    },
+    setInOrOut({ commit }) {
+      commit("setInOrOut");
     },
   },
   getters: {
