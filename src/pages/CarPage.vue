@@ -1,5 +1,5 @@
 <template>
-  <div class="md:px-[80px] px-5 pt-32 pb-14">
+  <div id="top" class="md:px-[80px] px-5 pt-32 pb-14">
     <div class="flex w-full gap-2">
       <svg
         class="w-1/3"
@@ -271,6 +271,7 @@ export default {
     ...mapState(["loggedIn"]),
   },
   created() {
+    this.$router.push(`/cars/${this.$route.params.id}#top`);
     this.additionalFeatures = this.$store.getters.getfeatures;
     axios
       .get(
@@ -312,6 +313,7 @@ export default {
           featurePrices: this.addPrices,
         };
         sessionStorage.setItem("order", JSON.stringify(this.order));
+        sessionStorage.setItem("orderStatus", JSON.stringify("checkout"));
         this.$router.push(`checkout/${this.car.id}`);
       } else {
         this.$store.dispatch("openModal");

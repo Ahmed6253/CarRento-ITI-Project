@@ -42,9 +42,11 @@ const routes = [
     path: "/cars/checkout/:id",
     component: CheckoutPage,
     beforeEnter: (from, to, next) => {
-      if (user) {
+      const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
+      if (user && orderStatus === "checkout") {
         next();
       } else {
+        console.log(orderStatus);
         next("/error");
       }
     },
@@ -104,8 +106,8 @@ const routes = [
     path: "/confirmpayment",
     component: ConfirmPayment,
     beforeEnter: (from, to, next) => {
-      const fullName = JSON.parse(sessionStorage.getItem("legalName"));
-      if (fullName) {
+      const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
+      if (orderStatus === "confirm") {
         next();
       } else {
         next("/error");
@@ -123,6 +125,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 createApp(App).use(store).use(router).mount("#app");

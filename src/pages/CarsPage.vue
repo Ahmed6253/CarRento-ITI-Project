@@ -40,13 +40,20 @@
           </div>
         </div>
 
+              <!-- Filtered Cars Result -->
+        <div v-if="filtersCarFlag" class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2">
+          <CarCard v-for="car in filtersCardResult" :key="car.id" :car="car" />
+        </div>
+
+        <!-- Default Cars List -->
         <div
-          v-if="cars && !searchFlag"
+          v-else-if="cars && !searchFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
           <CarCard v-for="car in cars" :key="car.id" :car="car" />
         </div>
 
+           <!-- Search Results -->
         <div
           v-else-if="cars && searchFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
@@ -84,6 +91,9 @@ export default {
       searchOutput: [],
       searchFlag: false,
       searchFail: false,
+
+      filtersCardResult : [],
+      filtersCarFlag : false,
     };
   },
   created() {
@@ -103,7 +113,7 @@ export default {
 
   //filters logic start
   computed:{
-    ...mapState(["storeFiltersArray"]),
+    ...mapState(["selectedCarTypes", "selectedBrands"]),
   },
 
   methods: {
@@ -112,16 +122,24 @@ export default {
       this.orderLocation = localStorage.getItem("orderLocation");
       this.orderPickupDate = localStorage.getItem("pickupDate");
       this.orderDropoffDate = localStorage.getItem("dropoffDate");
-
-      // Optionally, filter the cars based on location here if needed
-    //   if (this.orderLocation) {
-    //     this.searchOutput = Object.values(this.cars).filter(
-    //       (car) => car.location === this.orderLocation
-    //     );
-    //   }
     },
 
-    
+
+    filtersCardsResult() {
+      this.filtersCardResult = Object.values(this.cars).filter((car) => {
+        // Check if car matches selected car types
+        const matchesCarType = this.selectedCarTypes.length === 0 || this.selectedCarTypes.includes(car.type);
+        
+        // Check if car matches selected brands
+        const matchesBrand = this.selectedBrands.length === 0 || this.selectedBrands.includes(car.brand);
+
+        // Return cars that match both selected types and brands
+        return matchesCarType && matchesBrand;
+      });
+
+      // Set flag to true to display filtered results
+      this.filtersCarFlag = true;
+    },
 
     // Search cars based on user input
     search() {
