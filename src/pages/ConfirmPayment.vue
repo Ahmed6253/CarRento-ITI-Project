@@ -1,4 +1,5 @@
 <template class="bg-bg_color">
+  <succes-payment/>
   <div class="md:mx-10 mx-4 lg:mx-20 mb-24 pt-32">
     <div class="flex flex-nowrap mb-20">
       <div class="p-bar-container">
@@ -149,8 +150,12 @@ import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { mapGetters } from 'vuex';
 import axios from "axios";
+import SuccesPayment from "@/components/SuccesPayment.vue";
 export default {
   name: "ConfirmPaymentPage",
+  components:{
+    SuccesPayment
+  },
   data() {
     return {
       car: "",
