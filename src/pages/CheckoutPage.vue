@@ -25,7 +25,7 @@
             src="../assets/home-images/icons/arrow_back_24px.svg"
             alt=""
             class="w-6 h-6 cursor-pointer"
-            @click="$router.push(`/cars/${this.car.id}`)"
+            @click="$router.go(-1)"
           />
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
@@ -120,118 +120,8 @@
               </div>
             </section>
 
-            <!-- <section class="w-full">
-                <h3 class="text-2xl mt-10">Payment Method</h3>
-                <hr class="bg-line_color h-0.5 mt-3 mb-6" />
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28">
-                <div
-                  class="pe-6 ps-2 py-2 mb-6 flex justify-between border-gray-200 border-2 rounded-lg bg-gray-50 h-fit"
-                >
-                  <div>
-                    <input
-                      type="radio"
-                      id="master"
-                      name="pay-method"
-                      value="master"
-                    />
-                    <label for="master" class="ps-2 text-gray-400"
-                      >Pay with Master Card</label
-                    >
-                  </div>
-                  <img
-                    src="../assets/home-images/icons/MasterCard_Logo.svg"
-                    alt=""
-                    class="h-6"
-                  />
-                </div>
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28">
-                <div
-                  class="ps-2 pe-6 py-2 mb-6 flex justify-between border-gray-200 border-2 rounded-lg bg-gray-50 h-fit"
-                >
-                  <div>
-                    <input
-                      type="radio"
-                      id="visa"
-                      name="pay-method"
-                      value="visa"
-                    />
-                    <label for="visa" class="ps-2 text-gray-400"
-                      >Pay with Visa</label
-                    >
-                  </div>
-                  <img
-                    src="../assets/home-images/icons/visa svg.svg"
-                    alt=""
-                    class="h-6"
-                  />
-                </div>
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28">
-                <h3 class="text-2xl mb-3 w-full">Name on card</h3>
-                <input
-                  type="text"
-                  placeholder="Enter the name on the card"
-                  name="card-name"
-                  id="card-name"
-                  class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                />
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28">
-                <h3 class="text-2xl mb-3 w-full">Card number</h3>
-                <input
-                  type="text"
-                  placeholder="Enter the card number"
-                  name="card-no"
-                  id="card-no"
-                  class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                />
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28 relative">
-                <h3 class="text-2xl mb-3 w-full">Expiry date</h3>
-                <input
-                  type="date"
-                  name="fname"
-                  id="expiry"
-                  class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                />
-                <img
-                  src="../assets/calendar.svg"
-                  alt=""
-                  class="w-5 absolute bottom-9 left-96 md:left-64 lg:left-72"
-                />
-              </section>
-
-              <section class="w-full md:w-1/2 pe-28">
-                <h3 class="text-2xl mb-3 w-full">CVC</h3>
-                <input
-                  type="text"
-                  placeholder="Enter the CVC"
-                  name="cvc"
-                  id="cvc"
-                  class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
-                />
-              </section>
-
-              <section class="w-full">
-                <input
-                  type="checkbox"
-                  id="save-details"
-                  name="save-details"
-                  class="accent-gray-900"
-                />
-                <label for="save-details" class="text-[20px] ps-4"
-                  >save my details for future purchases</label
-                >
-              </section> -->
-
             <stripe-checkout
+              v-if="stripeOn"
               ref="checkoutRef"
               mode="payment"
               :pk="publishableKey"
@@ -253,7 +143,7 @@
 
         <!-- ---------------------------------order details card-------------------------------------------- -->
         <aside class="w-full lg:w-1/3 p-3">
-          <OrderDetailsCard />
+          <OrderDetailsCard :imgUrl="url" />
         </aside>
       </div>
     </div>
@@ -271,6 +161,7 @@ import { StripeCheckout } from "@vue-stripe/vue-stripe";
 
 export default {
   components: { OrderDetailsCard, StripeCheckout },
+
   name: "CheckoutPage",
 
   data() {
@@ -290,6 +181,8 @@ export default {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       firstFileName: "",
       secondFileName: "",
+      stripeOn: false,
+      url: "",
       car: {},
       additionalFeatures: {},
       firstName: "",
@@ -325,11 +218,16 @@ export default {
           featurePrices: this.addPrices,
           TotalPrice: this.totalPrice,
         };
-        localStorage.setItem("order", JSON.stringify(this.order));
-        console.log("1");
-        getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
-          (download_url) => (this.url = download_url)
-        );
+        sessionStorage.setItem("order", JSON.stringify(this.order));
+      })
+      .then(() => {
+        if (this.car) {
+          getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
+            (download_url) => {
+              this.url = download_url;
+            }
+          );
+        }
       });
   },
 
@@ -345,9 +243,13 @@ export default {
     setlegalname(fn, ln) {
       this.$store.dispatch("setlegalname", fn, ln);
     },
-    confirminfo() {
-      this.setlegalname(this.firstName + " " + this.secondName);
-      localStorage.setItem("legalName", this.firstName + " " + this.secondName);
+    async confirminfo() {
+      this.stripeOn = true;
+      await this.setlegalname(this.firstName + " " + this.secondName);
+      sessionStorage.setItem(
+        "legalName",
+        this.firstName + " " + this.secondName
+      );
       console.log(this.firstName, this.secondName);
       this.$refs.checkoutRef.redirectToCheckout();
       // this.$router.push('/confirmpayment');

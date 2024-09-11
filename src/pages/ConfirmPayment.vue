@@ -1,4 +1,5 @@
 <template class="bg-bg_color">
+  <succes-payment/>
   <div class="md:mx-10 mx-4 lg:mx-20 mb-24 pt-32">
     <div class="flex flex-nowrap mb-20">
       <div class="p-bar-container">
@@ -26,35 +27,42 @@
             <div class="flex flex-wrap">
               <div v-for="(feature, index) in car.features" :key="index">
                 <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
-                  <img :src="getImagePath(index)" class="h-6 w-6 " />
+                  <img :src="getImagePath(index)" class="h-6 w-6" />
                   <p class="text-center text-primary_color">{{ index }}</p>
                 </span>
               </div>
 
               <div class="flex gap-4 mt-6">
-                <div class="flex gap-2 w-[150px] "><img src="../assets/CarpageImages/Transmition.svg"
-                    class="h-6 w-6 " />
-                  <p class="text-center text-primary_color">{{ this.car.manualOrAuto }}</p>
+                <div class="flex gap-2 w-[150px]">
+                  <img
+                    src="../assets/CarpageImages/Transmition.svg"
+                    class="h-6 w-6"
+                  />
+                  <p class="text-center text-primary_color">
+                    {{ this.car.manualOrAuto }}
+                  </p>
                 </div>
 
-                <div class="flex gap-2 w-[150px]"><img src="../assets/CarpageImages/fuel.svg" class="h-6 w-6 " />
-                  <p class="text-center text-primary_color">{{ this.car.fuel }}</p>
+                <div class="flex gap-2 w-[150px]">
+                  <img src="../assets/CarpageImages/fuel.svg" class="h-6 w-6" />
+                  <p class="text-center text-primary_color">
+                    {{ this.car.fuel }}
+                  </p>
                 </div>
               </div>
 
               <div class="mt-8 w-full xl:w-[73%] mb-8 lg:mb-0">
-                <h1 class="text-blue-500 text-2xl ">Description</h1>
+                <h1 class="text-blue-500 text-2xl">Description</h1>
                 <p>{{ this.car.description }}</p>
               </div>
-
             </div>
-
-
           </div>
         </div>
         <div>
-          <img :src="url"
-            class="md:ms-20  ms-0 w-10/12 md:w-9/12 lg:w-3/5 rounded-lg border border-border_color custom-shadow" />
+          <img
+            :src="url"
+            class="md:ms-20 ms-0 w-10/12 md:w-9/12 lg:w-3/5 rounded-lg border border-border_color custom-shadow"
+          />
         </div>
       </div>
 
@@ -93,9 +101,15 @@
         </div>
 
         <section class="grid grid-col-1">
-          <div v-for="(feature, index) in additionalFeatures" :key="index" class="flex gap-4">
+          <div
+            v-for="(feature, index) in additionalFeatures"
+            :key="index"
+            class="flex gap-4"
+          >
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">{{ this.addPrices[index] }} LE added</p>
+            <p class="text-gray-500 text-[16px] text-start" v-if="feature">
+              {{ this.addPrices[index] }} LE added
+            </p>
           </div>
         </section>
         <!-- <div class="mb-3">
@@ -137,20 +151,25 @@
       </div>
     </div>
 
-    <button class="bg-green w-full text-white h-12 rounded-lg mt-6 font-semibold">
+    <button
+      class="bg-green w-full text-white h-12 rounded-lg mt-6 font-semibold"
+    >
       Confirm Info
     </button>
   </div>
 </template>
 
 <script>
-
 import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import axios from "axios";
+import SuccesPayment from "@/components/SuccesPayment.vue";
 export default {
   name: "ConfirmPaymentPage",
+  components:{
+    SuccesPayment
+  },
   data() {
     return {
       car: "",
@@ -160,36 +179,32 @@ export default {
       totalPrice: 0,
       personalName: "",
       total2Price: 0,
-    }
+    };
   },
   computed: {
-    ...mapGetters(['getlegalname'])
+    ...mapGetters(["getlegalname"]),
   },
   async created() {
-    const order = JSON.parse(localStorage.getItem('order'));
+    const order = JSON.parse(sessionStorage.getItem("order"));
     this.car = order.car;
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
     this.totalPrice = order.TotalPrice;
-    this.personalName = localStorage.getItem('legalName');
+    this.personalName = sessionStorage.getItem("legalName");
     this.gettotal();
     getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
       (download_url) => (this.url = download_url)
     );
 
-
     /////////////////////////////////////////////////////////////////////////
     await axios
-      .post(
-        `https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`,
-        {
-          carId: this.car.id,
-          status: 'pending',
-          renterName: this.personalName,
-          paymentStatus: 'done',
-          owner: this.car.owner,
-        }
-      )
+      .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
+        carId: this.car.id,
+        status: "pending",
+        renterName: this.personalName,
+        paymentStatus: "done",
+        owner: this.car.owner,
+      })
       .then((response) => {
         console.log(response.data);
       })
@@ -203,12 +218,12 @@ export default {
         return require(`../assets/CarpageImages/${prop}.svg`);
       } catch (e) {
         console.error(`Image for ${prop} not found.`);
-        return ""; // Return a placeholder or empty string if image not found
+        return "";
       }
     },
     gettotal() {
       this.total2Price = this.totalPrice + 500 + 100 + 20000;
-    }
+    },
   },
 };
 </script>

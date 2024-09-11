@@ -160,21 +160,20 @@
           :slidesPerGroup="1"
           :modules="modules"
           :breakpoints="{
-            '640': {
-              slidesPerView: 2,
-              spaceBetween: 5,
-              pagination: {
-                clickable: true,
-                dynamicBullets: true,
-              },
+            '360': {
+              slidesPerView: 1,
             },
-            '1024': {
-              slidesPerView: 3,
+            '480': {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            '768': {
+              slidesPerView: 2,
               spaceBetween: 10,
             },
             '1400': {
               slidesPerView: 4,
-              spaceBetween: 0,
+              spaceBetween: 10,
             },
           }"
           :autoplay="{
@@ -217,6 +216,7 @@
             Rent your perfect car with a big discount
           </h1>
           <router-link
+            to="/cars"
             class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl"
             >Rent now</router-link
           >

@@ -5,6 +5,7 @@ let store = createStore({
     return {
       isModalOpen: false,
       role: "",
+      loggedIn: false,
       car: {},
       additionalFeatures: {
         driver: false,
@@ -25,6 +26,16 @@ let store = createStore({
     };
   },
   mutations: {
+    setInOrOut(state) {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+      if (user) {
+        state.loggedIn = !state.loggedIn;
+      } else {
+        state.loggedIn = false;
+      }
+    },
     openModal(state) {
       state.isModalOpen = true;
     },
@@ -92,6 +103,9 @@ let store = createStore({
     },
     setlegalname({ commit }, ln) {
       commit("setlegalname", ln);
+    },
+    setInOrOut({ commit }) {
+      commit("setInOrOut");
     },
   },
   getters: {

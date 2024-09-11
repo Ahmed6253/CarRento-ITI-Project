@@ -17,14 +17,10 @@
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
     <img class="mt-2 h-[180px]" :src="url" />
-    <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
-      {{ car.name }}
-    </h3>
+    <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5"></h3>
     <p
       class="text-Paragraph_color text-[11px] text-start pb-2 h-[50px] overflow-hidden"
-    >
-      {{ car.description }}
-    </p>
+    ></p>
 
     <div
       class="flex justify-between flex-wrap pb-4 border-b-[1px] border-gray-300 gap-2 w-full"
@@ -54,4 +50,8 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: "LoadingCard",
+};
+</script>
