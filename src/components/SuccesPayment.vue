@@ -6,7 +6,7 @@
                 <h1 class="text-2xl text-primary_color font-medium text-center mb-2">congratulation</h1>
                 <p class="text-2xl text-Paragraph_color font-medium text-center mb-8">Your booking is completed</p>
                 <div class="flex justify-center mb-10">
-                    <button class="bg-primary_color text-white w-10/12 mx-auto p-3 rounded-lg"
+                    <button class="bg-primary_color text-white w-10/12 mx-auto p-3 rounded-lg hover:bg-primary_hover"
                         @click="isOpen = false">Continue</button>
                 </div>
             </div>
@@ -25,4 +25,5 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
