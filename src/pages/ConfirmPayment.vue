@@ -190,6 +190,9 @@ export default {
   },
   async created() {
     const order = JSON.parse(sessionStorage.getItem("order"));
+    const location = sessionStorage.getItem("orderLocation");
+    const pickUpDate = sessionStorage.getItem("orderPickUp");
+    const dropOffDate = sessionStorage.getItem("orderDropOff");
     this.car = order.car;
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
@@ -201,11 +204,16 @@ export default {
     );
 
     /////////////////////////////////////////////////////////////////////////
-    const user = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("currentUser"));
+    const user =
+      JSON.parse(sessionStorage.getItem("currentUser")) ||
+      JSON.parse(localStorage.getItem("currentUser"));
     this.currentUser = user;
     await axios
       .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
         carId: this.car.id,
+        location: location,
+        pickUpDate: pickUpDate,
+        dropOffDate: dropOffDate,
         status: "pending",
         renter: this.currentUser.id,
         paymentStatus: "done",

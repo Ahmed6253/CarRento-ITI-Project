@@ -16,12 +16,12 @@
             placeholder="Search"
             class="p-5 rounded-2xl w-full custom-shadow"
             v-model="searchInput"
+            @input="search"
           />
           <img
             src="../assets/search-normal.svg"
             alt=""
             class="absolute right-5 top-5 w-5 cursor-pointer"
-            @click="search"
           />
           <div v-if="searchFail" class="text-red mt-2 text-center w-full">
             The model you're searching for doesn't seem to be available, browse
@@ -76,7 +76,7 @@
 
         <!-- Filtered Cars Result -->
         <div
-          v-if="filtersCarFlag"
+          v-if="filtersCarFlag && !searchFlag && !searchFail"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
           <CarCard
@@ -89,7 +89,7 @@
 
         <!-- Search Card Results -->
         <div
-          v-else-if="cardLocationFlag"
+          v-else-if="cardLocationFlag && !searchFlag && !searchFail"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
           <CarCard
@@ -102,7 +102,7 @@
 
         <!-- Default Cars List -->
         <div
-          v-else-if="cars && !searchFlag"
+          v-else-if="cars && !searchFlag && !searchFail"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
           <CarCard
@@ -115,7 +115,7 @@
 
         <!-- Search Results -->
         <div
-          v-else-if="cars && searchFlag"
+          v-else-if="cars && searchFlag && !searchFail"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
           <CarCard
@@ -125,8 +125,6 @@
             :fullWidth="false"
           />
         </div>
-
-        <div v-else>Loading...</div>
       </div>
     </section>
   </div>
@@ -135,7 +133,6 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-
 import FilterCard from "@/components/FilterCard.vue";
 import SearchCard from "@/components/SearchCard.vue";
 import CarCard from "@/components/CarCard.vue";
@@ -172,6 +169,20 @@ export default {
         this.cars = response.data;
         this.carskeys = Object.keys(response.data); // Get car keys
       })
+      .then(() => {
+        this.location = sessionStorage.getItem("orderLocation");
+
+        if (this.location) {
+          this.matchedLocation = Object.values(this.cars).filter((car) => {
+            return (
+              car.location.toLowerCase() === this.location.toLocaleLowerCase()
+            );
+          });
+          this.cardLocationFlag = true;
+          return this.matchedLocation;
+        }
+      })
+      .then(() => {})
       .catch((e) => {
         this.fetchError = e;
       });
@@ -185,21 +196,38 @@ export default {
     ...mapState(["selectedCarTypes", "selectedBrands"]),
   },
 
+  watch: {
+    selectedCarTypes: function () {
+      this.cardSearchFilter();
+    },
+    selectedBrands: function () {
+      this.cardSearchFilter();
+    },
+  },
+
   methods: {
     // Fetch stored search data (like location) from localStorage
     cardSearchFilter() {
-      this.location = localStorage.getItem("orderLocation");
+      this.clearFiltersCardResult();
+      this.searchOutput = "";
+      this.searchFlag = false;
+      this.searchFail = false;
+      this.filtersCardResult = [];
+      this.filtersCarFlag = false;
+      this.location = sessionStorage.getItem("orderLocation");
 
       this.matchedLocation = Object.values(this.cars).filter((car) => {
         return car.location.toLowerCase() === this.location.toLocaleLowerCase();
       });
-      console.log(this.matchedLocation);
+      this.filtersCardsResult();
       this.cardLocationFlag = true;
       return this.matchedLocation;
     },
 
     filtersCardsResult() {
-      this.filtersCardResult = Object.values(this.cars).filter((car) => {
+      this.filtersCardResult = Object.values(
+        this.matchedLocation || this.cars
+      ).filter((car) => {
         // Check if car matches selected car types
         const matchesCarType =
           this.selectedCarTypes.length === 0 ||
@@ -233,22 +261,19 @@ export default {
       this.searchOutput = []; // Clear previous search results
 
       // Iterate through cars (since cars is an object, use Object.values())
-      for (let car of Object.values(this.cars)) {
+      for (let car of Object.values(this.filtersCardResult || this.cars)) {
         if (car.name.toLowerCase().includes(this.searchInput.toLowerCase())) {
           this.searchOutput.push(car);
         }
       }
 
       // Log the search output or display a message if no matches
-      if (this.searchOutput.length > 0) {
-        console.log(this.searchOutput);
+      if (this.searchOutput.length > 0 || this.searchInput === "") {
         this.searchFlag = true;
+        this.searchFail = false;
       } else {
         this.searchFlag = false;
         this.searchFail = true;
-        console.log(
-          "The model you're searching for doesn't seem to be available, browse through similar models"
-        );
       }
     },
   },

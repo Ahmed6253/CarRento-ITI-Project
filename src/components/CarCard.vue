@@ -51,7 +51,7 @@
     </div>
 
     <button
-      @click="$router.push(`/cars/${car.id}`)"
+      @click="rentNow()"
       class="bg-primary_color hover:bg-primary_hover text-white w-full py-2.5 rounded-3xl"
     >
       Rent now
@@ -66,6 +66,16 @@ export default {
   name: "CarCard",
   props: ["car", "carKey", "fullWidth"],
   methods: {
+    rentNow() {
+      if (this.location) {
+        this.$store.dispatch("setAllowRent", true);
+        this.$router.push(`/cars/${this.car.id}`);
+      } else {
+        this.$store.dispatch("setAllowRent", false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      this.$emit("rent-now", this.clicked);
+    },
     getImagePath(prop) {
       try {
         return require(`../assets/CarpageImages/${prop}.svg`);
@@ -85,10 +95,21 @@ export default {
   },
   created() {
     this.setfeatures(this.additionalFeatures);
+    const location = sessionStorage.getItem("orderLocation");
+    const pickUpDate = sessionStorage.getItem("orderPickUp");
+    const dropOffDate = sessionStorage.getItem("orderDropOff");
+    if (location && pickUpDate && dropOffDate) {
+      this.location = location;
+      this.pickUpDate = pickUpDate;
+      this.dropOffDate = dropOffDate;
+    }
   },
   data() {
     return {
       url: "",
+      location: "",
+      pickUpDate: "",
+      dropOffDate: "",
       fullStyle:
         " w-full rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all",
       fixedStyle:

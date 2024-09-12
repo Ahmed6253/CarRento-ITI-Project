@@ -30,6 +30,16 @@ const routes = [
   {
     path: "/cars/:id",
     component: CarPage,
+    beforeEnter: (from, to, next) => {
+      const location = sessionStorage.getItem("orderLocation");
+      const pickUpDate = sessionStorage.getItem("orderPickUp");
+      const dropOffDate = sessionStorage.getItem("orderDropOff");
+      if (location && pickUpDate && dropOffDate) {
+        next();
+      } else {
+        next("/error");
+      }
+    },
   },
   {
     path: "/about",
@@ -134,7 +144,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior() {
-    return { top: 0 };
+    return { top: 0, behavior: "smooth" };
   },
 });
 

@@ -5,6 +5,7 @@ let store = createStore({
     return {
       isModalOpen: false,
       role: "",
+      allowRent: true,
       loggedIn: false,
       car: {},
       additionalFeatures: {
@@ -19,10 +20,10 @@ let store = createStore({
         infantSeat: 150,
         toddlerSeat: 200,
       },
-      LegalName:"",
+      LegalName: "",
 
-      selectedCarTypes: [],  // Store selected car types
-      selectedBrands: [],    // Store selected car brands
+      selectedCarTypes: [], // Store selected car types
+      selectedBrands: [], // Store selected car brands
     };
   },
   mutations: {
@@ -57,32 +58,36 @@ let store = createStore({
 
     //filters mutations
     SET_CAR_TYPES(state, carTypes) {
-      state.selectedCarTypes = carTypes;  // Set selected car types
+      state.selectedCarTypes = carTypes; // Set selected car types
     },
     SET_BRANDS(state, brands) {
-      state.selectedBrands = brands;  // Set selected brands
+      state.selectedBrands = brands; // Set selected brands
     },
     CLEAR_CAR_TYPES(state) {
-      state.selectedCarTypes = [];  // Clear car types
+      state.selectedCarTypes = []; // Clear car types
     },
     CLEAR_BRANDS(state) {
-      state.selectedBrands = [];  // Clear brands
+      state.selectedBrands = []; // Clear brands
     },
     //filters mutations end
+
+    SetAllowRent(state, condition) {
+      state.allowRent = condition;
+    },
   },
   actions: {
     //filters actions
     setCarTypes({ commit }, carTypes) {
-      commit("SET_CAR_TYPES", carTypes);  // Commit car types to the store
+      commit("SET_CAR_TYPES", carTypes); // Commit car types to the store
     },
     setBrands({ commit }, brands) {
-      commit("SET_BRANDS", brands);  // Commit brands to the store
+      commit("SET_BRANDS", brands); // Commit brands to the store
     },
     clearCarTypes({ commit }) {
-      commit("CLEAR_CAR_TYPES");  // Clear car types from the store
+      commit("CLEAR_CAR_TYPES"); // Clear car types from the store
     },
     clearBrands({ commit }) {
-      commit("CLEAR_BRANDS");  // Clear brands from the store
+      commit("CLEAR_BRANDS"); // Clear brands from the store
     },
     //end filter actions
 
@@ -106,6 +111,9 @@ let store = createStore({
     },
     setInOrOut({ commit }) {
       commit("setInOrOut");
+    },
+    setAllowRent({ commit }, condition) {
+      commit("SetAllowRent", condition);
     },
   },
   getters: {
