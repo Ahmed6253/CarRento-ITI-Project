@@ -112,18 +112,22 @@ export default {
     },
 
     submitSearch() {
-      if (!this.isDisabled) {
+        if (!this.isDisabled) {
+          const currentPath = this.$route.path;
+          if(currentPath === '/') {
+            this.$router.push('/cars')
+        }
         if (!this.location || !this.pickupDate || !this.dropoffDate) {
-        this.errorMessage = "All fields must be filled.";
-        this.isDisabled = true;
-        return;
-      }
+          this.errorMessage = "All fields must be filled.";
+          this.isDisabled = true;
+          return;
+        }
         // Save the order and navigate
         localStorage.setItem("orderLocation", this.location);
         localStorage.setItem("orderPickUp",this.pickupDate)
         localStorage.setItem("orderDropOff",this.dropoffDate)
-        window.location.reload();
-        this.$router.push("/cars");
+
+        this.$emit('search-location', this.location);
       }
     },
   },
