@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
-
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarPage.vue";
@@ -17,22 +16,30 @@ import AdminLogin from "./pages/AdminLogin.vue";
 import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
 
-const user =
-  JSON.parse(localStorage.getItem("currentUser")) ||
-  JSON.parse(sessionStorage.getItem("currentUser"));
-
 const routes = [
   {
     path: "/",
     component: HomePage,
+    name: "HomePage",
   },
   {
     path: "/cars",
     component: CarsPage,
+    name: "CarsPage",
   },
   {
     path: "/cars/:id",
     component: CarPage,
+    beforeEnter: (from, to, next) => {
+      const location = sessionStorage.getItem("orderLocation");
+      const pickUpDate = sessionStorage.getItem("orderPickUp");
+      const dropOffDate = sessionStorage.getItem("orderDropOff");
+      if (location && pickUpDate && dropOffDate) {
+        next();
+      } else {
+        next("/error");
+      }
+    },
   },
   {
     path: "/about",
@@ -42,9 +49,15 @@ const routes = [
     path: "/cars/checkout/:id",
     component: CheckoutPage,
     beforeEnter: (from, to, next) => {
-      if (user) {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+
+      const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
+      if (user && orderStatus === "checkout") {
         next();
       } else {
+        console.log(orderStatus);
         next("/error");
       }
     },
@@ -53,6 +66,9 @@ const routes = [
     path: "/profile/:id",
     component: ProfilePage,
     beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
       if (user && user.role === "renter") {
         next();
       } else {
@@ -92,6 +108,10 @@ const routes = [
       hideNavFoot: true,
     },
     beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+
       if (user && user.role === "owner") {
         next();
       } else {
@@ -104,8 +124,8 @@ const routes = [
     path: "/confirmpayment",
     component: ConfirmPayment,
     beforeEnter: (from, to, next) => {
-      const fullName = JSON.parse(sessionStorage.getItem("legalName"));
-      if (fullName) {
+      const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
+      if (orderStatus === "confirm") {
         next();
       } else {
         next("/error");
@@ -123,6 +143,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0, behavior: "smooth" };
+  },
 });
 
 createApp(App).use(store).use(router).mount("#app");

@@ -191,10 +191,16 @@ export default {
   },
   methods: {
     logOut() {
-      localStorage.removeItem("currentUser");
-      sessionStorage.removeItem("currentUser");
-      this.$store.dispatch("setInOrOut");
-      this.$router.push("/");
+      const logoutConfirm = confirm("Are you sure you want to log out?");
+
+      if (logoutConfirm) {
+        localStorage.removeItem("currentUser");
+        sessionStorage.removeItem("currentUser");
+        this.$store.dispatch("setInOrOut");
+        this.$router.push("/");
+      } else {
+        return;
+      }
     },
   },
 };

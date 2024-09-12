@@ -1,4 +1,5 @@
 <template class="bg-bg_color">
+  <succes-payment />
   <div class="md:mx-10 mx-4 lg:mx-20 mb-24 pt-32">
     <div class="flex flex-nowrap mb-20">
       <div class="p-bar-container">
@@ -163,8 +164,15 @@ import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import { mapGetters } from "vuex";
 import axios from "axios";
+import SuccesPayment from "@/components/SuccesPayment.vue";
 export default {
   name: "ConfirmPaymentPage",
+  components: {
+    SuccesPayment,
+  },
+  beforeUnmount() {
+    sessionStorage.removeItem("orderStatus");
+  },
   data() {
     return {
       car: "",
@@ -174,6 +182,7 @@ export default {
       totalPrice: 0,
       personalName: "",
       total2Price: 0,
+      currentUser: "",
     };
   },
   computed: {
@@ -181,6 +190,9 @@ export default {
   },
   async created() {
     const order = JSON.parse(sessionStorage.getItem("order"));
+    const location = sessionStorage.getItem("orderLocation");
+    const pickUpDate = sessionStorage.getItem("orderPickUp");
+    const dropOffDate = sessionStorage.getItem("orderDropOff");
     this.car = order.car;
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
@@ -192,13 +204,21 @@ export default {
     );
 
     /////////////////////////////////////////////////////////////////////////
+    const user =
+      JSON.parse(sessionStorage.getItem("currentUser")) ||
+      JSON.parse(localStorage.getItem("currentUser"));
+    this.currentUser = user;
     await axios
       .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
         carId: this.car.id,
+        location: location,
+        pickUpDate: pickUpDate,
+        dropOffDate: dropOffDate,
         status: "pending",
-        renterName: this.personalName,
+        renter: this.currentUser.id,
         paymentStatus: "done",
         owner: this.car.owner,
+        TotalPrice: this.total2Price,
       })
       .then((response) => {
         console.log(response.data);

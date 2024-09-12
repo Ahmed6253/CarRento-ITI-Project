@@ -442,7 +442,9 @@ export default {
     return {
       carOptions: {
         available: true,
-        rating: 0,
+        rating: "Not rated",
+        ratingCount: 0,
+        ratingSum: 0,
         price: "",
         brand: "",
         name: "",
@@ -586,6 +588,8 @@ export default {
           description: "",
           fuel: "",
           manualOrAuto: "Automatic",
+          ratingSum:0,
+          ratingCount:0
         };
 
         this.carFeatures = {

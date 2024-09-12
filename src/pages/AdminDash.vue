@@ -10,8 +10,12 @@ U
       "
     >
       <div class="flex justify-between py-6 px-10">
-        <img v-if="!fold" src="../assets/logo.svg" alt="" />
-        <img v-if="fold" src="../assets/logoHalf.svg" alt="" />
+        <router-link to="/">
+          <img v-if="!fold" src="../assets/logo.svg" alt="" />
+        </router-link>
+        <router-link to="/">
+          <img v-if="fold" src="../assets/logoHalf.svg" alt="" />
+        </router-link>
         <img
           src="../assets/ownerDashImges/fold.svg"
           alt=""

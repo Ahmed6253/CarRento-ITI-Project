@@ -59,8 +59,11 @@
         </button>
       </div>
 
-      <div class="flex justify-between mb-6">
-        <section class="grid grid-col-1" v-if="additionalFeatures">
+      <div
+        class="flex justify-between mb-6"
+        v-if="Object.values(additionalFeatures).some((value) => value === true)"
+      >
+        <section class="flex flex-col">
           <div
             v-for="(feature, index) in additionalFeatures"
             :key="index"
@@ -68,7 +71,7 @@
           >
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
             <p class="text-gray-500 text-[16px] text-start" v-if="feature">
-              {{ this.addPrices[index] }} LE added
+              {{ this.addPrices[index] }} LE
             </p>
           </div>
         </section>
@@ -77,7 +80,7 @@
             src="../assets/home-images/icons/edit.svg"
             alt=""
             class="w-full"
-            @click="$router.push(`/cars/${car.id}`)"
+            @click="$router.go(-1)"
           />
         </button>
       </div>
@@ -99,6 +102,7 @@ export default {
       addPrices: {},
     };
   },
+
   computed: {
     ...mapGetters(["getcar", "getfeatures", "getfeaturesprices"]),
   },
@@ -107,6 +111,8 @@ export default {
 
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
+
+    console.log(this.additionalFeatures);
   },
 };
 </script>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="max-w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
-  >
+  <div :class="fullWidth ? fullStyle : fixedStyle">
     <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
         <path
@@ -16,7 +14,12 @@
 
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
-    <img class="mt-2 h-[180px] max-w-[308px]" :src="url" />
+    <img
+      :class="
+        fullWidth ? 'mt-2 h-[180px] w-full' : 'mt-2 h-[180px] max-w-[308px]'
+      "
+      :src="url"
+    />
     <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
       {{ car.name }}
     </h3>
@@ -48,7 +51,7 @@
     </div>
 
     <button
-      @click="$router.push(`/cars/${car.id}`)"
+      @click="rentNow()"
       class="bg-primary_color hover:bg-primary_hover text-white w-full py-2.5 rounded-3xl"
     >
       Rent now
@@ -61,8 +64,18 @@ import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 export default {
   name: "CarCard",
-  props: ["car", "carKey"],
+  props: ["car", "carKey", "fullWidth"],
   methods: {
+    rentNow() {
+      if (this.location) {
+        this.$store.dispatch("setAllowRent", true);
+        this.$router.push(`/cars/${this.car.id}`);
+      } else {
+        this.$store.dispatch("setAllowRent", false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      this.$emit("rent-now", this.clicked);
+    },
     getImagePath(prop) {
       try {
         return require(`../assets/CarpageImages/${prop}.svg`);
@@ -82,10 +95,25 @@ export default {
   },
   created() {
     this.setfeatures(this.additionalFeatures);
+    const location = sessionStorage.getItem("orderLocation");
+    const pickUpDate = sessionStorage.getItem("orderPickUp");
+    const dropOffDate = sessionStorage.getItem("orderDropOff");
+    if (location && pickUpDate && dropOffDate) {
+      this.location = location;
+      this.pickUpDate = pickUpDate;
+      this.dropOffDate = dropOffDate;
+    }
   },
   data() {
     return {
       url: "",
+      location: "",
+      pickUpDate: "",
+      dropOffDate: "",
+      fullStyle:
+        " w-full rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all",
+      fixedStyle:
+        "w-[308px] rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all",
       additionalFeatures: {
         driver: false,
         protection: false,

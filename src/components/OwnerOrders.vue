@@ -30,37 +30,25 @@
   </table>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "OwnerOrders",
+  created() {
+    axios
+      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
+      .then((response) => {
+        this.orders = response.data;
+      });
+  },
 
   data() {
     return {
+      orders: [],
       doneOrders: 0,
       pendingOrders: 0,
       earnings: 0,
       rating: 0,
-      orders: [
-        {
-          orderId: 1,
-          carModel: "Nissan something",
-          startDate: "2022-01-01",
-          endDate: "2022-01-02",
-          status: "Done",
-          ownerName: "Ahmed",
-          renterName: "aya",
-          payment: "done",
-        },
-        {
-          orderId: 2,
-          carModel: "nissan something",
-          startDate: "2022-01-01",
-          endDate: "2022-01-02",
-          status: "Pending",
-          ownerName: "Ahmed",
-          renterName: "aya",
-          payment: "done",
-        },
-      ],
     };
   },
 };

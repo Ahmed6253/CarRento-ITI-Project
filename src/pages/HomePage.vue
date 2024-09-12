@@ -25,7 +25,7 @@
 
   <div class="bg-quarter-split pt-32" id="search-card">
     <div class="mx-auto px-4 md:px-10 lg:px-20 py-10">
-      <SearchCard class="mt-0"></SearchCard>
+      <SearchCard class="mt-0" @search-location="cardSearchFilter"></SearchCard>
     </div>
   </div>
 
@@ -162,10 +162,18 @@
           :slidesPerGroup="1"
           :modules="modules"
           :breakpoints="{
-            1440: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
-            }
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
           }"
           :autoplay="{
             delay: 2500,
@@ -174,19 +182,86 @@
           class="mySwiper"
         >
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
+          </swiper-slide>
+          <!-- loading -->
+          <swiper-slide class="py-4 px-3" v-if="!fetchErorr && !cars">
+            <div
+              class="w-full h-[480px] animate-pulse rounded-3xl custom-shadow pt-10 bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+            >
+              <div
+                class="w-full p-1 h-1/2 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div class="w-1/2 p-[6px] bg-Placeholder_color rounded-2xl"></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-3 h-10 bg-Placeholder_color rounded-3xl"
+              ></div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="py-4 px-3" v-if="!fetchErorr && !cars">
+            <div
+              class="w-full h-[480px] animate-pulse rounded-3xl custom-shadow pt-10 bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+            >
+              <div
+                class="w-full p-1 h-1/2 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div class="w-1/2 p-[6px] bg-Placeholder_color rounded-2xl"></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-3 h-10 bg-Placeholder_color rounded-3xl"
+              ></div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="py-4 px-3" v-if="!fetchErorr && !cars">
+            <div
+              class="w-full h-[480px] animate-pulse rounded-3xl custom-shadow pt-10 bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+            >
+              <div
+                class="w-full p-1 h-1/2 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div class="w-1/2 p-[6px] bg-Placeholder_color rounded-2xl"></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"
+              ></div>
+              <div
+                class="w-full p-3 h-10 bg-Placeholder_color rounded-3xl"
+              ></div>
+            </div>
           </swiper-slide>
         </swiper>
       </div>
@@ -307,7 +382,7 @@ export default {
   },
   data() {
     return {
-      cars: [],
+      cars: "",
       fetchErorr: false,
     };
   },

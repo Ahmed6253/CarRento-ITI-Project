@@ -112,12 +112,12 @@ export default {
         });
     },
     checkAuthentication() {
-      const savedUser =
-        localStorage.getItem("currentUser") ||
-        sessionStorage.getItem("currentUser");
-      console.log("Saved user:", savedUser); // Debug line
+      const savedAdmin =
+        localStorage.getItem("currentAdmin") ||
+        sessionStorage.getItem("currentAdmin");
+      console.log("Saved Admin:", savedAdmin); // Debug line
 
-      if (savedUser) {
+      if (savedAdmin) {
         this.$router.push("/admin");
       }
     },
