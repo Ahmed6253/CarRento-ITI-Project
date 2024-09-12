@@ -29,11 +29,6 @@
           />
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
-        <p class="text-xl px-0 mx-0 mb-4">
-          Total: LE
-          <span class="text-4xl font-semibold">{{ this.totalPrice }}</span
-          >.00
-        </p>
       </div>
       <h3 class="text-2xl mt-10 hidden lg:block">ID verification</h3>
 
@@ -120,6 +115,30 @@
               </div>
             </section>
             <p class="text-red" v-if="nameError">All fields are required</p>
+            <div class="card-style w-full">
+              <div class="md:p-11 p-8">
+                <div class="total-info">
+                  <p>Rent per day:</p>
+                  <p>{{ totalPrice }}</p>
+                </div>
+                <div class="total-info">
+                  <p>Service:</p>
+                  <p>500</p>
+                </div>
+                <div class="total-info">
+                  <p>Tax’s:</p>
+                  <p>{{ tax }}</p>
+                </div>
+                <div class="total-info">
+                  <p>insurance:</p>
+                  <p>20000</p>
+                </div>
+                <div class="total-info">
+                  <p>Total:</p>
+                  <p class="text-green">{{ totalPriceFinal }} LE</p>
+                </div>
+              </div>
+            </div>
 
             <stripe-checkout
               v-if="stripeOn"
@@ -131,8 +150,9 @@
               :cancel-url="cancelURL"
               @loading="(v) => (loading = v)"
             />
+
             <button
-              class="rounded-lg mt-8 text-white w-full me-28 bg-green py-[10px]"
+              class="rounded-lg mt-8 text-white w-full bg-green py-[10px]"
               @click="confirminfo"
             >
               Pay Now
@@ -191,6 +211,8 @@ export default {
       secondName: "",
       addPrices: {},
       totalPrice: 0,
+      totalPriceFinal: 0,
+      tax: 0,
     };
   },
   computed: {
@@ -271,6 +293,8 @@ export default {
         }
       }
       this.totalPrice += parseInt(this.car.price);
+      this.tax = parseInt((this.totalPrice + 500) * 0.14);
+      this.totalPriceFinal = this.tax + this.totalPrice + 20000 + 500;
     },
   },
   mounted() {

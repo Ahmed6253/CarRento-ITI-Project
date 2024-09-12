@@ -1,10 +1,13 @@
 <template>
   <div class="lg:px-[80px] px-[20px] pt-32 pb-14">
-    <SearchCard />
+    <SearchCard @search-location="cardSearchFilter" />
 
     <section class="grid gap-4 grid-cols-4 text-poppins">
       <div class="lg:block hidden">
-        <FilterCard />
+        <FilterCard
+          @apply-filters="filtersCardsResult"
+          @clear-filters="clearFiltersCardResult"
+        />
       </div>
       <div class="lg:col-span-3 col-span-4">
         <div class="relative">
@@ -21,7 +24,8 @@
             @click="search"
           />
           <div v-if="searchFail" class="text-red mt-2 text-center w-full">
-            The model you're searching for doesn't seem to be available, browse through similar models
+            The model you're searching for doesn't seem to be available, browse
+            through similar models
           </div>
         </div>
         <div class="flex items-center gap-6 relative">
@@ -40,9 +44,20 @@
           </div>
         </div>
 
-              <!-- Filtered Cars Result -->
-        <div v-if="filtersCarFlag" class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2">
+        <!-- Filtered Cars Result -->
+        <div
+          v-if="filtersCarFlag"
+          class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
+        >
           <CarCard v-for="car in filtersCardResult" :key="car.id" :car="car" />
+        </div>
+
+        <!-- Search Card Results -->
+        <div
+          v-else-if="cardLocationFlag"
+          class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
+        >
+          <CarCard v-for="car in matchedLocation" :key="car.id" :car="car" />
         </div>
 
         <!-- Default Cars List -->
@@ -53,7 +68,7 @@
           <CarCard v-for="car in cars" :key="car.id" :car="car" />
         </div>
 
-           <!-- Search Results -->
+        <!-- Search Results -->
         <div
           v-else-if="cars && searchFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
@@ -65,7 +80,6 @@
       </div>
     </section>
   </div>
-
 </template>
 
 <script>
@@ -81,8 +95,8 @@ export default {
   name: "CarsPage",
   data() {
     return {
-      cars: {},               // Initialize cars as an empty object
-      carskeys: [],           // carskeys as an empty array
+      cars: {}, // Initialize cars as an empty object
+      carskeys: [], // carskeys as an empty array
       filter: false,
       orderLocation: "",
       orderPickupDate: "",
@@ -92,8 +106,12 @@ export default {
       searchFlag: false,
       searchFail: false,
 
-      filtersCardResult : [],
-      filtersCarFlag : false,
+      location: "",
+      cardLocationFlag: false,
+      matchedLocation: [],
+
+      filtersCardResult: [],
+      filtersCarFlag: false,
     };
   },
   created() {
@@ -101,7 +119,7 @@ export default {
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
       .then((response) => {
         this.cars = response.data;
-        this.carskeys = Object.keys(response.data);  // Get car keys
+        this.carskeys = Object.keys(response.data); // Get car keys
       })
       .catch((e) => {
         console.log(e);
@@ -112,26 +130,38 @@ export default {
   },
 
   //filters logic start
-  computed:{
+  computed: {
     ...mapState(["selectedCarTypes", "selectedBrands"]),
   },
 
   methods: {
     // Fetch stored search data (like location) from localStorage
     cardSearchFilter() {
-      this.orderLocation = localStorage.getItem("orderLocation");
-      this.orderPickupDate = localStorage.getItem("pickupDate");
-      this.orderDropoffDate = localStorage.getItem("dropoffDate");
-    },
+      this.location = localStorage.getItem("orderLocation");
 
+      this.matchedLocation = Object.values(this.cars).filter((car) => {
+        return car.location.toLowerCase() === this.location.toLocaleLowerCase();
+      });
+      console.log(this.matchedLocation);
+      this.cardLocationFlag = true;
+      return this.matchedLocation;
+    },
 
     filtersCardsResult() {
       this.filtersCardResult = Object.values(this.cars).filter((car) => {
         // Check if car matches selected car types
-        const matchesCarType = this.selectedCarTypes.length === 0 || this.selectedCarTypes.includes(car.type);
-        
-        // Check if car matches selected brands
-        const matchesBrand = this.selectedBrands.length === 0 || this.selectedBrands.includes(car.brand);
+        const matchesCarType =
+          this.selectedCarTypes.length === 0 ||
+          this.selectedCarTypes
+            .map((type) => type.toLowerCase())
+            .includes(car.type.toLowerCase());
+
+        // Convert both the car's brand and selected brands to lowercase for comparison
+        const matchesBrand =
+          this.selectedBrands.length === 0 ||
+          this.selectedBrands
+            .map((brand) => brand.toLowerCase())
+            .includes(car.brand.toLowerCase());
 
         // Return cars that match both selected types and brands
         return matchesCarType && matchesBrand;
@@ -139,6 +169,12 @@ export default {
 
       // Set flag to true to display filtered results
       this.filtersCarFlag = true;
+      console.log(this.filtersCardResult);
+    },
+
+    clearFiltersCardResult() {
+      this.filtersCardResult = [];
+      this.filtersCarFlag = false;
     },
 
     // Search cars based on user input
@@ -166,5 +202,4 @@ export default {
     },
   },
 };
-
 </script>

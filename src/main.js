@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
-
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarPage.vue";
@@ -17,18 +16,16 @@ import AdminLogin from "./pages/AdminLogin.vue";
 import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
 
-const user =
-  JSON.parse(localStorage.getItem("currentUser")) ||
-  JSON.parse(sessionStorage.getItem("currentUser"));
-
 const routes = [
   {
     path: "/",
     component: HomePage,
+    name: "HomePage",
   },
   {
     path: "/cars",
     component: CarsPage,
+    name: "CarsPage",
   },
   {
     path: "/cars/:id",
@@ -42,6 +39,10 @@ const routes = [
     path: "/cars/checkout/:id",
     component: CheckoutPage,
     beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+
       const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
       if (user && orderStatus === "checkout") {
         next();
@@ -55,6 +56,9 @@ const routes = [
     path: "/profile/:id",
     component: ProfilePage,
     beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
       if (user && user.role === "renter") {
         next();
       } else {
@@ -94,6 +98,10 @@ const routes = [
       hideNavFoot: true,
     },
     beforeEnter: (from, to, next) => {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+
       if (user && user.role === "owner") {
         next();
       } else {

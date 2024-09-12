@@ -118,7 +118,7 @@ export default {
   data(){
     return{
     filtersArray: [],
-    
+
     selectedCarTypes: [],
     selectedBrands: [],
     }
@@ -134,6 +134,7 @@ export default {
 
       console.log("Car Types:", this.selectedCarTypes);
       console.log("Brands:", this.selectedBrands);
+      this.$emit("apply-filters");
     },
 
 // Clear filters and reset arrays
@@ -147,6 +148,8 @@ clearFilters() {
       // Dispatch the clear filters action for both car types and brands in the store
       this.$store.dispatch("clearCarTypes");
       this.$store.dispatch("clearBrands");
+      this.$emit("clear-filters");
+
     },
   }
 };

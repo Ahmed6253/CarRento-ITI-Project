@@ -24,7 +24,7 @@
 
   <div class="bg-quarter-split pt-32" id="search-card">
     <div class="mx-auto px-4 md:px-10 lg:px-20 py-10">
-      <SearchCard class="mt-0"></SearchCard>
+      <SearchCard class="mt-0" @search-location="cardSearchFilter"></SearchCard>
     </div>
   </div>
 
@@ -160,19 +160,16 @@
           :slidesPerGroup="1"
           :modules="modules"
           :breakpoints="{
-            '360': {
-              slidesPerView: 1,
-            },
-            '480': {
+            640: {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-            '768': {
+            768: {
               slidesPerView: 2,
               spaceBetween: 10,
             },
-            '1400': {
-              slidesPerView: 4,
+            1024: {
+              slidesPerView: 3,
               spaceBetween: 10,
             },
           }"
@@ -183,19 +180,19 @@
           class="mySwiper"
         >
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" />
+            <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
         </swiper>
       </div>

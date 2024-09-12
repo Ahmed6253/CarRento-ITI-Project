@@ -63,7 +63,7 @@
         class="flex justify-between mb-6"
         v-if="Object.values(additionalFeatures).some((value) => value === true)"
       >
-        <section class="grid grid-col-1">
+        <section class="flex flex-col">
           <div
             v-for="(feature, index) in additionalFeatures"
             :key="index"
@@ -71,7 +71,7 @@
           >
             <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
             <p class="text-gray-500 text-[16px] text-start" v-if="feature">
-              {{ this.addPrices[index] }} LE added
+              {{ this.addPrices[index] }} LE
             </p>
           </div>
         </section>
@@ -102,7 +102,7 @@ export default {
       addPrices: {},
     };
   },
-  
+
   computed: {
     ...mapGetters(["getcar", "getfeatures", "getfeaturesprices"]),
   },
@@ -111,6 +111,7 @@ export default {
 
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
+
     console.log(this.additionalFeatures);
   },
 };

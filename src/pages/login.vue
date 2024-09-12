@@ -443,8 +443,10 @@ export default {
         )
         .then((response) => {
           this.form.currentUser = response.data;
-          if(this.form.currentUser.blocked){
-            alert("Your account has been blocked. Please contact us for more details.")
+          if (this.form.currentUser.blocked) {
+            alert(
+              "Your account has been blocked. Please contact us for more details."
+            );
             window.location.reload();
             return;
           }
@@ -470,6 +472,8 @@ export default {
               this.closeModal();
             } else if (this.form.currentUser.role == "owner") {
               this.closeModal();
+              console.log(this.form.currentUser.id);
+
               this.$router.push("/ownerDash/" + this.form.currentUser.id);
             }
             this.$store.dispatch("setInOrOut");
