@@ -588,6 +588,8 @@ export default {
           description: "",
           fuel: "",
           manualOrAuto: "Automatic",
+          ratingSum:0,
+          ratingCount:0
         };
 
         this.carFeatures = {

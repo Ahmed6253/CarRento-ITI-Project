@@ -182,6 +182,7 @@ export default {
       totalPrice: 0,
       personalName: "",
       total2Price: 0,
+      currentUser: "",
     };
   },
   computed: {
@@ -200,13 +201,16 @@ export default {
     );
 
     /////////////////////////////////////////////////////////////////////////
+    const user = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("currentUser"));
+    this.currentUser = user;
     await axios
       .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
         carId: this.car.id,
         status: "pending",
-        renterName: this.personalName,
+        renter: this.currentUser.id,
         paymentStatus: "done",
         owner: this.car.owner,
+        TotalPrice: this.total2Price,
       })
       .then((response) => {
         console.log(response.data);
