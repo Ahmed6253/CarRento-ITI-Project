@@ -129,15 +129,14 @@ export default {
         },
         xaxis: {
           categories: [
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-            "Jan",
             "Feb",
             "Mar",
             "Apr",
-            "May"
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",            
           ],
         },
         yaxis: {
@@ -209,9 +208,6 @@ export default {
 
         }
       }
-
-
-
       this.series = [
         {
           name: "reveue",
@@ -229,6 +225,51 @@ export default {
     }
   }
 };
+
+//dynamic handling for each month
+
+// data() {
+//   return {
+//     monthlyData: {
+//       '01': { revenue: 0, orders: 0, users: 0 }, // January
+//       '02': { revenue: 0, orders: 0, users: 0 }, // February
+//       '03': { revenue: 0, orders: 0, users: 0 }, // March
+//       '04': { revenue: 0, orders: 0, users: 0 }, // April
+//       '05': { revenue: 0, orders: 0, users: 0 }, // May
+//       '06': { revenue: 0, orders: 0, users: 0 }, // June
+//       '07': { revenue: 0, orders: 0, users: 0 }, // July
+//       '08': { revenue: 0, orders: 0, users: 0 }, // August
+//       '09': { revenue: 0, orders: 0, users: 0 }, // September
+//       '10': { revenue: 0, orders: 0, users: 0 }, // October
+//       '11': { revenue: 0, orders: 0, users: 0 }, // November
+//       '12': { revenue: 0, orders: 0, users: 0 }, // December
+//     },
+//     orders: {}, // Your orders data
+//     ordersKeys: [], // List of order IDs
+//   };
+// },
+
+// methods: {
+//   calculateMonthlyData() {
+//     for (let orderId of this.ordersKeys) {
+//       const order = this.orders[orderId];
+      
+//       if (order.orderDropOff) {
+//         const month = order.orderDropOff.split('-')[1]; // Extracts the month (e.g., '09' for September)
+        
+//         // Check if month exists in monthlyData
+//         if (this.monthlyData[month]) {
+//           this.monthlyData[month].revenue += Number(order.TotalPrice);
+//           this.monthlyData[month].orders += 1;
+//           this.monthlyData[month].users += 1; // Adjust logic to handle unique users if necessary
+//         }
+//       }
+//     }
+
+//     console.log(this.monthlyData); // Now contains the revenue, orders, and users for each month
+//   }
+// }
+
 </script>
 <style>
 
