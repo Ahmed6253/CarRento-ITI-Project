@@ -18,14 +18,14 @@
    </div>
 
    <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-    <h5 class="text-gray-500 mb-3">Revenue</h5>
-    <h2 class="text-4xl">{{ revenue }}</h2>
+    <h5 class="text-gray-500 mb-3">Profit Share</h5>
+    <h2 class="text-4xl">{{ earnings/4 }}</h2>
    </div>
   </div>
 
   <!-- --------------------------------------chart--------------------------------- -->
-    <div>
-        <div id="chart" >
+    <div class="mx-0">
+        <div id="chart" class="w-full">
       <apexchart
         type="bar"
         height="300"
@@ -39,67 +39,74 @@
     <!-- --------------------------------------table---------------------------------- -->
     <h2 class="text-2xl mt-5">Recent Orders</h2>
     
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+    <table class="text-sm text-left rtl:text-right text-gray-500 mx-0 px-0">
     <thead class="text-base text-[14px] uppercase text-gray-600">
       <tr>
         <th scope="col" class="px-6 py-3">Order ID</th>
-        <th scope="col" class="px-6 py-3">Car model</th>
-        <th scope="col" class="px-6 py-3">Start date</th>
-        <th scope="col" class="px-6 py-3">End date</th>
+        <th scope="col" class="px-6 py-3">Car ID</th>
+        <th scope="col" class="px-6 py-3">Owner</th>
+        <th scope="col" class="px-6 py-3">Renter</th>
         <th scope="col" class="px-6 py-3">Status</th>
-        <th scope="col" class="px-6 py-3">Owner name</th>
-        <th scope="col" class="px-6 py-3">Renter name</th>
-        <th scope="col" class="px-6 py-3">Payment Status</th>
+        <th scope="col" class="px-6 py-3">Total Payment</th>
       </tr>
     </thead>
     <tbody class="text-xs font-semibold capitalize">
-      <tr v-for="order in orders" :key="order.orderId">
-        <td class="px-6 py-3 text-gray-700">{{order.orderId}}</td>
-        <td class="px-6 py-3 text-gray-700">{{order.carModel}}</td>
-        <td class="px-6 py-3 text-gray-700">{{order.startDate}}</td>
-        <td class="px-6 py-3 text-gray-700">{{order.endDate}}</td>
-        <td :class="['px-6 py-3', { 'text-green': order.status === 'Done', 'text-red': order.status === 'Pending' }]">
-          {{ order.status }}
-        </td>
-        <td class="px-6 py-3 text-gray-700">{{order.ownerName}}</td>
-        <td class="px-6 py-3 text-gray-700">{{order.renterName}}</td>
-        <td class="px-6 py-3 text-gray-700">{{order.payment}}</td>
+      <tr v-for="orderId in ordersKeys" :key="orderId">
+       <td class="px-6 py-3 text-gray-700">{{ orderId }}</td> <!-- Display order ID -->
+       <td class="px-6 py-3 text-gray-700">{{ orders[orderId].carId }}</td>
+       <td class="px-6 py-3 text-gray-700">{{ orders[orderId].owner }}</td>
+       <td class="px-6 py-3 text-gray-700">{{ orders[orderId].renter }}</td>
+       <td :class="['px-6 py-3', { 'text-blue-500': orders[orderId].status === 'done', 'text-warning': orders[orderId].status === 'pending', 'text-green': orders[orderId].status === 'approved'}]">
+         {{ orders[orderId].status }}
+       </td>
+       <td class="px-6 py-3 text-gray-700">{{ orders[orderId].TotalPrice }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 <script>
 import VueApexCharts from "vue3-apexcharts";
+import axios from "axios";
+
 export default {
     name: "DashChart",
     el: "#app",
   components: {
     apexchart: VueApexCharts,
   },
+
+  mounted() {
+    // Fetch orders data in mounted hook
+    axios
+      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
+      .then((response) => {
+        this.orders = response.data;
+        this.ordersKeys = Object.keys(response.data);
+        console.log(response.data);
+
+        // Call pendingOrdersCalc after data is fetched
+        this.pendingOrdersCalc();
+        this.ordersDoneCalc();
+        this.earningsCalc();
+        this.chartUpdate()
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+
   data() {
     return {
       doneOrders: 0,
       pendingOrders:0,
       earnings:0,
-      revenue:0,
-      orders:[
-        {orderId: 1 , carModel: "Nissan something" , startDate:"2022-01-01" , endDate:"2022-01-02" , status:"Done" , ownerName:"Ahmed" , renterName:"aya" , payment:"done"},
-        {orderId: 2 , carModel: "nissan something" , startDate:"2022-01-01" , endDate:"2022-01-02" , status:"Pending" , ownerName:"Ahmed" , renterName:"aya" , payment:"done"},
-      ],
-      series: [
-        {
-          name: "reveue",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-        },
-        {
-          name: "orders",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-        },
-        {
-          name: "avarage feedback",
-          data: [3, 4, 3, 2, 4, 4, 5, 5, 4],
-        },
-      ],
+      orders: {},               // Initialize cars as an empty object
+      ordersKeys: [], 
+      septRevnue: 62,  
+      SeptOrders: 112,
+      SeptUsers: 12,
+      series: [],
+
       chartOptions: {
         chart: {
           type: "bar",
@@ -129,13 +136,12 @@ export default {
             "Jun",
             "Jul",
             "Aug",
-            "Sep",
-            "Oct",
+            "Sep",            
           ],
         },
         yaxis: {
           title: {
-            text: "$ (thousands)",
+            text: "$ (hundreds)",
           },
         },
         fill: {
@@ -151,7 +157,119 @@ export default {
       },
     };
   },
+
+  methods:{  
+    
+    pendingOrdersCalc() {
+    this.pendingOrders = 0; // Reset count
+    for (let orderId of this.ordersKeys) {
+      if (this.orders[orderId].status === "pending") {
+        this.pendingOrders++;
+      }
+    }
+  },
+    ordersDoneCalc(){
+      this.doneOrders = 0;
+      for (let orderId in this.orderkeys){
+        if(this.orders[orderId].status === "done"){
+          this.doneOrders++;
+        }
+      }
+    },
+
+    earningsCalc(){
+      let sum = 0;
+      let numPrice;
+      for(let orderId of this.ordersKeys){
+        numPrice = Number(this.orders[orderId].TotalPrice);
+        if(this.orders[orderId].status === "done"){
+          sum = sum + numPrice;
+        }
+      }
+      this.earnings = sum;
+      console.log(sum);
+
+    },
+
+    chartUpdate(){
+
+      this.septRevnue = 0;
+      this.SeptOrders = 0;
+      this.SeptUsers = 0;
+      for(let orderId of this.ordersKeys){
+        if(this.orders[orderId].orderDropOff){
+          const month = this.order[orderId].split("-")[1]
+
+          if (month === "09") {
+            this.septRevnue = this.septRevnue + Number(this.orders[orderId].TotalPrice);
+            this.SeptOrders++;
+            this.SeptUsers = this.SeptUsers + 2;
+          }
+
+        }
+      }
+      this.series = [
+        {
+          name: "reveue",
+          data: [44, 55, 57, 56, 66, 58, 63, 60, this.septRevnue],
+        },
+        {
+          name: "orders",
+          data: [76, 85, 101, 98, 94, 105, 91, 114, this.SeptOrders],
+        },
+        {
+          name: "users",
+          data: [3, 4, 3, 2, 4, 4, 5, 5, this.SeptUsers],
+        },
+      ];
+    }
+  }
 };
+
+//dynamic handling for each month
+
+// data() {
+//   return {
+//     monthlyData: {
+//       '01': { revenue: 0, orders: 0, users: 0 }, // January
+//       '02': { revenue: 0, orders: 0, users: 0 }, // February
+//       '03': { revenue: 0, orders: 0, users: 0 }, // March
+//       '04': { revenue: 0, orders: 0, users: 0 }, // April
+//       '05': { revenue: 0, orders: 0, users: 0 }, // May
+//       '06': { revenue: 0, orders: 0, users: 0 }, // June
+//       '07': { revenue: 0, orders: 0, users: 0 }, // July
+//       '08': { revenue: 0, orders: 0, users: 0 }, // August
+//       '09': { revenue: 0, orders: 0, users: 0 }, // September
+//       '10': { revenue: 0, orders: 0, users: 0 }, // October
+//       '11': { revenue: 0, orders: 0, users: 0 }, // November
+//       '12': { revenue: 0, orders: 0, users: 0 }, // December
+//     },
+//     orders: {}, // Your orders data
+//     ordersKeys: [], // List of order IDs
+//   };
+// },
+
+// methods: {
+//   calculateMonthlyData() {
+//     for (let orderId of this.ordersKeys) {
+//       const order = this.orders[orderId];
+      
+//       if (order.orderDropOff) {
+//         const month = order.orderDropOff.split('-')[1]; // Extracts the month (e.g., '09' for September)
+        
+//         // Check if month exists in monthlyData
+//         if (this.monthlyData[month]) {
+//           this.monthlyData[month].revenue += Number(order.TotalPrice);
+//           this.monthlyData[month].orders += 1;
+//           this.monthlyData[month].users += 1; // Adjust logic to handle unique users if necessary
+//         }
+//       }
+//     }
+
+//     console.log(this.monthlyData); // Now contains the revenue, orders, and users for each month
+//   }
+// }
+
 </script>
 <style>
 
