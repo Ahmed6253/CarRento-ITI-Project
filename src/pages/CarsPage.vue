@@ -43,13 +43,48 @@
             <FilterCard />
           </div>
         </div>
+        <!-- loading -->
+        <div
+          v-if="!fetchError && !cars"
+          class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
+        >
+          <div
+            class="w-[308px] h-[480px] animate-pulse rounded-3xl custom-shadow pt-10 bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+          >
+            <div
+              class="w-full p-1 h-1/2 bg-Placeholder_color rounded-2xl"
+            ></div>
+            <div class="w-1/2 p-[6px] bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-3 h-10 bg-Placeholder_color rounded-3xl"></div>
+          </div>
+          <div
+            class="w-[308px] h-[480px] animate-pulse rounded-3xl custom-shadow pt-10 bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
+          >
+            <div
+              class="w-full p-1 h-1/2 bg-Placeholder_color rounded-2xl"
+            ></div>
+            <div class="w-1/2 p-[6px] bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-1 h-1 bg-Placeholder_color rounded-2xl"></div>
+            <div class="w-full p-3 h-10 bg-Placeholder_color rounded-3xl"></div>
+          </div>
+        </div>
 
         <!-- Filtered Cars Result -->
         <div
           v-if="filtersCarFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
-          <CarCard v-for="car in filtersCardResult" :key="car.id" :car="car" />
+          <CarCard
+            v-for="car in filtersCardResult"
+            :key="car.id"
+            :car="car"
+            :fullWidth="false"
+          />
         </div>
 
         <!-- Search Card Results -->
@@ -57,7 +92,12 @@
           v-else-if="cardLocationFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
-          <CarCard v-for="car in matchedLocation" :key="car.id" :car="car" />
+          <CarCard
+            v-for="car in matchedLocation"
+            :key="car.id"
+            :car="car"
+            :fullWidth="false"
+          />
         </div>
 
         <!-- Default Cars List -->
@@ -65,7 +105,12 @@
           v-else-if="cars && !searchFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
-          <CarCard v-for="car in cars" :key="car.id" :car="car" />
+          <CarCard
+            v-for="car in cars"
+            :key="car.id"
+            :car="car"
+            :fullWidth="false"
+          />
         </div>
 
         <!-- Search Results -->
@@ -73,7 +118,12 @@
           v-else-if="cars && searchFlag"
           class="flex flex-wrap lg:justify-normal justify-center gap-4 mt-2"
         >
-          <CarCard v-for="car in searchOutput" :key="car.id" :car="car" />
+          <CarCard
+            v-for="car in searchOutput"
+            :key="car.id"
+            :car="car"
+            :fullWidth="false"
+          />
         </div>
 
         <div v-else>Loading...</div>
@@ -95,7 +145,7 @@ export default {
   name: "CarsPage",
   data() {
     return {
-      cars: {}, // Initialize cars as an empty object
+      cars: "", // Initialize cars as an empty object
       carskeys: [], // carskeys as an empty array
       filter: false,
       orderLocation: "",
@@ -105,6 +155,7 @@ export default {
       searchOutput: [],
       searchFlag: false,
       searchFail: false,
+      fetchError: false,
 
       location: "",
       cardLocationFlag: false,
@@ -122,7 +173,7 @@ export default {
         this.carskeys = Object.keys(response.data); // Get car keys
       })
       .catch((e) => {
-        console.log(e);
+        this.fetchError = e;
       });
 
     // Get search data from localStorage for filtering

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="rounded-3xl custom-shadow bg-white py-6 px-4 flex flex-col justify-between hover:bg-card_hover hover:scale-105 transition-all"
-  >
+  <div :class="fullWidth ? fullStyle : fixedStyle">
     <div class="rating flex justify-end gap-2">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
         <path
@@ -16,7 +14,12 @@
 
       <p class="text-Paragraph_color font-medium text-[12px]">4.8</p>
     </div>
-    <img class="mt-2 h-[180px] max-w-[308px]" :src="url" />
+    <img
+      :class="
+        fullWidth ? 'mt-2 h-[180px] w-full' : 'mt-2 h-[180px] max-w-[308px]'
+      "
+      :src="url"
+    />
     <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
       {{ car.name }}
     </h3>
@@ -61,7 +64,7 @@ import { storage } from "@/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 export default {
   name: "CarCard",
-  props: ["car", "carKey"],
+  props: ["car", "carKey", "fullWidth"],
   methods: {
     getImagePath(prop) {
       try {
