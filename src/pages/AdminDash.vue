@@ -136,8 +136,7 @@ export default {
       fold: false,
       activeSection: "overview",
       userName:
-        JSON.parse(localStorage.getItem("currentAdmin")).name ||
-        JSON.parse(sessionStorage.getItem("currentAdmin")).name,
+        JSON.parse(localStorage.getItem("currentAdmin")).name || "ahmed",
     };
   },
 
@@ -153,7 +152,17 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+    const admin =
+      JSON.parse(localStorage.getItem("currentAdmin")) ||
+      JSON.parse(sessionStorage.getItem("currentAdmin"));
+
+    if (!admin) {
+      this.$router.push("/adminlogin");
+    } else {
+      this.userName = admin.name;
+    }
+  },
 };
 </script>
 

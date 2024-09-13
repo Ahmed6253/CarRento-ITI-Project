@@ -309,9 +309,6 @@ export default {
   },
   methods: {
     closeModal() {
-      if (this.form.role == "owner") {
-        this.$router.push("/ownerDash");
-      }
       this.signup = false;
       this.$store.dispatch("closeModal");
       this.OwnerorUser = false;
@@ -410,13 +407,15 @@ export default {
           } else {
             axios
               .put(
-                `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.form.id}.json`,
+                `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${userData.id}.json`,
                 userData
               )
               .then(() => {
                 sessionStorage.setItem("currentUser", JSON.stringify(userData));
                 if (this.form.role == "owner") {
-                  this.$router.push(`/ownerDash/${this.form.id}`);
+                  this.$store.dispatch("setInOrOut");
+                  this.$router.push("/ownerDash/" + userData.id);
+                  console.log(userData.id);
                 }
                 this.closeModal();
               })

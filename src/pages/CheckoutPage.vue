@@ -39,6 +39,7 @@
           <h3 class="text-2xl mt-10 lg:hidden">ID verification</h3>
 
           <hr class="bg-line_color h-0.5 mt-3 mb-6" />
+          <p class="text-red mb-4" v-if="nameError">All fields are required</p>
 
           <div class="flex justify-between flex-wrap">
             <section class="w-full md:w-1/2 pe-28">
@@ -114,7 +115,7 @@
                 <span class="border-1"> {{ secondFileName }}</span>
               </div>
             </section>
-            <p class="text-red" v-if="nameError">All fields are required</p>
+
             <div class="card-style w-full">
               <div class="md:p-11 p-8">
                 <div class="total-info">
@@ -129,10 +130,7 @@
                   <p>Tax’s:</p>
                   <p>{{ tax }}</p>
                 </div>
-                <div class="total-info">
-                  <p>insurance:</p>
-                  <p>20000</p>
-                </div>
+
                 <div class="total-info">
                   <p>Total:</p>
                   <p class="text-green">{{ totalPriceFinal }} LE</p>
@@ -197,7 +195,7 @@ export default {
         },
       ],
       successURL: "http://localhost:8080/confirmpayment",
-      cancelURL: "http://localhost:8080/cancel",
+      cancelURL: "http://localhost:8080/cars",
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       firstFileName: "",
@@ -210,6 +208,7 @@ export default {
       firstName: "",
       secondName: "",
       addPrices: {},
+      days: 0,
       totalPrice: 0,
       totalPriceFinal: 0,
       tax: 0,
@@ -226,6 +225,7 @@ export default {
   },
   created() {
     // this.car=this.getcar;
+    this.days = sessionStorage.getItem("duration");
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
 
@@ -240,7 +240,7 @@ export default {
           car: this.car,
           additionalFeatures: this.additionalFeatures,
           featurePrices: this.addPrices,
-          TotalPrice: this.totalPrice,
+          TotalPrice: this.totalPriceFinal,
         };
         sessionStorage.setItem("order", JSON.stringify(this.order));
       })
@@ -269,6 +269,7 @@ export default {
     },
     async confirminfo() {
       if (this.firstName == "" || this.secondName == "") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         this.nameError = true;
         return;
       } else {
@@ -289,12 +290,12 @@ export default {
       for (let i in this.additionalFeatures) {
         if (this.additionalFeatures[i]) {
           console.log("price", this.addPrices[i]);
-          this.totalPrice += this.addPrices[i];
+          this.totalPrice += this.addPrices[i] * this.days;
         }
       }
-      this.totalPrice += parseInt(this.car.price);
+      this.totalPrice += parseInt(this.car.price * this.days);
       this.tax = parseInt((this.totalPrice + 500) * 0.14);
-      this.totalPriceFinal = this.tax + this.totalPrice + 20000 + 500;
+      this.totalPriceFinal = this.tax + this.totalPrice + 500;
     },
   },
   mounted() {

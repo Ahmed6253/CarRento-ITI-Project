@@ -138,10 +138,6 @@
           <p>Tax’s</p>
           <p>100</p>
         </div>
-        <div class="total-info">
-          <p>insurance</p>
-          <p>20000</p>
-        </div>
       </div>
       <hr class="bg-line_color h-0.5" />
 
@@ -152,9 +148,10 @@
     </div>
 
     <button
+      @click="$router.push(`/profile/${currentUser.id}`)"
       class="bg-green w-full text-white h-12 rounded-lg mt-6 font-semibold"
     >
-      Confirm Info
+      Track your order
     </button>
   </div>
 </template>
@@ -172,6 +169,12 @@ export default {
   },
   beforeUnmount() {
     sessionStorage.removeItem("orderStatus");
+    sessionStorage.removeItem("orderLocation");
+    sessionStorage.removeItem("orderPickUp");
+    sessionStorage.removeItem("orderDropOff");
+    sessionStorage.removeItem("duration");
+    sessionStorage.removeItem("order");
+    sessionStorage.removeItem("legalName");
   },
   data() {
     return {
@@ -211,6 +214,7 @@ export default {
     await axios
       .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
         carId: this.car.id,
+        carName: this.car.name,
         location: location,
         pickUpDate: pickUpDate,
         dropOffDate: dropOffDate,
@@ -237,7 +241,7 @@ export default {
       }
     },
     gettotal() {
-      this.total2Price = this.totalPrice + 500 + 100 + 20000;
+      this.total2Price = this.totalPrice;
     },
   },
 };

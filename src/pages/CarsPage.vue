@@ -35,10 +35,7 @@
             src="../assets/filter-add.svg"
             alt=""
           />
-          <h3 class="text-primary_color my-6">
-            <span @click="postCar()" class="font-semibold mr-1">15</span>cars in
-            Cairo
-          </h3>
+
           <div class="absolute top-3/4 left-0" v-if="filter">
             <FilterCard />
           </div>
@@ -189,6 +186,16 @@ export default {
 
     // Get search data from localStorage for filtering
     // this.cardSearchFilter();
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.name !== "CarPage") {
+      sessionStorage.removeItem("orderLocation");
+      sessionStorage.removeItem("orderPickUp");
+      sessionStorage.removeItem("orderDropOff");
+      sessionStorage.removeItem("duration");
+    }
+
+    next();
   },
 
   //filters logic start

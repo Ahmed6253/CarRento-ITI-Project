@@ -9,6 +9,7 @@
         class="input-style p-[11px]"
         id="pickup-location"
         v-model="location"
+        @change="validateInputs"
       >
         <option>Cairo</option>
         <option>Alexandria</option>
@@ -135,9 +136,16 @@ export default {
       const pickup = new Date(this.pickupDate);
       const dropoff = new Date(this.dropoffDate);
 
-      if (pickup > dropoff) {
+      if (pickup >= dropoff) {
         this.errorMessage =
           "Pick-up date cannot be later than the drop-off date.";
+        this.isDisabled = true;
+        return;
+      }
+      if (pickup.getDate() < new Date().getDate()) {
+        console.log(new Date().getDate(), pickup.getDate());
+
+        this.errorMessage = "Pick-up date cannot be in the past.";
         this.isDisabled = true;
         return;
       } else {
@@ -160,11 +168,14 @@ export default {
         if (currentPath === "/") {
           this.$router.push("/cars");
         }
-        JSON.stringify(sessionStorage.setItem("orderLocation", this.location));
-        JSON.stringify(sessionStorage.setItem("orderPickUp", this.pickupDate));
-        JSON.stringify(
-          sessionStorage.setItem("orderDropOff", this.dropoffDate)
-        );
+        sessionStorage.setItem("orderLocation", this.location);
+        sessionStorage.setItem("orderPickUp", this.pickupDate);
+        sessionStorage.setItem("orderDropOff", this.dropoffDate);
+        const duration =
+          new Date(this.dropoffDate).getDate() -
+          new Date(this.pickupDate).getDate();
+        console.log(duration);
+        sessionStorage.setItem("duration", duration);
         window.scrollTo({ top: 230, behavior: "smooth" });
 
         this.$emit("search-location", this.location);

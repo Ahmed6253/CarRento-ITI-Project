@@ -1,5 +1,5 @@
 <template>
-  <div id="top" class="md:px-[80px] px-5 pt-32 pb-14">
+  <div class="md:px-[80px] px-5 pt-32 pb-14">
     <div class="flex w-full gap-2">
       <svg
         class="w-1/3"
@@ -46,7 +46,7 @@
         class="lg:w-[400px] w-full mx-auto lg:mx-0 rounded-lg border border-border_color custom-shadow"
         :src="url"
       />
-      <div class="w-full lg:w-80 lg:mx-0 mx-auto">
+      <div class="w-full flex flex-col lg:w-80 lg:mx-0 mx-auto">
         <h1 class="text-primary_color text-2xl font-bold">{{ car.name }}</h1>
         <div class="w-[500px]">
           <div class="flex flex-wrap">
@@ -57,8 +57,9 @@
               </span>
             </div>
           </div>
+          <hr class="my-5 w-2/3 h-0.5 bg-line_color" />
 
-          <div class="flex gap-4 mt-6">
+          <div class="flex gap-4">
             <div class="flex gap-2 w-[150px]">
               <img
                 src="../assets/CarpageImages/Transmition.svg"
@@ -74,11 +75,14 @@
               <p class="text-center text-primary_color">{{ this.car.fuel }}</p>
             </div>
           </div>
+          <hr class="my-5 w-2/3 h-0.5 bg-line_color" />
         </div>
-        <div class="flex mt-4">
-          <h3 class="text-primary_color me-6">Price:</h3>
-          <span class="text-blue-500 font-bold me-2">{{ car.price }}</span>
-          <span class="text-primary_color">EGP</span>
+        <div class="flex mt-5">
+          <h3 class="text-primary_color me-2 text-xl font-medium">Price:</h3>
+          <span class="text-blue-500 font-bold me-2 text-xl">{{
+            car.price
+          }}</span>
+          <span class="text-primary_color">EGP / day</span>
         </div>
       </div>
       <div
@@ -89,7 +93,7 @@
             <h2 class="font-semibold text-lg text-primary_color">
               Pick-up location
             </h2>
-            <p class="text-Paragraph_color">Cairo, Egypt</p>
+            <p class="text-Paragraph_color">{{ location }}</p>
           </div>
           <img
             src="../assets/edit.svg"
@@ -103,7 +107,7 @@
             <h2 class="font-semibold text-lg text-primary_color">
               Pick-up date
             </h2>
-            <p class="text-Paragraph_color">12/12/2022</p>
+            <p class="text-Paragraph_color">{{ pickUpDate }}</p>
           </div>
           <img
             src="../assets/edit.svg"
@@ -117,7 +121,7 @@
             <h2 class="font-semibold text-lg text-primary_color">
               Drop-off date
             </h2>
-            <p class="text-Paragraph_color">12/12/2022</p>
+            <p class="text-Paragraph_color">{{ dropOffDate }}</p>
           </div>
           <img
             src="../assets/edit.svg"
@@ -264,6 +268,9 @@ export default {
       url: "",
       owner: "",
       Order: {},
+      location: "",
+      pickUpDate: "",
+      dropOffDate: "",
     };
   },
   computed: {
@@ -271,8 +278,10 @@ export default {
     ...mapState(["loggedIn"]),
   },
   created() {
-    this.$router.push(`/cars/${this.$route.params.id}#top`);
     this.additionalFeatures = this.$store.getters.getfeatures;
+    this.location = sessionStorage.getItem("orderLocation");
+    this.pickUpDate = sessionStorage.getItem("orderPickUp");
+    this.dropOffDate = sessionStorage.getItem("orderDropOff");
     axios
       .get(
         `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${this.$route.params.id}.json`

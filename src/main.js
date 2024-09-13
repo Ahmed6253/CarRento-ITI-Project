@@ -30,6 +30,7 @@ const routes = [
   {
     path: "/cars/:id",
     component: CarPage,
+    name: "CarPage",
     beforeEnter: (from, to, next) => {
       const location = sessionStorage.getItem("orderLocation");
       const pickUpDate = sessionStorage.getItem("orderPickUp");
