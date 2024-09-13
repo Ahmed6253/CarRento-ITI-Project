@@ -1,4 +1,3 @@
-U
 <template>
   <div class="lg:flex hidden">
     <nav
@@ -95,7 +94,7 @@ U
         </div>
       </div>
     </nav>
-    <section class="mt-9 mx-5">
+    <section class="mt-9 mx-5 w-full">
       <h1
         class="text-primary_color text-2xl mb-10"
         :class="fold ? 'ms-3' : 'ms-5'"
@@ -105,8 +104,8 @@ U
       </h1>
       <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
 
-      <DashChart v-if="activeSection === 'overview'" />
-      <DashUsers v-if="activeSection === 'users'" />
+      <DashChart v-if="activeSection === 'overview'" class="mx-0 w-full px-0" />
+      <DashUsers v-if="activeSection === 'users'" class="mx-0 w-full px-0" />
     </section>
   </div>
   <div
@@ -132,11 +131,13 @@ export default {
   },
 
   data() {
+    const savedAdmin =
+      JSON.parse(localStorage.getItem("currentAdmin")) ||
+      JSON.parse(sessionStorage.getItem("currentAdmin"));
     return {
       fold: false,
       activeSection: "overview",
-      userName:
-        JSON.parse(localStorage.getItem("currentAdmin")).name || "ahmed",
+      userName: savedAdmin ? savedAdmin.name : "Guest", // Default to "Guest" if no data
     };
   },
 
@@ -151,17 +152,6 @@ export default {
         return;
       }
     },
-  },
-  created() {
-    const admin =
-      JSON.parse(localStorage.getItem("currentAdmin")) ||
-      JSON.parse(sessionStorage.getItem("currentAdmin"));
-
-    if (!admin) {
-      this.$router.push("/adminlogin");
-    } else {
-      this.userName = admin.name;
-    }
   },
 };
 </script>

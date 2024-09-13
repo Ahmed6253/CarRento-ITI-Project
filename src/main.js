@@ -85,10 +85,10 @@ const routes = [
       hideNavFoot: true,
     },
     beforeEnter(from, to, next) {
-      const savedUser =
+      const savedAdmin =
         localStorage.getItem("currentAdmin") ||
         sessionStorage.getItem("currentAdmin");
-      if (!savedUser) {
+      if (!savedAdmin) {
         next("/adminlogin");
       } else {
         next();
@@ -101,7 +101,18 @@ const routes = [
     meta: {
       hideNavFoot: true,
     },
+
+    beforeEnter(from, to, next) {
+      const savedAdmin = 
+      localStorage.getItem("currentAdmin") ||
+      sessionStorage.getItem("currentAdmin");
+      if (savedAdmin) {
+        next("/admin");
+      } else {
+        next();
+    }
   },
+},
   {
     path: "/ownerdash/:id",
     component: OwnerDash,

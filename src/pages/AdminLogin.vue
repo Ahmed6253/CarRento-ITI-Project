@@ -36,7 +36,7 @@
           />
         </div>
 
-        <div class="lg:ml-9 mx-auto flex flex-col">
+        <div class="lg:ml-9 mx-auto flex flex-col w-full">
           <div class="flex gap-2 items-center pt-5 pb-5">
             <label class="">
               <input
@@ -49,10 +49,9 @@
             </label>
             <p>Remember me</p>
           </div>
-
           <button
             type="submit"
-            class="text-white text-base bg-primary_color py-3 rounded-lg"
+            class="text-white text-base bg-primary_color lg:py-3 py-2 pl-4 rounded-lg w-full"
           >
             login
           </button>
@@ -79,7 +78,6 @@ export default {
       axios
         .get("https://carrento-9ea05-default-rtdb.firebaseio.com/admins.json")
         .then((response) => {
-          console.log(response.data);
           const admins = response.data;
 
           // Use Object.values to get array of admin objects
@@ -89,7 +87,8 @@ export default {
           );
 
           if (foundAdmin) {
-            this.currentUser = foundAdmin;
+            this.currentAdmin = foundAdmin;
+            console.log(`the current admin is: ${this.currentAdmin}`);
 
             // Save the admin data based on 'rememberUser' flag
             if (this.rememberUser) {
@@ -111,20 +110,6 @@ export default {
           console.log(`Error fetching data: ${error}`);
         });
     },
-    checkAuthentication() {
-      const savedAdmin =
-        localStorage.getItem("currentAdmin") ||
-        sessionStorage.getItem("currentAdmin");
-      console.log("Saved Admin:", savedAdmin); // Debug line
-
-      if (savedAdmin) {
-        this.$router.push("/admin");
-      }
-    },
-  },
-
-  created() {
-    this.checkAuthentication();
   },
 };
 </script>

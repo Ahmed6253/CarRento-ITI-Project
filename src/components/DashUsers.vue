@@ -43,7 +43,7 @@
                   'bg-black text-white': renter.blocked,
                   'bg-red text-white': !renter.blocked
                 }"
-                class="w-full py-2.5 px-5 hover:bg-gray-700 rounded-lg"
+                class=" py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(renter)"
               >
                 {{ renter.blocked ? 'Unblock' : 'Block account' }}
@@ -77,7 +77,7 @@
                   'bg-black text-white': owner.blocked,
                   'bg-red text-white': !owner.blocked
                 }"
-                class="w-full py-2.5 px-5 hover:bg-gray-700 rounded-lg"
+                class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(owner)"
               >
                 {{ owner.blocked ? 'Unblock' : 'Block account' }}

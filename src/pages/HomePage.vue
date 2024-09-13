@@ -1,6 +1,7 @@
 <template>
   <!-- ------------------------------------hero section--------------------------------- -->
-  <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
+  
+    <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 text-left">
         <h1 class="lg:text-6xl text-4xl">
@@ -28,8 +29,9 @@
     </div>
   </div>
 
+  
   <!-- -----------------------------------logo separator------------------------------------->
-  <section class="bg-white py-5 my-0 animate-fade-up">
+  <section class="bg-white py-5 my-0 animate-fade-up showAnimate">
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap justify-between items-center">
         <div class="logo-container w-1/2 md:w-1/3 lg:w-1/6">
@@ -422,9 +424,13 @@ export default {
       animatedElements.forEach((el) => {
         observer.observe(el);
       });
+      
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+
+</style>

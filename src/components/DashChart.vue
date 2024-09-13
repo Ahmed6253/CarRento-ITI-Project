@@ -19,13 +19,13 @@
 
    <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
     <h5 class="text-gray-500 mb-3">Profit Share</h5>
-    <h2 class="text-4xl">{{ earnings/4 }}</h2>
+    <h2 class="text-4xl">{{ Math.floor(earnings*0.2) }}</h2>
    </div>
   </div>
 
   <!-- --------------------------------------chart--------------------------------- -->
-    <div class="mx-0">
-        <div id="chart" class="w-full">
+    <div class="mx-0 w-full">
+        <div id="chart" class="w-full mx-0">
       <apexchart
         type="bar"
         height="300"
@@ -129,6 +129,7 @@ export default {
         },
         xaxis: {
           categories: [
+            "Jan",
             "Feb",
             "Mar",
             "Apr",
@@ -141,7 +142,7 @@ export default {
         },
         yaxis: {
           title: {
-            text: "$ (hundreds)",
+            text: " (metrics)",
           },
         },
         fill: {
@@ -150,7 +151,7 @@ export default {
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands";
+              return  val;
             },
           },
         },
@@ -197,11 +198,13 @@ export default {
       this.SeptOrders = 0;
       this.SeptUsers = 0;
       for(let orderId of this.ordersKeys){
-        if(this.orders[orderId].orderDropOff){
-          const month = this.order[orderId].split("-")[1]
+        if(this.orders[orderId].dropOffDate){
+          const month = this.orders[orderId].dropOffDate.split("-")[1]
 
           if (month === "09") {
-            this.septRevnue = this.septRevnue + Number(this.orders[orderId].TotalPrice);
+            if(this.orders[orderId].status === "done"){
+              this.septRevnue = this.septRevnue + Number(this.orders[orderId].TotalPrice);
+            }
             this.SeptOrders++;
             this.SeptUsers = this.SeptUsers + 2;
           }
@@ -211,17 +214,19 @@ export default {
       this.series = [
         {
           name: "reveue",
-          data: [44, 55, 57, 56, 66, 58, 63, 60, this.septRevnue],
+          data: [6044, 5055, 5057, 3056, 5066, 4058, 6043, 6660, this.septRevnue],
         },
         {
           name: "orders",
-          data: [76, 85, 101, 98, 94, 105, 91, 114, this.SeptOrders],
+          data: [6, 8, 10, 9, 9, 10, 9, 11, this.SeptOrders],
         },
         {
           name: "users",
           data: [3, 4, 3, 2, 4, 4, 5, 5, this.SeptUsers],
         },
       ];
+
+      this.chartOptions = { ...this.chartOptions };
     }
   }
 };
@@ -254,8 +259,8 @@ export default {
 //     for (let orderId of this.ordersKeys) {
 //       const order = this.orders[orderId];
       
-//       if (order.orderDropOff) {
-//         const month = order.orderDropOff.split('-')[1]; // Extracts the month (e.g., '09' for September)
+//       if (order.dropOffDate) {
+//         const month = order.dropOffDate.split('-')[1]; // Extracts the month (e.g., '09' for September)
         
 //         // Check if month exists in monthlyData
 //         if (this.monthlyData[month]) {
