@@ -310,7 +310,7 @@ export default {
   methods: {
     closeModal() {
       if (this.form.role == "owner") {
-        this.$router.push("/ownerDash");
+        this.$router.push("/ownerdash");
       }
       this.signup = false;
       this.$store.dispatch("closeModal");

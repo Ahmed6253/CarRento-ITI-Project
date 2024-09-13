@@ -1,4 +1,4 @@
-U
+
 <template>
   <div class="lg:flex hidden">
     <nav
@@ -95,7 +95,7 @@ U
         </div>
       </div>
     </nav>
-    <section class="mt-9 mx-5">
+    <section class="mt-9 mx-5 w-full">
       <h1
         class="text-primary_color text-2xl mb-10"
         :class="fold ? 'ms-3' : 'ms-5'"
@@ -105,8 +105,8 @@ U
       </h1>
       <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
 
-      <DashChart v-if="activeSection === 'overview'" />
-      <DashUsers v-if="activeSection === 'users'" />
+      <DashChart v-if="activeSection === 'overview'" class="mx-0 w-full px-0" />
+      <DashUsers v-if="activeSection === 'users'" class="mx-0 w-full px-0"/>
     </section>
   </div>
   <div

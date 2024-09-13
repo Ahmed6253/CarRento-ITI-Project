@@ -36,7 +36,7 @@
           />
         </div>
 
-        <div class="lg:ml-9 mx-auto flex flex-col">
+        <div class="lg:ml-9 mx-auto flex flex-col w-full">
           <div class="flex gap-2 items-center pt-5 pb-5">
             <label class="">
               <input
@@ -49,10 +49,9 @@
             </label>
             <p>Remember me</p>
           </div>
-
           <button
             type="submit"
-            class="text-white text-base bg-primary_color py-3 rounded-lg"
+            class="text-white text-base bg-primary_color lg:py-3 py-2 pl-4 rounded-lg w-full"
           >
             login
           </button>
