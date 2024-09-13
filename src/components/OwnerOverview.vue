@@ -55,7 +55,7 @@
           :class="{
             'text-blue-500': order.status === 'done',
             'text-yellow-500': order.status === 'pending',
-            'text-green-500': order.status === 'approved',
+            'text-green': order.status === 'approved',
           }"
         >
           {{ order.status }}
