@@ -13,13 +13,13 @@
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">earnings</h5>
+      <h5 class="text-gray-500 mb-3">Orders earnings</h5>
       <h2 class="text-4xl">{{ earnings }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">Rating</h5>
-      <h2 class="text-4xl">{{ revenue }}</h2>
+      <h5 class="text-gray-500 mb-3">Revenue</h5>
+      <h2 class="text-4xl">{{ Math.floor(earnings * 0.8) }}</h2>
     </div>
   </div>
   <!-- --------------------------------------table---------------------------------- -->
@@ -28,34 +28,46 @@
   <table class="w-full text-sm text-left rtl:text-right text-gray-500">
     <thead class="text-xs text-gray-700 uppercase">
       <tr>
-        <th scope="col" class="px-6 py-3">Car Model</th>
-        <th scope="col" class="px-6 py-3">Reter Name</th>
-        <th scope="col" class="px-6 py-3">Start Date</th>
-        <th scope="col" class="px-6 py-3">End Date</th>
-        <th scope="col" class="px-6 py-3">Price</th>
+        <th scope="col" class="px-6 py-3">Car Number</th>
+        <th scope="col" class="px-6 py-3">Car Location</th>
+        <th scope="col" class="px-6 py-3">Renter Name</th>
+        <th scope="col" class="px-6 py-3">Pick-up Date</th>
+        <th scope="col" class="px-6 py-3">Drop-off Date</th>
+        <th scope="col" class="px-6 py-3">Total Price</th>
         <th scope="col" class="px-6 py-3">Status</th>
-        <th scope="col" class="px-6 py-3">Car Rating</th>
-        <th scope="col" class="px-6 py-3">Owner Rating</th>
+        <!-- <th scope="col" class="px-6 py-3">Rating</th> -->
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white border-b rounded-2xl animated">
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+      <tr
+        v-for="(order, index) in ownerOrders"
+        :key="index"
+        class="bg-white border-b rounded-2xl animated"
+      >
+        <td class="px-6 py-4">{{ order.carId }}</td>
+        <td class="px-6 py-4">{{ order.location }}</td>
+        <td class="px-6 py-4">{{ order.renter }}</td>
+        <td class="px-6 py-4">{{ order.pickUpDate }}</td>
+        <td class="px-6 py-4">{{ order.dropOffDate }}</td>
+        <td class="px-6 py-4">{{ order.TotalPrice }}</td>
+        <td
+          class="px-6 py-4"
+          :class="{
+            'text-blue-500': order.status === 'done',
+            'text-yellow-500': order.status === 'pending',
+            'text-green-500': order.status === 'approved',
+          }"
         >
-          {{}}
-        </th>
-        <td class="px-6 py-4">{{}}</td>
-        <td class="px-6 py-4">{{}}</td>
-        <td class="px-6 py-4">{{}}</td>
-        <td class="px-6 py-4">{{}}</td>
-        <td class="px-6 py-4">{{}}</td>
+          {{ order.status }}
+        </td>
+        <!-- <td class="px-6 py-4">{{ ownerOrders[orderId].rating }}</td> -->
       </tr>
     </tbody>
   </table>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "OwnerOverview",
 
@@ -64,30 +76,109 @@ export default {
       doneOrders: 0,
       pendingOrders: 0,
       earnings: 0,
-      revenue: 0,
-      orders: [
-        {
-          orderId: 1,
-          carModel: "Nissan something",
-          startDate: "2022-01-01",
-          endDate: "2022-01-02",
-          status: "Done",
-          ownerName: "Ahmed",
-          renterName: "aya",
-          payment: "done",
-        },
-        {
-          orderId: 2,
-          carModel: "nissan something",
-          startDate: "2022-01-01",
-          endDate: "2022-01-02",
-          status: "Pending",
-          ownerName: "Ahmed",
-          renterName: "aya",
-          payment: "done",
-        },
-      ],
+      owner:
+        JSON.parse(localStorage.getItem("currentUser")).id ||
+        JSON.parse(sessionStorage.getItem("currentUser")).id,
+      ownerOrders: [],
     };
+  },
+  mounted() {
+    // Fetch orders data in mounted hook
+    axios
+      .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
+      .then((response) => {
+        this.orders = response.data;
+        this.ordersKeys = Object.keys(response.data);
+
+        // Call pendingOrdersCalc after data is fetched
+        this.pendingOrdersCalc();
+        this.ordersDoneCalc();
+        this.earningsCalc();
+        this.currentOwnerOrders();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+
+  methods: {
+    pendingOrdersCalc() {
+      this.pendingOrders = 0; // Reset count
+
+      for (let orderId of this.ordersKeys) {
+        const order = this.orders[orderId];
+
+        // Ensure both owner strings are properly formatted
+        const orderOwner = order.owner.trim().toLowerCase();
+        const currentOwner = this.owner.trim().toLowerCase();
+
+        // console.log("Order owner:", orderOwner);
+        // console.log("Current logged-in owner:", currentOwner);
+
+        // Ensure the current order belongs to the logged-in owner
+        if (orderOwner === currentOwner && order.status === "pending") {
+          this.pendingOrders++;
+        }
+      }
+      // Final check
+      console.log("Total pending orders:", this.pendingOrders);
+    },
+
+    ordersDoneCalc() {
+      this.doneOrders = 0; // Reset count
+
+      for (let orderId of this.ordersKeys) {
+        const order = this.orders[orderId];
+
+        // Ensure both owner strings are properly formatted
+        const orderOwner = order.owner.trim().toLowerCase();
+        const currentOwner = this.owner.trim().toLowerCase();
+
+        // console.log("Order owner:", orderOwner);
+        // console.log("Current logged-in owner:", currentOwner);
+
+        // Ensure the current order belongs to the logged-in owner
+        if (orderOwner === currentOwner && order.status === "done") {
+          this.doneOrders++;
+        }
+      }
+      // Final check
+      console.log("Total done orders:", this.doneOrders);
+    },
+    earningsCalc() {
+      this.earnings = 0;
+      let sum = 0;
+
+      for (let orderId of this.ordersKeys) {
+        const order = this.orders[orderId];
+
+        // Ensure both owner strings are properly formatted
+        const orderOwner = order.owner.trim().toLowerCase();
+        const currentOwner = this.owner.trim().toLowerCase();
+
+        // console.log("Order owner:", orderOwner);
+        // console.log("Current logged-in owner:", currentOwner);
+
+        // Ensure the current order belongs to the logged-in owner
+        if (orderOwner === currentOwner && order.status === "done") {
+          sum = sum + Number(order.TotalPrice);
+        }
+      }
+      // Final check
+      this.earnings = sum;
+      console.log("earnings:", this.earnings);
+    },
+
+    currentOwnerOrders() {
+      for (let orderId of this.ordersKeys) {
+        if (
+          this.orders[orderId].owner.trim().toLowerCase() ===
+          this.owner.trim().toLowerCase()
+        ) {
+          this.ownerOrders.push(this.orders[orderId]);
+        }
+      }
+    },
   },
 };
 </script>

@@ -19,7 +19,7 @@
 
    <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
     <h5 class="text-gray-500 mb-3">Profit Share</h5>
-    <h2 class="text-4xl">{{ earnings*0.2 }}</h2>
+    <h2 class="text-4xl">{{ Math.floor(earnings*0.2) }}</h2>
    </div>
   </div>
 
