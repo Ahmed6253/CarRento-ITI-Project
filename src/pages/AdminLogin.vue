@@ -78,7 +78,6 @@ export default {
       axios
         .get("https://carrento-9ea05-default-rtdb.firebaseio.com/admins.json")
         .then((response) => {
-          console.log(response.data);
           const admins = response.data;
 
           // Use Object.values to get array of admin objects
@@ -88,16 +87,14 @@ export default {
           );
 
           if (foundAdmin) {
-            this.currentUser = foundAdmin;
+            this.currentAdmin = foundAdmin;
+            console.log(`the current admin is: ${this.currentAdmin}`);
 
             // Save the admin data based on 'rememberUser' flag
             if (this.rememberUser) {
               localStorage.setItem("currentAdmin", JSON.stringify(foundAdmin));
             } else {
-              sessionStorage.setItem(
-                "currentAdmin",
-                JSON.stringify(foundAdmin)
-              );
+              sessionStorage.setItem("currentAdmin",JSON.stringify(foundAdmin));
             }
 
             // Redirect to admin dashboard
@@ -110,20 +107,8 @@ export default {
           console.log(`Error fetching data: ${error}`);
         });
     },
-    checkAuthentication() {
-      const savedAdmin =
-        localStorage.getItem("currentAdmin") ||
-        sessionStorage.getItem("currentAdmin");
-      console.log("Saved Admin:", savedAdmin); // Debug line
-
-      if (savedAdmin) {
-        this.$router.push("/admin");
-      }
-    },
+    
   },
 
-  mounted() {
-    this.checkAuthentication();
-  },
 };
 </script>

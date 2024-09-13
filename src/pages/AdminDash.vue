@@ -132,14 +132,13 @@ export default {
   },
 
   data() {
-    return {
-      fold: false,
-      activeSection: "overview",
-      userName:
-        JSON.parse(localStorage.getItem("currentAdmin")).name ||
-        JSON.parse(sessionStorage.getItem("currentAdmin")).name,
-    };
-  },
+  const savedAdmin = JSON.parse(localStorage.getItem("currentAdmin")) || JSON.parse(sessionStorage.getItem("currentAdmin"));
+  return {
+    fold: false,
+    activeSection: "overview",
+    userName: savedAdmin ? savedAdmin.name : "Guest", // Default to "Guest" if no data
+  };
+},
 
   methods: {
     logout() {
@@ -153,7 +152,7 @@ export default {
       }
     },
   },
-  created() {},
+
 };
 </script>
 
