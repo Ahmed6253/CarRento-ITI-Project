@@ -3,22 +3,46 @@
     <nav
       :class="
         fold
-          ? 'custom-shadow rounded-e-3xl w-[120px] h-screen transition-all sticky top-0'
-          : 'custom-shadow rounded-e-3xl w-1/4 h-screen transition-all sticky top-0'
+          ? 'custom-shadow rounded-e-3xl w-[120px] h-screen transition-all sticky top-0 bg-white'
+          : 'custom-shadow rounded-e-3xl w-1/4 h-screen transition-all sticky top-0 bg-white'
       "
     >
       <div class="flex justify-between py-6 px-10">
-        <img v-if="!fold" src="../assets/logo.svg" alt="" />
-        <img v-if="fold" src="../assets/logoHalf.svg" alt="" />
         <img
-          src="../assets/ownerDashImges/fold.svg"
+          v-if="!fold"
+          :src="logo"
           alt=""
-          :class="fold ? 'hidden ' : 'cursor-pointer'"
+          @click="$router.push('/')"
+          class="cursor-pointer"
+        />
+        <img
+          v-if="fold"
+          :src="logoHalf"
+          alt=""
+          @click="$router.push('/')"
+          class="cursor-pointer"
+        />
+
+        <svg
+          :class="fold ? 'hidden' : 'cursor-pointer'"
           @click="
             fold = !fold;
             foldCliked = !foldCliked;
           "
-        />
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="navigate_before">
+            <path
+              id="icon"
+              d="M15.705 7.41L14.295 6L8.29498 12L14.295 18L15.705 16.59L11.125 12L15.705 7.41Z"
+              class="fill-primary_color"
+            />
+          </g>
+        </svg>
       </div>
       <hr />
       <div
@@ -31,7 +55,7 @@
             :class="
               activeSection == 'overview'
                 ? 'activeSection'
-                : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
+                : 'flex gap-x-4 p-[10px] text-primary_color rounded-lg hover:bg-card_hover cursor-pointer'
             "
           >
             <svg
@@ -57,7 +81,7 @@
             :class="
               activeSection == 'orders'
                 ? 'activeSection'
-                : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
+                : 'flex gap-x-4 p-[10px] text-primary_color rounded-lg hover:bg-card_hover cursor-pointer'
             "
           >
             <svg
@@ -97,7 +121,7 @@
             :class="
               activeSection == 'cars'
                 ? 'activeSection'
-                : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
+                : 'flex gap-x-4 p-[10px] text-primary_color rounded-lg hover:bg-card_hover cursor-pointer'
             "
           >
             <svg
@@ -135,7 +159,7 @@
         </div>
         <div
           @click="logOut()"
-          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
         >
           <img src="../assets/ownerDashImges/logOut.svg" alt="" />
           <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
@@ -182,12 +206,21 @@ export default {
       fold: true,
       activeSection: "overview",
       currUser: "",
+      logo: "",
+      logoHalf: "",
     };
   },
   created() {
     this.currUser =
       JSON.parse(localStorage.getItem("currentUser")) ||
       JSON.parse(sessionStorage.getItem("currentUser"));
+    if (localStorage.getItem("darkMode") === "true") {
+      this.logo = require("../assets/logoDark.svg");
+      this.logoHalf = require("../assets/logoHalfDark.svg");
+    } else {
+      this.logo = require("../assets/logo.svg");
+      this.logoHalf = require("../assets/logoHalf.svg");
+    }
   },
   methods: {
     logOut() {

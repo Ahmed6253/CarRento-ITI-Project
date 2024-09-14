@@ -1,42 +1,17 @@
 <template>
   <div class="md:px-[80px] px-5 pt-32 pb-14">
-    <div class="flex w-full gap-2">
-      <svg
-        class="w-1/3"
-        width="416"
-        height="8"
-        viewBox="0 0 416 8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          class="fill-primary_color"
-          width="416"
-          height="8"
-          rx="4"
-          fill="#D1D5DB"
-        />
-      </svg>
-      <svg
-        class="w-1/3"
-        width="416"
-        height="8"
-        viewBox="0 0 416 8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="416" height="8" rx="4" fill="#D1D5DB" />
-      </svg>
-      <svg
-        class="w-1/3"
-        width="416"
-        height="8"
-        viewBox="0 0 416 8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect width="416" height="8" rx="4" fill="#D1D5DB" />
-      </svg>
+    <div class="flex flex-nowrap">
+      <div class="p-bar-container">
+        <div class="p-bar-full"></div>
+      </div>
+
+      <div class="p-bar-container">
+        <div class="p-bar-empty"></div>
+      </div>
+
+      <div class="p-bar-container">
+        <div class="p-bar-empty"></div>
+      </div>
     </div>
     <section
       class="flex flex-wrap xl:justify-between justify-evenly mt-20 gap-y-4"
@@ -95,12 +70,30 @@
             </h2>
             <p class="text-Paragraph_color">{{ location }}</p>
           </div>
-          <img
-            src="../assets/edit.svg"
-            alt=""
-            @click="$router.push('/cars')"
-            class="cursor-pointer"
-          />
+          <button class="w-6" @click="$router.push('/cars')">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="vuesax/outline/edit-2">
+                <g id="edit-2">
+                  <path
+                    id="Vector"
+                    d="M5.53999 19.52C4.92999 19.52 4.35999 19.31 3.94999 18.92C3.42999 18.43 3.17999 17.69 3.26999 16.89L3.63999 13.65C3.70999 13.04 4.07999 12.23 4.50999 11.79L12.72 3.09999C14.77 0.929988 16.91 0.869988 19.08 2.91999C21.25 4.96999 21.31 7.10999 19.26 9.27999L11.05 17.97C10.63 18.42 9.84999 18.84 9.23999 18.94L6.01999 19.49C5.84999 19.5 5.69999 19.52 5.53999 19.52ZM15.93 2.90999C15.16 2.90999 14.49 3.38999 13.81 4.10999L5.59999 12.81C5.39999 13.02 5.16999 13.52 5.12999 13.81L4.75999 17.05C4.71999 17.38 4.79999 17.65 4.97999 17.82C5.15999 17.99 5.42999 18.05 5.75999 18L8.97999 17.45C9.26999 17.4 9.74999 17.14 9.94999 16.93L18.16 8.23999C19.4 6.91999 19.85 5.69999 18.04 3.99999C17.24 3.22999 16.55 2.90999 15.93 2.90999Z"
+                    class="fill-primary_color"
+                  />
+                  <path
+                    id="Vector_2"
+                    d="M17.3404 10.95C17.3204 10.95 17.2904 10.95 17.2704 10.95C14.1504 10.64 11.6404 8.26997 11.1604 5.16997C11.1004 4.75997 11.3804 4.37997 11.7904 4.30997C12.2004 4.24997 12.5804 4.52997 12.6504 4.93997C13.0304 7.35997 14.9904 9.21997 17.4304 9.45997C17.8404 9.49997 18.1404 9.86997 18.1004 10.28C18.0504 10.66 17.7204 10.95 17.3404 10.95Z"
+                    class="fill-primary_color"
+                  />
+                </g>
+              </g>
+            </svg>
+          </button>
         </div>
         <div class="flex justify-between">
           <div>
@@ -109,12 +102,30 @@
             </h2>
             <p class="text-Paragraph_color">{{ pickUpDate }}</p>
           </div>
-          <img
-            src="../assets/edit.svg"
-            alt=""
-            @click="$router.push('/cars')"
-            class="cursor-pointer"
-          />
+          <button class="w-6" @click="$router.push('/cars')">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="vuesax/outline/edit-2">
+                <g id="edit-2">
+                  <path
+                    id="Vector"
+                    d="M5.53999 19.52C4.92999 19.52 4.35999 19.31 3.94999 18.92C3.42999 18.43 3.17999 17.69 3.26999 16.89L3.63999 13.65C3.70999 13.04 4.07999 12.23 4.50999 11.79L12.72 3.09999C14.77 0.929988 16.91 0.869988 19.08 2.91999C21.25 4.96999 21.31 7.10999 19.26 9.27999L11.05 17.97C10.63 18.42 9.84999 18.84 9.23999 18.94L6.01999 19.49C5.84999 19.5 5.69999 19.52 5.53999 19.52ZM15.93 2.90999C15.16 2.90999 14.49 3.38999 13.81 4.10999L5.59999 12.81C5.39999 13.02 5.16999 13.52 5.12999 13.81L4.75999 17.05C4.71999 17.38 4.79999 17.65 4.97999 17.82C5.15999 17.99 5.42999 18.05 5.75999 18L8.97999 17.45C9.26999 17.4 9.74999 17.14 9.94999 16.93L18.16 8.23999C19.4 6.91999 19.85 5.69999 18.04 3.99999C17.24 3.22999 16.55 2.90999 15.93 2.90999Z"
+                    class="fill-primary_color"
+                  />
+                  <path
+                    id="Vector_2"
+                    d="M17.3404 10.95C17.3204 10.95 17.2904 10.95 17.2704 10.95C14.1504 10.64 11.6404 8.26997 11.1604 5.16997C11.1004 4.75997 11.3804 4.37997 11.7904 4.30997C12.2004 4.24997 12.5804 4.52997 12.6504 4.93997C13.0304 7.35997 14.9904 9.21997 17.4304 9.45997C17.8404 9.49997 18.1404 9.86997 18.1004 10.28C18.0504 10.66 17.7204 10.95 17.3404 10.95Z"
+                    class="fill-primary_color"
+                  />
+                </g>
+              </g>
+            </svg>
+          </button>
         </div>
         <div class="flex justify-between">
           <div>
@@ -123,19 +134,37 @@
             </h2>
             <p class="text-Paragraph_color">{{ dropOffDate }}</p>
           </div>
-          <img
-            src="../assets/edit.svg"
-            alt=""
-            @click="$router.push('/cars')"
-            class="cursor-pointer"
-          />
+          <button class="w-6" @click="$router.push('/cars')">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="vuesax/outline/edit-2">
+                <g id="edit-2">
+                  <path
+                    id="Vector"
+                    d="M5.53999 19.52C4.92999 19.52 4.35999 19.31 3.94999 18.92C3.42999 18.43 3.17999 17.69 3.26999 16.89L3.63999 13.65C3.70999 13.04 4.07999 12.23 4.50999 11.79L12.72 3.09999C14.77 0.929988 16.91 0.869988 19.08 2.91999C21.25 4.96999 21.31 7.10999 19.26 9.27999L11.05 17.97C10.63 18.42 9.84999 18.84 9.23999 18.94L6.01999 19.49C5.84999 19.5 5.69999 19.52 5.53999 19.52ZM15.93 2.90999C15.16 2.90999 14.49 3.38999 13.81 4.10999L5.59999 12.81C5.39999 13.02 5.16999 13.52 5.12999 13.81L4.75999 17.05C4.71999 17.38 4.79999 17.65 4.97999 17.82C5.15999 17.99 5.42999 18.05 5.75999 18L8.97999 17.45C9.26999 17.4 9.74999 17.14 9.94999 16.93L18.16 8.23999C19.4 6.91999 19.85 5.69999 18.04 3.99999C17.24 3.22999 16.55 2.90999 15.93 2.90999Z"
+                    class="fill-primary_color"
+                  />
+                  <path
+                    id="Vector_2"
+                    d="M17.3404 10.95C17.3204 10.95 17.2904 10.95 17.2704 10.95C14.1504 10.64 11.6404 8.26997 11.1604 5.16997C11.1004 4.75997 11.3804 4.37997 11.7904 4.30997C12.2004 4.24997 12.5804 4.52997 12.6504 4.93997C13.0304 7.35997 14.9904 9.21997 17.4304 9.45997C17.8404 9.49997 18.1404 9.86997 18.1004 10.28C18.0504 10.66 17.7204 10.95 17.3404 10.95Z"
+                    class="fill-primary_color"
+                  />
+                </g>
+              </g>
+            </svg>
+          </button>
         </div>
       </div>
       <div
         class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]"
       >
-        <h1 class="text-blue-500 text-2xl mb-6">Description</h1>
-        <p>{{ this.car.description }}</p>
+        <h1 class="text-primary_color text-2xl mb-6">Description</h1>
+        <p class="text-Paragraph_color">{{ this.car.description }}</p>
       </div>
       <!-- section two -->
       <div
@@ -230,16 +259,16 @@
           </div>
           <div>
             <h2 class="font-semibold text-lg text-primary_color">Reviews</h2>
-            <p class="text-Paragraph_color">25</p>
+            <p class="text-Paragraph_color">{{ this.car.ratingCount }}</p>
           </div>
           <div>
             <h2 class="font-semibold text-lg text-primary_color">Rating</h2>
-            <p class="text-Paragraph_color">5.0</p>
+            <p class="text-Paragraph_color">{{ this.car.rating }}</p>
           </div>
         </div>
       </div>
       <button
-        class="bg-green rounded-lg font-medium text-white hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
+        class="bg-green rounded-lg font-medium text-slate-50 hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
         @click="booknow"
       >
         Book Now

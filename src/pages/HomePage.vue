@@ -1,10 +1,10 @@
 <template>
   <!-- ------------------------------------hero section--------------------------------- -->
-  
-    <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
+
+  <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 text-left">
-        <h1 class="lg:text-6xl text-4xl">
+        <h1 class="lg:text-6xl text-4xl text-primary_color">
           Rent your perfect car with <br />
           a big discount
         </h1>
@@ -29,7 +29,6 @@
     </div>
   </div>
 
-  
   <!-- -----------------------------------logo separator------------------------------------->
   <section class="bg-white py-5 my-0 animate-fade-up showAnimate">
     <div class="mx-4 md:mx-20">
@@ -80,15 +79,17 @@
 
   <section class="bg-bg_color pt-24 p-16 my-0 text-center animate-fade-up">
     <div class="mx-4 md:mx-20">
-      <h2 class="text-[36px] font-medium">
+      <h2 class="text-[36px] font-medium text-primary_color">
         Easy steps to rent your perfect car
       </h2>
-      <p class="w-75% text-[16px]">
+      <p class="w-75% text-[16px] text-primary_color">
         Renting a car with us is a breeze! Simply browse our extensive fleet to
         find the perfect vehicle for your needs.
       </p>
 
-      <div class="flex flex-col md:flex-row py-16 text-center">
+      <div
+        class="flex flex-col md:flex-row py-16 text-center text-primary_color"
+      >
         <div class="wrapper">
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
@@ -138,7 +139,7 @@
   </section>
 
   <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
-  <section class="bg-bg_color pt-0 pb-32 my-0 text-center">
+  <section class="bg-bg_color pt-0 pb-32 my-0 text-center text-primary_color">
     <div class="mx-4 md:mx-20">
       <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
       <p class="w-75% text-[16px]">
@@ -184,18 +185,7 @@
           <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
             <CarCard :car="car" :fullWidth="true" />
           </swiper-slide>
-          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" :fullWidth="true" />
-          </swiper-slide>
-          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" :fullWidth="true" />
-          </swiper-slide>
-          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" :fullWidth="true" />
-          </swiper-slide>
-          <swiper-slide v-for="car in cars" :key="car.id" class="py-4 px-3">
-            <CarCard :car="car" :fullWidth="true" />
-          </swiper-slide>
+
           <!-- loading -->
           <swiper-slide class="py-4 px-3" v-if="!fetchErorr && !cars">
             <div
@@ -270,7 +260,9 @@
 
   <!-- ------------------------------------------rent your perfect car-------------------------------- -->
 
-  <section class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up">
+  <section
+    class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up text-primary_color"
+  >
     <div class="mx-4 md:mx-20">
       <div
         class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]"
@@ -293,7 +285,9 @@
 
   <!-- ---------------------------------why choose us--------------------------- -->
 
-  <section class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up">
+  <section
+    class="bg-bg_color pt-0 pb-24 my-0 animate-fade-up text-primary_color"
+  >
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap">
         <div class="w-full lg:w-1/2">
@@ -304,10 +298,10 @@
         <div class="flex w-full lg:w-1/2 flex-wrap">
           <div class="w-1/2 p-1">
             <div
-              class="py-6 px-4 bg-white hover:bg-blue-50 rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Unmtched Selection</h3>
-              <p class="text-gray-500 text-[12px]">
+              <p class="text-Paragraph_color text-[12px]">
                 With a vast fleet of vehicles, we offer the perfect car for
                 every preference.
               </p>
@@ -316,10 +310,10 @@
 
           <div class="w-1/2 p-1">
             <div
-              class="py-6 px-4 bg-white hover:bg-blue-50 rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Competitive Pricing</h3>
-              <p class="text-gray-500 text-[12px]">
+              <p class="text-Paragraph_color text-[12px]">
                 Enjoy affordable rental prices without compromising on quality
                 or service.
               </p>
@@ -328,10 +322,10 @@
 
           <div class="w-1/2 p-1">
             <div
-              class="py-6 px-4 bg-white hover:bg-blue-50 rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Convenient Locations</h3>
-              <p class="text-gray-500 text-[12px]">
+              <p class="text-Paragraph_color text-[12px]">
                 We have convenient pickup and drop-off locations to suit your
                 travel needs.
               </p>
@@ -340,12 +334,12 @@
 
           <div class="w-1/2 p-1">
             <div
-              class="py-6 px-4 bg-white hover:bg-blue-50 rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[22px] font-medium mb-2">
                 Flexible Rental Options
               </h3>
-              <p class="text-gray-500 text-[12px]">
+              <p class="text-Paragraph_color text-[12px]">
                 Need a car for a few hours, a day, or longer, we offer flexible
                 rental options.
               </p>
@@ -383,6 +377,7 @@ export default {
   data() {
     return {
       cars: "",
+      ratingArray: [],
       fetchErorr: false,
     };
   },
@@ -390,7 +385,10 @@ export default {
     axios
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/cars.json")
       .then((response) => {
-        this.cars = response.data;
+        this.cars = Object.values(response.data);
+        this.cars.sort((a, b) => b.ratingCount - a.ratingCount);
+        this.cars = this.cars.slice(0, 5);
+        console.log(this.cars);
       })
       .catch((e) => {
         this.fetchErorr = e;
@@ -424,13 +422,9 @@ export default {
       animatedElements.forEach((el) => {
         observer.observe(el);
       });
-      
     },
   },
 };
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>

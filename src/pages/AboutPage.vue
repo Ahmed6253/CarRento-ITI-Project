@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg_color">
+  <div class="bg-bg_color text-primary_color">
     <div
       class="about-bg py-64 md:h-[400px] h-[250px] flex-shrink-0 flex items-center"
     >
@@ -9,37 +9,35 @@
         About Us
       </h1>
     </div>
-    <div  class="md:mx-10 mx-4 lg:mx-20 pb-12">
+    <div class="md:mx-10 mx-4 lg:mx-20 pb-12">
       <div class="mt-20 lg:w-6/12 w-full mx-auto mb-48">
-      <section  class=" sec-1 showAnimate" >
-        <h3 class="res-header animate">Our Story</h3>
-        <p class="res-parapgraph animate">
-          "At Car Rento, we're passionate about providing hassle-free and
-          enjoyable car rental experiences. With professionals having years of
-          industry expertise, we've built a reputation for reliability,
-          exceptional service, and a diverse fleet of vehicles to suit every
-          need. Our team of dedicated professionals is committed to ensuring
-          your journey is comfortable and memorable."
-        </p>
-      </section>
-        
+        <section class="sec-1 showAnimate">
+          <h3 class="res-header animate">Our Story</h3>
+          <p class="res-parapgraph animate">
+            "At Car Rento, we're passionate about providing hassle-free and
+            enjoyable car rental experiences. With professionals having years of
+            industry expertise, we've built a reputation for reliability,
+            exceptional service, and a diverse fleet of vehicles to suit every
+            need. Our team of dedicated professionals is committed to ensuring
+            your journey is comfortable and memorable."
+          </p>
+        </section>
 
         <img
           src="../assets/images/dotted_Arrow.png"
           class="mx-auto mt-10 pb-4 w-32 h-44 md:w-52 md:h-72"
         />
 
-        <section class="showAnimate" >
+        <section class="showAnimate">
           <h3 class="res-header">Our Mission</h3>
-        <p class="res-parapgraph">
-          Our mission is to make car rental a seamless and enjoyable experience
-          for everyone. We strive to offer a diverse range of vehicles to suit
-          every need, competitive pricing, and exceptional customer service. We
-          believe that travel should be accessible and hassle-free, and we're
-          committed to making that a reality.
-        </p>
+          <p class="res-parapgraph">
+            Our mission is to make car rental a seamless and enjoyable
+            experience for everyone. We strive to offer a diverse range of
+            vehicles to suit every need, competitive pricing, and exceptional
+            customer service. We believe that travel should be accessible and
+            hassle-free, and we're committed to making that a reality.
+          </p>
         </section>
-        
       </div>
       <div class="grid lg:grid-cols-2 mb-20">
         <img src="../assets/images/our_values.png" class="mx-auto lg:mx-0" />
@@ -119,20 +117,12 @@
 export default {
   name: "AboutPage",
   data() {
-    return {
-  }
+    return {};
   },
-
 
   methods: {
-    scrollsection() {
-      
-    }
-    
+    scrollsection() {},
   },
-}
+};
 </script>
-<style scoped>
-
-
-</style>
+<style scoped></style>

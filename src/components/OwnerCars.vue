@@ -7,13 +7,15 @@
         fformError = false;
         carExists = false;
       "
-      class="bg-green hover:bg-green_hover text-white px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
+      class="bg-green hover:bg-green_hover text-slate-50 px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
     >
       <img src="../assets/ownerDashImges/add.svg" /> Add Car
     </button>
     <div class="relative overflow-x-auto">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-Paragraph_color"
+      >
+        <thead class="text-xs uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">Car Model</th>
             <th scope="col" class="px-6 py-3">Brand</th>
@@ -21,6 +23,7 @@
             <th scope="col" class="px-6 py-3">Type</th>
             <th scope="col" class="px-6 py-3">Price</th>
             <th scope="col" class="px-6 py-3">Number</th>
+            <th scope="col" class="px-6 py-3">Rating</th>
             <th scope="col" class="px-6 py-3">Set Status</th>
           </tr>
         </thead>
@@ -32,7 +35,7 @@
           >
             <th
               scope="row"
-              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              class="px-6 py-4 font-medium text-primary_color whitespace-nowrap"
             >
               {{ car.name }}
             </th>
@@ -41,13 +44,14 @@
             <td class="px-6 py-4">{{ car.type }}</td>
             <td class="px-6 py-4">{{ car.price }} LE</td>
             <td class="px-6 py-4">{{ car.number }}</td>
+            <td class="px-6 py-4">{{ car.rating }}</td>
             <td class="pl-6 py-4">
               <button
                 @click="setAvalability(car.id)"
                 :class="
                   car.available
-                    ? 'bg-green hover:bg-green_hover rounded text-white p-2'
-                    : 'bg-Placeholder_color hover:bg-Placeholder_color rounded text-white p-2'
+                    ? 'bg-green hover:bg-green_hover rounded text-slate-50 p-2'
+                    : 'bg-Placeholder_color hover:bg-Placeholder_color rounded text-slate-50 p-2'
                 "
               >
                 {{ car.available ? "Available" : " Not Available" }}
@@ -56,7 +60,7 @@
             <td class="pr-6 py-4">
               <button
                 @click="deleteCar(car.id)"
-                class="bg-red hover:bg-red_hover rounded text-white p-2"
+                class="bg-red hover:bg-red_hover rounded text-slate-50 p-2"
               >
                 Delete
               </button>
@@ -588,8 +592,8 @@ export default {
           description: "",
           fuel: "",
           manualOrAuto: "Automatic",
-          ratingSum:0,
-          ratingCount:0
+          ratingSum: 0,
+          ratingCount: 0,
         };
 
         this.carFeatures = {

@@ -5,22 +5,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg_color: "#F9FAFB",
-        primary_color: "#111827",
-        white: "#ffffff",
-        border_color: "#E5E7EB",
-        line_color: "#D1D5DB",
-        Placeholder_color: "#9CA3AF",
-        Paragraph_color: "#6B7280",
-        primary_hover: "#374151",
-        card_hover: "#DBEAFE",
-        red: "#EF4444",
-        red_hover: "#F87171",
-        green: "#10B981",
-        green_hover: "#34D399",
-        warning: "#F97316",
-        warning_hover: "#FF9F5C",
-        values_hover: "#EFF6FF",
+        bg_color: "var(--bg)",
+        primary_color: "var(--primarycolor)",
+        white: "var(--white)",
+        border_color: "var(--bordercolor)",
+        line_color: "var(--linecolor)",
+        Placeholder_color: "var(--Placeholdercolor)",
+        Paragraph_color: "var(--Paragraphcolor)",
+        primary_hover: "var(--primaryhover)",
+        card_hover: "var(--cardhover)",
+        red: "var(--red)",
+        red_hover: "var(--redhover)",
+        green: "var(--green)",
+        green_hover: "var(--greenhover)",
+        warning: "var(--warning)",
+        warning_hover: "var(--warninghover)",
+        values_hover: "var(--valueshover)",
       },
       backgroundPosition: {
         "custom-60": "0px 210px",
@@ -30,9 +30,10 @@ module.exports = {
       backgroundImage: {
         "radial-one-color":
           "radial-gradient(circle,#DBEAFE 0%, transparent 100%)",
-        "split-half": "linear-gradient(to right, #F9FAFB 50%, #E4E4E4 50%)",
+        "split-half":
+          "linear-gradient(to right, var(--bg) 50%, var(--white) 50%)",
         "quarter-split":
-          "linear-gradient(to left, #E4E4E4 50%, #F9FAFB 50%), linear-gradient(to bottom, #E4E4E4 50%, #F9FAFB 50%)",
+          "linear-gradient(to left, var(--white) 50%, var(--bg) 50%), linear-gradient(to bottom, #E4E4E4 50%, #F9FAFB 50%)",
         "rent-bg": "url('@/assets/home-images/rent-car.png')",
         "hero-bg": "url('@/assets/home-images/hero.png')",
       },

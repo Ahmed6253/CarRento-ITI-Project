@@ -47,7 +47,7 @@
                 v-model="rememberUser"
               />
             </label>
-            <p>Remember me</p>
+            <p class="text-primary_color">Remember me</p>
           </div>
           <button
             type="submit"

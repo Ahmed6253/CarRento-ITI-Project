@@ -22,12 +22,21 @@
             ></div>
           </div>
           <div class="mx-auto" v-if="!loading">
-            <img
-              src="../imagesNavfoot/arrow_back.svg"
-              alt=""
-              @click="this.rateOpen = false"
-              class="m-6 cursor-pointer"
-            />
+            <svg
+              @click="rateOpen = false"
+              class="mt-6 ms-6 cursor-pointer"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+                class="fill-primary_color cursor-pointer"
+              />
+            </svg>
+
             <h1
               class="text-2xl text-primary_color font-medium text-center mt-12 mb-2"
             >
@@ -163,7 +172,9 @@
       class="flex flex-col justify-between custom-shadow bg-white rounded-2xl py-6 px-12 mt-6"
     >
       <div class="flex justify-between">
-        <p class="text-3xl font-semibold">Basic Information</p>
+        <p class="text-3xl font-semibold text-primary_color">
+          Basic Information
+        </p>
         <img class="w-8 h-8" src="../imagesNavfoot/edit.png" alt="" />
       </div>
       <div class="flex flex-col md:flex-row justify-between pt-3">
@@ -183,20 +194,22 @@
     </div>
     <!--------------------- section one end ----------------------->
     <!--------------------- section two start --------------------->
-    <div class="custom-shadow mt-6 rounded-2xl py-6 md:px-12 px-5">
+    <div class="custom-shadow mt-6 rounded-2xl bg-white py-6 md:px-12 px-5">
       <div>
-        <p class="text-3xl font-semibold">Rentals History</p>
+        <p class="text-3xl font-semibold text-primary_color">Rentals History</p>
         <div
           class="custom-shadow rounded-xl py-6 px-6 mt-6"
           v-for="(order, index) in this.UserOrders"
           :key="index"
         >
-          <p class="text-xl font-semibold">{{ order.carName }}</p>
+          <p class="text-xl font-semibold text-primary_color">
+            {{ order.carName }}
+          </p>
           <div class="flex flex-col lg:flex-row justify-between pt-3">
             <div class="py-3">
               <p class="text-xl text-primary_color">Pick-up location</p>
               <p class="text-base text-Paragraph_color">
-                {{ order.location }} ,Egypt
+                {{ order.location }}
               </p>
             </div>
             <div class="py-3">
@@ -220,7 +233,7 @@
             <div class="py-3">
               <button
                 v-if="order.status === 'pending'"
-                class="bg-orange-300 text-white rounded-lg ml-2 px-6 py-2.5"
+                class="bg-orange-300 rounded-lg ml-2 px-6 py-2.5 text-slate-50"
                 disabled
               >
                 Pending
@@ -228,13 +241,13 @@
               <button
                 @click="openRate(index)"
                 v-if="order.status === 'Accepted'"
-                class="bg-primary_color hover:bg-primary_hover text-white rounded-lg ml-2 px-6 py-2.5"
+                class="bg-primary_color hover:bg-primary_hover rounded-lg ml-2 px-6 py-2.5 text-white"
               >
                 Rate your order
               </button>
               <button
                 v-if="order.status === 'done'"
-                class="bg-green text-white rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed"
+                class="bg-green rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-slate-50"
               >
                 Order rated
               </button>
@@ -245,12 +258,14 @@
     </div>
     <!--------------------- section two end  ---------------------->
     <!--------------------- section three start  -------------------->
-    <div class="custom-shadow rounded-xl mb-24 py-6 px-12 mt-6">
+    <div class="custom-shadow rounded-xl mb-24 py-6 px-12 mt-6 bg-white">
       <div class="border-b-[1px] border-line_color">
-        <p class="text-3xl font-semibold">Settings and Privacy</p>
+        <p class="text-3xl font-semibold text-primary_color">
+          Settings and Privacy
+        </p>
         <div class="flex gap-x-16 items-center py-5">
           <p class="text-xl text-primary_color">Password</p>
-          <p class="pt-2">{{ password }}</p>
+          <p class="pt-2 text-primary_color">{{ password }}</p>
           <img class="w-8 h-8" src="../imagesNavfoot/edit.png" alt="" />
         </div>
       </div>
@@ -284,7 +299,7 @@
             </div>
             <div>
               <button
-                class="bg-red w-full md:w-auto px-6 py-2.5 hover:bg-red_hover text-white rounded-lg"
+                class="bg-red w-full md:w-auto px-6 py-2.5 hover:bg-red_hover text-slate-50 rounded-lg"
               >
                 Delete card
               </button>
@@ -301,7 +316,7 @@
       </div>
       <div>
         <button
-          class="bg-red w-full md:w-auto px-6 py-2.5 my-6 hover:bg-red_hover text-white rounded-lg"
+          class="bg-red w-full md:w-auto px-6 py-2.5 my-6 hover:bg-red_hover text-slate-50 rounded-lg"
         >
           Delete account
         </button>

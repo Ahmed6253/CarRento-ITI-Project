@@ -1,26 +1,26 @@
 <template>
   <!-- navbar start -->
 
-  <nav class="border-gray-200">
+  <nav class="text-primary_color">
     <div
       class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6 bg-white opacity-90"
     >
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
         <router-link to="/">
-          <img
-            src="../imagesNavfoot/logo.png"
-            class="h-8"
-            alt="Flowbite Logo"
-          />
+          <img :src="logo" alt="" />
         </router-link>
       </a>
       <div
         class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-3"
       >
+        <label class="switch">
+          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+          <span class="slider"></span>
+        </label>
         <!-- login button -->
         <button
           type="button"
-          class="px-8 py-3 bg-primary_color hidden lg:block text-white rounded-full"
+          class="px-8 py-3 bg-primary_color hidden lg:block text-white font-medium rounded-full"
           @click="openModal"
         >
           {{ loggedIn ? "Logout" : "Login" }}
@@ -32,8 +32,8 @@
           class="bg-gray-800 hidden md:block rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer"
         >
           <img
-            class="rounded-full"
-            src="../imagesNavfoot/User.png"
+            class="rounded-full w-14"
+            src="../imagesNavfoot/User.svg"
             alt="user photo"
           />
         </a>
@@ -53,12 +53,12 @@
         id="navbar-user"
       >
         <ul
-          class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
+          class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
           <li>
             <router-link
               to="/"
-              class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
               aria-current="page"
               >Home</router-link
@@ -68,7 +68,7 @@
             <router-link
               to="/cars"
               href="/cars"
-              class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
               >Cars</router-link
             >
@@ -76,14 +76,14 @@
           <li>
             <router-link
               to="/about"
-              class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
               >About</router-link
             >
           </li>
           <li>
             <a
-              class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
               @click="openModal()"
               >{{ loggedIn ? "Logout" : "Login" }}</a
             >
@@ -91,7 +91,7 @@
           <li>
             <a
               @click="showProfile()"
-              class="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
               >Profile</a
             >
           </li>
@@ -105,18 +105,55 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   name: "NavBar",
+
   data() {
     return {
       showMenu: false,
+      dark: false,
+      logo: "",
     };
   },
   computed: {
     ...mapState(["isModalOpen", "loggedIn"]),
   },
 
+  created() {
+    if (localStorage.getItem("darkMode") === "true") {
+      this.dark = true;
+    } else {
+      this.dark = false;
+    }
+    if (localStorage.getItem("darkMode") === "true") {
+      this.logo = require("../assets/logoDark.svg");
+    } else {
+      this.logo = require("../assets/logo.svg");
+    }
+  },
+
+  updated() {
+    if (localStorage.getItem("darkMode") === "true") {
+      this.logo = require("../assets/logoDark.svg");
+    } else {
+      this.logo = require("../assets/logo.svg");
+    }
+  },
+
   methods: {
+    toggleDarkMode() {
+      this.dark = !this.dark;
+      if (this.dark) {
+        localStorage.setItem("darkMode", "true");
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+      } else {
+        localStorage.setItem("darkMode", "false");
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+      }
+    },
     toggleMenu() {
       this.showMenu = !this.showMenu;
     },
@@ -155,3 +192,64 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* From Uiverse.io by satyamchaudharydev */
+/* The switch - the box around the slider */
+.switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  /* size of sliding icon -- sun and moon */
+  --size-of-icon: 1.4em;
+  /* it is like a inline-padding of switch */
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e0e0e2;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon, 1.4em);
+  width: var(--size-of-icon, 1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset, 0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+  background: #303136;
+  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+</style>

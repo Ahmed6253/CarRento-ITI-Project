@@ -19,7 +19,7 @@
       <h4 class="semi-header font-medium">Order Info</h4>
     </div>
 
-    <div class="card-style">
+    <div class="card-style text-primary_color">
       <div class="md:grid grid-cols-2 md:p-11 p-8">
         <div>
           <h2 class="font-semibold semi-header">{{ this.car.name }}</h2>
@@ -52,8 +52,8 @@
               </div>
 
               <div class="mt-8 w-full xl:w-[73%] mb-8 lg:mb-0">
-                <h1 class="text-blue-500 text-2xl">Description</h1>
-                <p>{{ this.car.description }}</p>
+                <h1 class="text-primary_color text-2xl">Description</h1>
+                <p class="text-Paragraph_color">{{ this.car.description }}</p>
               </div>
             </div>
           </div>
@@ -87,31 +87,19 @@
         <h2 class="info-header">Order information</h2>
         <div class="mb-3">
           <h4 class="info-sub-header">Pick-up location</h4>
-          <p class="info-paragraph">{{ this.car.location }} , Egypt</p>
+          <p class="info-paragraph">{{ this.car.location }}</p>
         </div>
 
         <div class="mb-3">
           <h4 class="info-sub-header">Pick-up date</h4>
-          <p class="info-paragraph">26/08/2024</p>
+          <p class="info-paragraph">{{ this.pickUpDate }}</p>
         </div>
 
         <div class="mb-3">
           <h4 class="info-sub-header">Drop-off date</h4>
-          <p class="info-paragraph">26/09/2024</p>
+          <p class="info-paragraph">{{ this.dropOffDate }}</p>
         </div>
 
-        <section class="grid grid-col-1">
-          <div
-            v-for="(feature, index) in additionalFeatures"
-            :key="index"
-            class="flex gap-4"
-          >
-            <p class="text-xl text-gray-900" v-if="feature">{{ index }}</p>
-            <p class="text-gray-500 text-[16px] text-start" v-if="feature">
-              {{ this.addPrices[index] }} LE added
-            </p>
-          </div>
-        </section>
         <!-- <div class="mb-3">
           <h4 class="info-sub-header">2 Infant child seat</h4>
           <p class="info-paragraph">1050 LE added</p>
@@ -124,7 +112,7 @@
       </div>
     </div>
 
-    <div class="card-style">
+    <div class="card-style text-primary_color">
       <div class="md:p-11 p-8">
         <div class="total-info">
           <p>Total</p>
@@ -149,7 +137,7 @@
 
     <button
       @click="$router.push(`/profile/${currentUser.id}`)"
-      class="bg-green w-full text-white h-12 rounded-lg mt-6 font-semibold"
+      class="bg-green w-full text-slate-50 h-12 rounded-lg mt-6 font-semibold"
     >
       Track your order
     </button>
@@ -186,6 +174,9 @@ export default {
       personalName: "",
       total2Price: 0,
       currentUser: "",
+      location: "",
+      pickUpDate: "",
+      dropOffDate: "",
     };
   },
   computed: {
@@ -193,9 +184,9 @@ export default {
   },
   async created() {
     const order = JSON.parse(sessionStorage.getItem("order"));
-    const location = sessionStorage.getItem("orderLocation");
-    const pickUpDate = sessionStorage.getItem("orderPickUp");
-    const dropOffDate = sessionStorage.getItem("orderDropOff");
+    this.location = sessionStorage.getItem("orderLocation");
+    this.pickUpDate = sessionStorage.getItem("orderPickUp");
+    this.dropOffDate = sessionStorage.getItem("orderDropOff");
     this.car = order.car;
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
@@ -215,9 +206,9 @@ export default {
       .post(`https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json`, {
         carId: this.car.id,
         carName: this.car.name,
-        location: location,
-        pickUpDate: pickUpDate,
-        dropOffDate: dropOffDate,
+        location: this.location,
+        pickUpDate: this.pickUpDate,
+        dropOffDate: this.dropOffDate,
         status: "pending",
         renter: this.currentUser.id,
         paymentStatus: "done",

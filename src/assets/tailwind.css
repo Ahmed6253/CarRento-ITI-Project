@@ -29,7 +29,7 @@
     background: url("./images/about.png") lightgray 50% / cover no-repeat;
   }
   .values_card {
-    @apply py-6 ps-4 pe-6  card-style hover:bg-values_hover lg:w-52 2xl:w-72 xl:w-64  md:w-72 text-center md:text-left w-full mb-4 h-40;
+    @apply py-6 ps-4 pe-6  card-style hover:bg-card_hover lg:w-52 2xl:w-72 xl:w-64  md:w-72 text-center md:text-left w-full mb-4 h-40;
   }
   .car-bg {
     background: url("./images/about-car.png") no-repeat;
@@ -58,11 +58,11 @@
   }
 
   .p-bar-full {
-    @apply bg-gray-900 pt-2 rounded;
+    @apply bg-primary_color pt-2 rounded;
   }
 
   .p-bar-empty {
-    @apply bg-gray-300 pt-2 rounded;
+    @apply bg-gray-400 pt-2 rounded;
   }
 
   .input-style {
@@ -104,20 +104,56 @@
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-up {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
-  
+
   .animate-fade-up.show {
     opacity: 1;
     transform: translateY(0);
   }
-  
 }
 
 * {
   font-family: "Poppins", sans-serif;
+}
+
+.light {
+  --bg: #f9fafb;
+  --primarycolor: #111827;
+  --white: #ffffff;
+  --bordercolor: #e5e7eb;
+  --linecolor: #d1d5db;
+  --Placeholdercolor: #9ca3af;
+  --Paragraphcolor: #6b7280;
+  --primaryhover: #374151;
+  --cardhover: #dbeafe;
+  --red: #ef4444;
+  --redhover: #f87171;
+  --green: #10b981;
+  --greenhover: #34d399;
+  --warning: #f97316;
+  --warninghover: #ff9f5c;
+  --valueshover: #eff6ff;
+}
+.dark {
+  --bg: #111827;
+  --primarycolor: #ffffff;
+  --white: #555b66;
+  --bordercolor: #ffffff;
+  --linecolor: #d1d5db;
+  --Placeholdercolor: #ffffff;
+  --Paragraphcolor: #f9fafb;
+  --primaryhover: #e2e4e6;
+  --cardhover: #4e5e74;
+  --red: #ef4444;
+  --redhover: #f87171;
+  --green: #05c786;
+  --greenhover: #34d399;
+  --warning: #f97316;
+  --warninghover: #ff9f5c;
+  --valueshover: #eff6ff;
 }

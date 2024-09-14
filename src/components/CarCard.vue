@@ -1,6 +1,6 @@
 <template>
   <div :class="fullWidth ? fullStyle : fixedStyle">
-    <div class="rating flex justify-end gap-2">
+    <div class="rating flex justify-end gap-2 text-primary_color">
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
         <path
           :class="
@@ -29,7 +29,9 @@
       "
       :src="url"
     />
-    <h3 class="mt-4 text-[18px] font-medium text-start pb-0.5">
+    <h3
+      class="mt-4 text-[18px] font-medium text-start pb-0.5 text-primary_color"
+    >
       {{ car.name }}
     </h3>
     <p
@@ -47,16 +49,18 @@
           class="flex gap-1 text-[11px] text-center justify-start w-fit px-1 pt-1"
         >
           <img :src="getImagePath(prop)" alt="" class="w-[13px]" />
-          <p class="mt-0.5 text-[10px]">
+          <p class="mt-0.5 text-[10px] text-primary_color">
             {{ prop === "Airconditioner" ? "Air Conditioner" : prop }}
           </p>
         </div></span
       >
     </div>
 
-    <div class="flex text-[16px] py-3 justify-between">
+    <div class="flex text-[16px] py-3 justify-between text-primary_color">
       <span>Price</span>
-      <span>{{ car.price }} LE<span class="text-gray-500">/day</span></span>
+      <span
+        >{{ car.price }} LE<span class="text-Paragraph_color">/day</span></span
+      >
     </div>
 
     <button

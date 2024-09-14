@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:px-[80px] px-[20px] pt-32 pb-14">
+  <div class="lg:px-[80px] px-[20px] pt-32 pb-14 bg-bg_color">
     <SearchCard @search-location="cardSearchFilter" />
 
     <section class="grid gap-4 grid-cols-4 text-poppins">

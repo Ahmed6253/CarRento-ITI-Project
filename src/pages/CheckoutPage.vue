@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg_color mx-0 px-0">
+  <div class="bg-bg_color mx-0 px-0 text-primary_color">
     <div class="mx-4 md:mx-20 pt-32 pb-14">
       <!-- ------------------------------------------upper bars------------------------------------------- -->
       <div class="flex flex-nowrap">
@@ -21,12 +21,19 @@
         class="flex justify-start md:justify-between flex-col lg:flex-row pt-24 ps-3"
       >
         <div class="py-3 lg:py-0 px-0 flex items-center">
-          <img
-            src="../assets/home-images/icons/arrow_back_24px.svg"
-            alt=""
-            class="w-6 h-6 cursor-pointer"
+          <svg
             @click="$router.go(-1)"
-          />
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+              class="fill-primary_color cursor-pointer"
+            />
+          </svg>
           <h2 class="text-3xl ps-4 font-medium">Review your booking</h2>
         </div>
       </div>
@@ -71,7 +78,7 @@
               <div class="upload-file mb-6">
                 <label
                   for="front-id"
-                  class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between"
+                  class="text-slate-50 bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer"
                 >
                   <span>Upload Your Photo </span>
                   <img
@@ -96,7 +103,7 @@
               <div class="upload-file mb-6">
                 <label
                   for="back-id"
-                  class="text-white bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between"
+                  class="bg-black text-slate-50 rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer text-Paragraph_color"
                 >
                   <span>Upload Your Photo </span>
                   <img
@@ -150,7 +157,7 @@
             />
 
             <button
-              class="rounded-lg mt-8 text-white w-full bg-green py-[10px]"
+              class="rounded-lg mt-8 text-slate-50 w-full bg-green py-[10px]"
               @click="confirminfo"
             >
               Pay Now
@@ -162,7 +169,12 @@
 
         <!-- ---------------------------------order details card-------------------------------------------- -->
         <aside class="w-full lg:w-1/3 p-3">
-          <OrderDetailsCard :imgUrl="url" />
+          <OrderDetailsCard
+            :imgUrl="url"
+            :pickUpDate="pickUpDate"
+            :dropOffDate="dropOffDate"
+            :location="location"
+          />
         </aside>
       </div>
     </div>
@@ -204,6 +216,9 @@ export default {
       nameError: false,
       url: "",
       car: {},
+      pickUpDate: "",
+      dropOffDate: "",
+      location: "",
       additionalFeatures: {},
       firstName: "",
       secondName: "",
@@ -226,6 +241,9 @@ export default {
   created() {
     // this.car=this.getcar;
     this.days = sessionStorage.getItem("duration");
+    this.pickUpDate = sessionStorage.getItem("orderPickUp");
+    this.dropOffDate = sessionStorage.getItem("orderDropOff");
+    this.location = sessionStorage.getItem("orderLocation");
     this.additionalFeatures = this.getfeatures;
     this.addPrices = this.getfeaturesprices;
 

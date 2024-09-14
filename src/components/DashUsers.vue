@@ -5,7 +5,11 @@
         @click="shown = 'renter'"
         type="button"
         class="px-10 py-3 text-sm font-medium"
-        :class="shown === 'renter' ? 'bg-black text-white hover:bg-black hover:text-white' : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'"
+        :class="
+          shown === 'renter'
+            ? 'bg-black text-white hover:bg-black hover:text-white'
+            : 'bg-primary_color text-black hover:bg-gray-200 hover:text-white'
+        "
       >
         Renter
       </button>
@@ -14,7 +18,11 @@
         @click="shown = 'owner'"
         type="button"
         class="px-10 py-3 text-sm font-medium"
-        :class="shown === 'owner' ? 'bg-black text-white hover:bg-black hover:text-white' : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'"
+        :class="
+          shown === 'owner'
+            ? 'bg-black text-white hover:bg-black hover:text-white'
+            : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'
+        "
       >
         Owner
       </button>
@@ -22,9 +30,9 @@
 
     <!-- Renters Section -->
     <div v-if="shown === 'renter'" class="Renter relative overflow-x-auto">
-      <h1 class="text-primary_color text-2xl my-10"> Renters</h1>
+      <h1 class="text-primary_color text-2xl my-10">Renters</h1>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-base text-gray-700 uppercase">
+        <thead class="text-base text-Paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
             <th scope="col" class="px-6 py-3">Name</th>
@@ -40,13 +48,13 @@
             <th scope="col" class="px-6 py-3">
               <button
                 :class="{
-                  'bg-black text-white': renter.blocked,
-                  'bg-red text-white': !renter.blocked
+                  'bg-black text-slate-50': renter.blocked,
+                  'bg-red text-slate-50': !renter.blocked,
                 }"
-                class=" py-2.5 px-5 hover:bg-gray-700 rounded-lg"
+                class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(renter)"
               >
-                {{ renter.blocked ? 'Unblock' : 'Block account' }}
+                {{ renter.blocked ? "Unblock" : "Block account" }}
               </button>
             </th>
           </tr>
@@ -56,9 +64,9 @@
 
     <!-- Owners Section -->
     <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto">
-      <h1 class="text-primary_color text-2xl my-10"> Owners</h1>
+      <h1 class="text-primary_color text-2xl my-10">Owners</h1>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-base text-gray-700 uppercase">
+        <thead class="text-base text-paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
             <th scope="col" class="px-6 py-3">Name</th>
@@ -74,13 +82,13 @@
             <th scope="col" class="px-6 py-3">
               <button
                 :class="{
-                  'bg-black text-white': owner.blocked,
-                  'bg-red text-white': !owner.blocked
+                  'bg-black text-slate-50': owner.blocked,
+                  'bg-red text-slate-50': !owner.blocked,
                 }"
                 class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(owner)"
               >
-                {{ owner.blocked ? 'Unblock' : 'Block account' }}
+                {{ owner.blocked ? "Unblock" : "Block account" }}
               </button>
             </th>
           </tr>
@@ -145,7 +153,9 @@ export default {
           { blocked: user.blocked }
         )
         .then(() => {
-          console.log(`${user.blocked ? 'Blocked' : 'Unblocked'} user: ${user.userName}`);
+          console.log(
+            `${user.blocked ? "Blocked" : "Unblocked"} user: ${user.userName}`
+          );
         })
         .catch((err) => console.log(err));
     },

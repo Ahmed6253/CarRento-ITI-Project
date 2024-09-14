@@ -3,38 +3,42 @@
     -->
   <div class="flex justify-between gap-4 mb-5">
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">Orders done</h5>
-      <h2 class="text-4xl">{{ doneOrders }}</h2>
+      <h5 class="text-Paragraph_color mb-3">Orders done</h5>
+      <h2 class="text-4xl text-primary_color">{{ doneOrders }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">Pending Orders</h5>
-      <h2 class="text-4xl">{{ pendingOrders }}</h2>
+      <h5 class="text-Paragraph_color mb-3">Pending Orders</h5>
+      <h2 class="text-4xl text-primary_color">{{ pendingOrders }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">Orders earnings</h5>
-      <h2 class="text-4xl">{{ earnings }}</h2>
+      <h5 class="text-Paragraph_color mb-3">Orders earnings</h5>
+      <h2 class="text-4xl text-primary_color">{{ earnings }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-gray-500 mb-3">Revenue</h5>
-      <h2 class="text-4xl">{{ Math.floor(earnings * 0.8) }}</h2>
+      <h5 class="text-Paragraph_color mb-3">Revenue</h5>
+      <h2 class="text-4xl text-primary_color">
+        {{ Math.floor(earnings * 0.8) }}
+      </h2>
     </div>
   </div>
   <!-- --------------------------------------table---------------------------------- -->
-  <h2 class="text-xl font-bold my-5">Recent Orders</h2>
+  <h2 class="text-xl text-primary_color font-bold my-5">Recent Orders</h2>
 
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+  <table class="w-full text-sm text-left rtl:text-right text-Paragraph_color">
     <thead class="text-xs text-gray-700 uppercase">
       <tr>
-        <th scope="col" class="px-6 py-3">Car Number</th>
-        <th scope="col" class="px-6 py-3">Car Location</th>
-        <th scope="col" class="px-6 py-3">Renter Name</th>
-        <th scope="col" class="px-6 py-3">Pick-up Date</th>
-        <th scope="col" class="px-6 py-3">Drop-off Date</th>
-        <th scope="col" class="px-6 py-3">Total Price</th>
-        <th scope="col" class="px-6 py-3">Status</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Car Number</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Car Location</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Renter Name</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Pick-up Date</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">
+          Drop-off Date
+        </th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Total Price</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">Status</th>
         <!-- <th scope="col" class="px-6 py-3">Rating</th> -->
       </tr>
     </thead>
@@ -76,11 +80,19 @@ export default {
       doneOrders: 0,
       pendingOrders: 0,
       earnings: 0,
-      owner:
-        JSON.parse(localStorage.getItem("currentUser")).id ||
-        JSON.parse(sessionStorage.getItem("currentUser")).id,
+      owner: "",
       ownerOrders: [],
     };
+  },
+  created() {
+    const owner =
+      JSON.parse(localStorage.getItem("currentUser")) ||
+      JSON.parse(sessionStorage.getItem("currentUser"));
+    if (owner) {
+      this.owner = owner.id;
+    } else {
+      this.$router.push("/");
+    }
   },
   mounted() {
     // Fetch orders data in mounted hook
@@ -138,7 +150,10 @@ export default {
         // console.log("Current logged-in owner:", currentOwner);
 
         // Ensure the current order belongs to the logged-in owner
-        if (orderOwner === currentOwner && order.status === "done") {
+        if (
+          (orderOwner === currentOwner && order.status === "done") ||
+          order.status === "Accepted"
+        ) {
           this.doneOrders++;
         }
       }
@@ -160,7 +175,10 @@ export default {
         // console.log("Current logged-in owner:", currentOwner);
 
         // Ensure the current order belongs to the logged-in owner
-        if (orderOwner === currentOwner && order.status === "done") {
+        if (
+          (orderOwner === currentOwner && order.status === "done") ||
+          order.status === "Accepted"
+        ) {
           sum = sum + Number(order.TotalPrice);
         }
       }

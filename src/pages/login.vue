@@ -6,8 +6,22 @@
     <div
       class="flex custom-shadow m-4 rounded-2xl mx-auto w-[80%] max-h-screen bg-white overflow-auto"
     >
-      <div v-if="OwnerorUser" class="mx-auto my-auto p-6">
-        <img src="../imagesNavfoot/arrow_back.svg" alt="" @click="closeModal" />
+      <div v-if="OwnerorUser" class="mx-auto my-auto p-6 text-primary_color">
+        <div class="py-3 lg:py-0 px-0 flex items-center">
+          <svg
+            @click="closeModal"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+              class="fill-primary_color cursor-pointer"
+            />
+          </svg>
+        </div>
         <h1 class="text-3xl text-center mb-10 font-bold">Are you?</h1>
         <div class="flex gap-9">
           <div>
@@ -31,11 +45,21 @@
       />
       <div v-if="signup && !OwnerorUser" class="signUp lg:w-6/12 w-full p-4">
         <div class="flex gap-3 justify-start items-center">
-          <img
-            src="../imagesNavfoot/arrow_back.svg"
-            alt=""
-            @click="closeModal"
-          />
+          <div class="py-3 lg:py-0 px-0 flex items-center">
+            <svg
+              @click="closeModal"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+                class="fill-primary_color cursor-pointer"
+              />
+            </svg>
+          </div>
           <p class="text-primary_color font-semibold lg:text-2xl text-lg">
             Get Started Now
           </p>
@@ -118,7 +142,7 @@
                   : 'flex gap-2 items-center py-1'
               "
             >
-              <label class="">
+              <label>
                 <input
                   type="checkbox"
                   id="agree"
@@ -126,7 +150,7 @@
                   @click="agree = !agree"
                 />
               </label>
-              <p>
+              <p class="text-primary_color">
                 I agree to the
                 <router-link
                   class="text-primary_color underline font-medium"
@@ -149,11 +173,10 @@
 
             <div class="h-[1px] w-full bg-border_color"></div>
           </div>
-          <div class="lg:ml-9 mx-auto lg:pt-4 pt-1 flex gap-8 justify-center">
-            <img src="../imagesNavfoot/Google.svg" alt="" />
-            <img src="../imagesNavfoot/facebook.svg" alt="" />
-          </div>
-          <div class="lg:ml-9 mx-auto flex lg:pt-3 pt-1 justify-center">
+
+          <div
+            class="lg:ml-9 mx-auto flex lg:pt-3 pt-1 justify-center text-primary_color"
+          >
             <p class="lg:text-xl text-base">
               Have an account?
               <button
@@ -182,12 +205,21 @@
           You already have an account
         </p>
         <div class="flex gap-3 lg:ml-9 justify-start items-center">
-          <img
-            src="../imagesNavfoot/arrow_back.svg"
-            alt=""
-            @click="closeModal"
-            class="lg:pt-2 pt-0 pb-2"
-          />
+          <div class="py-3 lg:py-0 px-0 flex items-center">
+            <svg
+              @click="closeModal"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
+                class="fill-primary_color cursor-pointer"
+              />
+            </svg>
+          </div>
           <p class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3">
             welcome back!
           </p>
@@ -233,7 +265,7 @@
                   v-model="form.rememberUser"
                 />
               </label>
-              <p>Remember me</p>
+              <p class="text-primary_color">Remember me</p>
             </div>
             <p v-if="loginError" class="text-red">All fields are required</p>
             <p v-if="worngPassword" class="text-red">Worng Password</p>
@@ -254,12 +286,9 @@
 
           <div class="h-[1px] w-full bg-border_color"></div>
         </div>
-        <div class="lg:ml-9 nx-auto lg:pt-4 pt-2 flex gap-8 justify-center">
-          <img src="../imagesNavfoot/Google.svg" alt="" />
-          <img src="../imagesNavfoot/facebook.svg" alt="" />
-        </div>
+
         <div class="lg:ml-9 mx-auto flex lg:pt-3 pt-2 justify-center">
-          <p class="lg:text-xl text-lg">
+          <p class="lg:text-xl text-lg text-primary_color">
             Don’t have an account?
             <button
               class="text-primary_color text-xl underline font-medium"

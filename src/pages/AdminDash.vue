@@ -4,26 +4,37 @@
       class="h-[100vh] sticky top-0 left-0"
       :class="
         fold
-          ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen  transition-all'
-          : 'custom-shadow rounded-e-3xl w-1/4 min-h-screen transition-all'
+          ? 'custom-shadow rounded-e-3xl w-[120px] min-h-screen bg-white transition-all'
+          : 'custom-shadow rounded-e-3xl w-1/4 min-h-screen bg-white transition-all'
       "
     >
       <div class="flex justify-between py-6 px-10">
         <router-link to="/">
-          <img v-if="!fold" src="../assets/logo.svg" alt="" />
+          <img v-if="!fold" :src="logo" alt="" />
         </router-link>
         <router-link to="/">
-          <img v-if="fold" src="../assets/logoHalf.svg" alt="" />
+          <img v-if="fold" :src="logoHalf" alt="" />
         </router-link>
-        <img
-          src="../assets/ownerDashImges/fold.svg"
-          alt=""
-          :class="fold ? 'hidden ' : 'cursor-pointer'"
+        <svg
+          :class="fold ? 'hidden' : 'cursor-pointer'"
           @click="
             fold = !fold;
             foldCliked = !foldCliked;
           "
-        />
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="navigate_before">
+            <path
+              id="icon"
+              d="M15.705 7.41L14.295 6L8.29498 12L14.295 18L15.705 16.59L11.125 12L15.705 7.41Z"
+              class="fill-primary_color"
+            />
+          </g>
+        </svg>
       </div>
       <hr />
       <div
@@ -36,7 +47,7 @@
             :class="
               activeSection == 'overview'
                 ? 'activeSection'
-                : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
+                : 'flex gap-x-4 p-[10px] rounded-lg text-primary_color hover:bg-card_hover cursor-pointer'
             "
           >
             <svg
@@ -62,7 +73,7 @@
             :class="
               activeSection == 'users'
                 ? 'activeSection'
-                : 'flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer'
+                : 'flex gap-x-4 p-[10px] rounded-lg text-primary_color hover:bg-card_hover cursor-pointer'
             "
           >
             <svg
@@ -85,7 +96,7 @@
           </div>
         </div>
         <div
-          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-gray-100 cursor-pointer"
+          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
         >
           <img src="../assets/ownerDashImges/logOut.svg" alt="" />
           <p :class="fold ? 'hidden' : 'text-primary_color'" @click="logout">
@@ -128,6 +139,15 @@ export default {
   components: {
     DashChart,
     DashUsers,
+  },
+  created() {
+    if (localStorage.getItem("darkMode") === "true") {
+      this.logo = require("../assets/logoDark.svg");
+      this.logoHalf = require("../assets/logoHalfDark.svg");
+    } else {
+      this.logo = require("../assets/logo.svg");
+      this.logoHalf = require("../assets/logoHalf.svg");
+    }
   },
 
   data() {
