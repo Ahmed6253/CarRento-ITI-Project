@@ -103,16 +103,16 @@ const routes = [
     },
 
     beforeEnter(from, to, next) {
-      const savedAdmin = 
-      localStorage.getItem("currentAdmin") ||
-      sessionStorage.getItem("currentAdmin");
+      const savedAdmin =
+        localStorage.getItem("currentAdmin") ||
+        sessionStorage.getItem("currentAdmin");
       if (savedAdmin) {
         next("/admin");
       } else {
         next();
-    }
+      }
+    },
   },
-},
   {
     path: "/ownerdash/:id",
     component: OwnerDash,

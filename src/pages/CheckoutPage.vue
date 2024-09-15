@@ -206,8 +206,10 @@ export default {
           quantity: 1,
         },
       ],
-      successURL: "/confirmpayment",
-      cancelURL: "/cars",
+      successURL:
+        "https://66e6249e20ee94f4392a1326--car-rento-iti-project.netlify.app/confirmpayment",
+      cancelURL:
+        "https://66e6249e20ee94f4392a1326--car-rento-iti-project.netlify.app/cars",
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       firstFileName: "",
