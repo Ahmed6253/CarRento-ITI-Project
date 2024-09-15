@@ -138,6 +138,7 @@
   --warning: #f97316;
   --warninghover: #ff9f5c;
   --valueshover: #eff6ff;
+  --footercolor: #111827;
 }
 .dark {
   --bg: #111827;
@@ -156,4 +157,5 @@
   --warning: #f97316;
   --warninghover: #ff9f5c;
   --valueshover: #eff6ff;
+  --footercolor: #555b66;
 }

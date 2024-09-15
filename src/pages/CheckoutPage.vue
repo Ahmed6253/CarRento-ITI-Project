@@ -56,7 +56,7 @@
                 placeholder="Enter your legal first name"
                 name="f-name"
                 id="f-name"
-                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
+                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full text-black"
                 v-model="firstName"
               />
             </section>
@@ -68,7 +68,7 @@
                 placeholder="Enter your legal last name"
                 name="l-name"
                 id="l-name"
-                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
+                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full text-black"
                 v-model="secondName"
               />
             </section>
