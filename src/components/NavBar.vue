@@ -52,7 +52,7 @@
         :class="showMenu ? 'block' : 'hidden'"
         id="navbar-user"
       >
-        <ul
+        <ul 
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
           <li>
