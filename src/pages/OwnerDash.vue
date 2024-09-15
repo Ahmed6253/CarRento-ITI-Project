@@ -23,6 +23,11 @@
           class="cursor-pointer"
         />
 
+        <label class="switch" v-if="!fold">
+          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+          <span class="slider"></span>
+        </label>
+
         <svg
           :class="fold ? 'hidden' : 'cursor-pointer'"
           @click="
@@ -206,6 +211,7 @@ export default {
       fold: true,
       activeSection: "overview",
       currUser: "",
+      dark: false,
       logo: "",
       logoHalf: "",
     };
@@ -215,14 +221,41 @@ export default {
       JSON.parse(localStorage.getItem("currentUser")) ||
       JSON.parse(sessionStorage.getItem("currentUser"));
     if (localStorage.getItem("darkMode") === "true") {
+      this.dark = true;
       this.logo = require("../assets/logoDark.svg");
       this.logoHalf = require("../assets/logoHalfDark.svg");
     } else {
+      this.dark = false;
+      this.logo = require("../assets/logo.svg");
+      this.logoHalf = require("../assets/logoHalf.svg");
+    }
+  },
+
+  updated() {
+    if (localStorage.getItem("darkMode") === "true") {
+      this.dark = true;
+      this.logo = require("../assets/logoDark.svg");
+      this.logoHalf = require("../assets/logoHalfDark.svg");
+    } else {
+      this.dark = false;
       this.logo = require("../assets/logo.svg");
       this.logoHalf = require("../assets/logoHalf.svg");
     }
   },
   methods: {
+    toggleDarkMode() {
+      this.dark = !this.dark;
+      if (this.dark) {
+        localStorage.setItem("darkMode", "true");
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+      } else {
+        localStorage.setItem("darkMode", "false");
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+        
+      }
+    },
     logOut() {
       const logoutConfirm = confirm("Are you sure you want to log out?");
 

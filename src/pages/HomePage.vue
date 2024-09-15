@@ -291,7 +291,7 @@
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap">
         <div class="w-full lg:w-1/2">
-          <h1 class="text-4xl">Rent your perfect car with a big discount</h1>
+          <h1 class="text-4xl">Why choose us</h1>
           <img src="../assets/home-images/whyus.png" alt="" />
         </div>
 
