@@ -12,7 +12,7 @@
         <th scope="col" class="px-6 py-3">Car Number</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="direction-rtl">
       <tr
         v-for="(order, key) in orders"
         class="bg-white border-b rounded-2xl animated"
@@ -70,11 +70,14 @@ export default {
     axios
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
-        for (let order in response.data) {
-          if (response.data[order].owner === this.$route.params.id) {
-            this.orders[order] = response.data[order];
+        const ordersData = response.data;
+        const ordersKeys = Object.keys(ordersData).reverse();
+
+        ordersKeys.forEach((key) => {
+          if (ordersData[key].owner === this.$route.params.id) {
+            this.orders[key] = ordersData[key];
           }
-        }
+        });
       });
   },
 
@@ -91,6 +94,10 @@ export default {
 
   methods: {
     acceptOrder(order, key) {
+      const acceptConfirm = confirm(
+        "Are you sure you want to accept this order?"
+      );
+      if (!acceptConfirm) return;
       axios
         .put(
           `https://carrento-9ea05-default-rtdb.firebaseio.com/orders/${key}.json`,
@@ -116,9 +123,22 @@ export default {
                 this.car
               );
             });
+        })
+        .then(() => {
+          axios.put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${order.renter}.json`,
+            {
+              message: "Accepted",
+              id: order.renter,
+            }
+          );
         });
     },
     rejectOrder(order, key) {
+      const rejectConfirm = confirm(
+        "Are you sure you want to reject this order?"
+      );
+      if (!rejectConfirm) return;
       axios
         .put(
           `https://carrento-9ea05-default-rtdb.firebaseio.com/orders/${key}.json`,
@@ -129,6 +149,15 @@ export default {
         )
         .then(() => {
           this.orders[key].status = "rejected";
+        })
+        .then(() => {
+          axios.put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${order.renter}.json`,
+            {
+              message: "Rejected",
+              id: order.renter,
+            }
+          );
         });
     },
   },

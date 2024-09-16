@@ -361,12 +361,13 @@ export default {
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
         // console.log(response.data);
-        for (let order in response.data) {
-          // console.log(response.data[order]);
-          if (response.data[order].renter === this.id) {
-            this.UserOrders[order] = response.data[order];
+        const ordersData = response.data;
+        const ordersKeys = Object.keys(ordersData).reverse();
+        ordersKeys.forEach((key) => {
+          if (ordersData[key].renter === this.id) {
+            this.UserOrders[key] = ordersData[key];
           }
-        }
+        });
       })
       .catch((error) => {
         console.log(error);

@@ -11,7 +11,7 @@
     >
       <img src="../assets/ownerDashImges/add.svg" /> Add Car
     </button>
-    <div class="relative overflow-x-auto">
+    <div class="overflow-x-auto">
       <table
         class="w-full text-sm text-left rtl:text-right text-Paragraph_color"
       >
@@ -69,11 +69,11 @@
         </tbody>
       </table>
     </div>
-    <div class="mt-20">
+    <div class="">
       <form
         @submit.prevent
         v-if="isAdding"
-        class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-45%] bg-white rounded-2xl w-full custom-shadow p-10 mt-4 transition-all"
+        class="absolute top-[-100px] bg-white rounded-2xl w-full custom-shadow p-10 transition-all"
       >
         <!-- first form -->
         <div v-if="!nextForm" class="flex justify-between flex-wrap">
@@ -85,7 +85,7 @@
               id="carModel"
               name="carModel"
               placeholder="Car Model"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
@@ -94,7 +94,7 @@
               v-model="carOptions.brand"
               name="brand"
               id="brand"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             >
               <option value="ACURA">ACURA</option>
               <option value="ASTON MARTIN">ASTON MARTIN</option>
@@ -153,7 +153,7 @@
               id="color"
               name="color"
               placeholder="Color"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
@@ -162,7 +162,7 @@
               v-model="carOptions.type"
               name="type"
               id="type"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             >
               <option value="Sedan">Sedan</option>
               <option value="SUV">SUV</option>
@@ -182,7 +182,7 @@
               id="price"
               name="price"
               placeholder="Price"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
@@ -193,7 +193,7 @@
               id="number"
               name="number"
               placeholder="Number"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
 
@@ -203,7 +203,7 @@
               v-model="carOptions.fuel"
               name="fuel"
               id="fuel"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             >
               <option value="Petrol">Petrol</option>
               <option value="Diesel">Gas</option>
@@ -215,7 +215,7 @@
             <label for="pickup-location">Location</label>
             <select
               v-model="carOptions.location"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
               id="pickup-location"
             >
               <option>Cairo</option>
@@ -260,13 +260,13 @@
           <div class="self-end">
             <button
               @click="next()"
-              class="bg-green hover:bg-green_hover text-white px-10 py-2.5 my-4 rounded-lg mr-2"
+              class="bg-green hover:bg-green_hover text-slate-50 px-10 py-2.5 my-4 rounded-lg mr-2"
             >
               Next
             </button>
             <button
               @click="isAdding = false"
-              class="bg-red hover:bg-red_hover text-white px-8 py-2.5 rounded-lg"
+              class="bg-red hover:bg-red_hover text-slate-50 px-8 py-2.5 rounded-lg"
             >
               Cancel
             </button>
@@ -406,19 +406,19 @@
               name="description"
               v-model="carOptions.description"
               id="description"
-              class="border border-border_color text-primary_color text-sm rounded-lg p-2.5 w-full my-3"
+              class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             ></textarea>
           </div>
           <div class="self-end ml-auto">
             <button
               @click="addCar()"
-              class="bg-green hover:bg-green_hover text-white px-10 py-2.5 mr-2 rounded-lg"
+              class="bg-green hover:bg-green_hover text-slate-50 px-10 py-2.5 mr-2 rounded-lg"
             >
               Add Car
             </button>
             <button
               @click="nextForm = false"
-              class="bg-red hover:bg-red_hover text-white px-8 py-2.5 rounded-lg"
+              class="bg-red hover:bg-red_hover text-slate-50 px-8 py-2.5 rounded-lg"
             >
               Back
             </button>
@@ -464,9 +464,9 @@ export default {
       cars: {},
       style: {
         unActiveOption:
-          "bg-slate-100 border border-border_color text-primary_color text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
+          "bg-slate-100   text-black text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
         activeOption:
-          "bg-primary_color border border-border_color text-white text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
+          "bg-gray-900   text-slate-50 text-sm rounded-lg p-2.5 my-3 mx-1 cursor-pointer",
       },
       isAdding: false,
       nextForm: false,

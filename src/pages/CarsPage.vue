@@ -270,7 +270,6 @@ export default {
 
       // Set flag to true to display filtered results
       this.filtersCarFlag = true;
-      console.log(this.filtersCardResult);
     },
 
     clearFiltersCardResult() {

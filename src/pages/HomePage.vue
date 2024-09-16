@@ -390,7 +390,6 @@ export default {
         this.cars = Object.values(response.data);
         this.cars.sort((a, b) => b.ratingCount - a.ratingCount);
         this.cars = this.cars.slice(0, 5);
-        console.log(this.cars);
       })
       .catch((e) => {
         this.fetchErorr = e;

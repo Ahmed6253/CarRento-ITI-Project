@@ -211,6 +211,102 @@
           />
           <span class="text-Paragraph_color">Audi</span>
         </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="volkswagen"
+            value="volkswagen"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Volkswagen</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="skoda"
+            value="skoda"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Skoda</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="ford"
+            value="ford"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Ford</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="lexus"
+            value="lexus"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Lexus</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="mitsubishi"
+            value="mitsubishi"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Mitsubishi</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="jaguar"
+            value="jaguar"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Jaguar</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="porsche"
+            value="porsche"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Porsche</span>
+        </label>
+
+        <label class="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="renault"
+            value="renault"
+            class="mr-2 accent-primary_color"
+            v-model="selectedBrands"
+            @change="applyFilters"
+          />
+          <span class="text-Paragraph_color">Renault</span>
+        </label>
       </div>
     </div>
   </div>
@@ -236,8 +332,6 @@ export default {
       this.$store.dispatch("setCarTypes", this.selectedCarTypes);
       this.$store.dispatch("setBrands", this.selectedBrands);
 
-      console.log("Car Types:", this.selectedCarTypes);
-      console.log("Brands:", this.selectedBrands);
       this.$emit("apply-filters");
     },
 
@@ -246,8 +340,6 @@ export default {
       // Reset both selectedCarTypes and selectedBrands
       this.selectedCarTypes = [];
       this.selectedBrands = [];
-
-      console.log("Cleared filters");
 
       // Dispatch the clear filters action for both car types and brands in the store
       this.$store.dispatch("clearCarTypes");

@@ -165,19 +165,21 @@
             <img src="../assets/ownerDashImges/logOut.svg" alt="" />
             <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
           </div>
-          <label class="switch self-center" v-if="!fold">
-            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-            <span class="slider"></span>
-          </label>
         </div>
       </div>
     </nav>
 
     <section class="mx-5 mt-10 w-full">
-      <h1 class="text-primary_color text-2xl mb-10">
-        <span class="font-bold">Hello, </span>
-        {{ currUser.userName }}
-      </h1>
+      <div class="flex justify-between">
+        <h1 class="text-primary_color text-2xl mb-10">
+          <span class="font-bold">Hello, </span>
+          {{ currUser.userName }}
+        </h1>
+        <label class="switch">
+          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+          <span class="slider"></span>
+        </label>
+      </div>
       <OwnerCars v-if="activeSection === 'cars'" :id="currUser.id" />
       <OwnerOrders v-if="activeSection === 'orders'" :id="currUser.id" />
       <OwnerOverview v-if="activeSection === 'overview'" :id="currUser.id" />

@@ -160,6 +160,7 @@ export default {
           this.owner.trim().toLowerCase()
         ) {
           this.ownerOrders.push(this.orders[orderId]);
+          this.ownerOrders.reverse();
         }
       }
     },
