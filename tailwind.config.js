@@ -21,6 +21,7 @@ module.exports = {
         warning: "var(--warning)",
         warning_hover: "var(--warninghover)",
         values_hover: "var(--valueshover)",
+        footer:"var(--footercolor)",
       },
       backgroundPosition: {
         "custom-60": "0px 210px",

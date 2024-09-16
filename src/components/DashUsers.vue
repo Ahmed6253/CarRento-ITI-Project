@@ -20,7 +20,7 @@
         class="px-10 py-3 text-sm font-medium"
         :class="
           shown === 'owner'
-            ? 'bg-black text-white hover:bg-black hover:text-white'
+            ? 'bg-footer text-slate-50 hover:bg-gray-200 hover:text-white'
             : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'
         "
       >
@@ -40,7 +40,7 @@
             <th scope="col" class="px-6 py-3">Block</th>
           </tr>
         </thead>
-        <tbody class="text-xs text-gray-500 font-thin capitalize">
+        <tbody class="text-xs text-primary_color font-thin capitalize">
           <tr v-for="(renter, index) in renters" :key="index">
             <th scope="col" class="px-6 py-3">{{ renter.id }}</th>
             <th scope="col" class="px-6 py-3">{{ renter.userName }}</th>
@@ -65,7 +65,7 @@
     <!-- Owners Section -->
     <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto">
       <h1 class="text-primary_color text-2xl my-10">Owners</h1>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+      <table class="w-full text-sm text-left rtl:text-right text-primary_color">
         <thead class="text-base text-paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
@@ -74,7 +74,7 @@
             <th scope="col" class="px-6 py-3">Block</th>
           </tr>
         </thead>
-        <tbody class="text-xs text-gray-500 font-thin capitalize">
+        <tbody class="text-xs text-primary_color font-thin capitalize">
           <tr v-for="(owner, index) in owners" :key="index">
             <th scope="col" class="px-6 py-3">{{ owner.id }}</th>
             <th scope="col" class="px-6 py-3">{{ owner.userName }}</th>
@@ -82,7 +82,7 @@
             <th scope="col" class="px-6 py-3">
               <button
                 :class="{
-                  'bg-black text-slate-50': owner.blocked,
+                  'bg-footer text-slate-50': owner.blocked,
                   'bg-red text-slate-50': !owner.blocked,
                 }"
                 class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"

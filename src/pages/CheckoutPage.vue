@@ -39,7 +39,7 @@
       </div>
       <h3 class="text-2xl mt-10 hidden lg:block">ID verification</h3>
 
-      <div class="flex flex-wrap flex-col-reverse lg:flex-row">
+      <div class="flex flex-wrap flex-col-reverse lg:flex-row w-full">
         <!-- ----------------------------------------form start----------------------------------------------------- -->
 
         <div class="form-container w-full lg:w-2/3 pe-1">
@@ -49,31 +49,31 @@
           <p class="text-red mb-4" v-if="nameError">All fields are required</p>
 
           <div class="flex justify-between flex-wrap">
-            <section class="w-full md:w-1/2 pe-28">
+            <section class="w-full md:w-1/2 md:pe-28">
               <h3 class="text-2xl mb-3 w-full">First name</h3>
               <input
                 type="text"
                 placeholder="Enter your legal first name"
                 name="f-name"
                 id="f-name"
-                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
+                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full text-black"
                 v-model="firstName"
               />
             </section>
 
-            <section class="w-full md:w-1/2 pe-28">
+            <section class="w-full md:w-1/2 md:pe-28">
               <h3 class="text-2xl mb-3 w-full">Last name</h3>
               <input
                 type="text"
                 placeholder="Enter your legal last name"
                 name="l-name"
                 id="l-name"
-                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full"
+                class="ps-2 pe-14 py-2 mb-6 border-gray-200 border-2 rounded-lg bg-gray-50 w-full text-black"
                 v-model="secondName"
               />
             </section>
 
-            <section class="w-full md:w-1/2 pe-28">
+            <section class="w-full md:w-1/2 md:pe-28">
               <h3 class="text-2xl mb-3">Front-side photo of ID</h3>
               <div class="upload-file mb-6">
                 <label
@@ -98,7 +98,7 @@
               </div>
             </section>
 
-            <section class="w-full md:w-1/2 pe-28">
+            <section class="w-full md:w-1/2 md:pe-28">
               <h3 class="text-2xl mb-3">Back-side photo of ID</h3>
               <div class="upload-file mb-6">
                 <label
