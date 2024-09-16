@@ -23,11 +23,6 @@
           class="cursor-pointer"
         />
 
-        <label class="switch" v-if="!fold">
-          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-          <span class="slider"></span>
-        </label>
-
         <svg
           :class="fold ? 'hidden' : 'cursor-pointer'"
           @click="
@@ -162,12 +157,18 @@
             <p :class="fold ? 'hidden' : 'block'">My Cars</p>
           </div>
         </div>
-        <div
-          @click="logOut()"
-          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
-        >
-          <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-          <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+        <div class="flex flex-col gap-y-6">
+          <div
+            @click="logOut()"
+            class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
+          >
+            <img src="../assets/ownerDashImges/logOut.svg" alt="" />
+            <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+          </div>
+          <label class="switch self-center" v-if="!fold">
+            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+            <span class="slider"></span>
+          </label>
         </div>
       </div>
     </nav>
@@ -253,7 +254,6 @@ export default {
         localStorage.setItem("darkMode", "false");
         document.body.classList.remove("dark");
         document.body.classList.add("light");
-        
       }
     },
     logOut() {

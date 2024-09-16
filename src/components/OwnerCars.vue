@@ -51,10 +51,10 @@
                 :class="
                   car.available
                     ? 'bg-green hover:bg-green_hover rounded text-slate-50 p-2'
-                    : 'bg-Placeholder_color hover:bg-Placeholder_color rounded text-slate-50 p-2'
+                    : 'bg-gray-900 rounded text-slate-50 p-2 text-[10px]'
                 "
               >
-                {{ car.available ? "Available" : " Not Available" }}
+                {{ car.available ? "Available" : "Not Available" }}
               </button>
             </td>
             <td class="pr-6 py-4">

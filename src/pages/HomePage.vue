@@ -3,8 +3,8 @@
 
   <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
     <div class="mx-4 md:mx-20">
-      <div class="px-0 pt-12 text-left">
-        <h1 class="lg:text-6xl text-4xl text-primary_color">
+      <div class="px-0 pt-12 md:text-left text-center">
+        <h1 class="lg:text-6xl sm:text-4xl text-2xl w-full text-primary_color">
           Rent your perfect car with <br />
           a big discount
         </h1>
@@ -77,12 +77,12 @@
 
   <!-- ------------------------easy steps ----------------------------------- -->
 
-  <section class="bg-bg_color pt-24 p-16 my-0 text-center animate-fade-up">
+  <section class="bg-bg_color pt-24 my-0 text-center animate-fade-up">
     <div class="mx-4 md:mx-20">
-      <h2 class="text-[36px] font-medium text-primary_color">
+      <h2 class="sm:text-4xl text-2xl mb-4 font-medium text-primary_color">
         Easy steps to rent your perfect car
       </h2>
-      <p class="w-75% text-[16px] text-primary_color">
+      <p class="text-[16px] text-primary_color">
         Renting a car with us is a breeze! Simply browse our extensive fleet to
         find the perfect vehicle for your needs.
       </p>
@@ -141,7 +141,9 @@
   <!-- ---------------------------------most popular car rentals-------------------------------------------------- -->
   <section class="bg-bg_color pt-0 pb-32 my-0 text-center text-primary_color">
     <div class="mx-4 md:mx-20">
-      <h2 class="text-[36px] font-medium">Most popular car rentals</h2>
+      <h2 class="sm:text-4xl text-2xl mb-4 font-medium">
+        Most popular car rentals
+      </h2>
       <p class="w-75% text-[16px]">
         Renting a car with us is a breeze! Simply browse our extensive fleet to
         find the perfect vehicle for your needs.
@@ -267,9 +269,9 @@
         class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]"
       >
         <div
-          class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-12 pb-0 lg:pb-40"
+          class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-4 lg:pt-12 pb-0 lg:pb-40"
         >
-          <h1 class="text-6xl mb-7">
+          <h1 class="lg:text-6xl md:text-4xl text-2xl lg:mb-24 mb-10">
             Rent your perfect car with a big discount
           </h1>
           <router-link
@@ -295,9 +297,9 @@
         </div>
 
         <div class="flex w-full lg:w-1/2 flex-wrap">
-          <div class="w-1/2 p-1">
+          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
             <div
-              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Unmtched Selection</h3>
               <p class="text-Paragraph_color text-[12px]">
@@ -307,9 +309,9 @@
             </div>
           </div>
 
-          <div class="w-1/2 p-1">
+          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
             <div
-              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Competitive Pricing</h3>
               <p class="text-Paragraph_color text-[12px]">
@@ -319,9 +321,9 @@
             </div>
           </div>
 
-          <div class="w-1/2 p-1">
+          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
             <div
-              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[24px] font-medium mb-2">Convenient Locations</h3>
               <p class="text-Paragraph_color text-[12px]">
@@ -331,9 +333,9 @@
             </div>
           </div>
 
-          <div class="w-1/2 p-1">
+          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
             <div
-              class="py-6 px-4 bg-white hover:bg-card_hover h-[160px] rounded-2xl custom-shadow"
+              class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[22px] font-medium mb-2">
                 Flexible Rental Options

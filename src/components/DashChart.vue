@@ -68,7 +68,8 @@
             {
               'text-blue-500': orders[orderId].status === 'done',
               'text-warning': orders[orderId].status === 'pending',
-              'text-green': orders[orderId].status === 'approved',
+              'text-green': orders[orderId].status === 'Accepted',
+              'text-red': orders[orderId].status === 'rejected',
             },
           ]"
         >

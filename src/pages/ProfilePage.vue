@@ -251,6 +251,12 @@
               >
                 Order rated
               </button>
+              <button
+                v-if="order.status === 'rejected'"
+                class="bg-red rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-slate-50"
+              >
+                Rejected
+              </button>
             </div>
           </div>
         </div>

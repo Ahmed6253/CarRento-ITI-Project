@@ -7,8 +7,8 @@
         class="px-10 py-3 text-sm font-medium"
         :class="
           shown === 'renter'
-            ? 'bg-footer text-slate-50 hover:bg-gray-200 hover:text-white'
-            : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'
+            ? 'bg-black text-white hover:bg-black hover:text-white'
+            : 'bg-slate-50 text-black hover:bg-gray-200 hover:text-white'
         "
       >
         Renter
@@ -65,7 +65,7 @@
     <!-- Owners Section -->
     <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto">
       <h1 class="text-primary_color text-2xl my-10">Owners</h1>
-      <table class="w-full text-sm text-left rtl:text-right text-primary_color ">
+      <table class="w-full text-sm text-left rtl:text-right text-primary_color">
         <thead class="text-base text-paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
@@ -163,6 +163,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
