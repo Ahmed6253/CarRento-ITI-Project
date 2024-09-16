@@ -159,7 +159,6 @@
           :keyboard="true"
           :spaceBetween="10"
           :loop="true"
-          :centeredSlides="true"
           :slidesPerGroup="1"
           :modules="modules"
           :breakpoints="{
