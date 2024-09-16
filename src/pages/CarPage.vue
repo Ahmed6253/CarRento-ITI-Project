@@ -366,11 +366,6 @@ export default {
       this.$store.dispatch("setfeatures", features);
     },
   },
-
-  mounted() {
-    // this.additionalFeatures = this.getfeatures;
-    // console.log("12", this.additionalFeatures);
-  },
 };
 </script>
 
