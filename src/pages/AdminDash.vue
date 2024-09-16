@@ -104,21 +104,24 @@
             <img src="../assets/ownerDashImges/logOut.svg" alt="" />
             <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
           </div>
-          <label class="switch self-end" v-if="!fold">
-            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-            <span class="slider"></span>
-          </label>
         </div>
       </div>
     </nav>
     <section class="mt-9 mx-5 w-full">
-      <h1
+      <div class="flex justify-between">
+          <h1
         class="text-primary_color text-2xl mb-10"
         :class="fold ? 'ms-3' : 'ms-5'"
       >
         <span class="font-bold">Hello, </span>
         {{ userName }}
       </h1>
+
+      <label class="switch">
+            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+            <span class="slider"></span>
+      </label>
+      </div>
       <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
 
       <DashChart v-if="activeSection === 'overview'" class="mx-0 w-full px-0" />
@@ -175,7 +178,7 @@ export default {
       JSON.parse(localStorage.getItem("currentAdmin")) ||
       JSON.parse(sessionStorage.getItem("currentAdmin"));
     return {
-      fold: false,
+      fold: true,
       activeSection: "overview",
       userName: savedAdmin ? savedAdmin.name : "Guest", // Default to "Guest" if no data
       dark: false,
