@@ -140,6 +140,7 @@ export default {
       this.doneOrders = 0; // Reset count
 
       for (let orderId of this.ordersKeys) {
+      
         const order = this.orders[orderId];
 
         // Ensure both owner strings are properly formatted
