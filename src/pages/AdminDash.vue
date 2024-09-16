@@ -15,10 +15,7 @@
         <router-link to="/">
           <img v-if="fold" :src="logoHalf" alt="" />
         </router-link>
-        <label class="switch" v-if="!fold">
-          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-          <span class="slider"></span>
-        </label>
+
         <svg
           :class="fold ? 'hidden' : 'cursor-pointer'"
           @click="
@@ -39,7 +36,6 @@
             />
           </g>
         </svg>
-
       </div>
       <hr />
       <div
@@ -100,13 +96,18 @@
             <p :class="fold ? 'hidden' : 'block'">Users</p>
           </div>
         </div>
-        <div
-          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
-        >
-          <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-          <p :class="fold ? 'hidden' : 'text-primary_color'" @click="logout">
-            Log out
-          </p>
+        <div class="flex flex-col gap-y-6">
+          <div
+            @click="logOut()"
+            class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
+          >
+            <img src="../assets/ownerDashImges/logOut.svg" alt="" />
+            <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+          </div>
+          <label class="switch self-end" v-if="!fold">
+            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+            <span class="slider"></span>
+          </label>
         </div>
       </div>
     </nav>
@@ -183,7 +184,6 @@ export default {
     };
   },
 
-
   methods: {
     toggleDarkMode() {
       this.dark = !this.dark;
@@ -195,7 +195,6 @@ export default {
         localStorage.setItem("darkMode", "false");
         document.body.classList.remove("dark");
         document.body.classList.add("light");
-        
       }
     },
     logout() {
@@ -213,7 +212,7 @@ export default {
 </script>
 
 <style>
-  .switch {
+.switch {
   display: block;
   --width-of-switch: 3.5em;
   --height-of-switch: 2em;

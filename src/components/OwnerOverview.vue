@@ -59,7 +59,8 @@
           :class="{
             'text-blue-500': order.status === 'done',
             'text-yellow-500': order.status === 'pending',
-            'text-green': order.status === 'approved',
+            'text-green': order.status === 'Accepted',
+            'text-red': order.status === 'rejected',
           }"
         >
           {{ order.status }}
@@ -146,7 +147,9 @@ export default {
     },
     earningsCalc() {
       for (let order of this.ownerOrders) {
-        this.earnings += Number(order.TotalPrice);
+        if (order.status === "done" || order.status === "Accepted") {
+          this.earnings += Number(order.TotalPrice);
+        }
       }
     },
 
