@@ -4,8 +4,8 @@
       v-if="message"
       :class="
         message === 'Rejected'
-          ? 'fixed w-full z-50 bg-red h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
-          : 'fixed w-full z-50 bg-green h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
+          ? 'fixed w-full text-[9px] sm:text-[16px] items-center z-50 bg-red h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
+          : 'fixed w-full text-[9px] sm:text-[16px] items-center z-50 bg-green h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
       "
     >
       <img src="./assets/notification.svg" />
