@@ -101,6 +101,7 @@ export default {
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
         this.orders = response.data;
+        console.log("Fetched orders:", this.orders);
         this.ordersKeys = Object.keys(response.data);
 
         // Call pendingOrdersCalc after data is fetched
@@ -163,6 +164,7 @@ export default {
           this.ownerOrders.reverse();
         }
       }
+      console.log("Owner orders:", this.ownerOrders);
     },
   },
 };

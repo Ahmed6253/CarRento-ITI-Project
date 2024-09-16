@@ -43,7 +43,7 @@
   <h2 class="text-2xl mt-5 text-primary_color">Recent Orders</h2>
 
   <table
-    class="text-sm text-left rtl:text-right text-Paragraph_color mx-0 px-0"
+    class="text-sm text-left rtl:text-right text-Paragraph_color mx-0 px-0 w-full "
   >
     <thead class="text-base text-[14px] uppercase text-Paragraph_color">
       <tr>
@@ -56,7 +56,7 @@
       </tr>
     </thead>
     <tbody class="text-xs font-semibold capitalize text-Paragraph_color">
-      <tr v-for="orderId in ordersKeys" :key="orderId">
+      <tr v-for="orderId in ordersKeys" :key="orderId" class="border-b">
         <td class="px-6 py-3">{{ orderId }}</td>
         <!-- Display order ID -->
         <td class="px-6 py-3">{{ orders[orderId].carId }}</td>

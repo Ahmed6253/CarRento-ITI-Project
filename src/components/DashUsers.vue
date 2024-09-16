@@ -1,5 +1,5 @@
 <template>
-  <div class="ms-5">
+  <div class="ms-5 w-full">
     <div class="inline-flex rounded-md shadow-sm" role="group">
       <button
         @click="shown = 'renter'"
@@ -11,7 +11,7 @@
             : 'bg-slate-50 text-black hover:bg-gray-200 hover:text-white'
         "
       >
-        Renter
+        Renters
       </button>
 
       <button
@@ -24,14 +24,14 @@
             : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'
         "
       >
-        Owner
+        Owners
       </button>
     </div>
 
     <!-- Renters Section -->
-    <div v-if="shown === 'renter'" class="Renter relative overflow-x-auto">
+    <div v-if="shown === 'renter'" class="Renter relative overflow-x-auto w-full">
       <h1 class="text-primary_color text-2xl my-10">Renters</h1>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead class="text-base text-Paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody class="text-xs text-primary_color font-thin capitalize">
-          <tr v-for="(renter, index) in renters" :key="index">
+          <tr v-for="(renter, index) in renters" :key="index" class="border-b">
             <th scope="col" class="px-6 py-3">{{ renter.id }}</th>
             <th scope="col" class="px-6 py-3">{{ renter.userName }}</th>
             <th scope="col" class="px-6 py-3">{{ renter.email }}</th>
@@ -63,7 +63,7 @@
     </div>
 
     <!-- Owners Section -->
-    <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto">
+    <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto w-full">
       <h1 class="text-primary_color text-2xl my-10">Owners</h1>
       <table class="w-full text-sm text-left rtl:text-right text-primary_color">
         <thead class="text-base text-paragraph_color uppercase">
@@ -75,7 +75,7 @@
           </tr>
         </thead>
         <tbody class="text-xs text-primary_color font-thin capitalize">
-          <tr v-for="(owner, index) in owners" :key="index">
+          <tr v-for="(owner, index) in owners" :key="index" class="border-b">
             <th scope="col" class="px-6 py-3">{{ owner.id }}</th>
             <th scope="col" class="px-6 py-3">{{ owner.userName }}</th>
             <th scope="col" class="px-6 py-3">{{ owner.email }}</th>

@@ -174,7 +174,7 @@ export default {
       JSON.parse(localStorage.getItem("currentAdmin")) ||
       JSON.parse(sessionStorage.getItem("currentAdmin"));
     return {
-      fold: false,
+      fold: true,
       activeSection: "overview",
       userName: savedAdmin ? savedAdmin.name : "Guest", // Default to "Guest" if no data
       dark: false,
