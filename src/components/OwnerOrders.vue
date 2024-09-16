@@ -10,7 +10,6 @@
         <th scope="col" class="px-6 py-3">End Date</th>
         <th scope="col" class="px-6 py-3">Price</th>
         <th scope="col" class="px-6 py-3">Car Number</th>
-        <th scope="col" class="px-6 py-3">Set Status</th>
       </tr>
     </thead>
     <tbody>
@@ -25,12 +24,18 @@
         <td class="px-6 py-4">{{ order.dropOffDate }}</td>
         <td class="px-6 py-4">{{ order.TotalPrice }}</td>
         <td class="px-6 py-4">{{ order.carId }}</td>
-        <td v-if="order.status === 'pending'" class="px-6 py-4">
+        <td v-if="order.status === 'pending'" class="px-6 py-4 flex gap-1">
           <button
             @click="acceptOrder(order, key)"
             class="bg-green hover:bg-green_hover text-slate-50 rounded p-2"
           >
             Accept
+          </button>
+          <button
+            @click="rejectOrder(order, key)"
+            class="bg-red hover:bg-red_hover text-slate-50 rounded p-2"
+          >
+            Reject
           </button>
         </td>
         <td v-if="order.status === 'Accepted'" class="px-6 py-4">
@@ -45,6 +50,11 @@
             class="bg-primary_color cursor-not-allowed rounded text-white p-2"
           >
             Rated
+          </button>
+        </td>
+        <td v-if="order.status === 'rejected'" class="px-6 py-4">
+          <button class="bg-red cursor-not-allowed rounded text-slate-50 p-2">
+            Rejected
           </button>
         </td>
       </tr>
@@ -75,6 +85,7 @@ export default {
       pendingOrders: 0,
       earnings: 0,
       rating: 0,
+      car: {},
     };
   },
 
@@ -90,6 +101,34 @@ export default {
         )
         .then(() => {
           this.orders[key].status = "Accepted";
+        })
+        .then(() => {
+          const carId = this.orders[key].carId;
+          axios
+            .get(
+              `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${carId}.json`
+            )
+            .then((response) => {
+              this.car = response.data;
+              this.car.available = false;
+              axios.put(
+                `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${carId}.json`,
+                this.car
+              );
+            });
+        });
+    },
+    rejectOrder(order, key) {
+      axios
+        .put(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/orders/${key}.json`,
+          {
+            ...order,
+            status: "rejected",
+          }
+        )
+        .then(() => {
+          this.orders[key].status = "rejected";
         });
     },
   },

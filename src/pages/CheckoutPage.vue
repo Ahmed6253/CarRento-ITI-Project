@@ -126,7 +126,7 @@
             <div class="card-style w-full">
               <div class="md:p-11 p-8">
                 <div class="total-info">
-                  <p>Rent per day:</p>
+                  <p>Total Rent:</p>
                   <p>{{ totalPrice }}</p>
                 </div>
                 <div class="total-info">

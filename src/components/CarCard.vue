@@ -4,11 +4,11 @@
       <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
         <path
           :class="
-            car.rating <= 1
+            car.rating >= 1 && car.rating < 3
               ? 'fill-red'
-              : car.rating <= 3
+              : car.rating >= 3 && car.rating < 4
               ? 'fill-warning'
-              : car.rating <= 5
+              : car.rating >= 4
               ? 'fill-green'
               : 'fill-Paragraph_color'
           "

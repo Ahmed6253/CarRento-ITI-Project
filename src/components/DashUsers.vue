@@ -8,7 +8,7 @@
         :class="
           shown === 'renter'
             ? 'bg-black text-white hover:bg-black hover:text-white'
-            : 'bg-primary_color text-black hover:bg-gray-200 hover:text-white'
+            : 'bg-slate-50 text-black hover:bg-gray-200 hover:text-white'
         "
       >
         Renter
