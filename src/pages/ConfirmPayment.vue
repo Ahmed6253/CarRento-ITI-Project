@@ -26,7 +26,7 @@
           <div class="md:w-[400px] mt-6">
             <div class="flex flex-wrap">
               <div v-for="(feature, index) in car.features" :key="index">
-                <span class="flex gap-2 md:w-[150px] mt-3 me-5" v-if="feature">
+                <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
                   <img :src="getImagePath(index)" class="h-6 w-6" />
                   <p class="text-center text-primary_color">{{ index }}</p>
                 </span>
