@@ -23,10 +23,10 @@
       <div class="md:grid grid-cols-2 md:p-11 p-8">
         <div>
           <h2 class="font-semibold semi-header">{{ this.car.name }}</h2>
-          <div class="w-[400px] mt-6">
+          <div class="md:w-[400px] mt-6">
             <div class="flex flex-wrap">
               <div v-for="(feature, index) in car.features" :key="index">
-                <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
+                <span class="flex gap-2 md:w-[150px] mt-3 me-5" v-if="feature">
                   <img :src="getImagePath(index)" class="h-6 w-6" />
                   <p class="text-center text-primary_color">{{ index }}</p>
                 </span>
@@ -51,7 +51,7 @@
                 </div>
               </div>
 
-              <div class="mt-8 w-full xl:w-[73%] mb-8 lg:mb-0">
+              <div class="mt-8 md:w-full xl:w-[73%] mb-8 lg:mb-0">
                 <h1 class="text-primary_color text-2xl">Description</h1>
                 <p class="text-Paragraph_color">{{ this.car.description }}</p>
               </div>
