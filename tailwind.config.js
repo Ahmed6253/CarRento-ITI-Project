@@ -32,9 +32,9 @@ module.exports = {
         "radial-one-color":
           "radial-gradient(circle,#DBEAFE 0%, transparent 100%)",
         "split-half":
-          "linear-gradient(to right, var(--bg) 50%, var(--white) 50%)",
+          "linear-gradient(to right, var(--bg2) 50%, var(--white) 50%)",
         "quarter-split":
-          "linear-gradient(to left, var(--white) 50%, var(--bg) 50%), linear-gradient(to bottom, #E4E4E4 50%, #F9FAFB 50%)",
+          "linear-gradient(to left, var(--white) 50%, var(--bg2) 50%), linear-gradient(to bottom, #E4E4E4 50%, #F9FAFB 50%)",
         "rent-bg": "url('@/assets/home-images/rent-car.png')",
         "hero-bg": "url('@/assets/home-images/hero.png')",
       },

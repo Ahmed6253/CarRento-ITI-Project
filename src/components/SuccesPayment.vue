@@ -7,10 +7,10 @@
         class="custom-shadow m-4 rounded-2xl px-5 md:px-0 mx-auto w-[50%] max-h-screen bg-white"
       >
         <img src="../assets/successPayment.png" class="mx-auto my-10" />
-        <h1 class="text-2xl text-primary_color font-medium text-center mb-2">
+        <h1 class="md:text-2xl text:xl text-primary_color font-medium text-center mb-2">
           congratulation
         </h1>
-        <p class="text-2xl text-Paragraph_color font-medium text-center mb-8">
+        <p class="md:text-2xl text:xl text-Paragraph_color font-medium text-center mb-8">
           Your request is completed
         </p>
         <div class="flex justify-center mb-10">

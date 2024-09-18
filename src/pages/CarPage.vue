@@ -32,7 +32,7 @@
               </span>
             </div>
           </div>
-          <hr class="my-5 w-2/3 h-0.5 bg-line_color" />
+          <hr class="my-5 md:w-2/3 w-full h-0.5 bg-line_color" />
 
           <div class="flex gap-4">
             <div class="flex gap-2 w-[150px]">
@@ -50,7 +50,7 @@
               <p class="text-center text-primary_color">{{ this.car.fuel }}</p>
             </div>
           </div>
-          <hr class="my-5 w-2/3 h-0.5 bg-line_color" />
+          <hr class="my-5 md:w-2/3 w-full h-0.5 bg-line_color" />
         </div>
         <div class="flex mt-5">
           <h3 class="text-primary_color me-2 text-xl font-medium">Price:</h3>

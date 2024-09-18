@@ -123,6 +123,7 @@
 
 .light {
   --bg: #f9fafb;
+  --bg2:#e4e4e4;
   --primarycolor: #111827;
   --white: #ffffff;
   --bordercolor: #e5e7eb;
@@ -142,6 +143,7 @@
 }
 .dark {
   --bg: #111827;
+  --bg2:#111827;
   --primarycolor: #ffffff;
   --white: #555b66;
   --bordercolor: #ffffff;
