@@ -299,7 +299,7 @@ export default {
           this.firstName + " " + this.secondName
         );
         sessionStorage.setItem("orderStatus", JSON.stringify("confirm"));
-        console.log(this.firstName, this.secondName);
+
         this.$refs.checkoutRef.redirectToCheckout();
         // this.$router.push('/confirmpayment');
       }
@@ -307,7 +307,6 @@ export default {
     getPrice() {
       for (let i in this.additionalFeatures) {
         if (this.additionalFeatures[i]) {
-          console.log("price", this.addPrices[i]);
           this.totalPrice += this.addPrices[i] * this.days;
         }
       }

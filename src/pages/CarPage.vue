@@ -23,7 +23,7 @@
       />
       <div class="w-full flex flex-col lg:w-80 lg:mx-0 mx-auto">
         <h1 class="text-primary_color text-2xl font-bold">{{ car.name }}</h1>
-        <div class="w-[500px]">
+        <div class="sm:w-[500px] w-full">
           <div class="flex flex-wrap">
             <div v-for="(feature, index) in car.features" :key="index">
               <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
@@ -365,11 +365,6 @@ export default {
     setfeatures(features) {
       this.$store.dispatch("setfeatures", features);
     },
-  },
-
-  mounted() {
-    // this.additionalFeatures = this.getfeatures;
-    // console.log("12", this.additionalFeatures);
   },
 };
 </script>
