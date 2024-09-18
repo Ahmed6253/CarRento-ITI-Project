@@ -4,7 +4,7 @@
       class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
     >
       <div
-        class="custom-shadow m-4 rounded-2xl px-5 md:px-0 mx-auto  max-h-screen bg-white w-full md:w-[50%]"
+        class="custom-shadow m-4 rounded-2xl px-5 md:px-0 md:mx-auto  max-h-screen bg-white w-full md:w-[50%] mx-4 "
       >
         <img src="../assets/successPayment.png" class="mx-auto my-10" />
         <h1 class="md:text-2xl text:xl text-primary_color font-medium text-center mb-2">
