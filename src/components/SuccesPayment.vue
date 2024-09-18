@@ -10,7 +10,7 @@
         <h1 class="md:text-2xl text:xl text-primary_color font-medium text-center mb-2">
           congratulation
         </h1>
-        <p class="md:text-2xl text:xl text-Paragraph_color font-medium text-center mb-8">
+        <p class="md:text-2xl text:xl w-full md:w2/3 text-Paragraph_color font-medium text-center mb-8">
           Your request is completed
         </p>
         <div class="flex justify-center mb-10">
