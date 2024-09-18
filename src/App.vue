@@ -1,5 +1,27 @@
 <template>
   <div class="bg-bg_color">
+    <div
+      v-if="message"
+      :class="
+        message === 'Rejected'
+          ? 'fixed w-full z-50 bg-red h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
+          : 'fixed w-full z-50 bg-green h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
+      "
+    >
+      <img src="./assets/notification.svg" />
+
+      <p v-if="message === 'Rejected'">
+        Your last request was rejected, contact support for more details.
+      </p>
+      <p v-if="message === 'Accepted'">
+        Your last request was accepted, don't forget to
+        <span
+          @click="$router.push(`/profile/${user.id}`)"
+          class="font-medium underline cursor-pointer"
+          >Rate Your Order</span
+        >.
+      </p>
+    </div>
     <NavBar
       v-if="!$route.meta.hideNavFoot"
       class="fixed w-[90%] z-40 right-1/2 translate-x-1/2"
@@ -13,6 +35,9 @@
 import NavBar from "./components/NavBar.vue";
 import FooterComp from "./components/FooterComp.vue";
 import login from "./pages/login.vue";
+import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
   name: "App",
   components: {
@@ -20,9 +45,20 @@ export default {
     FooterComp,
     login,
   },
+  data() {
+    return {
+      message: "",
+      user: "",
+    };
+  },
+  computed: {
+    ...mapState(["loggedIn"]),
+  },
   created() {
     this.$store.dispatch("setInOrOut");
+
     const theme = localStorage.getItem("darkMode");
+
     if (theme === "true") {
       document.body.classList.add("dark");
       document.body.classList.remove("light");
@@ -31,6 +67,60 @@ export default {
       document.body.classList.add("light");
     }
   },
+  methods: {
+    getMessage() {
+      const user =
+        JSON.parse(localStorage.getItem("currentUser")) ||
+        JSON.parse(sessionStorage.getItem("currentUser"));
+
+      this.user = user;
+      if (this.user && this.user.role === "renter") {
+        axios
+          .get(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${this.user.id}.json`
+          )
+          .then((response) => {
+            if (response.data) {
+              this.message = response.data.message;
+            }
+          })
+          .then(() => {
+            axios.delete(
+              `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${this.user.id}.json`
+            );
+          });
+      }
+    },
+  },
+  updated() {
+    if (this.loggedIn) {
+      this.getMessage();
+    } else {
+      this.message = "";
+    }
+  },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.appear-disappear {
+  animation-name: appear-disappear;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appear-disappear {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+</style>

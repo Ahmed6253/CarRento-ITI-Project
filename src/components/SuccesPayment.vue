@@ -11,7 +11,7 @@
           congratulation
         </h1>
         <p class="text-2xl text-Paragraph_color font-medium text-center mb-8">
-          Your booking is completed
+          Your request is completed
         </p>
         <div class="flex justify-center mb-10">
           <button

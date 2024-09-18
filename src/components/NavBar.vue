@@ -52,13 +52,10 @@
         :class="showMenu ? 'block' : 'hidden'"
         id="navbar-user"
       >
-        <ul
-          @click="showMenu = !showMenu"
+        <ul @click="showMenu = !showMenu"
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
-          <li
-          >
-            
+          <li>
             <router-link
               to="/"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"

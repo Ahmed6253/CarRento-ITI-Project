@@ -157,21 +157,29 @@
             <p :class="fold ? 'hidden' : 'block'">My Cars</p>
           </div>
         </div>
-        <div
-          @click="logOut()"
-          class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
-        >
-          <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-          <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+        <div class="flex flex-col gap-y-6">
+          <div
+            @click="logOut()"
+            class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
+          >
+            <img src="../assets/ownerDashImges/logOut.svg" alt="" />
+            <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+          </div>
         </div>
       </div>
     </nav>
 
     <section class="mx-5 mt-10 w-full">
-      <h1 class="text-primary_color text-2xl mb-10">
-        <span class="font-bold">Hello, </span>
-        {{ currUser.userName }}
-      </h1>
+      <div class="flex justify-between">
+        <h1 class="text-primary_color text-2xl mb-10">
+          <span class="font-bold">Hello, </span>
+          {{ currUser.userName }}
+        </h1>
+        <label class="switch">
+          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+          <span class="slider"></span>
+        </label>
+      </div>
       <OwnerCars v-if="activeSection === 'cars'" :id="currUser.id" />
       <OwnerOrders v-if="activeSection === 'orders'" :id="currUser.id" />
       <OwnerOverview v-if="activeSection === 'overview'" :id="currUser.id" />
@@ -206,6 +214,7 @@ export default {
       fold: true,
       activeSection: "overview",
       currUser: "",
+      dark: false,
       logo: "",
       logoHalf: "",
     };
@@ -215,14 +224,40 @@ export default {
       JSON.parse(localStorage.getItem("currentUser")) ||
       JSON.parse(sessionStorage.getItem("currentUser"));
     if (localStorage.getItem("darkMode") === "true") {
+      this.dark = true;
       this.logo = require("../assets/logoDark.svg");
       this.logoHalf = require("../assets/logoHalfDark.svg");
     } else {
+      this.dark = false;
+      this.logo = require("../assets/logo.svg");
+      this.logoHalf = require("../assets/logoHalf.svg");
+    }
+  },
+
+  updated() {
+    if (localStorage.getItem("darkMode") === "true") {
+      this.dark = true;
+      this.logo = require("../assets/logoDark.svg");
+      this.logoHalf = require("../assets/logoHalfDark.svg");
+    } else {
+      this.dark = false;
       this.logo = require("../assets/logo.svg");
       this.logoHalf = require("../assets/logoHalf.svg");
     }
   },
   methods: {
+    toggleDarkMode() {
+      this.dark = !this.dark;
+      if (this.dark) {
+        localStorage.setItem("darkMode", "true");
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+      } else {
+        localStorage.setItem("darkMode", "false");
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+      }
+    },
     logOut() {
       const logoutConfirm = confirm("Are you sure you want to log out?");
 

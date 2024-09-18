@@ -206,9 +206,11 @@ export default {
   watch: {
     selectedCarTypes: function () {
       this.cardSearchFilter();
+      this.filtersCardsResult();
     },
     selectedBrands: function () {
       this.cardSearchFilter();
+      this.filtersCardsResult();
     },
   },
 
@@ -223,17 +225,30 @@ export default {
       this.filtersCarFlag = false;
       this.location = sessionStorage.getItem("orderLocation");
 
-      this.matchedLocation = Object.values(this.cars).filter((car) => {
-        return car.location.toLowerCase() === this.location.toLocaleLowerCase();
-      });
-      this.filtersCardsResult();
-      this.cardLocationFlag = true;
-      return this.matchedLocation;
+      if (this.location) {
+        this.matchedLocation = Object.values(this.cars).filter((car) => {
+          return (
+            car.location.toLowerCase() === this.location.toLocaleLowerCase()
+          );
+        });
+        if (this.filtersCarFlag) {
+          this.filtersCardsResult();
+        }
+
+        if (this.searchFlag) {
+          this.search();
+        }
+
+        this.cardLocationFlag = true;
+        return this.matchedLocation;
+      }
     },
 
     filtersCardsResult() {
       this.filtersCardResult = Object.values(
-        this.matchedLocation || this.cars
+        (this.searchOutput.length > 0 && this.searchOutput) ||
+          (this.matchedLocation.length > 0 && this.matchedLocation) ||
+          this.cars
       ).filter((car) => {
         // Check if car matches selected car types
         const matchesCarType =
@@ -255,7 +270,6 @@ export default {
 
       // Set flag to true to display filtered results
       this.filtersCarFlag = true;
-      console.log(this.filtersCardResult);
     },
 
     clearFiltersCardResult() {
@@ -268,7 +282,11 @@ export default {
       this.searchOutput = []; // Clear previous search results
 
       // Iterate through cars (since cars is an object, use Object.values())
-      for (let car of Object.values(this.filtersCardResult || this.cars)) {
+      for (let car of Object.values(
+        (this.filtersCardResult.length > 0 && this.filtersCardResult) ||
+          (this.matchedLocation.length > 0 && this.matchedLocation) ||
+          this.cars
+      )) {
         if (car.name.toLowerCase().includes(this.searchInput.toLowerCase())) {
           this.searchOutput.push(car);
         }

@@ -251,6 +251,12 @@
               >
                 Order rated
               </button>
+              <button
+                v-if="order.status === 'rejected'"
+                class="bg-red rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-slate-50"
+              >
+                Rejected
+              </button>
             </div>
           </div>
         </div>
@@ -355,12 +361,13 @@ export default {
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
         // console.log(response.data);
-        for (let order in response.data) {
-          // console.log(response.data[order]);
-          if (response.data[order].renter === this.id) {
-            this.UserOrders[order] = response.data[order];
+        const ordersData = response.data;
+        const ordersKeys = Object.keys(ordersData).reverse();
+        ordersKeys.forEach((key) => {
+          if (ordersData[key].renter === this.id) {
+            this.UserOrders[key] = ordersData[key];
           }
-        }
+        });
       })
       .catch((error) => {
         console.log(error);

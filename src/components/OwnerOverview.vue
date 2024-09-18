@@ -59,7 +59,8 @@
           :class="{
             'text-blue-500': order.status === 'done',
             'text-yellow-500': order.status === 'pending',
-            'text-green': order.status === 'approved',
+            'text-green': order.status === 'Accepted',
+            'text-red': order.status === 'rejected',
           }"
         >
           {{ order.status }}
@@ -100,13 +101,16 @@ export default {
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
         this.orders = response.data;
+        console.log("Fetched orders:", this.orders);
         this.ordersKeys = Object.keys(response.data);
 
         // Call pendingOrdersCalc after data is fetched
+        this.currentOwnerOrders();
+      })
+      .then(() => {
         this.pendingOrdersCalc();
         this.ordersDoneCalc();
         this.earningsCalc();
-        this.currentOwnerOrders();
       })
       .catch((e) => {
         console.log(e);
@@ -117,18 +121,9 @@ export default {
     pendingOrdersCalc() {
       this.pendingOrders = 0; // Reset count
 
-      for (let orderId of this.ordersKeys) {
-        const order = this.orders[orderId];
-
-        // Ensure both owner strings are properly formatted
-        const orderOwner = order.owner.trim().toLowerCase();
-        const currentOwner = this.owner.trim().toLowerCase();
-
-        // console.log("Order owner:", orderOwner);
-        // console.log("Current logged-in owner:", currentOwner);
-
-        // Ensure the current order belongs to the logged-in owner
-        if (orderOwner === currentOwner && order.status === "pending") {
+      for (let order of this.ownerOrders) {
+        order.owner = order.owner.trim().toLowerCase();
+        if (order.owner === this.owner && order.status === "pending") {
           this.pendingOrders++;
         }
       }
@@ -139,21 +134,11 @@ export default {
     ordersDoneCalc() {
       this.doneOrders = 0; // Reset count
 
-      for (let orderId of this.ordersKeys) {
-      
-        const order = this.orders[orderId];
-
-        // Ensure both owner strings are properly formatted
-        const orderOwner = order.owner.trim().toLowerCase();
-        const currentOwner = this.owner.trim().toLowerCase();
-
-        // console.log("Order owner:", orderOwner);
-        // console.log("Current logged-in owner:", currentOwner);
-
-        // Ensure the current order belongs to the logged-in owner
+      for (let order of this.ownerOrders) {
+        order.owner = order.owner.trim().toLowerCase();
         if (
-          (orderOwner === currentOwner && order.status === "done") ||
-          order.status === "Accepted"
+          order.owner === this.owner &&
+          (order.status === "done" || order.status === "Accepted")
         ) {
           this.doneOrders++;
         }
@@ -162,30 +147,11 @@ export default {
       console.log("Total done orders:", this.doneOrders);
     },
     earningsCalc() {
-      this.earnings = 0;
-      let sum = 0;
-
-      for (let orderId of this.ordersKeys) {
-        const order = this.orders[orderId];
-
-        // Ensure both owner strings are properly formatted
-        const orderOwner = order.owner.trim().toLowerCase();
-        const currentOwner = this.owner.trim().toLowerCase();
-
-        // console.log("Order owner:", orderOwner);
-        // console.log("Current logged-in owner:", currentOwner);
-
-        // Ensure the current order belongs to the logged-in owner
-        if (
-          (orderOwner === currentOwner && order.status === "done") ||
-          order.status === "Accepted"
-        ) {
-          sum = sum + Number(order.TotalPrice);
+      for (let order of this.ownerOrders) {
+        if (order.status === "done" || order.status === "Accepted") {
+          this.earnings += Number(order.TotalPrice);
         }
       }
-      // Final check
-      this.earnings = sum;
-      console.log("earnings:", this.earnings);
     },
 
     currentOwnerOrders() {
@@ -195,8 +161,10 @@ export default {
           this.owner.trim().toLowerCase()
         ) {
           this.ownerOrders.push(this.orders[orderId]);
+          this.ownerOrders.reverse();
         }
       }
+      console.log("Owner orders:", this.ownerOrders);
     },
   },
 };

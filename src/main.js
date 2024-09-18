@@ -55,7 +55,7 @@ const routes = [
         JSON.parse(sessionStorage.getItem("currentUser"));
 
       const orderStatus = JSON.parse(sessionStorage.getItem("orderStatus"));
-      if (user && orderStatus === "checkout") {
+      if (user && orderStatus === "checkout" && user.role === "renter") {
         next();
       } else {
         console.log(orderStatus);

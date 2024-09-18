@@ -268,7 +268,7 @@
               <p class="text-primary_color">Remember me</p>
             </div>
             <p v-if="loginError" class="text-red">All fields are required</p>
-            <p v-if="worngPassword" class="text-red">Worng Password</p>
+            <p v-if="worngPassword" class="text-red">Worng Email or Password</p>
 
             <button
               type="submit"
