@@ -268,10 +268,17 @@
         </div>
       </div>
       <button
+        v-if="currentUser.status === 'Verified'"
         class="bg-green rounded-lg font-medium text-slate-50 hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
         @click="booknow"
       >
         Book Now
+      </button>
+      <button
+        v-if="currentUser.status !== 'Verified'"
+        class="bg-slate-400 rounded-lg font-medium text-slate-50 p-3 cursor-not-allowed w-full xl:w-[73%]"
+      >
+        Verify your account to book
       </button>
     </section>
   </div>
@@ -300,6 +307,7 @@ export default {
       location: "",
       pickUpDate: "",
       dropOffDate: "",
+      currentUser: {},
     };
   },
   computed: {
@@ -311,6 +319,9 @@ export default {
     this.location = sessionStorage.getItem("orderLocation");
     this.pickUpDate = sessionStorage.getItem("orderPickUp");
     this.dropOffDate = sessionStorage.getItem("orderDropOff");
+    this.currentUser =
+      JSON.parse(sessionStorage.getItem("currentUser")) ||
+      JSON.parse(localStorage.getItem("currentUser"));
     axios
       .get(
         `https://carrento-9ea05-default-rtdb.firebaseio.com/cars/${this.$route.params.id}.json`

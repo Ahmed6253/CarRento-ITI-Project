@@ -171,7 +171,7 @@ export default {
       additionalFeatures: {},
       addPrices: {},
       totalPrice: 0,
-      personalName: "",
+
       total2Price: 0,
       currentUser: "",
       location: "",
@@ -191,7 +191,7 @@ export default {
     this.additionalFeatures = order.additionalFeatures;
     this.addPrices = order.featurePrices;
     this.totalPrice = order.TotalPrice;
-    this.personalName = sessionStorage.getItem("legalName");
+
     this.gettotal();
     getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
       (download_url) => (this.url = download_url)

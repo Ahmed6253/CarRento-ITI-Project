@@ -170,12 +170,12 @@
     <!-------------------- section one start --------------------->
     <div
       class="flex flex-col justify-between custom-shadow bg-white rounded-2xl py-6 px-12 mt-6"
+      id="verify"
     >
       <div class="flex justify-between">
         <p class="text-3xl font-semibold text-primary_color">
           Basic Information
         </p>
-        <img class="w-8 h-8" src="../imagesNavfoot/edit.png" alt="" />
       </div>
       <div class="flex flex-col md:flex-row justify-between pt-3">
         <div class="py-3">
@@ -186,11 +186,128 @@
           <p class="text-base text-Paragraph_color">Email</p>
           <p class="text-xl text-primary_color">{{ email }}</p>
         </div>
-        <div class="py-3">
-          <p class="text-base text-Paragraph_color">Account Status</p>
-          <p class="text-xl text-green">Active</p>
+        <div class="py-3 flex gap-4">
+          <div class="flex flex-col gap-x-2">
+            <p class="text-base text-Paragraph_color">Account Verification</p>
+            <p
+              :class="
+                (user.status === 'Unverified' && 'text-xl text-red') ||
+                (user.status === 'Verified' && 'text-xl text-green') ||
+                (user.status === 'Requested' && 'text-xl text-warning')
+              "
+            >
+              {{ user.status }}
+            </p>
+          </div>
+          <a
+            v-if="user.status === 'Unverified'"
+            @click="isVerify = !isVerify"
+            href="#verify"
+            class="text-slate-50 bg-green p-2.5 rounded-lg m-auto hover:bg-green_hover"
+          >
+            Verify now
+          </a>
         </div>
       </div>
+      <!-- upload files -->
+      <div v-if="isVerify" class="mt-6">
+        <section class="w-full md:w-1/2 md:pe-28">
+          <h3 class="text-2xl mb-3 text-primary_color">
+            Front-side photo of ID
+          </h3>
+          <div class="upload-file mb-6">
+            <label
+              for="front-id"
+              class="text-slate-50 bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer"
+            >
+              <span>Upload Your Photo </span>
+              <img
+                src="../assets/home-images/icons/document-upload.svg"
+                alt=""
+                class="w-6"
+              />
+            </label>
+            <input
+              type="file"
+              id="front-id"
+              name="front-id"
+              ref="frontId"
+              class="hidden"
+              @change="handleFileChange($event, 1)"
+            />
+            <span class="text-Paragraph_color"> {{ firstFileName }}</span>
+          </div>
+        </section>
+
+        <section class="w-full md:w-1/2 md:pe-28">
+          <h3 class="text-2xl mb-3 text-primary_color">
+            Back-side photo of ID
+          </h3>
+          <div class="upload-file mb-6">
+            <label
+              for="back-id"
+              class="bg-black text-slate-50 rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer text-Paragraph_color"
+            >
+              <span>Upload Your Photo </span>
+              <img
+                src="../assets/home-images/icons/document-upload.svg"
+                alt=""
+                class="w-6"
+              />
+            </label>
+            <input
+              type="file"
+              id="back-id"
+              name="back-id"
+              class="hidden"
+              ref="backId"
+              @change="handleFileChange($event, 2)"
+            />
+            <span class="text-Paragraph_color"> {{ secondFileName }}</span>
+          </div>
+        </section>
+
+        <section class="w-full md:w-1/2 md:pe-28">
+          <h3 class="text-2xl mb-3 text-primary_color">Driving license</h3>
+          <div class="upload-file mb-6">
+            <label
+              for="license"
+              class="bg-black text-slate-50 rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer text-Paragraph_color"
+            >
+              <span>Upload Your Photo </span>
+              <img
+                src="../assets/home-images/icons/document-upload.svg"
+                alt=""
+                class="w-6"
+              />
+            </label>
+            <input
+              type="file"
+              id="license"
+              name="license"
+              class="hidden"
+              ref="license"
+              @change="handleFileChange($event, 3)"
+            />
+            <span class="text-Paragraph_color"> {{ thirdFileName }}</span>
+          </div>
+        </section>
+
+        <button
+          v-if="!loadVrify"
+          @click="requestVerify()"
+          class="bg-green w-full md:w-auto px-6 py-2.5 my-2 hover:bg-green_hover text-slate-50 rounded-lg"
+        >
+          Request Verification
+        </button>
+        <button
+          v-if="loadVrify"
+          class="bg-slate-400 w-full md:w-auto px-6 py-2.5 my-2 cursor-not-allowed text-slate-50 rounded-lg"
+        >
+          Sending...
+        </button>
+      </div>
+      <!---upload files end-->
     </div>
     <!--------------------- section one end ----------------------->
     <!--------------------- section two start --------------------->
@@ -241,13 +358,13 @@
               <button
                 @click="openRate(index)"
                 v-if="order.status === 'Accepted'"
-                class="bg-primary_color hover:bg-primary_hover rounded-lg ml-2 px-6 py-2.5 text-white"
+                class="bg-green hover:bg-green_hover rounded-lg ml-2 px-6 py-2.5 text-slate-50"
               >
                 Rate your order
               </button>
               <button
                 v-if="order.status === 'done'"
-                class="bg-green rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-slate-50"
+                class="bg-primary_color rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-white"
               >
                 Order rated
               </button>
@@ -334,12 +451,20 @@
 
 <script>
 import axios from "axios";
+import { storage } from "@/firebase";
+import { ref, uploadBytes } from "firebase/storage";
 
 export default {
   name: "ProfilePage",
 
   data() {
     return {
+      currentUser: {},
+      firstFileName: "",
+      isVerify: false,
+      secondFileName: "",
+      thirdFileName: "",
+      loadVrify: false,
       name: "",
       email: "",
       password: "",
@@ -354,9 +479,21 @@ export default {
       rate: 0,
       ratingCount: 0,
       ratingSum: 0,
+      user: {},
     };
   },
   created() {
+    const storedUser =
+      localStorage.getItem("currentUser") ||
+      sessionStorage.getItem("currentUser");
+    this.currentUser = JSON.parse(storedUser);
+    axios
+      .get(
+        `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.currentUser.id}.json`
+      )
+      .then((response) => {
+        this.user = response.data;
+      });
     axios
       .get("https://carrento-9ea05-default-rtdb.firebaseio.com/orders.json")
       .then((response) => {
@@ -376,10 +513,7 @@ export default {
 
   mounted() {
     // Retrieve the currentUser from localStorage or sessionStorage
-    const storedUser =
-      localStorage.getItem("currentUser") ||
-      sessionStorage.getItem("currentUser");
-    this.currentUser = JSON.parse(storedUser);
+
     this.name = this.currentUser.userName;
     this.email = this.currentUser.email;
     const pass = this.currentUser.password;
@@ -387,6 +521,52 @@ export default {
     this.password = pass.replace(/./g, "*");
   },
   methods: {
+    handleFileChange(event, num) {
+      const firstFile = event.target.files[0];
+      if (num == 1) {
+        this.firstFileName = firstFile ? firstFile.name : "";
+      } else if (num == 2) {
+        this.secondFileName = firstFile ? firstFile.name : "";
+      } else if (num == 3) {
+        this.thirdFileName = firstFile ? firstFile.name : "";
+      }
+    },
+    requestVerify() {
+      const front = this.$refs.frontId.files[0];
+      const back = this.$refs.backId.files[0];
+      const license = this.$refs.license.files[0];
+      if (front && back && license) {
+        this.loadVrify = true;
+        const storageRefFront = ref(storage, `users/${this.currentUser.id}1`);
+        const storageRefBack = ref(storage, `users/${this.currentUser.id}2`);
+        const storageRefLicense = ref(storage, `users/${this.currentUser.id}3`);
+        uploadBytes(storageRefFront, front).then(() => {
+          uploadBytes(storageRefBack, back).then(() => {
+            uploadBytes(storageRefLicense, license)
+              .then(() => {
+                this.user.status = "Requested";
+              })
+              .then(() => {
+                axios
+                  .put(
+                    `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.currentUser.id}.json`,
+                    {
+                      ...this.user,
+                      status: "Requested",
+                    }
+                  )
+                  .then(() => {
+                    this.loadVrify = false;
+                    this.isVerify = false;
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  });
+              });
+          });
+        });
+      } else {
+        alert("Please select all files");
+      }
+    },
     openRate(id) {
       this.rateOpen = !this.rateOpen;
       this.orderId = id;

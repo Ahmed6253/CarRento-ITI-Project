@@ -3,7 +3,7 @@
     <div
       v-if="message"
       :class="
-        message === 'Rejected'
+        message === 'Rejected' || message === 'Unverified'
           ? 'fixed w-full text-[9px] sm:text-[16px] items-center z-50 bg-red h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
           : 'fixed w-full text-[9px] sm:text-[16px] items-center z-50 bg-green h-6 justify-center gap-1 text-slate-50 flex appear-disappear'
       "
@@ -13,6 +13,9 @@
       <p v-if="message === 'Rejected'">
         Your last request was rejected, contact support for more details.
       </p>
+      <p v-if="message === 'Verified'">
+        Congratulations, your account has been verified.
+      </p>
       <p v-if="message === 'Accepted'">
         Your last request was accepted, don't forget to
         <span
@@ -21,12 +24,20 @@
           >Rate Your Order</span
         >.
       </p>
+      <p v-if="message === 'Unverified'">
+        Your verification was rejected,
+        <span
+          @click="$router.push(`/profile/${user.id}`)"
+          class="font-medium underline cursor-pointer"
+          >Try Again</span
+        >.
+      </p>
     </div>
     <NavBar
       v-if="!$route.meta.hideNavFoot"
       class="fixed w-[90%] z-40 right-1/2 translate-x-1/2"
     ></NavBar>
-    
+
     <router-view></router-view>
     <login v-if="$store.state.isModalOpen"></login>
     <FooterComp v-if="!$route.meta.hideNavFoot"></FooterComp>
@@ -96,6 +107,20 @@ export default {
   updated() {
     if (this.loggedIn) {
       this.getMessage();
+      if (this.message === "Verified" && localStorage.getItem("currentUser")) {
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify({ ...this.user, status: "Verified" })
+        );
+      } else if (
+        this.message === "Verified" &&
+        sessionStorage.getItem("currentUser")
+      ) {
+        sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify({ ...this.user, status: "Verified" })
+        );
+      }
     } else {
       this.message = "";
     }

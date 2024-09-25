@@ -1,5 +1,5 @@
 <template>
-  <div class="ms-5 w-full">
+  <div class="w-full">
     <div class="inline-flex rounded-md shadow-sm" role="group">
       <button
         @click="shown = 'renter'"
@@ -7,8 +7,8 @@
         class="px-10 py-3 text-sm font-medium"
         :class="
           shown === 'renter'
-            ? 'bg-black text-white hover:bg-black hover:text-white'
-            : 'bg-slate-50 text-black hover:bg-gray-200 hover:text-white'
+            ? 'bg-footer text-slate-50 hover:bg-gray-200 hover:text-black'
+            : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-black'
         "
       >
         Renters
@@ -20,8 +20,8 @@
         class="px-10 py-3 text-sm font-medium"
         :class="
           shown === 'owner'
-            ? 'bg-footer text-slate-50 hover:bg-gray-200 hover:text-white'
-            : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-white'
+            ? 'bg-footer text-slate-50 hover:bg-gray-200 hover:text-black'
+            : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-black'
         "
       >
         Owners
@@ -29,14 +29,49 @@
     </div>
 
     <!-- Renters Section -->
-    <div v-if="shown === 'renter'" class="Renter relative overflow-x-auto w-full">
+    <div
+      v-if="shown === 'renter'"
+      class="Renter relative overflow-x-auto w-full"
+    >
+      <div
+        class="fixed top-1/2 left-1/2 translate-x-[-50%] flex justify-between flex-col translate-y-[-50%] bg-white w-full h-lvh m-auto p-14 z-50 gap-2"
+        v-if="viweImages"
+      >
+        <button
+          class="text-slate-50 bg-red w-8 h-8 rounded-md font-bold self-end"
+          @click="viweImages = false"
+        >
+          X
+        </button>
+        <div class="flex gap-4">
+          <img class="w-1/3 h-fit" :src="frontUrl" />
+          <img class="w-1/3 h-fit" :src="backUrl" />
+          <img class="w-1/3 h-fit" :src="licenceUrl" />
+        </div>
+
+        <div>
+          <button
+            @click="acceptRenter()"
+            class="bg-green hover:bg-green_hover text-slate-50 rounded p-2 mr-2"
+          >
+            Accept
+          </button>
+          <button
+            @click="rejectRenter()"
+            class="bg-red hover:bg-red_hover text-slate-50 rounded p-2"
+          >
+            Reject
+          </button>
+        </div>
+      </div>
       <h1 class="text-primary_color text-2xl my-10">Renters</h1>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-base text-Paragraph_color uppercase">
           <tr>
             <th scope="col" class="px-6 py-3">ID</th>
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Email</th>
+            <th scope="col" class="px-6 py-3">Status</th>
             <th scope="col" class="px-6 py-3">Block</th>
           </tr>
         </thead>
@@ -45,6 +80,21 @@
             <th scope="col" class="px-6 py-3">{{ renter.id }}</th>
             <th scope="col" class="px-6 py-3">{{ renter.userName }}</th>
             <th scope="col" class="px-6 py-3">{{ renter.email }}</th>
+            <th scope="col" class="px-6 py-3">
+              <button
+                @click="
+                  renter.status === 'Requested' && viweRenter(renter, index)
+                "
+                :class="{
+                  'text-green': renter.status === 'Verified',
+                  'text-red': renter.status === 'Unverified',
+                  'text-slate-50 bg-warning p-2 rounded-md':
+                    renter.status === 'Requested',
+                }"
+              >
+                {{ renter.status }}
+              </button>
+            </th>
             <th scope="col" class="px-6 py-3">
               <button
                 :class="{
@@ -100,11 +150,21 @@
 
 <script>
 import axios from "axios";
+import { storage } from "@/firebase";
+import { ref, getDownloadURL } from "firebase/storage";
+
 export default {
   name: "DashUsers",
   data() {
     return {
       shown: "renter",
+      viweImages: false,
+      currRenter: {},
+      currIndex: "",
+      imageError: "",
+      frontUrl: "",
+      backUrl: "",
+      licenceUrl: "",
       owners: [],
       renters: [],
     };
@@ -158,6 +218,72 @@ export default {
           );
         })
         .catch((err) => console.log(err));
+    },
+
+    viweRenter(renter, index) {
+      getDownloadURL(ref(storage, `users/${renter.id}1`))
+        .then((download_url) => (this.frontUrl = download_url))
+        .then(() => {
+          getDownloadURL(ref(storage, `users/${renter.id}2`)).then(
+            (download_url) => (this.backUrl = download_url)
+          );
+        })
+        .then(() => {
+          getDownloadURL(ref(storage, `users/${renter.id}3`)).then(
+            (download_url) => (this.licenceUrl = download_url)
+          );
+        })
+        .then(() => {
+          this.viweImages = true;
+          this.currRenter = renter;
+          this.currIndex = index;
+        })
+        .catch((e) => {
+          this.imageError = e;
+        });
+    },
+    acceptRenter() {
+      axios
+        .put(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.currRenter.id}.json`,
+          {
+            ...this.currRenter,
+            status: "Verified",
+          }
+        )
+        .then(() => {
+          axios.put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${this.currRenter.id}.json`,
+            {
+              message: "Verified",
+              id: this.currRenter.id,
+            }
+          );
+          this.renters[this.currIndex].status = "Verified";
+          this.viweImages = false;
+        });
+    },
+
+    rejectRenter() {
+      axios
+        .put(
+          `https://carrento-9ea05-default-rtdb.firebaseio.com/users/${this.currRenter.id}.json`,
+          {
+            ...this.currRenter,
+            status: "Unverified",
+          }
+        )
+        .then(() => {
+          axios.put(
+            `https://carrento-9ea05-default-rtdb.firebaseio.com/messages/${this.currRenter.id}.json`,
+            {
+              message: "Unverified",
+              id: this.currRenter.id,
+            }
+          );
+          this.renters[this.currIndex].status = "Unverified";
+          this.viweImages = false;
+        });
     },
   },
 };

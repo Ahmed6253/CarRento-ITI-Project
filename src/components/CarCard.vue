@@ -23,7 +23,10 @@
         {{ car.rating }}
       </p>
     </div>
+
+    <img src="../assets/Imgerror.png" v-if="imageError" class="w-3/4 m-auto" />
     <img
+      v-if="!imageError"
       :class="
         fullWidth ? 'mt-2 h-[180px] w-full' : 'mt-2 h-[180px] max-w-[308px]'
       "
@@ -108,9 +111,11 @@ export default {
     },
   },
   mounted() {
-    getDownloadURL(ref(storage, `cars/${this.car.id}`)).then(
-      (download_url) => (this.url = download_url)
-    );
+    getDownloadURL(ref(storage, `cars/${this.car.id}`))
+      .then((download_url) => (this.url = download_url))
+      .catch((e) => {
+        this.imageError = e;
+      });
   },
   created() {
     this.setfeatures(this.additionalFeatures);
@@ -125,6 +130,7 @@ export default {
   },
   data() {
     return {
+      imageError: "",
       url: "",
       location: "",
       pickUpDate: "",

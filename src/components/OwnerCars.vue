@@ -541,7 +541,6 @@ export default {
         });
     },
     uploadImage(id) {
-      console.log(this.$refs.image.files[0]);
       const storageRef = ref(storage, `cars/${id}`);
       uploadBytes(storageRef, this.$refs.image.files[0]).then((snapshot) => {
         console.log(snapshot);
