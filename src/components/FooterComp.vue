@@ -8,11 +8,10 @@
       >
         <div class="w-full md:w-4/12">
           <p class="text-base font-semibold">
-            Get the latest offers and updates
+            {{ $t("footer.title") }}
           </p>
           <p class="text-xs pt-1 md:pt-0">
-            Stay informed with our exclusive deals, latest car models, and
-            special promotions tailored just for you. Subscribe now!
+            {{ $t("footer.description") }}
           </p>
         </div>
         <div
@@ -20,11 +19,11 @@
         >
           <input
             type="text"
-            placeholder="Enter your email"
+            :placeholder= "$t('footer.placeholder')"
             class="w-full md:w-72 bg-primary_color h-12 rounded-lg px-4 border border-slate-50"
           />
           <button class="px-8 h-12 rounded-lg md bg-slate-50 text-gray-900">
-            Subscribe
+            {{ $t("footer.button") }}
           </button>
         </div>
       </div>
@@ -38,8 +37,7 @@
             <img src="../assets/logoDark.svg" alt="">
           </a>
           <p class="text-xs w-full md:w-5/12">
-            Reliable car rentals, offering comfort and style for every journey
-            you take.
+            {{ $t("footer.logo_description") }}
           </p>
           <div class="flex gap-3">
             <svg
@@ -142,21 +140,21 @@
         </div>
         <!-- second colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
-          <p class="text-base font-semibold">Support</p>
-          <a href="/cars" class="text-xs">Pricing</a>
-          <a href="/cars" class="text-xs">Insights</a>
-          <a href="/cars" class="text-xs">Plans</a>
+          <p class="text-base font-semibold">{{ $t("footer.support") }}</p>
+          <a href="/cars" class="text-xs">{{ $t("footer.pricing") }}</a>
+          <a href="/cars" class="text-xs">{{ $t("footer.insights") }}</a>
+          <a href="/cars" class="text-xs">{{ $t("footer.plans") }}</a>
         </div>
         <!-- third colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
-          <p class="text-base font-semibold">Company</p>
-          <a href="/about" class="text-xs">About Us</a>
-          <a href="/about" class="text-xs">Blog</a>
-          <a href="/about" class="text-xs">FAQ</a>
+          <p class="text-base font-semibold">{{ $t("footer.company") }}</p>
+          <a href="/about" class="text-xs">{{ $t("footer.about") }}</a>
+          <a href="/about" class="text-xs">{{ $t("footer.blog") }}</a>
+          <a href="/about" class="text-xs">{{ $t("footer.faq") }}</a>
         </div>
         <!-- fourth colum -->
         <div class="flex flex-col gap-y-4 w-full md:w-2/12 py-3 md:py-0">
-          <p class="text-base font-semibold">Contact Us</p>
+          <p class="text-base font-semibold">{{ $t("footer.contact_us") }}</p>
           <p class="text-xs">
             <span class="flex"
               ><svg
@@ -256,7 +254,7 @@
         <p class="flex">Copyright</p>
         <span class="text-3xl">&#174;</span>
 
-        <p>2024 Car Rento. All Rights Reserved</p>
+        <p>{{ $t("footer.copyright") }}</p>
       </div>
     </div>
   </div>

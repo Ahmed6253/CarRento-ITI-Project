@@ -2,6 +2,12 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
+
+import { createI18n } from 'vue-i18n'
+import En from './locale/en.json'
+import Ar from './locale/ar.json'
+
+
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
 import CarPage from "./pages/CarPage.vue";
@@ -15,6 +21,15 @@ import PaymentFailed from "./components/PaymentFailed.vue";
 import AdminLogin from "./pages/AdminLogin.vue";
 import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
+
+const i18n = createI18n({
+  locale: localStorage.getItem("lang") || "En",
+  messages:{
+    En : En,
+    Ar : Ar,
+  }
+})
+
 
 const routes = [
   {
@@ -165,4 +180,4 @@ const router = createRouter({
   },
 });
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App).use(store).use(router).use(i18n).mount("#app");

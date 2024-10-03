@@ -6,20 +6,15 @@
       <h1
         class="text-primary_color text-center md:text-7xl text-4xl font-normal mx-auto"
       >
-        About Us
+        {{ $t("about.title") }}
       </h1>
     </div>
     <div class="md:mx-10 mx-4 lg:mx-20 pb-12">
       <div class="mt-20 lg:w-6/12 w-full mx-auto mb-48">
         <section class="sec-1 showAnimate">
-          <h3 class="res-header animate">Our Story</h3>
+          <h3 class="res-header animate">{{ $t("about.ourStoryHeader") }}</h3>
           <p class="res-parapgraph animate">
-            "At Car Rento, we're passionate about providing hassle-free and
-            enjoyable car rental experiences. With professionals having years of
-            industry expertise, we've built a reputation for reliability,
-            exceptional service, and a diverse fleet of vehicles to suit every
-            need. Our team of dedicated professionals is committed to ensuring
-            your journey is comfortable and memorable."
+            {{ $t("about.ourStoryText") }}
           </p>
         </section>
 
@@ -29,13 +24,9 @@
         />
 
         <section class="showAnimate">
-          <h3 class="res-header">Our Mission</h3>
+          <h3 class="res-header">{{ $t("about.ourMissionHeader") }}</h3>
           <p class="res-parapgraph">
-            Our mission is to make car rental a seamless and enjoyable
-            experience for everyone. We strive to offer a diverse range of
-            vehicles to suit every need, competitive pricing, and exceptional
-            customer service. We believe that travel should be accessible and
-            hassle-free, and we're committed to making that a reality.
+            {{ $t("about.ourMissionText") }}
           </p>
         </section>
       </div>
@@ -45,38 +36,34 @@
           <h3
             class="res-header md:text-left text-center md:ms-2 ms-4 lg:ms-0 mt-10 lg:mt-0 mb-6"
           >
-            Our Values
+            {{ $t("about.ourValuesHeader") }}
           </h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">Customer Satisfaction:</h6>
+              <h6 class="values-card-header">{{ $t("about.values.customerSatisfaction.header") }}</h6>
               <p class="values-card-paragraph">
-                We prioritize the needs and satisfaction of our customers above
-                all else.
+                {{ $t("about.values.customerSatisfaction.text") }}
               </p>
             </div>
 
             <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">Reliability:</h6>
+              <h6 class="values-card-header">{{ $t("about.values.reliability.header") }}</h6>
               <p class="values-card-paragraph">
-                We are dedicated to providing reliable and well-maintained
-                vehicles.
+                {{ $t("about.values.reliability.text") }}
               </p>
             </div>
 
             <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">Innovation:</h6>
+              <h6 class="values-card-header">{{ $t("about.values.innovation.header") }}</h6>
               <p class="values-card-paragraph">
-                We continuously seek new ways to enhance the customer
-                experience.
+                {{ $t("about.innovation.text") }}
               </p>
             </div>
 
             <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">Integrity:</h6>
+              <h6 class="values-card-header">{{ $t("about.values.integrity.header") }}</h6>
               <p class="values-card-paragraph">
-                We conduct our business with honesty, transparency, and ethical
-                standards.
+                {{ $t("about.values.integrity.text") }}
               </p>
             </div>
           </div>
@@ -89,18 +76,16 @@
         <div class="bg-custom-20-40">
           <div class="md:mb-48 md:w-7/12 md:ms-12 md:mt-20 p-4">
             <h1 class="md:text-6xl text-4xl text-primary_color mb-4">
-              Join Us
+              {{ $t("about.joinUsHeader") }}
             </h1>
             <p class="md:text-base text-sm text-Paragraph_color mb-6">
-              We invite you to experience the difference of renting from Car
-              Rento. Whether you're planning a vacation, business trip, or road
-              trip, we're here to make your journey unforgettable.
+              {{ $t("about.joinUsText") }}
             </p>
             <button
               class="bg-primary_color text-white rounded-3xl p-2.5 md:w-36 w-full hover:bg-primary_hover"
               @click="$router.push('/cars')"
             >
-              Rent now
+              {{ $t("about.rentNowButton") }}
             </button>
           </div>
         </div>

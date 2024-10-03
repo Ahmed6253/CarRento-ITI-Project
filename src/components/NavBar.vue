@@ -2,8 +2,13 @@
   <!-- navbar start -->
 
   <nav class="text-primary_color">
+    <div class="flex justify-start ps-6 pt-2 my-0 bg-none">
+        <button :class="{ 'font-bold': locale === 'En', 'font-light': locale === 'Ar' }" @click="setEn">En </button>
+        <span> /</span>
+        <button :class="{ 'font-bold': locale === 'Ar', 'font-light': locale === 'En' }" @click="setAr"> عربي</button>
+      </div>
     <div
-      class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow mt-6 bg-white opacity-90"
+      class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow bg-white opacity-90"
     >
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
         <router-link to="/">
@@ -23,7 +28,7 @@
           class="px-8 py-3 bg-primary_color hidden lg:block text-white font-medium rounded-full"
           @click="openModal"
         >
-          {{ loggedIn ? "Logout" : "Login" }}
+          {{ loggedIn ?  $t("nav.logout")  : $t("nav.login") }}
         </button>
         <!-- user picture  -->
         <a
@@ -61,7 +66,7 @@
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
               aria-current="page"
-              >Home</router-link
+              >{{ $t("nav.home") }}</router-link
             >
           </li>
           <li>
@@ -70,7 +75,7 @@
               href="/cars"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
-              >Cars</router-link
+              >{{ $t("nav.cars") }}</router-link
             >
           </li>
           <li>
@@ -78,7 +83,7 @@
               to="/about"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
-              >About</router-link
+              >{{ $t("nav.about") }}</router-link
             >
           </li>
           <li>
@@ -114,6 +119,7 @@ export default {
       showMenu: false,
       dark: false,
       logo: "",
+      locale: "En",
     };
   },
   computed: {
@@ -133,6 +139,11 @@ export default {
     }
   },
 
+  mounted(){
+    this.locale = localStorage.getItem('lang');
+  },
+
+
   updated() {
     if (localStorage.getItem("darkMode") === "true") {
       this.logo = require("../assets/logoDark.svg");
@@ -141,7 +152,24 @@ export default {
     }
   },
 
+  watch: {
+    // Watch for locale changes
+    locale(newLocale) {
+      this.$i18n.locale = newLocale; // Update i18n locale when locale data changes
+    }
+  },
+
   methods: {
+    setEn(){
+     localStorage.setItem('lang', 'En');
+     this.locale = 'En';
+    },
+
+    setAr(){
+      localStorage.setItem('lang', 'Ar');
+      this.locale = 'Ar';
+    },
+
     toggleDarkMode() {
       this.dark = !this.dark;
       if (this.dark) {
