@@ -268,14 +268,14 @@
         </div>
       </div>
       <button
-        v-if="currentUser.status === 'Verified'"
+        v-if="currentUser?.status === 'Verified' || !currentUser"
         class="bg-green rounded-lg font-medium text-slate-50 hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
         @click="booknow"
       >
         Book Now
       </button>
       <button
-        v-if="currentUser.status !== 'Verified'"
+        v-if="currentUser && currentUser.status !== 'Verified'"
         class="bg-slate-400 rounded-lg font-medium text-slate-50 p-3 cursor-not-allowed w-full xl:w-[73%]"
       >
         Verify your account to book
