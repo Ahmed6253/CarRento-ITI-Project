@@ -22,7 +22,7 @@
           @click="$router.push(`/profile/${user.id}`)"
           class="font-medium underline cursor-pointer"
           >Rate Your Order</span
-        >.
+        >
       </p>
       <p v-if="message === 'Unverified'">
         Your verification was rejected,
@@ -30,7 +30,7 @@
           @click="$router.push(`/profile/${user.id}`)"
           class="font-medium underline cursor-pointer"
           >Try Again</span
-        >.
+        >
       </p>
     </div>
     <NavBar
@@ -66,6 +66,8 @@ export default {
   computed: {
     ...mapState(["loggedIn"]),
   },
+
+
   created() {
     this.$store.dispatch("setInOrOut");
 
@@ -80,6 +82,8 @@ export default {
     }
   },
   methods: {
+
+
     getMessage() {
       const user =
         JSON.parse(localStorage.getItem("currentUser")) ||
@@ -104,7 +108,11 @@ export default {
       }
     },
   },
+
+
+  
   updated() {
+
     if (this.loggedIn) {
       this.getMessage();
       if (this.message === "Verified" && localStorage.getItem("currentUser")) {

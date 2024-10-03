@@ -5,14 +5,13 @@
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 md:text-left text-center">
         <h1 class="lg:text-6xl sm:text-4xl text-2xl w-full text-primary_color">
-          Rent your perfect car with <br />
-          a big discount
+          {{ $t("home.hello") }} <br /> {{ $t("home.welcome") }}
         </h1>
         <button
           class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl"
           @click="scrollToSearchCard"
         >
-          Rent now
+          {{ $t("home.rent_now") }}
         </button>
         <img
           src="../assets/home-images/hero.png"
@@ -80,11 +79,10 @@
   <section class="bg-bg_color pt-24 my-0 text-center animate-fade-up">
     <div class="mx-4 md:mx-20">
       <h2 class="sm:text-4xl text-2xl mb-4 font-medium text-primary_color">
-        Easy steps to rent your perfect car
+        {{ $t("home.easy_steps") }}
       </h2>
       <p class="text-[16px] text-primary_color">
-        Renting a car with us is a breeze! Simply browse our extensive fleet to
-        find the perfect vehicle for your needs.
+        {{ $t("home.easy_steps_description") }}
       </p>
 
       <div
@@ -94,10 +92,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">Choose Location</h3>
+          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_location") }}</h3>
           <p class="text-gray-500 text-center text-[12px]">
-            choose your desired pickup and drop-off from wide range of locations
-            to suit your needs
+            {{ $t("home.choose_location_description") }}
           </p>
         </div>
         <div class="w-1/5 ps-2 hidden lg:block">
@@ -111,10 +108,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/calendar.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">Choose day and Time</h3>
+          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_day_time") }}</h3>
           <p class="text-gray-500 text-[12px]">
-            Select your preferred pick-up and drop-off dates and times, let's
-            find your best availability.
+            {{ $t("home.choose_day_time_description") }}
           </p>
         </div>
         <div class="w-1/5 ps-2 hidden lg:block">
@@ -128,10 +124,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/car.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">Choose a car</h3>
+          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_car") }}</h3>
           <p class="text-gray-500 text-[12px]">
-            Browse our fleet and find the perfect vehicle with your preferred
-            with your preferred options.
+            {{ $t("home.choose_car_description") }}
           </p>
         </div>
       </div>
@@ -142,11 +137,10 @@
   <section class="bg-bg_color pt-0 pb-32 my-0 text-center text-primary_color">
     <div class="mx-4 md:mx-20">
       <h2 class="sm:text-4xl text-2xl mb-4 font-medium">
-        Most popular car rentals
+        {{ $t("home.most_popular_car_rentals") }}
       </h2>
       <p class="w-75% text-[16px]">
-        Renting a car with us is a breeze! Simply browse our extensive fleet to
-        find the perfect vehicle for your needs.
+        {{ $t("home.most_popular_car_rentals_description") }}
       </p>
       <div class="mt-5">
         <swiper
@@ -272,12 +266,12 @@
           class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-4 lg:pt-12 pb-0 lg:pb-40"
         >
           <h1 class="lg:text-6xl md:text-4xl text-2xl lg:mb-24 mb-10">
-            Rent your perfect car with a big discount
+            {{ $t("home.rent_perfect_car") }}
           </h1>
           <router-link
             to="/cars"
             class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl"
-            >Rent now</router-link
+            >{{ $t("home.rent_now") }}</router-link
           >
         </div>
       </div>
@@ -292,7 +286,7 @@
     <div class="mx-4 md:mx-20">
       <div class="flex flex-wrap">
         <div class="w-full lg:w-1/2">
-          <h1 class="text-4xl">Why choose us</h1>
+          <h1 class="text-4xl">{{ $t("home.why_choose_us") }}</h1>
           <img src="../assets/home-images/whyus.png" alt="" />
         </div>
 
@@ -301,10 +295,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">Unmtched Selection</h3>
+              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.unmatched_selection") }}</h3>
               <p class="text-Paragraph_color text-[12px]">
-                With a vast fleet of vehicles, we offer the perfect car for
-                every preference.
+                {{ $t("home.unmatched_selection_description") }}
               </p>
             </div>
           </div>
@@ -313,10 +306,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">Competitive Pricing</h3>
+              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.competitive_pricing") }}</h3>
               <p class="text-Paragraph_color text-[12px]">
-                Enjoy affordable rental prices without compromising on quality
-                or service.
+                {{ $t("home.competitive_pricing_description") }}
               </p>
             </div>
           </div>
@@ -325,10 +317,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">Convenient Locations</h3>
+              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.convenient_locations") }}</h3>
               <p class="text-Paragraph_color text-[12px]">
-                We have convenient pickup and drop-off locations to suit your
-                travel needs.
+                {{ $t("home.convenient_locations_description") }}
               </p>
             </div>
           </div>
@@ -338,11 +329,10 @@
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
               <h3 class="text-[22px] font-medium mb-2">
-                Flexible Rental Options
+                {{ $t("home.flexible_rental_options") }}
               </h3>
               <p class="text-Paragraph_color text-[12px]">
-                Need a car for a few hours, a day, or longer, we offer flexible
-                rental options.
+                {{ $t("home.flexible_rental_options_description") }}
               </p>
             </div>
           </div>

@@ -124,6 +124,9 @@ export default {
       septRevnue: 62,
       SeptOrders: 112,
       SeptUsers: 12,
+      octoberOrders: 0,
+      octoberRevnue: 0,
+      octoberUsers:0,
       series: [],
 
       chartOptions: {
@@ -148,7 +151,6 @@ export default {
         },
         xaxis: {
           categories: [
-            "Jan",
             "Feb",
             "Mar",
             "Apr",
@@ -157,6 +159,7 @@ export default {
             "Jul",
             "Aug",
             "Sep",
+            "Oct"
           ],
         },
         yaxis: {
@@ -229,30 +232,38 @@ export default {
             this.SeptOrders++;
             this.SeptUsers = this.SeptUsers + 2;
           }
+          else if(month === "10"){
+            if (this.orders[orderId].status === "done") {
+              this.octoberRevnue =
+                this.octoberRevnue + Number(this.orders[orderId].TotalPrice);
+            }
+            this.octoberOrders++;
+            this.octoberUsers = this.octoberUsers + 2;
+          }
         }
       }
       this.series = [
         {
           name: "reveue",
           data: [
-            6044,
-            5055,
-            5057,
-            3056,
-            5066,
-            4058,
-            6043,
-            6660,
+            66044,
+            55055,
+            55057,
+            33056,
+            55066,
+            44058,
+            66043,
             this.septRevnue,
+            this.octoberRevnue,
           ],
         },
         {
           name: "orders",
-          data: [6, 8, 10, 9, 9, 10, 9, 11, this.SeptOrders],
+          data: [16, 18, 20, 19, 19, 20, 19, this.SeptOrders, this.octoberOrders],
         },
         {
           name: "users",
-          data: [3, 4, 3, 2, 4, 4, 5, 5, this.SeptUsers],
+          data: [13, 14, 13, 22, 14, 14, 15, this.SeptUsers, this.octoberUsers],
         },
       ];
 
@@ -292,7 +303,7 @@ export default {
 //       if (order.dropOffDate) {
 //         const month = order.dropOffDate.split('-')[1]; // Extracts the month (e.g., '09' for September)
 
-//         // Check if month exists in monthlyData
+  // Check if month exists in monthlyData
 //         if (this.monthlyData[month]) {
 //           this.monthlyData[month].revenue += Number(order.TotalPrice);
 //           this.monthlyData[month].orders += 1;
