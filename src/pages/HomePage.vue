@@ -5,7 +5,8 @@
     <div class="mx-4 md:mx-20">
       <div class="px-0 pt-12 md:text-left text-center">
         <h1 class="lg:text-6xl sm:text-4xl text-2xl w-full text-primary_color">
-          {{ $t("home.hello") }} <br /> {{ $t("home.welcome") }}
+          {{ $t("home.hello") }} <br />
+          {{ $t("home.welcome") }}
         </h1>
         <button
           class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl"
@@ -92,7 +93,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_location") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_location") }}
+          </h3>
           <p class="text-gray-500 text-center text-[12px]">
             {{ $t("home.choose_location_description") }}
           </p>
@@ -108,7 +111,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/calendar.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_day_time") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_day_time") }}
+          </h3>
           <p class="text-gray-500 text-[12px]">
             {{ $t("home.choose_day_time_description") }}
           </p>
@@ -124,7 +129,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/car.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_car") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_car") }}
+          </h3>
           <p class="text-gray-500 text-[12px]">
             {{ $t("home.choose_car_description") }}
           </p>
@@ -295,7 +302,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.unmatched_selection") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.unmatched_selection") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.unmatched_selection_description") }}
               </p>
@@ -306,7 +315,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.competitive_pricing") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.competitive_pricing") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.competitive_pricing_description") }}
               </p>
@@ -317,7 +328,9 @@
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.convenient_locations") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.convenient_locations") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.convenient_locations_description") }}
               </p>
