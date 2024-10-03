@@ -24,6 +24,7 @@ import ErrorPage from "./pages/ErrorPage.vue";
 
 const i18n = createI18n({
   locale: localStorage.getItem("lang") || "En",
+  fallbackLocale: "En",
   messages:{
     En : En,
     Ar : Ar,

@@ -156,7 +156,11 @@ export default {
     // Watch for locale changes
     locale(newLocale) {
       this.$i18n.locale = newLocale; // Update i18n locale when locale data changes
-    }
+    },
+
+    '$i18n.locale'(newLang) {
+    document.documentElement.dir = newLang === 'Ar' ? 'rtl' : 'ltr';
+  }
   },
 
   methods: {
