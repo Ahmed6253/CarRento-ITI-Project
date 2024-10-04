@@ -3,10 +3,9 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import "./assets/tailwind.css";
 
-import { createI18n } from 'vue-i18n'
-import En from './locale/en.json'
-import Ar from './locale/ar.json'
-
+import { createI18n } from "vue-i18n";
+import En from "./locale/en.json";
+import Ar from "./locale/ar.json";
 
 import HomePage from "./pages/HomePage.vue";
 import CarsPage from "./pages/CarsPage.vue";
@@ -23,14 +22,13 @@ import store from "./store";
 import ErrorPage from "./pages/ErrorPage.vue";
 
 const i18n = createI18n({
-  locale: localStorage.getItem("lang") || "en",
-  fallbackLocale: "en",
-  messages:{
-    En : En,
-    Ar : Ar,
-  }
-})
-
+  locale: localStorage.getItem("lang") || "En",
+  fallbackLocale: "En",
+  messages: {
+    En: En,
+    Ar: Ar,
+  },
+});
 
 const routes = [
   {

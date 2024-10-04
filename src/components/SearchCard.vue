@@ -3,14 +3,17 @@
     class="flex w-full justify-between gap-5 p-[45px] rounded-3xl my-5 custom-shadow bg-white flex-wrap"
   >
     <div class="flex flex-col md:w-64 w-full">
-      <label for="pickup-location" class="label-style">{{ $t('searchCard.pickup_location') }}</label><br />
+      <label for="pickup-location" class="label-style">{{
+        $t("searchCard.pickup_location")
+      }}</label
+      ><br />
       <select
         class="input-style p-[11px]"
         id="pickup-location"
         v-model="location"
         @change="validateInputs"
       >
-       <option>Cairo</option>
+        <option>Cairo</option>
         <option>Alexandria</option>
         <option>Giza</option>
         <option>Qalyubia</option>
@@ -40,7 +43,10 @@
       </select>
     </div>
     <div class="flex flex-col relative md:w-64 w-full">
-      <label class="label-style" for="pickup-date">{{ $t('searchCard.pickup_date') }}</label><br />
+      <label class="label-style" for="pickup-date">{{
+        $t("searchCard.pickup_date")
+      }}</label
+      ><br />
       <input
         type="date"
         id="pickup-date"
@@ -55,7 +61,10 @@
       />
     </div>
     <div class="flex flex-col md:w-64 w-full relative">
-      <label class="label-style" for="dropoff-date">{{ $t('searchCard.dropoff_location') }}</label><br />
+      <label class="label-style" for="dropoff-date">{{
+        $t("searchCard.dropoff_location")
+      }}</label
+      ><br />
       <input
         type="date"
         id="dropoff-date"
@@ -75,7 +84,7 @@
       @click.prevent="submitSearch"
       :disabled="isDisabled"
     >
-      {{ $t('searchCard.set_and_search') }}
+      {{ $t("searchCard.set_and_search") }}
     </button>
 
     <div v-if="errorMessage" class="text-red mt-2 text-center w-full">
@@ -118,7 +127,7 @@ export default {
       console.log(this.allowRent);
 
       if (!this.allowRent) {
-        this.errorMessage = this.$t('searchCard.error_location_date');
+        this.errorMessage = this.$t("searchCard.error_location_date");
         this.isDisabled = true;
       }
     },
@@ -134,14 +143,14 @@ export default {
       const dropoff = new Date(this.dropoffDate);
 
       if (pickup >= dropoff) {
-        this.errorMessage = this.$t('searchCard.error_pickup_dropoff');
+        this.errorMessage = this.$t("searchCard.error_pickup_dropoff");
         this.isDisabled = true;
         return;
       }
       if (pickup.getDate() < new Date().getDate()) {
         console.log(new Date().getDate(), pickup.getDate());
 
-        this.errorMessage = this.$t('searchCard.error_pickup_past');
+        this.errorMessage = this.$t("searchCard.error_pickup_past");
         this.isDisabled = true;
         return;
       } else {
@@ -152,14 +161,14 @@ export default {
 
     submitSearch() {
       if (!this.location || !this.pickupDate || !this.dropoffDate) {
-        this.errorMessage = this.$t('searchCard.error_all_fields');
+        this.errorMessage = this.$t("searchCard.error_all_fields");
         this.isDisabled = true;
         return;
       } else {
         this.isDisabled = false;
         this.errorMessage = "";
       }
-      if (!this.isDisabled){
+      if (!this.isDisabled) {
         const currentPath = this.$route.path;
         if (currentPath === "/") {
           this.$router.push("/cars");

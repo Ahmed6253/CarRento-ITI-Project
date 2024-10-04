@@ -95,7 +95,8 @@ export default {
         this.$router.push(`/cars/${this.car.id}`);
       } else {
         this.$store.dispatch("setAllowRent", false);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const searchcard = document.getElementById("search-card");
+        searchcard.scrollIntoView({ behavior: "smooth" });
       }
     },
     getImagePath(prop) {
