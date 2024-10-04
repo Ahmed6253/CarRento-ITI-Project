@@ -180,7 +180,7 @@
               value="driver"
               v-model="additionalFeatures.driver"
             />
-            <label class="text-primary_color ml-3" for="driver"
+            <label class="text-primary_color mx-3" for="driver"
               >Private driver</label
             ><br />
           </label>
@@ -197,7 +197,7 @@
               value="toddler-seat"
               v-model="additionalFeatures.toddlerSeat"
             />
-            <label class="text-primary_color ml-3" for="toddler-seat"
+            <label class="text-primary_color mx-3" for="toddler-seat"
               >Toddler Child Seat</label
             ><br />
           </label>
@@ -214,7 +214,7 @@
               value="infant-seat"
               v-model="additionalFeatures.infantSeat"
             />
-            <label class="text-primary_color ml-3" for="infant-seat"
+            <label class="text-primary_color mx-3" for="infant-seat"
               >Infant Child Seat</label
             ><br />
           </label>
@@ -231,7 +231,7 @@
               class="accent-gray-900"
               v-model="additionalFeatures.protection"
             />
-            <label class="text-primary_color ml-3" for="protection"
+            <label class="text-primary_color mx-3" for="protection"
               >Collision Damage Protection</label
             ><br />
           </label>

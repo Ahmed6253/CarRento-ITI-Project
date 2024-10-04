@@ -21,7 +21,11 @@
           <img
             src="../assets/search-normal.svg"
             alt=""
-            class="absolute right-5 top-5 w-5 cursor-pointer"
+            :class="
+              this.$i18n.locale == 'Ar'
+                ? 'absolute left-5 top-5 w-5 cursor-pointer'
+                : 'absolute right-5 top-5 w-5 cursor-pointer'
+            "
           />
           <div v-if="searchFail" class="text-red mt-2 text-center w-full">
             The model you're searching for doesn't seem to be available, browse

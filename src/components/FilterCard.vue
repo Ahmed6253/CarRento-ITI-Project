@@ -32,7 +32,7 @@
             type="checkbox"
             id="sedan"
             value="sedan"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -44,7 +44,7 @@
             type="checkbox"
             id="suv"
             value="suv"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -56,7 +56,7 @@
             type="checkbox"
             id="hatchback"
             value="hatchback"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -68,7 +68,7 @@
             type="checkbox"
             id="crossover"
             value="crossover"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -80,7 +80,7 @@
             type="checkbox"
             id="coupe"
             value="coupe"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -92,7 +92,7 @@
             type="checkbox"
             id="convertible"
             value="convertible"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -104,7 +104,7 @@
             type="checkbox"
             id="truck"
             value="truck"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -116,7 +116,7 @@
             type="checkbox"
             id="van"
             value="van"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
@@ -133,7 +133,7 @@
             type="checkbox"
             id="toyota"
             value="toyota"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -145,7 +145,7 @@
             type="checkbox"
             id="nissan"
             value="nissan"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -157,7 +157,7 @@
             type="checkbox"
             id="mercedes"
             value="mercedes"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -169,7 +169,7 @@
             type="checkbox"
             id="bmw"
             value="bmw"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -181,7 +181,7 @@
             type="checkbox"
             id="hyundai"
             value="hyundai"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -193,7 +193,7 @@
             type="checkbox"
             id="kia"
             value="kia"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -205,7 +205,7 @@
             type="checkbox"
             id="audi"
             value="audi"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -217,7 +217,7 @@
             type="checkbox"
             id="volkswagen"
             value="volkswagen"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -229,7 +229,7 @@
             type="checkbox"
             id="skoda"
             value="skoda"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -241,7 +241,7 @@
             type="checkbox"
             id="ford"
             value="ford"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -253,7 +253,7 @@
             type="checkbox"
             id="lexus"
             value="lexus"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -265,7 +265,7 @@
             type="checkbox"
             id="mitsubishi"
             value="mitsubishi"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -277,7 +277,7 @@
             type="checkbox"
             id="jaguar"
             value="jaguar"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -289,7 +289,7 @@
             type="checkbox"
             id="porsche"
             value="porsche"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
@@ -301,7 +301,7 @@
             type="checkbox"
             id="renault"
             value="renault"
-            class="mr-2 accent-primary_color"
+            class="mx-2 accent-primary_color"
             v-model="selectedBrands"
             @change="applyFilters"
           />
