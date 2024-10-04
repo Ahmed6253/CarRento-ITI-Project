@@ -148,6 +148,9 @@ export default {
     } else {
       this.logo = require("../assets/logo.svg");
     }
+    this.locale = localStorage.getItem("lang") || "En";
+
+    document.documentElement.dir = this.locale === "En" ? "ltr" : "rtl";
   },
 
   updated() {
