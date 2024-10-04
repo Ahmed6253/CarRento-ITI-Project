@@ -39,29 +39,61 @@
             {{ $t("about.ourValuesHeader") }}
           </h3>
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">{{ $t("about.values.customerSatisfaction.header") }}</h6>
+            <div
+              :class="
+                this.$i18n.locale === 'Ar'
+                  ? 'values_card mx-auto md:ms-0 text-right'
+                  : 'values_card mx-auto md:ms-0'
+              "
+            >
+              <h6 class="values-card-header">
+                {{ $t("about.values.customerSatisfaction.header") }}
+              </h6>
               <p class="values-card-paragraph">
                 {{ $t("about.values.customerSatisfaction.text") }}
               </p>
             </div>
 
-            <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">{{ $t("about.values.reliability.header") }}</h6>
+            <div
+              :class="
+                this.$i18n.locale === 'Ar'
+                  ? 'values_card mx-auto md:ms-0 text-right'
+                  : 'values_card mx-auto md:ms-0'
+              "
+            >
+              <h6 class="values-card-header">
+                {{ $t("about.values.reliability.header") }}
+              </h6>
               <p class="values-card-paragraph">
                 {{ $t("about.values.reliability.text") }}
               </p>
             </div>
 
-            <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">{{ $t("about.values.innovation.header") }}</h6>
+            <div
+              :class="
+                this.$i18n.locale === 'Ar'
+                  ? 'values_card mx-auto md:ms-0 text-right'
+                  : 'values_card mx-auto md:ms-0'
+              "
+            >
+              <h6 class="values-card-header">
+                {{ $t("about.values.innovation.header") }}
+              </h6>
               <p class="values-card-paragraph">
-                {{ $t("about.innovation.text") }}
+                {{ $t("about.values.innovation.text") }}
               </p>
             </div>
 
-            <div class="values_card mx-auto md:ms-0">
-              <h6 class="values-card-header">{{ $t("about.values.integrity.header") }}</h6>
+            <div
+              :class="
+                this.$i18n.locale === 'Ar'
+                  ? 'values_card mx-auto md:ms-0 text-right'
+                  : 'values_card mx-auto md:ms-0'
+              "
+            >
+              <h6 class="values-card-header">
+                {{ $t("about.values.integrity.header") }}
+              </h6>
               <p class="values-card-paragraph">
                 {{ $t("about.values.integrity.text") }}
               </p>
@@ -74,7 +106,7 @@
         class="bg-radial-one-color rounded-3xl bg-white custom-shadow grid lg:grid-cols-2 p-6 md:p-0"
       >
         <div class="bg-custom-20-40">
-          <div class="md:mb-48 md:w-7/12 md:ms-12 md:mt-20 p-4">
+          <div class="md:mb-20 md:w-7/12 md:ms-12 md:mt-20 p-4">
             <h1 class="md:text-6xl text-4xl text-primary_color mb-4">
               {{ $t("about.joinUsHeader") }}
             </h1>
@@ -90,9 +122,14 @@
           </div>
         </div>
 
-        <div
-          class="md:car-bg lg:bg-custom-60 w-full md:h-96 h-0 lg:h-auto md:bg-custom-130"
-        ></div>
+        <img
+          src="../assets/images/about-car.png"
+          :class="
+            this.$i18n.locale === 'Ar'
+              ? 'lg:block hidden mt-44 scale-x-[-1]'
+              : 'mt-44 lg:block hidden'
+          "
+        />
       </div>
     </div>
   </div>
