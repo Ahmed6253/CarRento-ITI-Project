@@ -3,10 +3,20 @@
 
   <nav class="text-primary_color">
     <div class="flex justify-start ps-6 pt-2 my-0 bg-none">
-        <button :class="{ 'font-bold': locale === 'En', 'font-light': locale === 'Ar' }" @click="setEn">En </button>
-        <span> /</span>
-        <button :class="{ 'font-bold': locale === 'Ar', 'font-light': locale === 'En' }" @click="setAr"> عربي</button>
-      </div>
+      <button
+        :class="{ 'font-bold': locale === 'En', 'font-light': locale === 'Ar' }"
+        @click="setEn"
+      >
+        En
+      </button>
+      <span> /</span>
+      <button
+        :class="{ 'font-bold': locale === 'Ar', 'font-light': locale === 'En' }"
+        @click="setAr"
+      >
+        عربي
+      </button>
+    </div>
     <div
       class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow bg-white opacity-90"
     >
@@ -28,7 +38,7 @@
           class="px-8 py-3 bg-primary_color hidden lg:block text-white font-medium rounded-full"
           @click="openModal"
         >
-          {{ loggedIn ?  $t("nav.logout")  : $t("nav.login") }}
+          {{ loggedIn ? $t("nav.logout") : $t("nav.login") }}
         </button>
         <!-- user picture  -->
         <a
@@ -57,7 +67,8 @@
         :class="showMenu ? 'block' : 'hidden'"
         id="navbar-user"
       >
-        <ul @click="showMenu = !showMenu"
+        <ul
+          @click="showMenu = !showMenu"
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
           <li>
@@ -137,12 +148,10 @@ export default {
     } else {
       this.logo = require("../assets/logo.svg");
     }
-  },
+    this.locale = localStorage.getItem("lang") || "En";
 
-  mounted(){
-    this.locale = localStorage.getItem('lang');
+    document.documentElement.dir = this.locale === "En" ? "ltr" : "rtl";
   },
-
 
   updated() {
     if (localStorage.getItem("darkMode") === "true") {
@@ -156,18 +165,22 @@ export default {
     // Watch for locale changes
     locale(newLocale) {
       this.$i18n.locale = newLocale; // Update i18n locale when locale data changes
-    }
+    },
+
+    "$i18n.locale"(newLang) {
+      document.documentElement.dir = newLang === "Ar" ? "rtl" : "ltr";
+    },
   },
 
   methods: {
-    setEn(){
-     localStorage.setItem('lang', 'En');
-     this.locale = 'En';
+    setEn() {
+      localStorage.setItem("lang", "En");
+      this.locale = "En";
     },
 
-    setAr(){
-      localStorage.setItem('lang', 'Ar');
-      this.locale = 'Ar';
+    setAr() {
+      localStorage.setItem("lang", "Ar");
+      this.locale = "Ar";
     },
 
     toggleDarkMode() {

@@ -3,12 +3,19 @@
 
   <div class="bg-split-half max-h-fit pt-32 animate-fade-up">
     <div class="mx-4 md:mx-20">
-      <div class="px-0 pt-12 md:text-left text-center">
+      <div
+        :class="
+          this.$i18n.locale === 'Ar'
+            ? 'px-0 pt-12 md:text-right text-center flex flex-col'
+            : 'px-0 pt-12 md:text-left text-center flex flex-col'
+        "
+      >
         <h1 class="lg:text-6xl sm:text-4xl text-2xl w-full text-primary_color">
-          {{ $t("home.hello") }} <br /> {{ $t("home.welcome") }}
+          {{ $t("home.hello") }} <br />
+          {{ $t("home.welcome") }}
         </h1>
         <button
-          class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl"
+          class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-8 rounded-3xl w-[180px] mx-auto md:mx-0"
           @click="scrollToSearchCard"
         >
           {{ $t("home.rent_now") }}
@@ -16,7 +23,11 @@
         <img
           src="../assets/home-images/hero.png"
           alt="hero-car"
-          class="lg:-mt-40 lg:ml-72 mt-0 mx-auto w-3/4"
+          :class="
+            this.$i18n.locale === 'Ar'
+              ? 'lg:-mt-40 lg:ml-0 mt-0 mx-auto w-3/4 scale-x-[-1]'
+              : 'lg:-mt-40 lg:ml-72 mt-0 mx-auto w-3/4'
+          "
         />
       </div>
     </div>
@@ -92,7 +103,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/location.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_location") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_location") }}
+          </h3>
           <p class="text-gray-500 text-center text-[12px]">
             {{ $t("home.choose_location_description") }}
           </p>
@@ -101,6 +114,7 @@
           <img
             src="../assets/home-images/icons/vecteezy_hand-drawn-dotted-arrow-line-clip-art_22185823 2.png"
             alt=""
+            :class="` ${$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''}`"
           />
         </div>
 
@@ -108,7 +122,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/calendar.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_day_time") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_day_time") }}
+          </h3>
           <p class="text-gray-500 text-[12px]">
             {{ $t("home.choose_day_time_description") }}
           </p>
@@ -117,6 +133,7 @@
           <img
             src="../assets/home-images/icons/vecteezy_hand-drawn-dotted-arrow-line-clip-art_22185823 2.png"
             alt=""
+            :class="` ${$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''}`"
           />
         </div>
 
@@ -124,7 +141,9 @@
           <div class="blue-circle">
             <img src="../assets/home-images/icons/car.png" />
           </div>
-          <h3 class="mt-4 text-[16px] font-medium">{{ $t("home.choose_car") }}</h3>
+          <h3 class="mt-4 text-[16px] font-medium">
+            {{ $t("home.choose_car") }}
+          </h3>
           <p class="text-gray-500 text-[12px]">
             {{ $t("home.choose_car_description") }}
           </p>
@@ -263,7 +282,7 @@
         class="bg-white rounded-3xl py-10 custom-shadow ps-12 bg-[radial-gradient(circle_at_right,_rgba(219,234,254,1)_0%,_rgba(219,234,254,0)_70%)]"
       >
         <div
-          class="lg:bg-rent-bg bg-none md:bg-right-bottom bg-no-repeat px-0 pt-4 lg:pt-12 pb-0 lg:pb-40"
+          :class="'md:bg-right-bottom bg-no-repeat px-0 pt-4 lg:pt-12 pb-0 '"
         >
           <h1 class="lg:text-6xl md:text-4xl text-2xl lg:mb-24 mb-10">
             {{ $t("home.rent_perfect_car") }}
@@ -273,6 +292,15 @@
             class="bg-primary_color hover:bg-primary_hover text-white px-12 py-2.5 my-5 rounded-3xl"
             >{{ $t("home.rent_now") }}</router-link
           >
+          <img
+            src="@/assets/home-images/rent-car.png"
+            alt=""
+            :class="
+              this.$i18n.locale === 'Ar'
+                ? 'lg:block hidden -mt-32 scale-x-[-1] mr-auto mb-0'
+                : 'lg:block hidden -mt-32 ml-auto mb-0'
+            "
+          />
         </div>
       </div>
     </div>
@@ -291,40 +319,70 @@
         </div>
 
         <div class="flex w-full lg:w-1/2 flex-wrap">
-          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
+          <div
+            :class="
+              this.$i18n.locale === 'Ar'
+                ? 'sm:w-1/2 w-full p-1 text-center sm:text-right'
+                : 'sm:w-1/2 w-full p-1 text-center sm:text-left'
+            "
+          >
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.unmatched_selection") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.unmatched_selection") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.unmatched_selection_description") }}
               </p>
             </div>
           </div>
 
-          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
+          <div
+            :class="
+              this.$i18n.locale === 'Ar'
+                ? 'sm:w-1/2 w-full p-1 text-center sm:text-right'
+                : 'sm:w-1/2 w-full p-1 text-center sm:text-left'
+            "
+          >
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.competitive_pricing") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.competitive_pricing") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.competitive_pricing_description") }}
               </p>
             </div>
           </div>
 
-          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
+          <div
+            :class="
+              this.$i18n.locale === 'Ar'
+                ? 'sm:w-1/2 w-full p-1 text-center sm:text-right'
+                : 'sm:w-1/2 w-full p-1 text-center sm:text-left'
+            "
+          >
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
-              <h3 class="text-[24px] font-medium mb-2">{{ $t("home.convenient_locations") }}</h3>
+              <h3 class="text-[24px] font-medium mb-2">
+                {{ $t("home.convenient_locations") }}
+              </h3>
               <p class="text-Paragraph_color text-[12px]">
                 {{ $t("home.convenient_locations_description") }}
               </p>
             </div>
           </div>
 
-          <div class="sm:w-1/2 w-full p-1 text-center sm:text-left">
+          <div
+            :class="
+              this.$i18n.locale === 'Ar'
+                ? 'sm:w-1/2 w-full p-1 text-center sm:text-right'
+                : 'sm:w-1/2 w-full p-1 text-center sm:text-left'
+            "
+          >
             <div
               class="py-6 px-4 bg-white hover:bg-card_hover h-[180px] rounded-2xl custom-shadow"
             >
