@@ -26,7 +26,7 @@
     "flexible_rental_options_description": "Need a car for a few hours, a day, or longer, we offer flexible rental options."
   },
 
-  "searchCard" : {
+  "searchCard": {
     "pickup_date": "Pick-up Date",
     "pickup_location": "Pick-up Location",
     "dropoff_location": "Drop-off Location",
@@ -42,92 +42,217 @@
     "about": "About",
     "cars": "Cars",
     "logout": "Logout",
-    "login": "Login"
+    "login": "Login",
+    "logoutConfirm" : "Are you sure you want to logout?"
   },
 
-  
-    "footer": {
-        "title": "Get the latest offers and updates",
-        "description": "Stay informed with our exclusive deals, latest car models, and special promotions tailored just for you. Subscribe now!",
-        "placeholder": "Enter your email",
-        "button": "Subscribe",
-        "logo_description": "Reliable car rentals, offering comfort and style for every journey you take.",
+  "footer": {
+    "title": "Get the latest offers and updates",
+    "description": "Stay informed with our exclusive deals, latest car models, and special promotions tailored just for you. Subscribe now!",
+    "placeholder": "Enter your email",
+    "button": "Subscribe",
+    "logo_description": "Reliable car rentals, offering comfort and style for every journey you take.",
 
-        "support": "Support",
-        "pricing": "Pricing",
-        "insights": "Insights",
-        "plans": "Plans",
+    "support": "Support",
+    "pricing": "Pricing",
+    "insights": "Insights",
+    "plans": "Plans",
 
-        "company": "Company",
-        "about": "About Us",
-        "blog": "Blog",
-        "faq": "FAQ",
+    "company": "Company",
+    "about": "About Us",
+    "blog": "Blog",
+    "faq": "FAQ",
 
-        "contact_us": "Contact Us",
-        "copyright": "2024 Car Rento. All rights reserved."
-    },
-    
-      "about": {
-        "title": "About Us",
-        "ourStoryHeader": "Our Story",
-        "ourStoryText": "At Car Rento, we're passionate about providing hassle-free and enjoyable car rental experiences. With professionals having years of industry expertise, we've built a reputation for reliability, exceptional service, and a diverse fleet of vehicles to suit every need. Our team of dedicated professionals is committed to ensuring your journey is comfortable and memorable.",
-        "ourMissionHeader": "Our Mission",
-        "ourMissionText": "Our mission is to make car rental a seamless and enjoyable experience for everyone. We strive to offer a diverse range of vehicles to suit every need, competitive pricing, and exceptional customer service. We believe that travel should be accessible and hassle-free, and we're committed to making that a reality.",
-        "ourValuesHeader": "Our Values",
-        "values": {
-          "customerSatisfaction": {
-            "header": "Customer Satisfaction:",
-            "text": "We prioritize the needs and satisfaction of our customers above all else."
-          },
-          "reliability": {
-            "header": "Reliability:",
-            "text": "We are dedicated to providing reliable and well-maintained vehicles."
-          },
-          "innovation": {
-            "header": "Innovation:",
-            "text": "We continuously seek new ways to enhance the customer experience."
-          },
-          "integrity": {
-            "header": "Integrity:",
-            "text": "We conduct our business with honesty, transparency, and ethical standards."
-          }
-        },
-        "joinUsHeader": "Join Us",
-        "joinUsText": "We invite you to experience the difference of renting from Car Rento. Whether you're planning a vacation, business trip, or road trip, we're here to make your journey unforgettable.",
-        "rentNowButton": "Rent now"
+    "contact_us": "Contact Us",
+    "copyright": "2024 Car Rento. All rights reserved."
+  },
+
+  "about": {
+    "title": "About Us",
+    "ourStoryHeader": "Our Story",
+    "ourStoryText": "At Car Rento, we're passionate about providing hassle-free and enjoyable car rental experiences. With professionals having years of industry expertise, we've built a reputation for reliability, exceptional service, and a diverse fleet of vehicles to suit every need. Our team of dedicated professionals is committed to ensuring your journey is comfortable and memorable.",
+    "ourMissionHeader": "Our Mission",
+    "ourMissionText": "Our mission is to make car rental a seamless and enjoyable experience for everyone. We strive to offer a diverse range of vehicles to suit every need, competitive pricing, and exceptional customer service. We believe that travel should be accessible and hassle-free, and we're committed to making that a reality.",
+    "ourValuesHeader": "Our Values",
+    "values": {
+      "customerSatisfaction": {
+        "header": "Customer Satisfaction:",
+        "text": "We prioritize the needs and satisfaction of our customers above all else."
       },
+      "reliability": {
+        "header": "Reliability:",
+        "text": "We are dedicated to providing reliable and well-maintained vehicles."
+      },
+      "innovation": {
+        "header": "Innovation:",
+        "text": "We continuously seek new ways to enhance the customer experience."
+      },
+      "integrity": {
+        "header": "Integrity:",
+        "text": "We conduct our business with honesty, transparency, and ethical standards."
+      }
+    },
+    "joinUsHeader": "Join Us",
+    "joinUsText": "We invite you to experience the difference of renting from Car Rento. Whether you're planning a vacation, business trip, or road trip, we're here to make your journey unforgettable.",
+    "rentNowButton": "Rent now"
+  },
 
-        "cities": {
-          "Cairo": "Cairo",
-          "Alexandria": "Alexandria",
-          "Giza": "Giza",
-          "Qalyubia": "Qalyubia",
-          "PortSaid": "Port Said",
-          "Suez": "Suez",
-          "Gharbia": "Gharbia",
-          "Dakahlia": "Dakahlia",
-          "Asyut": "Asyut",
-          "Fayoum": "Fayoum",
-          "Sharqia": "Sharqia",
-          "Ismailia": "Ismailia",
-          "Aswan": "Aswan",
-          "Beheira": "Beheira",
-          "Minya": "Minya",
-          "Damietta": "Damietta",
-          "Luxor": "Luxor",
-          "Qena": "Qena",
-          "BeniSuef": "Beni Suef",
-          "Sohag": "Sohag",
-          "Monufia": "Monufia",
-          "RedSea": "Red Sea",
-          "KafrElSheikh": "Kafr el-Sheikh",
-          "NorthSinai": "North Sinai",
-          "Matruh": "Matruh",
-          "NewValley": "New Valley",
-          "SouthSinai": "South Sinai"
-        }
+  "cities": {
+    "Cairo": "Cairo",
+    "Alexandria": "Alexandria",
+    "Giza": "Giza",
+    "Qalyubia": "Qalyubia",
+    "PortSaid": "Port Said",
+    "Suez": "Suez",
+    "Gharbia": "Gharbia",
+    "Dakahlia": "Dakahlia",
+    "Asyut": "Asyut",
+    "Fayoum": "Fayoum",
+    "Sharqia": "Sharqia",
+    "Ismailia": "Ismailia",
+    "Aswan": "Aswan",
+    "Beheira": "Beheira",
+    "Minya": "Minya",
+    "Damietta": "Damietta",
+    "Luxor": "Luxor",
+    "Qena": "Qena",
+    "BeniSuef": "Beni Suef",
+    "Sohag": "Sohag",
+    "Monufia": "Monufia",
+    "RedSea": "Red Sea",
+    "KafrElSheikh": "Kafr el-Sheikh",
+    "NorthSinai": "North Sinai",
+    "Matruh": "Matruh",
+    "NewValley": "New Valley",
+    "SouthSinai": "South Sinai"
+  },
+
+  "loginPage": {
+    "areYou": "Are you?",
+    "carRenter": "Car Renter",
+    "carOwner": "Car Owner",
+    "getStarted": "Get Started Now",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "nameError": "Name must be at least 3 characters and contain letters only.",
+    "emailAddress": "Email address",
+    "emailPlaceholder": "Enter your Email address",
+    "emailError": "Please enter a valid email.",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordError": "Password must be at least 6 characters and contain letters and numbers.",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "confirmPasswordError": "Passwords do not match.",
+    "agree": "I agree to the",
+    "termsPolicy": "terms & policy",
+    "signUp": "Sign Up",
+    "alreadyHaveAccount": "Have an account?",
+    "signIn": "Sign In",
+    "or": "Or",
+    "rememberMe": "Remember me",
+    "login": "Login",
+    "alreadyHaveAccountError": "You already have an account",
+    "welcomeBack": "Welcome back!",
+    "wrongEmailOrPassword": "Wrong Email or Password",
+    "allFieldsRequired": "All fields are required",
+    "dontHaveAccount": "Don’t have an account?"
+  },
+
+  "filterCard": {
+    "filter": "Filter",
+    "clearAll": "Clear all",
+    "carType": "Car Type",
+    "brands": "Brands",
+    "sedan": "Sedan",
+    "suv": "SUV",
+    "hatchback": "Hatchback",
+    "crossover": "Crossover",
+    "coupe": "Coupe",
+    "convertible": "Convertible",
+    "truck": "Truck"
+  },
+
+  "carspage": {
+    "searchPlaceholder": "Search",
+    "searchFailMessage": "The model you're searching for doesn't seem to be available, browse through similar models"
+  },
+
+  "carCard": {
+    "airConditioner": "Air Conditioner",
+    "price": "Price",
+    "perDay": "/day",
+    "rentNow": "Rent now",
+    "notAvailable": "Not available",
+    "currency": "LE"
+  },
+
+  "profile":{
       
+      "basicInfo": "Basic Information",
+      "name": "Name",
+      "email": "Email",
+      "accountVerification": "Account Verification",
+      "unverified": "Unverified",
+      "verified": "Verified",
+      "requested": "Requested",
+      "verifyNow": "Verify now",
+      "uploadIdFront": "Front-side photo of ID",
+      "uploadIdBack": "Back-side photo of ID",
+      "uploadLicense": "Driving license",
+      "uploadYourPhoto": "Upload Your Photo",
+
+    "ratings": {
+      "title": "Please rate your order",
+      "description": "Your evaluation of us helps us improve the service for you",
+      "excellent": "Excellent!",
+      "great": "Great!",
+      "good": "Good",
+      "okay": "Okay",
+      "bad": "Bad",
+      "submit": "Submit"
+    }
+  },
+
+  "carPage":{
+      "car": {
+        "name": "Car Name",
+        "manualOrAuto": "Transmission",
+        "fuel": "Fuel Type",
+        "price": "Price:",
+        "description": "Description"
+      },
+      "pickup": {
+        "location": "Pick-up location",
+        "date": "Pick-up date"
+      },
+      "dropoff": {
+        "date": "Drop-off date"
+      },
+      "features": {
+        "privateDriver": "Private driver",
+        "toddlerSeat": "Toddler Child Seat",
+        "infantSeat": "Infant Child Seat",
+        "protection": "Collision Damage Protection",
+        "price": " LE",
+        "perDay": "/day"
+      },
+      "ownerInfo": {
+        "aboutOwner": "About car owner",
+        "name": "Name",
+        "location": "Location",
+        "reviews": "Reviews",
+        "rating": "Rating"
+      },
+      "buttons": {
+        "edit": "Edit",
+        "backToCars": "Back to Cars",
+        "bookNow": "Book Now",
+        "verifyAccount": "Verify your account to book"
+      }
     
-  
-  
+  }
+
+
+
 }

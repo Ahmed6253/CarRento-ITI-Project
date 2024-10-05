@@ -40,12 +40,12 @@
             <h1
               class="text-2xl text-primary_color font-medium text-center mt-12 mb-2"
             >
-              Please rate your order
+              {{ $t("profile.ratings.title") }}
             </h1>
             <p
               class="text-lg text-Paragraph_color font-medium text-center mb-10"
             >
-              Your evaluation of us helps us improve the service for you
+              {{ $t("profile.ratings.description") }}
             </p>
 
             <!--stars-->
@@ -58,7 +58,7 @@
                   value="5"
                   @click="rate = 5"
                 />
-                <label title="Excellent!" for="star5">
+                <label title='$t("profile.ratings.star")' for="star5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
@@ -706,3 +706,15 @@ export default {
   fill: #ab68ff;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+

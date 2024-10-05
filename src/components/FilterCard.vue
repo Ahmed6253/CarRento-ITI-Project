@@ -1,10 +1,10 @@
 <template>
   <div class="col-span-1 bg-white rounded-3xl custom-shadow h-fit">
     <div class="flex justify-between p-6">
-      <h3 class="text-primary_color font-semibold">Filter</h3>
+      <h3 class="text-primary_color font-semibold">{{$t('filterCard.filter') }}</h3>
 
       <button class="text-warning_hover cursor-pointer" @click="clearFilters">
-        Clear all
+        {{$t('filterCard.clearAll') }}
       </button>
     </div>
     <hr class="border-[1px] -mt-1" />
@@ -25,7 +25,7 @@
 
       <!-- ----------------------------------car type------------------------------- -->
       <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">Car Type</h3>
+        <h3 class="text-primary_color font-semibold mb-2">{{ $t('filterCard.carType') }}</h3>
 
         <label class="flex items-center mb-2">
           <input
@@ -36,7 +36,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Sedan</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.sedan') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -48,7 +48,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">SUV</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.suv') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -60,7 +60,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Hatchback</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.hatchback') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -72,7 +72,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Crossover</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.crossover') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -84,7 +84,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Coupe</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.coupe') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -96,7 +96,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Convertible</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.convertible') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -108,7 +108,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Truck</span>
+          <span class="text-Paragraph_color">{{ $t('filterCard.truck') }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -126,7 +126,7 @@
 
       <!--  ----------------------------------------brands------------------------------------------ -->
       <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">Brands</h3>
+        <h3 class="text-primary_color font-semibold mb-2">{{$t('filterCard.brands')}}</h3>
 
         <label class="flex items-center mb-2">
           <input

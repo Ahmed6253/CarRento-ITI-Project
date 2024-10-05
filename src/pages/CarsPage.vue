@@ -13,7 +13,7 @@
         <div class="relative">
           <input
             type="text"
-            placeholder="Search"
+            :placeholder="$t('carspage.searchPlaceholder')"
             class="p-5 rounded-2xl w-full custom-shadow"
             v-model="searchInput"
             @input="search"
@@ -28,8 +28,7 @@
             "
           />
           <div v-if="searchFail" class="text-red mt-2 text-center w-full">
-            The model you're searching for doesn't seem to be available, browse
-            through similar models
+            {{ $t("carspage.searchFailMessage") }}
           </div>
         </div>
         <div class="flex items-center gap-6 relative">

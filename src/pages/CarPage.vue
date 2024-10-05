@@ -53,11 +53,11 @@
           <hr class="my-5 md:w-2/3 w-full h-0.5 bg-line_color" />
         </div>
         <div class="flex mt-5">
-          <h3 class="text-primary_color me-2 text-xl font-medium">Price:</h3>
+          <h3 class="text-primary_color me-2 text-xl font-medium">{{ $t("carCard.price") }}:</h3>
           <span class="text-blue-500 font-bold me-2 text-xl">{{
             car.price
           }}</span>
-          <span class="text-primary_color">EGP / day</span>
+          <span class="text-primary_color">{{ $t("carCard.currency") }}{{ $t("carCard.perDay") }}</span>
         </div>
       </div>
       <div
@@ -66,7 +66,7 @@
         <div class="flex justify-between">
           <div>
             <h2 class="font-semibold text-lg text-primary_color">
-              Pick-up location
+              {{ $t("carPage.pickup.location") }}
             </h2>
             <p class="text-Paragraph_color">{{ location }}</p>
           </div>
@@ -98,7 +98,7 @@
         <div class="flex justify-between">
           <div>
             <h2 class="font-semibold text-lg text-primary_color">
-              Pick-up date
+              {{ $t("carPage.pickup.date")}}
             </h2>
             <p class="text-Paragraph_color">{{ pickUpDate }}</p>
           </div>
@@ -130,7 +130,7 @@
         <div class="flex justify-between">
           <div>
             <h2 class="font-semibold text-lg text-primary_color">
-              Drop-off date
+              {{ $t("carPage.dropoff.date") }}
             </h2>
             <p class="text-Paragraph_color">{{ dropOffDate }}</p>
           </div>
@@ -163,7 +163,7 @@
       <div
         class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]"
       >
-        <h1 class="text-primary_color text-2xl mb-6">Description</h1>
+        <h1 class="text-primary_color text-2xl mb-6">{{ $t("carPage.car.description") }}</h1>
         <p class="text-Paragraph_color">{{ this.car.description }}</p>
       </div>
       <!-- section two -->
@@ -181,11 +181,11 @@
               v-model="additionalFeatures.driver"
             />
             <label class="text-primary_color mx-3" for="driver"
-              >Private driver</label
+              >{{ $t("carPage.features.privateDriver") }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">500 LE</span>/day
+            <span class="text-primary_color">500 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -198,11 +198,11 @@
               v-model="additionalFeatures.toddlerSeat"
             />
             <label class="text-primary_color mx-3" for="toddler-seat"
-              >Toddler Child Seat</label
+              >{{ $t("carPage.features.toddlerSeat") }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">200 LE</span>/day
+            <span class="text-primary_color">200 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -215,11 +215,11 @@
               v-model="additionalFeatures.infantSeat"
             />
             <label class="text-primary_color mx-3" for="infant-seat"
-              >Infant Child Seat</label
+              >{{ $t("carPage.features.infantSeat") }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">150 LE</span>/day
+            <span class="text-primary_color">150 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -232,11 +232,11 @@
               v-model="additionalFeatures.protection"
             />
             <label class="text-primary_color mx-3" for="protection"
-              >Collision Damage Protection</label
+              >{{ $t("carPage.features.protection") }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">1500 LE</span>/day
+            <span class="text-primary_color">1500 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
           </p>
         </div>
       </div>
@@ -246,23 +246,23 @@
         class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]"
       >
         <h1 class="text-primary_color text-2xl font-bold mb-4">
-          About car owner
+          {{ $t("carPage.ownerInfo.aboutOwner") }}
         </h1>
         <div class="flex flex-col gap-3">
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">Name</h2>
+            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.name") }}</h2>
             <p class="text-Paragraph_color">{{ this.owner.userName }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">Location</h2>
+            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.location") }}</h2>
             <p class="text-Paragraph_color">{{ this.car.location }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">Reviews</h2>
+            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.reviews") }}</h2>
             <p class="text-Paragraph_color">{{ this.car.ratingCount }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">Rating</h2>
+            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.rating") }}</h2>
             <p class="text-Paragraph_color">{{ this.car.rating }}</p>
           </div>
         </div>
@@ -272,13 +272,13 @@
         class="bg-green rounded-lg font-medium text-slate-50 hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
         @click="booknow"
       >
-        Book Now
+        {{ $t("carPage.buttons.bookNow") }}
       </button>
       <button
         v-if="currentUser && currentUser.status !== 'Verified'"
         class="bg-slate-400 rounded-lg font-medium text-slate-50 p-3 cursor-not-allowed w-full xl:w-[73%]"
       >
-        Verify your account to book
+        {{ $t("carPage.buttons.verifyAccount") }}
       </button>
     </section>
   </div>
