@@ -53,7 +53,7 @@
         >
           <img :src="getImagePath(prop)" alt="" class="w-[13px]" />
           <p class="mt-0.5 text-[10px] text-primary_color">
-            {{ prop === "Airconditioner" ? $t("carCard.airConditioner") : prop }}
+            {{ $t(`carCard.${prop}`) }}
           </p>
         </div></span
       >
@@ -62,7 +62,10 @@
     <div class="flex text-[16px] py-3 justify-between text-primary_color">
       <span>{{ $t("carCard.price") }}</span>
       <span
-        >{{ car.price }} {{ $t("carCard.currency") }}<span class="text-Paragraph_color">{{ $t("carCard.perDay") }}</span></span
+        >{{ car.price }} {{ $t("carCard.currency")
+        }}<span class="text-Paragraph_color">{{
+          $t("carCard.perDay")
+        }}</span></span
       >
     </div>
 

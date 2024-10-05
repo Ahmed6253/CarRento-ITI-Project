@@ -16,7 +16,7 @@
 
       <div class="flex justify-between mb-6">
         <section>
-          <p class="text-xl text-left">Pick-up location</p>
+          <p class="text-xl text-left">{{ $t("carPage.pickup.location") }}</p>
           <p class="text-Paragraph_color text-[16px] text-start">
             {{ location }}
           </p>
@@ -49,7 +49,7 @@
 
       <div class="flex justify-between mb-6">
         <section>
-          <p class="text-xl text-left">Pick-up date</p>
+          <p class="text-xl text-left">{{ $t("carPage.pickup.date") }}</p>
           <p class="text-Paragraph_color text-[16px] text-start">
             {{ pickUpDate }}
           </p>
@@ -82,7 +82,7 @@
 
       <div class="flex justify-between mb-6">
         <section>
-          <p class="text-xl text-left">Drop-off date</p>
+          <p class="text-xl text-left">{{ $t("carPage.dropoff.date") }}</p>
           <p class="text-Paragraph_color text-[16px] text-start">
             {{ dropOffDate }}
           </p>
@@ -123,7 +123,9 @@
             :key="index"
             class="flex gap-4"
           >
-            <p class="text-xl" v-if="feature">{{ index }}</p>
+            <p class="text-[15px]" v-if="feature">
+              {{ $t("checkout." + index) }}
+            </p>
             <p
               class="text-Paragraph_color text-[16px] text-start"
               v-if="feature"

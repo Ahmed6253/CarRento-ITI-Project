@@ -15,6 +15,7 @@
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
           >
             <path
               d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -22,18 +23,24 @@
             />
           </svg>
         </div>
-        <h1 class="text-3xl text-center mb-10 font-bold">{{ $t("loginPage.areYou") }}</h1>
+        <h1 class="text-3xl text-center mb-10 font-bold">
+          {{ $t("loginPage.areYou") }}
+        </h1>
         <div class="flex gap-9">
           <div>
             <button @click="setrole('renter')">
               <img src="../assets/user.png" />
-              <p class="text-center text-2xl mt-6">{{ $t("loginPage.carRenter") }}</p>
+              <p class="text-center text-2xl mt-6">
+                {{ $t("loginPage.carRenter") }}
+              </p>
             </button>
           </div>
           <div>
             <button @click="setrole('owner')">
               <img src="../assets/owner.png" />
-              <p class="text-center text-2xl mt-6">{{ $t("loginPage.carOwner") }}</p>
+              <p class="text-center text-2xl mt-6">
+                {{ $t("loginPage.carOwner") }}
+              </p>
             </button>
           </div>
         </div>
@@ -53,6 +60,7 @@
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
             >
               <path
                 d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -75,7 +83,7 @@
             <input
               class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="text"
-              :placeholder= '$t("loginPage.namePlaceholder")'
+              :placeholder="$t('loginPage.namePlaceholder')"
               v-model.trim="form.userName"
               @blur="validateName"
               :class="{ error: nameError }"
@@ -91,7 +99,7 @@
             <input
               class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="email"
-              :placeholder='$t("loginPage.emailPlaceholder")'
+              :placeholder="$t('loginPage.emailPlaceholder')"
               v-model.trim="form.email"
               @blur="validateEmail"
               :class="{ error: emailError }"
@@ -108,7 +116,7 @@
             <input
               class="lg:py-3 py-1 ps-4 lg:text-base text-sm rounded-lg border-border_color border-[1px]"
               type="Password"
-              :placeholder='$t("loginPage.passwordPlaceholder")'
+              :placeholder="$t('loginPage.passwordPlaceholder')"
               v-model.trim="form.password"
               :class="{ error: passwordError }"
               @blur="validatePassword"
@@ -124,7 +132,7 @@
             <input
               class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="password"
-              :placeholder='$t("loginPage.confirmPasswordPlaceholder")'
+              :placeholder="$t('loginPage.confirmPasswordPlaceholder')"
               v-model.trim="form.confirmPassword"
               @blur="validatePasswordConfirm"
               :class="{ error: confirmPasswordError }"
@@ -212,6 +220,7 @@
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
             >
               <path
                 d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -234,7 +243,7 @@
             <input
               class="py-3 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="email"
-              :placeholder='$t("loginPage.emailPlaceholder")'
+              :placeholder="$t('loginPage.emailPlaceholder')"
               v-model="form.email"
               id="log-email"
             />
@@ -248,7 +257,7 @@
               id="log-password"
               class="lg:py-3 py-2 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="password"
-              :placeholder='$t("loginPage.passwordPlaceholder")'
+              :placeholder="$t('loginPage.passwordPlaceholder')"
               v-model="form.password"
             />
           </div>
@@ -266,8 +275,12 @@
               </label>
               <p class="text-primary_color">{{ $t("loginPage.rememberMe") }}</p>
             </div>
-            <p v-if="loginError" class="text-red">{{ $t("loginPage.allFieldsRequired") }}</p>
-            <p v-if="worngPassword" class="text-red">{{ $t("loginPage.wrongEmailOrPassword") }}</p>
+            <p v-if="loginError" class="text-red">
+              {{ $t("loginPage.allFieldsRequired") }}
+            </p>
+            <p v-if="worngPassword" class="text-red">
+              {{ $t("loginPage.wrongEmailOrPassword") }}
+            </p>
 
             <button
               type="submit"

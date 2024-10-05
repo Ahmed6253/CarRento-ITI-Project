@@ -1,10 +1,12 @@
 <template>
   <div class="col-span-1 bg-white rounded-3xl custom-shadow h-fit">
     <div class="flex justify-between p-6">
-      <h3 class="text-primary_color font-semibold">{{$t('filterCard.filter') }}</h3>
+      <h3 class="text-primary_color font-semibold">
+        {{ $t("filterCard.filter") }}
+      </h3>
 
       <button class="text-warning_hover cursor-pointer" @click="clearFilters">
-        {{$t('filterCard.clearAll') }}
+        {{ $t("filterCard.clearAll") }}
       </button>
     </div>
     <hr class="border-[1px] -mt-1" />
@@ -25,7 +27,9 @@
 
       <!-- ----------------------------------car type------------------------------- -->
       <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">{{ $t('filterCard.carType') }}</h3>
+        <h3 class="text-primary_color font-semibold mb-2">
+          {{ $t("filterCard.carType") }}
+        </h3>
 
         <label class="flex items-center mb-2">
           <input
@@ -36,7 +40,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.sedan') }}</span>
+          <span class="text-Paragraph_color">{{ $t("filterCard.sedan") }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -48,7 +52,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.suv') }}</span>
+          <span class="text-Paragraph_color">{{ $t("filterCard.suv") }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -60,7 +64,9 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.hatchback') }}</span>
+          <span class="text-Paragraph_color">{{
+            $t("filterCard.hatchback")
+          }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -72,7 +78,9 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.crossover') }}</span>
+          <span class="text-Paragraph_color">{{
+            $t("filterCard.crossover")
+          }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -84,7 +92,7 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.coupe') }}</span>
+          <span class="text-Paragraph_color">{{ $t("filterCard.coupe") }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -96,19 +104,9 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">{{ $t('filterCard.convertible') }}</span>
-        </label>
-
-        <label class="flex items-center mb-2">
-          <input
-            type="checkbox"
-            id="truck"
-            value="truck"
-            class="mx-2 accent-primary_color"
-            v-model="selectedCarTypes"
-            @change="applyFilters"
-          />
-          <span class="text-Paragraph_color">{{ $t('filterCard.truck') }}</span>
+          <span class="text-Paragraph_color">{{
+            $t("filterCard.convertible")
+          }}</span>
         </label>
 
         <label class="flex items-center mb-2">
@@ -120,13 +118,15 @@
             v-model="selectedCarTypes"
             @change="applyFilters"
           />
-          <span class="text-Paragraph_color">Van</span>
+          <span class="text-Paragraph_color">{{ $t("filterCard.van") }}</span>
         </label>
       </div>
 
       <!--  ----------------------------------------brands------------------------------------------ -->
       <div class="mb-4">
-        <h3 class="text-primary_color font-semibold mb-2">{{$t('filterCard.brands')}}</h3>
+        <h3 class="text-primary_color font-semibold mb-2">
+          {{ $t("filterCard.brands") }}
+        </h3>
 
         <label class="flex items-center mb-2">
           <input

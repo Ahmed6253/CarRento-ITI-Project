@@ -97,166 +97,204 @@
     "rentNowButton": "استئجر الآن"
   },
 
-    "cities": {
-      "Cairo": "القاهرة",
-      "Alexandria": "الإسكندرية",
-      "Giza": "الجيزة",
-      "Qalyubia": "القليوبية",
-      "PortSaid": "بورسعيد",
-      "Suez": "السويس",
-      "Gharbia": "الغربية",
-      "Dakahlia": "الدقهلية",
-      "Asyut": "أسيوط",
-      "Fayoum": "الفيوم",
-      "Sharqia": "الشرقية",
-      "Ismailia": "الإسماعيلية",
-      "Aswan": "أسوان",
-      "Beheira": "البحيرة",
-      "Minya": "المنيا",
-      "Damietta": "دمياط",
-      "Luxor": "الأقصر",
-      "Qena": "قنا",
-      "BeniSuef": "بني سويف",
-      "Sohag": "سوهاج",
-      "Monufia": "المنوفية",
-      "RedSea": "البحر الأحمر",
-      "KafrElSheikh": "كفر الشيخ",
-      "NorthSinai": "شمال سيناء",
-      "Matruh": "مطروح",
-      "NewValley": "الوادي الجديد",
-      "SouthSinai": "جنوب سيناء"
-    },
+  "cities": {
+    "Cairo": "القاهرة",
+    "Alexandria": "الإسكندرية",
+    "Giza": "الجيزة",
+    "Qalyubia": "القليوبية",
+    "PortSaid": "بورسعيد",
+    "Suez": "السويس",
+    "Gharbia": "الغربية",
+    "Dakahlia": "الدقهلية",
+    "Asyut": "أسيوط",
+    "Fayoum": "الفيوم",
+    "Sharqia": "الشرقية",
+    "Ismailia": "الإسماعيلية",
+    "Aswan": "أسوان",
+    "Beheira": "البحيرة",
+    "Minya": "المنيا",
+    "Damietta": "دمياط",
+    "Luxor": "الأقصر",
+    "Qena": "قنا",
+    "BeniSuef": "بني سويف",
+    "Sohag": "سوهاج",
+    "Monufia": "المنوفية",
+    "RedSea": "البحر الأحمر",
+    "KafrElSheikh": "كفر الشيخ",
+    "NorthSinai": "شمال سيناء",
+    "Matruh": "مطروح",
+    "NewValley": "الوادي الجديد",
+    "SouthSinai": "جنوب سيناء"
+  },
 
-    "loginPage": {
-      "areYou": "هل أنت؟",
-      "carRenter": "مستأجر سيارة",
-      "carOwner": "مالك سيارة",
-      "getStarted": "ابدأ الآن",
+  "loginPage": {
+    "areYou": "هل أنت؟",
+    "carRenter": "مستأجر سيارة",
+    "carOwner": "مالك سيارة",
+    "getStarted": "ابدأ الآن",
+    "name": "الاسم",
+    "namePlaceholder": "أدخل اسمك",
+    "nameError": "يجب أن يتكون الاسم من 3 أحرف على الأقل ويحتوي على حروف فقط.",
+    "emailAddress": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "emailError": "يرجى إدخال بريد إلكتروني صالح.",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "passwordError": "يجب أن تكون كلمة المرور 6 أحرف على الأقل وتحتوي على حروف وأرقام.",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "confirmPasswordError": "كلمات المرور غير متطابقة.",
+    "agree": "أوافق على",
+    "termsPolicy": "الشروط والسياسات",
+    "signUp": "تسجيل",
+    "alreadyHaveAccount": "هل لديك حساب؟",
+    "signIn": "تسجيل الدخول",
+    "or": "أو",
+    "rememberMe": "تذكرني",
+    "login": "تسجيل الدخول",
+    "alreadyHaveAccountError": "لديك بالفعل حساب",
+    "welcomeBack": "مرحبًا بعودتك!",
+    "wrongEmailOrPassword": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "allFieldsRequired": "جميع الحقول مطلوبة",
+    "dontHaveAccount": "ليس لديك حساب؟"
+  },
+
+  "filterCard": {
+    "filter": "تصفية",
+    "clearAll": "مسح الكل",
+    "carType": "نوع السيارة",
+    "brands": "العلامات التجارية",
+    "sedan": "سيدان",
+    "suv": "دفع رباعي",
+    "hatchback": "هاتشباك",
+    "crossover": "كروس أوفر",
+    "coupe": "كوبيه",
+    "convertible": "قابلة للتحويل",
+    "van": "شاحنة"
+  },
+
+  "carspage": {
+    "searchPlaceholder": "بحث",
+    "searchFailMessage": "يبدو أن الطراز الذي تبحث عنه غير متوفر، تصفح الخيارات المشابهة",
+    "loadingMessage": "جار التحميل...",
+    "filteredCarsTitle": "السيارات المفلترة",
+    "searchResultsTitle": "نتائج البحث",
+    "defaultCarsTitle": "السيارات الافتراضية"
+  },
+
+  "carCard": {
+    "Airconditioner": "مكيف الهواء",
+    "sunroof": "فتحة سقف",
+    "GPS": "نظام ملاحة",
+    "ABS": "ABS",
+    "airbag": "وسائد هوائية",
+    "wifi": "Wifi",
+    "heater": "تدفئة",
+    "Manual": "مانيول",
+    "Automatic": "اوتوماتيك",
+    "monitor": "شاشة",
+    "Petrol": "بنزين",
+    "Diesel": "ديزيل",
+    "Gas": "غاز",
+    "Electric": "كهرباء",
+    "price": "السعر",
+    "perDay": "/يوم",
+    "rentNow": "استئجر الآن",
+    "notAvailable": "غير متاحة",
+    "currency": "ج.م"
+  },
+
+  "profile": {
+    "orderRating": {
+      "title": "يرجى تقييم طلبك",
+      "description": "تقييمك لنا يساعدنا في تحسين الخدمة من أجلك",
+      "basicInfo": "معلومات أساسية",
       "name": "الاسم",
-      "namePlaceholder": "أدخل اسمك",
-      "nameError": "يجب أن يتكون الاسم من 3 أحرف على الأقل ويحتوي على حروف فقط.",
-      "emailAddress": "البريد الإلكتروني",
-      "emailPlaceholder": "أدخل بريدك الإلكتروني",
-      "emailError": "يرجى إدخال بريد إلكتروني صالح.",
-      "password": "كلمة المرور",
-      "passwordPlaceholder": "أدخل كلمة المرور",
-      "passwordError": "يجب أن تكون كلمة المرور 6 أحرف على الأقل وتحتوي على حروف وأرقام.",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
-      "confirmPasswordError": "كلمات المرور غير متطابقة.",
-      "agree": "أوافق على",
-      "termsPolicy": "الشروط والسياسات",
-      "signUp": "تسجيل",
-      "alreadyHaveAccount": "هل لديك حساب؟",
-      "signIn": "تسجيل الدخول",
-      "or": "أو",
-      "rememberMe": "تذكرني",
-      "login": "تسجيل الدخول",
-      "alreadyHaveAccountError": "لديك بالفعل حساب",
-      "welcomeBack": "مرحبًا بعودتك!",
-      "wrongEmailOrPassword": "بريد إلكتروني أو كلمة مرور غير صحيحة",
-      "allFieldsRequired": "جميع الحقول مطلوبة",
-      "dontHaveAccount": "ليس لديك حساب؟"
+      "email": "البريد الإلكتروني",
+      "accountVerification": "التحقق من الحساب",
+      "unverified": "غير موثق",
+      "verified": "موثق",
+      "requested": "مطلوب",
+      "verifyNow": "تحقق الآن",
+      "uploadIdFront": "صورة الجهة الأمامية من الهوية",
+      "uploadIdBack": "صورة الجهة الخلفية من الهوية",
+      "uploadLicense": "رخصة القيادة",
+      "uploadYourPhoto": "قم بتحميل صورتك"
     },
-
-    "filterCard": {
-      "filter": "تصفية",
-      "clearAll": "مسح الكل",
-      "carType": "نوع السيارة",
-      "brands": "العلامات التجارية",
-      "sedan": "سيدان",
-      "suv": "دفع رباعي",
-      "hatchback": "هاتشباك",
-      "crossover": "كروس أوفر",
-      "coupe": "كوبيه",
-      "convertible": "قابلة للتحويل",
-      "truck": "شاحنة"
-    },
-
-    "carspage":{
-      "searchPlaceholder": "بحث",
-      "searchFailMessage": "يبدو أن الطراز الذي تبحث عنه غير متوفر، تصفح الخيارات المشابهة",
-      "loadingMessage": "جار التحميل...",
-      "filteredCarsTitle": "السيارات المفلترة",
-      "searchResultsTitle": "نتائج البحث",
-      "defaultCarsTitle": "السيارات الافتراضية"
-    },
-
-    "carCard": {
-      "airConditioner": "مكيف الهواء",
-      "price": "السعر",
-      "perDay": "/يوم",
-      "rentNow": "استئجر الآن",
-      "notAvailable": "غير متاحة",
-      "currency": "ج.م"
-    },
-
-    "profile":{
-      "orderRating": {
-        "title": "يرجى تقييم طلبك",
-        "description": "تقييمك لنا يساعدنا في تحسين الخدمة من أجلك",
-        "basicInfo": "معلومات أساسية",
-        "name": "الاسم",
-        "email": "البريد الإلكتروني",
-        "accountVerification": "التحقق من الحساب",
-        "unverified": "غير موثق",
-        "verified": "موثق",
-        "requested": "مطلوب",
-        "verifyNow": "تحقق الآن",
-        "uploadIdFront": "صورة الجهة الأمامية من الهوية",
-        "uploadIdBack": "صورة الجهة الخلفية من الهوية",
-        "uploadLicense": "رخصة القيادة",
-        "uploadYourPhoto": "قم بتحميل صورتك"
-      },
-      "ratings": {
-        "excellent": "ممتاز!",
-        "great": "عظيم!",
-        "good": "جيد",
-        "okay": "مقبول",
-        "bad": "سيء",
-        "submit": "إرسال"
-      }
-    },
-
-    "carPage":{
-      "car": {
-        "name": "اسم السيارة",
-        "manualOrAuto": "نوع النقل",
-        "fuel": "نوع الوقود",
-        "price": "السعر:",
-        "description": "الوصف"
-      },
-      "pickup": {
-        "location": "مكان الاستلام",
-        "date": "تاريخ الاستلام"
-      },
-      "dropoff": {
-        "date": "تاريخ التسليم"
-      },
-      "buttons": {
-        "edit": "تعديل",
-        "backToCars": "العودة إلى السيارات",
-        "bookNow": "احجز الآن",
-        "verifyAccount": "قم بتوثيق حسابك للحجز"
-    
-      },
-      "features": {
-        "privateDriver": "سائق خاص",
-        "toddlerSeat": "مقعد طفل صغير",
-        "infantSeat": "مقعد طفل رضيع",
-        "protection": "حماية من أضرار الاصطدام",
-        "price": "جنيه",
-        "perDay": "/يوم"
-      },
-      "ownerInfo": {
-        "aboutOwner": "عن مالك السيارة",
-        "name": "الاسم",
-        "location": "الموقع",
-        "reviews": "المراجعات",
-        "rating": "التقييم"
-      }
+    "ratings": {
+      "excellent": "ممتاز!",
+      "great": "عظيم!",
+      "good": "جيد",
+      "okay": "مقبول",
+      "bad": "سيء",
+      "submit": "إرسال"
     }
-    
-    
-  
+  },
+
+  "carPage": {
+    "car": {
+      "name": "اسم السيارة",
+      "manualOrAuto": "نوع النقل",
+      "fuel": "نوع الوقود",
+      "price": "السعر:",
+      "description": "الوصف"
+    },
+    "pickup": {
+      "location": "مكان الاستلام",
+      "date": "تاريخ الاستلام"
+    },
+    "dropoff": {
+      "date": "تاريخ التسليم"
+    },
+    "buttons": {
+      "edit": "تعديل",
+      "backToCars": "العودة إلى السيارات",
+      "bookNow": "احجز الآن",
+      "verifyAccount": "قم بتوثيق حسابك للحجز"
+    },
+    "features": {
+      "privateDriver": "سائق خاص",
+      "toddlerSeat": "مقعد طفل صغير",
+      "infantSeat": "مقعد طفل رضيع",
+      "protection": "حماية من أضرار الاصطدام",
+      "price": "جنيه",
+      "perDay": "/يوم"
+    },
+    "ownerInfo": {
+      "aboutOwner": "عن مالك السيارة",
+      "name": "الاسم",
+      "location": "الموقع",
+      "reviews": "المراجعات",
+      "rating": "التقييم"
+    }
+  },
+  "checkout": {
+    "review": "مراجعة حجزك",
+    "total": "اجمالي الايجار",
+    "service": "خدمة",
+    "tax": "ضريبة",
+    "totalPrice": "السعر الكلي",
+    "le": " ج.م",
+    "submit": "ادفع الان",
+    "driver": "سائق خاص",
+    "protection": "حماية من الاصطدام",
+    "infantSeat": " مقعد رضيع",
+    "toddlerSeat": "مقعد طفل"
+  },
+
+  "error": {
+    "page": "هذه الصفحة",
+    "exist": "ليست موجودة",
+    "you": "او انت",
+    "permission": "ليس لديك صلاحيات للدخول"
+  },
+
+  "orderInfo": {
+    "info": "تفاصيل الطلب",
+    "details": "تففاصيل اخرى",
+    "track": "تتبع طلبك",
+    "cong": "تهانينا",
+    "completed": "تم الطلب بنجاح",
+    "continue": "استمر"
+  }
 }

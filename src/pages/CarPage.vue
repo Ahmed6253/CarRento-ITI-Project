@@ -28,7 +28,9 @@
             <div v-for="(feature, index) in car.features" :key="index">
               <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
                 <img :src="getImagePath(index)" class="h-6 w-6" />
-                <p class="text-center text-primary_color">{{ index }}</p>
+                <p class="text-center text-primary_color text-[13px]">
+                  {{ $t("carCard." + index) }}
+                </p>
               </span>
             </div>
           </div>
@@ -41,23 +43,29 @@
                 class="h-6 w-6"
               />
               <p class="text-center text-primary_color">
-                {{ this.car.manualOrAuto }}
+                {{ $t("carCard." + car.manualOrAuto) }}
               </p>
             </div>
 
             <div class="flex gap-2 w-[150px]">
               <img src="../assets/CarpageImages/fuel.svg" class="h-6 w-6" />
-              <p class="text-center text-primary_color">{{ this.car.fuel }}</p>
+              <p class="text-center text-primary_color">
+                {{ $t("carCard." + car.fuel) }}
+              </p>
             </div>
           </div>
           <hr class="my-5 md:w-2/3 w-full h-0.5 bg-line_color" />
         </div>
         <div class="flex mt-5">
-          <h3 class="text-primary_color me-2 text-xl font-medium">{{ $t("carCard.price") }}:</h3>
+          <h3 class="text-primary_color me-2 text-xl font-medium">
+            {{ $t("carCard.price") }}:
+          </h3>
           <span class="text-blue-500 font-bold me-2 text-xl">{{
             car.price
           }}</span>
-          <span class="text-primary_color">{{ $t("carCard.currency") }}{{ $t("carCard.perDay") }}</span>
+          <span class="text-primary_color"
+            >{{ $t("carCard.currency") }}{{ $t("carCard.perDay") }}</span
+          >
         </div>
       </div>
       <div
@@ -98,7 +106,7 @@
         <div class="flex justify-between">
           <div>
             <h2 class="font-semibold text-lg text-primary_color">
-              {{ $t("carPage.pickup.date")}}
+              {{ $t("carPage.pickup.date") }}
             </h2>
             <p class="text-Paragraph_color">{{ pickUpDate }}</p>
           </div>
@@ -163,7 +171,9 @@
       <div
         class="bg-white custom-shadow rounded-2xl md:p-8 p-4 w-full xl:w-[73%]"
       >
-        <h1 class="text-primary_color text-2xl mb-6">{{ $t("carPage.car.description") }}</h1>
+        <h1 class="text-primary_color text-2xl mb-6">
+          {{ $t("carPage.car.description") }}
+        </h1>
         <p class="text-Paragraph_color">{{ this.car.description }}</p>
       </div>
       <!-- section two -->
@@ -180,12 +190,15 @@
               value="driver"
               v-model="additionalFeatures.driver"
             />
-            <label class="text-primary_color mx-3" for="driver"
-              >{{ $t("carPage.features.privateDriver") }}</label
+            <label class="text-primary_color mx-3" for="driver">{{
+              $t("carPage.features.privateDriver")
+            }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">500 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
+            <span class="text-primary_color"
+              >500 {{ $t("carPage.features.price") }}</span
+            >{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -197,12 +210,15 @@
               value="toddler-seat"
               v-model="additionalFeatures.toddlerSeat"
             />
-            <label class="text-primary_color mx-3" for="toddler-seat"
-              >{{ $t("carPage.features.toddlerSeat") }}</label
+            <label class="text-primary_color mx-3" for="toddler-seat">{{
+              $t("carPage.features.toddlerSeat")
+            }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">200 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
+            <span class="text-primary_color"
+              >200 {{ $t("carPage.features.price") }}</span
+            >{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -214,12 +230,15 @@
               value="infant-seat"
               v-model="additionalFeatures.infantSeat"
             />
-            <label class="text-primary_color mx-3" for="infant-seat"
-              >{{ $t("carPage.features.infantSeat") }}</label
+            <label class="text-primary_color mx-3" for="infant-seat">{{
+              $t("carPage.features.infantSeat")
+            }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">150 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
+            <span class="text-primary_color"
+              >150 {{ $t("carPage.features.price") }}</span
+            >{{ $t("carPage.features.perDay") }}
           </p>
         </div>
         <div class="flex justify-between border-[1.5px] p-4 rounded-lg">
@@ -231,12 +250,15 @@
               class="accent-gray-900"
               v-model="additionalFeatures.protection"
             />
-            <label class="text-primary_color mx-3" for="protection"
-              >{{ $t("carPage.features.protection") }}</label
+            <label class="text-primary_color mx-3" for="protection">{{
+              $t("carPage.features.protection")
+            }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
-            <span class="text-primary_color">1500 {{ $t("carPage.features.price") }}</span>{{ $t("carPage.features.perDay") }}
+            <span class="text-primary_color"
+              >1500 {{ $t("carPage.features.price") }}</span
+            >{{ $t("carPage.features.perDay") }}
           </p>
         </div>
       </div>
@@ -250,32 +272,46 @@
         </h1>
         <div class="flex flex-col gap-3">
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.name") }}</h2>
+            <h2 class="font-semibold text-lg text-primary_color">
+              {{ $t("carPage.ownerInfo.name") }}
+            </h2>
             <p class="text-Paragraph_color">{{ this.owner.userName }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.location") }}</h2>
+            <h2 class="font-semibold text-lg text-primary_color">
+              {{ $t("carPage.ownerInfo.location") }}
+            </h2>
             <p class="text-Paragraph_color">{{ this.car.location }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.reviews") }}</h2>
+            <h2 class="font-semibold text-lg text-primary_color">
+              {{ $t("carPage.ownerInfo.reviews") }}
+            </h2>
             <p class="text-Paragraph_color">{{ this.car.ratingCount }}</p>
           </div>
           <div>
-            <h2 class="font-semibold text-lg text-primary_color">{{ $t("carPage.ownerInfo.rating") }}</h2>
+            <h2 class="font-semibold text-lg text-primary_color">
+              {{ $t("carPage.ownerInfo.rating") }}
+            </h2>
             <p class="text-Paragraph_color">{{ this.car.rating }}</p>
           </div>
         </div>
       </div>
       <button
-        v-if="currentUser?.status === 'Verified' || !currentUser"
+        v-if="
+          currentUser?.status === 'Verified' ||
+          !currentUser ||
+          !currentUser.status
+        "
         class="bg-green rounded-lg font-medium text-slate-50 hover:bg-green_hover p-3 cursor-pointer w-full xl:w-[73%]"
         @click="booknow"
       >
         {{ $t("carPage.buttons.bookNow") }}
       </button>
       <button
-        v-if="currentUser && currentUser.status !== 'Verified'"
+        v-if="
+          currentUser && currentUser.status && currentUser.status !== 'Verified'
+        "
         class="bg-slate-400 rounded-lg font-medium text-slate-50 p-3 cursor-not-allowed w-full xl:w-[73%]"
       >
         {{ $t("carPage.buttons.verifyAccount") }}
