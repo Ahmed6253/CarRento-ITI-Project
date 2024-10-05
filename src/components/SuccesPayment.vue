@@ -10,19 +10,19 @@
         <h1
           class="md:text-2xl text:xl text-primary_color font-medium text-center mb-2"
         >
-          {{ $t("orderinfo.cong") }}
+          {{ $t("orderInfo.cong") }}
         </h1>
         <p
           class="md:text-2xl text:xl text-Paragraph_color font-medium text-center mb-8"
         >
-          {{ $t("orderinfo.completed") }}
+          {{ $t("orderInfo.completed") }}
         </p>
         <div class="flex justify-center mb-10">
           <button
             class="bg-primary_color text-white w-10/12 mx-auto p-3 rounded-lg hover:bg-primary_hover"
             @click="close()"
           >
-            {{ $t("orderinfo.continue") }}
+            {{ $t("orderInfo.continue") }}
           </button>
         </div>
       </div>
