@@ -205,14 +205,38 @@
     "name": "Name",
     "email": "Email",
     "accountVerification": "Account Verification",
-    "unverified": "Unverified",
-    "verified": "Verified",
-    "requested": "Requested",
+    "Unverified": "Unverified",
+    "Verified": "Verified",
+    "Requested": "Requested",
     "verifyNow": "Verify now",
     "uploadIdFront": "Front-side photo of ID",
     "uploadIdBack": "Back-side photo of ID",
     "uploadLicense": "Driving license",
     "uploadYourPhoto": "Upload Your Photo",
+    "requestVerify": "Request Verification",
+    "sending": "Sending...",
+
+    "rentalsHistory": "Rentals History",
+    "pickUpLocation": "Pick-up location",
+    "pickUpDate": "Pick-up date",
+    "dropOffDate": "Drop-off date",
+    "totalPrice": "Paid",
+
+    "settingsAndPrivacy": "Settings and Privacy",
+    "password": "Password",
+    "locationSharing": "Location Sharing",
+    "paymentDetails": "Payment details",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry date",
+    "deleteCard": "Delete card",
+    "deleteAccount": "Delete account",
+
+    "status": {
+      "pending": "Pending",
+      "accepted": "Rate your order",
+      "done": "Order rated",
+      "rejected": "Rejected"
+    },
 
     "ratings": {
       "title": "Please rate your order",

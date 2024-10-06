@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="total-info">
-                  <p>{{ $t("checkout.total") }}:</p>
+                  <p>{{ $t("checkout.totalPrice") }}:</p>
                   <p class="text-green">
                     {{ totalPriceFinal }} {{ $t("checkout.le") }}
                   </p>

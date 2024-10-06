@@ -95,7 +95,7 @@
       <div class="md:p-11 p-8">
         <div class="total-info">
           <p>{{ this.$t("checkout.totalPrice") }}</p>
-          <p>{{ this.totalPrice }}</p>
+          <p>{{ this.totalPrice }} + {{ this.$t("checkout.le") }} </p>
         </div>
       </div>
     </div>

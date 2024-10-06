@@ -205,23 +205,46 @@
   },
 
   "profile": {
-    "orderRating": {
-      "title": "يرجى تقييم طلبك",
-      "description": "تقييمك لنا يساعدنا في تحسين الخدمة من أجلك",
       "basicInfo": "معلومات أساسية",
       "name": "الاسم",
       "email": "البريد الإلكتروني",
       "accountVerification": "التحقق من الحساب",
-      "unverified": "غير موثق",
-      "verified": "موثق",
-      "requested": "مطلوب",
+      "Unverified": "غير موثق",
+      "Verified": "موثق",
+      "Requested": "مطلوب",
       "verifyNow": "تحقق الآن",
       "uploadIdFront": "صورة الجهة الأمامية من الهوية",
       "uploadIdBack": "صورة الجهة الخلفية من الهوية",
       "uploadLicense": "رخصة القيادة",
-      "uploadYourPhoto": "قم بتحميل صورتك"
+      "uploadYourPhoto": "قم بتحميل صورتك",
+      "requestVerify": "طلب التحقق",
+      "sending": "جاري الارسال ...",
+
+      "settingsAndPrivacy": "الإعدادات والخصوصية",
+      "password": "كلمة المرور",
+      "locationSharing": "مشاركة الموقع",
+      "paymentDetails": "تفاصيل الدفع",
+      "cardNumber": "رقم البطاقة",
+      "expiryDate": "تاريخ الانتهاء",
+      "deleteCard": "حذف البطاقة",
+      "deleteAccount": "حذف الحساب",
+
+      "rentalsHistory": "سجل الإيجارات",
+    "pickUpLocation": "موقع الاستلام",
+    "pickUpDate": "تاريخ الاستلام",
+    "dropOffDate": "تاريخ التسليم",
+    "totalPrice": "مدفوع",
+    "status": {
+      "pending": "قيد الانتظار",
+      "accepted": "قيّم الطلب",
+      "done": "تم تقييم الطلب",
+      "rejected": "مرفوض"
     },
+  
+
     "ratings": {
+      "title": "يرجى تقييم طلبك",
+      "description": "تقييمك لنا يساعدنا في تحسين الخدمة من أجلك",
       "excellent": "ممتاز!",
       "great": "عظيم!",
       "good": "جيد",
