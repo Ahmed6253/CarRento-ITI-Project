@@ -9,7 +9,7 @@
       "
       class="bg-green hover:bg-green_hover text-slate-50 px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
     >
-      <img src="../assets/ownerDashImges/add.svg" /> Add Car
+      <img src="../assets/ownerDashImges/add.svg" /> {{ $t("ownerCars.addCar") }}
     </button>
     <div class="overflow-x-auto">
       <table
@@ -17,14 +17,14 @@
       >
         <thead class="text-xs uppercase">
           <tr>
-            <th scope="col" class="px-6 py-3">Car Model</th>
-            <th scope="col" class="px-6 py-3">Brand</th>
-            <th scope="col" class="px-6 py-3">Color</th>
-            <th scope="col" class="px-6 py-3">Type</th>
-            <th scope="col" class="px-6 py-3">Price</th>
-            <th scope="col" class="px-6 py-3">Number</th>
-            <th scope="col" class="px-6 py-3">Rating</th>
-            <th scope="col" class="px-6 py-3">Set Status</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.carModel") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.brand") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.color") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.type") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.price") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.number") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.rating") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.setStatus") }}</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@
             <td class="px-6 py-4">{{ car.price }} LE</td>
             <td class="px-6 py-4">{{ car.number }}</td>
             <td class="px-6 py-4">{{ car.rating }}</td>
-            <td class="pl-6 py-4">
+            <td class="ps-6 py-4">
               <button
                 @click="setAvalability(car.id)"
                 :class="
@@ -54,7 +54,7 @@
                     : 'bg-gray-900 rounded text-slate-50 p-2 text-[10px]'
                 "
               >
-                {{ car.available ? "Available" : "Not Available" }}
+                {{ car.available ? this.$t("ownerCars.available") : this.$t("ownerCars.notAvailable") }}
               </button>
             </td>
             <td class="pr-6 py-4">
@@ -62,7 +62,7 @@
                 @click="deleteCar(car.id)"
                 class="bg-red hover:bg-red_hover rounded text-slate-50 p-2"
               >
-                Delete
+                {{ $t("ownerCars.delete") }}
               </button>
             </td>
           </tr>
@@ -78,18 +78,17 @@
         <!-- first form -->
         <div v-if="!nextForm" class="flex justify-between flex-wrap">
           <div class="w-[47%]">
-            <label for="carModel">Car Model</label><br />
+            <label for="carModel">{{ $t("ownerCars.carModel") }}</label><br />
             <input
               type="text"
               v-model="carOptions.name"
               id="carModel"
               name="carModel"
-              placeholder="Car Model"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
-            <label for="brand">Brand</label>
+            <label for="brand">{{ $t("ownerCars.brand") }}</label>
             <select
               v-model="carOptions.brand"
               name="brand"
@@ -146,73 +145,70 @@
             </select>
           </div>
           <div class="w-[47%]">
-            <label for="color">Color</label>
+            <label for="color">{{ $t("ownerCars.color") }}</label>
             <input
               v-model="carOptions.color"
               type="text"
               id="color"
               name="color"
-              placeholder="Color"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
-            <label for="type">Type</label>
+            <label for="type">{{ $t("ownerCars.type") }}</label>
             <select
               v-model="carOptions.type"
               name="type"
               id="type"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             >
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
-              <option value="Hatchback">Hatchback</option>
-              <option value="Coupe">Coupe</option>
-              <option value="Crossover">Crossover</option>
-              <option value="Convertible">Convertible</option>
+              <option value="Sedan">{{ $t("filterCard.sedan") }}</option>
+              <option value="SUV">{{ $t("filterCard.suv") }}</option>
+              <option value="Hatchback">{{ $t("filterCard.hatchback") }}</option>
+              <option value="Coupe">{{ $t("filterCard.coupe") }}</option>
+              <option value="Crossover">{{ $t("filterCard.crossover") }}</option>
+              <option value="Convertible">{{ $t("filterCard.convertible") }}</option>
               <option value="Truck">Truck</option>
-              <option value="Van">Van</option>
+              <option value="Van">{{ $t("filterCard.van") }}</option>
             </select>
           </div>
           <div class="w-[47%]">
-            <label for="price">Price</label>
+            <label for="price">{{ $t("ownerCars.price") }}</label>
             <input
               v-model="carOptions.price"
               type="number"
               id="price"
               name="price"
-              placeholder="Price"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
           <div class="w-[47%]">
-            <label for="number">Number</label>
+            <label for="number">{{ $t("ownerCars.number") }}</label>
             <input
               v-model.trim="carOptions.number"
               type="text"
               id="number"
               name="number"
-              placeholder="Number"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             />
           </div>
 
           <div class="w-[47%]">
-            <label for="fuel">Fuel Type</label>
+            <label for="fuel">{{ $t("ownerCars.fuelType") }}</label>
             <select
               v-model="carOptions.fuel"
               name="fuel"
               id="fuel"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
             >
-              <option value="Petrol">Petrol</option>
-              <option value="Diesel">Gas</option>
-              <option value="Electric">Electric</option>
+              <option value="Petrol">{{ $t("ownerCars.petrol") }}</option>
+              <option value="Diesel">{{ $t("ownerCars.gas") }}</option>
+              <option value="Electric">{{ $t("ownerCars.electric") }}</option>
             </select>
           </div>
 
           <div class="w-[47%]">
-            <label for="pickup-location">Location</label>
+            <label for="pickup-location">{{ $t("ownerCars.location") }}</label>
             <select
               v-model="carOptions.location"
               class="border border-border_color text-black text-sm rounded-lg p-2.5 w-full my-3"
@@ -248,7 +244,7 @@
             </select>
           </div>
           <div class="w-full hidden">
-            <label for="image">Image</label>
+            <label for="image">{{ $t("ownerCars.img") }}</label>
             <input
               type="file"
               id="image"
@@ -262,29 +258,29 @@
               @click="next()"
               class="bg-green hover:bg-green_hover text-slate-50 px-10 py-2.5 my-4 rounded-lg mr-2"
             >
-              Next
+              {{ $t("ownerCars.next") }}
             </button>
             <button
               @click="isAdding = false"
               class="bg-red hover:bg-red_hover text-slate-50 px-8 py-2.5 rounded-lg"
             >
-              Cancel
+              {{ $t("ownerCars.cancel") }}
             </button>
           </div>
         </div>
-        <p class="text-red" v-if="fformError">All fields are required</p>
+        <p class="text-red" v-if="fformError">{{ $t("ownerCars.allFieldsRequired") }}</p>
 
         <!-- second form -->
 
         <div v-if="nextForm" class="flex justify-between flex-wrap -m-4">
           <div class="w-full">
-            <label for="gear">Gear</label><br />
+            <label for="gear">{{ $t("ownerCars.gear") }}</label><br />
             <input
               @click="carOptions.manualOrAuto = 'Automatic'"
               name="gear"
               type="button"
               id="automatic"
-              value="Automatic"
+              :value="this.$t('ownerCars.automatic')"
               :class="
                 carOptions.manualOrAuto === 'Automatic'
                   ? style.activeOption
@@ -296,7 +292,7 @@
               name="gear"
               type="button"
               id="manual"
-              value="Manual"
+              :value="this.$t('ownerCars.manual')"
               :class="
                 carOptions.manualOrAuto === 'Manual'
                   ? style.activeOption
@@ -305,13 +301,13 @@
             />
           </div>
           <div class="w-full">
-            <label for="morefeatures">Add More Features</label><br />
+            <label for="morefeatures">{{ $t("ownerCars.addMoreFeatures") }}</label><br />
             <input
               @click="carFeatures.Airconditioner = !carFeatures.Airconditioner"
               name="morefeatures"
               type="button"
               id="air-conditioning"
-              value="Air conditioning"
+              :value="this.$t('ownerCars.airConditioning')"
               :class="
                 carFeatures.Airconditioner
                   ? style.activeOption
@@ -323,7 +319,7 @@
               name="morefeatures"
               type="button"
               id="GPS"
-              value="GPS"
+              :value="this.$t('ownerCars.gps')"
               :class="
                 carFeatures.GPS ? style.activeOption : style.unActiveOption
               "
@@ -333,7 +329,7 @@
               name="morefeatures"
               type="button"
               id="ABS"
-              value="ABS"
+              :value="this.$t('ownerCars.abs')"
               :class="
                 carFeatures.ABS ? style.activeOption : style.unActiveOption
               "
@@ -343,7 +339,7 @@
               name="morefeatures"
               type="button"
               id="monitor"
-              value="Monitor"
+              :value="this.$t('ownerCars.monitor')"
               :class="
                 carFeatures.monitor ? style.activeOption : style.unActiveOption
               "
@@ -353,7 +349,7 @@
               name="morefeatures"
               type="button"
               id="sunroof"
-              value="Sunroof"
+              :value="this.$t('ownerCars.sunroof')"
               :class="
                 carFeatures.sunroof ? style.activeOption : style.unActiveOption
               "
@@ -363,7 +359,7 @@
               name="morefeatures"
               type="button"
               id="heater"
-              value="Heater"
+              :value="this.$t('ownerCars.heater')"
               :class="
                 carFeatures.heater ? style.activeOption : style.unActiveOption
               "
@@ -373,7 +369,7 @@
               name="morefeatures"
               type="button"
               id="airbag"
-              value="Airbag"
+              :value="this.$t('ownerCars.airbag')"
               :class="
                 carFeatures.airbag ? style.activeOption : style.unActiveOption
               "
@@ -383,7 +379,7 @@
               name="morefeatures"
               type="button"
               id="wifi"
-              value="Wifi"
+              :value="this.$t('ownerCars.wifi')"
               :class="
                 carFeatures.wifi ? style.activeOption : style.unActiveOption
               "
@@ -391,7 +387,7 @@
           </div>
 
           <div class="w-full">
-            <label for="image">Image</label>
+            <label for="image">{{ $t("ownerCars.img") }}</label>
             <input
               type="file"
               ref="image"
@@ -401,7 +397,7 @@
             />
           </div>
           <div class="w-full">
-            <label for="description">Description</label>
+            <label for="description">{{ $t("carPage.car.description") }}</label>
             <textarea
               name="description"
               v-model="carOptions.description"
@@ -414,13 +410,13 @@
               @click="addCar()"
               class="bg-green hover:bg-green_hover text-slate-50 px-10 py-2.5 mr-2 rounded-lg"
             >
-              Add Car
+              {{ $t("ownerCars.addCar") }}
             </button>
             <button
               @click="nextForm = false"
               class="bg-red hover:bg-red_hover text-slate-50 px-8 py-2.5 rounded-lg"
             >
-              Back
+              {{ $t("ownerCars.back") }}
             </button>
           </div>
         </div>

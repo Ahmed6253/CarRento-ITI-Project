@@ -326,7 +326,7 @@
     "overview": "نظرة عامة",
     "users": "المستخدمين",
     "logout": "تسجيل الخروج",
-    "screen_size_error": "لن يكون هذا اللوحة متاحًا مع هذا الحجم من الشاشة. تحتاج إلى استخدام شاشة أكبر!",
+    "screen_size_error": "لن يكون اللوحة متاحة في هذا الحجم من الشاشة.  تحتاج إلى استخدام شاشة أكبر!",
     "confirm_logout": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
   },
 
@@ -405,5 +405,93 @@
       "verifiedUser": "تم تأكيد المستخدم: {userName}",
       "unverifiedUser": "المستخدم غير مؤكد: {userName}"
     }
+  },
+
+  "ownerNav": {
+    "overview": "نظرة عامة",
+    "orders": "الطلبات",
+    "cars": "السيارات",
+    "customers": "العملاء",
+    "settings": "الإعدادات",
+    "support": "الدعم",
+    "greeting": "مرحباً، "
+
+  },
+
+  "ownerOverview": {
+    "ordersDone": "الطلبات المكتملة",
+    "pendingOrders": "الطلبات المعلقة",
+    "ordersEarnings": "إيرادات الطلبات",
+    "revenue": "الإيرادات",
+    "recentOrders": "الطلبات الأخيرة",
+    "carNumber": "رقم السيارة",
+    "carLocation": "موقع السيارة",
+    "renterName": "اسم المستأجر",
+    "pickUpDate": "تاريخ الاستلام",
+    "dropOffDate": "تاريخ التسليم",
+    "totalPrice": "السعر الإجمالي",
+    "status": "الحالة",
+    "done": "مكتمل",
+    "pending": "معلق",
+    "Accepted": "مقبول",
+    "rejected": "مرفوض"
+  },
+
+  "ownerOrders":{
+    "allOrders": "جميع الطلبات",
+    "carModel": "موديل السيارة",
+    "renterName": "اسم المستأجر",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "price": "السعر",
+    "carNumber": "رقم السيارة",
+    "accept": "قبول",
+    "reject": "رفض",
+    "accepted": "مقبول",
+    "rejected": "مرفوض",
+    "rated": "مُقيّم",
+    "pending": "معلق",
+    "confirmAccept": "هل أنت متأكد أنك تريد قبول هذا الطلب؟",
+    "confirmReject": "هل أنت متأكد أنك تريد رفض هذا الطلب؟"
+  },
+
+  "ownerCars": {
+    "addCar": "إضافة سيارة",
+    "carModel": "موديل السيارة",
+    "brand": "العلامة التجارية",
+    "color": "اللون",
+    "type": "النوع",
+    "price": "السعر",
+    "number": "العدد",
+    "rating": "التقييم",
+    "setStatus": "تحديد الحالة",
+    "available": "متاح",
+    "notAvailable": "غير متاح",
+    "delete": "حذف",
+    "fuelType": "نوع الوقود",
+    "electric": "كهربائية",
+    "gas": "غاز طبيعي",
+    "petrol": "بنزين",
+    "location": "الموقع",
+    "next": "التالي",
+    "cancel": "إلغاء",
+    "allFieldsRequired": "جميع الحقول مطلوبة",
+    "gear": "ناقل الحركة",
+    "automatic": "أوتوماتيكي",
+    "manual": "يدوي",
+    "img": "صورة",
+    "addMoreFeatures": "إضافة ميزات إضافية",
+    "airConditioning": "تكييف",
+    "gps": "نظام GPS",
+    "abs": "نظام ABS",
+    "monitor": "شاشة",
+    "sunroof": "فتحة سقف",
+    "heater": "مدفأة",
+    "airbag": "وسادة هوائية",
+    "wifi": "واي فاي",
+    "descriptioError" : " يرجى كتابة وصف للسيارة واختيار صورة",
+    "numberError": "يوجد سيارة مسجلة بهذا الرقم",
+    "back": "عودة للسابق"
   }
+  
 }

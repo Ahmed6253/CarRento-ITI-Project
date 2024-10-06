@@ -3,43 +3,42 @@
     -->
   <div class="flex justify-between gap-4 mb-5">
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-Paragraph_color mb-3">Orders done</h5>
+      <h5 class="text-Paragraph_color mb-3">{{ $t("ownerOverview.ordersDone") }}</h5>
       <h2 class="text-4xl text-primary_color">{{ doneOrders }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-Paragraph_color mb-3">Pending Orders</h5>
+      <h5 class="text-Paragraph_color mb-3">{{ $t("ownerOverview.pendingOrders") }}</h5>
       <h2 class="text-4xl text-primary_color">{{ pendingOrders }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-Paragraph_color mb-3">Orders earnings</h5>
+      <h5 class="text-Paragraph_color mb-3">{{ $t("ownerOverview.ordersEarnings") }}</h5>
       <h2 class="text-4xl text-primary_color">{{ earnings }}</h2>
     </div>
 
     <div class="bg-white custom-shadow rounded-lg ps-8 py-5 w-1/4">
-      <h5 class="text-Paragraph_color mb-3">Revenue</h5>
+      <h5 class="text-Paragraph_color mb-3">{{ $t("ownerOverview.revenue") }}</h5>
       <h2 class="text-4xl text-primary_color">
         {{ Math.floor(earnings * 0.8) }}
       </h2>
     </div>
   </div>
   <!-- --------------------------------------table---------------------------------- -->
-  <h2 class="text-xl text-primary_color font-bold my-5">Recent Orders</h2>
+  <h2 class="text-xl text-primary_color font-bold my-5">{{ $t("ownerOverview.recentOrders") }}</h2>
 
   <table class="w-full text-sm text-left rtl:text-right text-Paragraph_color">
     <thead class="text-xs text-gray-700 uppercase">
       <tr>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Car Number</th>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Car Location</th>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Renter Name</th>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Pick-up Date</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.carNumber") }}</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.carLocation") }}</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.renterName") }}</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.pickUpDate") }}</th>
         <th scope="col" class="px-6 py-3 text-Paragraph_color">
-          Drop-off Date
+          {{ $t("ownerOverview.dropOffDate") }}
         </th>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Total Price</th>
-        <th scope="col" class="px-6 py-3 text-Paragraph_color">Status</th>
-        <!-- <th scope="col" class="px-6 py-3">Rating</th> -->
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.totalPrice") }}</th>
+        <th scope="col" class="px-6 py-3 text-Paragraph_color">{{ $t("ownerOverview.status") }}</th>
       </tr>
     </thead>
     <tbody>

@@ -130,8 +130,7 @@
     <img class="w-1/2" src="../assets/error.png" alt="" />
 
     <h2 class="text-center">
-      This dashboard won't be accessible with this screen size you need to use
-      larger screen!
+      {{ $t("adminDashboard.screen_size_error") }}
     </h2>
   </div>
 </template>
