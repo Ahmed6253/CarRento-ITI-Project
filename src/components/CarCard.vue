@@ -53,16 +53,19 @@
         >
           <img :src="getImagePath(prop)" alt="" class="w-[13px]" />
           <p class="mt-0.5 text-[10px] text-primary_color">
-            {{ prop === "Airconditioner" ? "Air Conditioner" : prop }}
+            {{ $t(`carCard.${prop}`) }}
           </p>
         </div></span
       >
     </div>
 
     <div class="flex text-[16px] py-3 justify-between text-primary_color">
-      <span>Price</span>
+      <span>{{ $t("carCard.price") }}</span>
       <span
-        >{{ car.price }} LE<span class="text-Paragraph_color">/day</span></span
+        >{{ car.price }} {{ $t("carCard.currency")
+        }}<span class="text-Paragraph_color">{{
+          $t("carCard.perDay")
+        }}</span></span
       >
     </div>
 
@@ -71,13 +74,13 @@
       @click="rentNow()"
       class="bg-primary_color hover:bg-primary_hover text-white w-full py-2.5 rounded-3xl"
     >
-      Rent now
+      {{ $t("carCard.rentNow") }}
     </button>
     <button
       v-if="car.available === false"
       class="bg-Paragraph_color text-white w-full py-2.5 rounded-3xl cursor-not-allowed"
     >
-      Not available
+      {{ $t("carCard.notAvailable") }}
     </button>
   </div>
 </template>

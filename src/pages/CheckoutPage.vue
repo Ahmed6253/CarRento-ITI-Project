@@ -28,13 +28,14 @@
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
           >
             <path
               d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
               class="fill-primary_color cursor-pointer"
             />
           </svg>
-          <h2 class="text-3xl font-medium p-3">Review your booking</h2>
+          <h2 class="text-3xl font-medium p-3">{{ $t("checkout.review") }}</h2>
         </div>
       </div>
 
@@ -46,21 +47,23 @@
             <div class="card-style w-full">
               <div class="md:p-11 p-8">
                 <div class="total-info">
-                  <p>Total Rent:</p>
+                  <p>{{ $t("checkout.total") }}:</p>
                   <p>{{ totalPrice }}</p>
                 </div>
                 <div class="total-info">
-                  <p>Service:</p>
+                  <p>{{ $t("checkout.service") }}:</p>
                   <p>500</p>
                 </div>
                 <div class="total-info">
-                  <p>Tax’s:</p>
+                  <p>{{ $t("checkout.tax") }}:</p>
                   <p>{{ tax }}</p>
                 </div>
 
                 <div class="total-info">
-                  <p>Total:</p>
-                  <p class="text-green">{{ totalPriceFinal }} LE</p>
+                  <p>{{ $t("checkout.totalPrice") }}:</p>
+                  <p class="text-green">
+                    {{ totalPriceFinal }} {{ $t("checkout.le") }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -80,7 +83,7 @@
               class="rounded-lg mt-8 text-slate-50 w-full bg-green py-[10px]"
               @click="confirminfo"
             >
-              Pay Now
+              {{ $t("checkout.submit") }}
             </button>
           </div>
         </div>

@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex mb-8">
-      <h4 class="semi-header font-medium">Order Info</h4>
+      <h4 class="semi-header font-medium">{{ $t("orderInfo.info") }}</h4>
     </div>
 
     <div class="card-style text-primary_color">
@@ -28,7 +28,9 @@
               <div v-for="(feature, index) in car.features" :key="index">
                 <span class="flex gap-2 w-[150px] mt-3 me-5" v-if="feature">
                   <img :src="getImagePath(index)" class="h-6 w-6" />
-                  <p class="text-center text-primary_color">{{ index }}</p>
+                  <p class="text-center text-primary_color">
+                    {{ $t("carCard." + index) }}
+                  </p>
                 </span>
               </div>
 
@@ -39,20 +41,22 @@
                     class="h-6 w-6"
                   />
                   <p class="text-center text-primary_color">
-                    {{ this.car.manualOrAuto }}
+                    {{ $t("carCard." + car.manualOrAuto) }}
                   </p>
                 </div>
 
                 <div class="flex gap-2 w-[150px]">
                   <img src="../assets/CarpageImages/fuel.svg" class="h-6 w-6" />
                   <p class="text-center text-primary_color">
-                    {{ this.car.fuel }}
+                    {{ $t("carCard." + car.fuel) }}
                   </p>
                 </div>
               </div>
 
               <div class="mt-8 md:w-full xl:w-[73%] mb-8 lg:mb-0">
-                <h1 class="text-primary_color text-2xl">Description</h1>
+                <h1 class="text-primary_color text-2xl">
+                  {{ $t("carPage.car.description") }}
+                </h1>
                 <p class="text-Paragraph_color">{{ this.car.description }}</p>
               </div>
             </div>
@@ -69,69 +73,30 @@
       <hr class="bg-line_color h-0.5" />
 
       <div class="md:p-11 p-8 mb-16">
-        <h2 class="info-header">Personal information</h2>
+        <h2 class="info-header">{{ $t("orderInfo.details") }}</h2>
         <div class="mb-3">
-          <h4 class="info-sub-header">Name</h4>
-          <p class="info-paragraph">{{ this.personalName }}</p>
-        </div>
-
-        <div>
-          <h4 class="info-sub-header">Location</h4>
-          <p class="info-paragraph">{{ this.car.location }} , Egypt</p>
-        </div>
-      </div>
-
-      <hr class="bg-line_color h-0.5" />
-
-      <div class="md:p-11 p-8 mb-16">
-        <h2 class="info-header">Order information</h2>
-        <div class="mb-3">
-          <h4 class="info-sub-header">Pick-up location</h4>
+          <h4 class="info-sub-header">{{ $t("carPage.pickup.location") }}</h4>
           <p class="info-paragraph">{{ this.car.location }}</p>
         </div>
 
         <div class="mb-3">
-          <h4 class="info-sub-header">Pick-up date</h4>
+          <h4 class="info-sub-header">{{ $t("carPage.pickup.date") }}</h4>
           <p class="info-paragraph">{{ this.pickUpDate }}</p>
         </div>
 
         <div class="mb-3">
-          <h4 class="info-sub-header">Drop-off date</h4>
+          <h4 class="info-sub-header">{{ $t("carPage.dropoff.date") }}</h4>
           <p class="info-paragraph">{{ this.dropOffDate }}</p>
         </div>
-
-        <!-- <div class="mb-3">
-          <h4 class="info-sub-header">2 Infant child seat</h4>
-          <p class="info-paragraph">1050 LE added</p>
-        </div>
-
-        <div class="mb-3">
-          <h4 class="info-sub-header">Collision damage protection</h4>
-          <p class="info-paragraph">5034 LE added</p>
-        </div> -->
       </div>
     </div>
 
     <div class="card-style text-primary_color">
       <div class="md:p-11 p-8">
         <div class="total-info">
-          <p>Total</p>
-          <p>{{ this.totalPrice }}</p>
+          <p>{{ this.$t("checkout.totalPrice") }}</p>
+          <p>{{ this.totalPrice }} + {{ this.$t("checkout.le") }} </p>
         </div>
-        <div class="total-info">
-          <p>Service</p>
-          <p>500</p>
-        </div>
-        <div class="total-info">
-          <p>Tax’s</p>
-          <p>100</p>
-        </div>
-      </div>
-      <hr class="bg-line_color h-0.5" />
-
-      <div class="total-info p-11">
-        <p>Total</p>
-        <p>{{ this.total2Price }}</p>
       </div>
     </div>
 
@@ -139,7 +104,7 @@
       @click="$router.push(`/profile/${currentUser.id}`)"
       class="bg-green w-full text-slate-50 h-12 rounded-lg mt-6 font-semibold"
     >
-      Track your order
+      {{ $t("orderInfo.track") }}
     </button>
   </div>
 </template>

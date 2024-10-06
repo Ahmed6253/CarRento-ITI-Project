@@ -15,6 +15,7 @@
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
           >
             <path
               d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -22,18 +23,24 @@
             />
           </svg>
         </div>
-        <h1 class="text-3xl text-center mb-10 font-bold">Are you?</h1>
+        <h1 class="text-3xl text-center mb-10 font-bold">
+          {{ $t("loginPage.areYou") }}
+        </h1>
         <div class="flex gap-9">
           <div>
             <button @click="setrole('renter')">
               <img src="../assets/user.png" />
-              <p class="text-center text-2xl mt-6">Car Renter</p>
+              <p class="text-center text-2xl mt-6">
+                {{ $t("loginPage.carRenter") }}
+              </p>
             </button>
           </div>
           <div>
             <button @click="setrole('owner')">
               <img src="../assets/owner.png" />
-              <p class="text-center text-2xl mt-6">Car Owner</p>
+              <p class="text-center text-2xl mt-6">
+                {{ $t("loginPage.carOwner") }}
+              </p>
             </button>
           </div>
         </div>
@@ -53,6 +60,7 @@
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
             >
               <path
                 d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -61,7 +69,7 @@
             </svg>
           </div>
           <p class="text-primary_color font-semibold lg:text-2xl text-lg">
-            Get Started Now
+            {{ $t("loginPage.getStarted") }}
           </p>
         </div>
 
@@ -70,68 +78,67 @@
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
               for="name"
-              >Name</label
+              >{{ $t("loginPage.name") }}</label
             >
             <input
-              class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]"
+              class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="text"
-              placeholder="Enter your name"
+              :placeholder="$t('loginPage.namePlaceholder')"
               v-model.trim="form.userName"
               @blur="validateName"
               :class="{ error: nameError }"
             />
             <p v-if="nameError" class="error-message">
-              Name must be at least 3 characters and contain letters only.
+              {{ $t("loginPage.nameError") }}
             </p>
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
               for="email"
-              >Email address</label
+              >{{ $t("loginPage.emailAddress") }}</label
             >
             <input
-              class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]"
+              class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="email"
-              placeholder="Enter your Email address"
+              :placeholder="$t('loginPage.emailPlaceholder')"
               v-model.trim="form.email"
               @blur="validateEmail"
               :class="{ error: emailError }"
             />
             <p v-if="emailError" class="error-message">
-              Please enter a valid email.
+              {{ $t("loginPage.emailError") }}
             </p>
 
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
               for="password"
-              >Password</label
+              >{{ $t("loginPage.password") }}</label
             >
             <input
-              class="lg:py-3 py-1 pl-4 lg:text-base text-sm rounded-lg border-border_color border-[1px]"
+              class="lg:py-3 py-1 ps-4 lg:text-base text-sm rounded-lg border-border_color border-[1px]"
               type="Password"
-              placeholder="Enter your password"
+              :placeholder="$t('loginPage.passwordPlaceholder')"
               v-model.trim="form.password"
               :class="{ error: passwordError }"
               @blur="validatePassword"
             />
             <p v-if="passwordError" class="error-message">
-              Password must be at least 6 characters and contain letters and
-              numbers.
+              {{ $t("loginPage.passwordError") }}
             </p>
             <label
               class="lg:text-base text-sm lg:pt-3 pt-1 text-primary_color font-medium pb-1"
               for="confirmpassword"
-              >Confirm password</label
+              >{{ $t("loginPage.confirmPassword") }}</label
             >
             <input
-              class="lg:py-3 py-1 pl-4 text-base rounded-lg border-border_color border-[1px]"
+              class="lg:py-3 py-1 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="password"
-              placeholder="Re-enter your password"
+              :placeholder="$t('loginPage.confirmPasswordPlaceholder')"
               v-model.trim="form.confirmPassword"
               @blur="validatePasswordConfirm"
               :class="{ error: confirmPasswordError }"
             />
             <p v-if="confirmPasswordError" class="error-message">
-              Passwords do not match.
+              {{ $t("loginPage.confirmPasswordError") }}
             </p>
           </div>
           <div class="lg:ml-9 mx-auto flex flex-col gap-3 pt-1">
@@ -151,11 +158,11 @@
                 />
               </label>
               <p class="text-primary_color">
-                I agree to the
+                {{ $t("loginPage.agree") }}
                 <router-link
                   class="text-primary_color underline font-medium"
                   to="/"
-                  >terms & policy</router-link
+                  >{{ $t("loginPage.termsPolicy") }}</router-link
                 >
               </p>
             </div>
@@ -163,13 +170,13 @@
               type="submit"
               class="text-white text-base bg-primary_color w-full lg:py-3 py-2 rounded-lg"
             >
-              sign up
+              {{ $t("loginPage.signUp") }}
             </button>
           </div>
           <div class="lg:ml-9 mx-auto flex items-center lg:pt-4 pt-1 gap-3">
             <div class="h-[1px] w-full bg-border_color"></div>
 
-            <p class="text-base text-primary_color">Or</p>
+            <p class="text-base text-primary_color">{{ $t("loginPage.or") }}</p>
 
             <div class="h-[1px] w-full bg-border_color"></div>
           </div>
@@ -178,12 +185,12 @@
             class="lg:ml-9 mx-auto flex lg:pt-3 pt-1 justify-center text-primary_color"
           >
             <p class="lg:text-xl text-base">
-              Have an account?
+              {{ $t("loginPage.alreadyHaveAccount") }}
               <button
                 class="text-primary_color lg:text-xl text-base underline font-medium"
                 @click="signup = false"
               >
-                Sign In
+                {{ $t("loginPage.signIn") }}
               </button>
             </p>
           </div>
@@ -202,7 +209,7 @@
         class="login lg:w-6/12 w-full px-4 lg:pt-16 lg:py-12 py-6"
       >
         <p v-if="userExist" class="text-red lg:ml-9 mb-4">
-          You already have an account
+          {{ $t("loginPage.alreadyHaveAccountError") }}
         </p>
         <div class="flex gap-3 lg:ml-9 justify-start items-center">
           <div class="py-3 lg:py-0 px-0 flex items-center">
@@ -213,6 +220,7 @@
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              :class="this.$i18n.locale === 'Ar' ? 'scale-x-[-1]' : ''"
             >
               <path
                 d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z"
@@ -221,7 +229,7 @@
             </svg>
           </div>
           <p class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3">
-            welcome back!
+            {{ $t("loginPage.welcomeBack") }}
           </p>
         </div>
 
@@ -230,12 +238,12 @@
             <label
               class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1"
               for="log-email"
-              >Email address</label
+              >{{ $t("loginPage.emailAddress") }}</label
             >
             <input
-              class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]"
+              class="py-3 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="email"
-              placeholder="Enter your Email address"
+              :placeholder="$t('loginPage.emailPlaceholder')"
               v-model="form.email"
               id="log-email"
             />
@@ -243,13 +251,13 @@
             <label
               class="text-base lg:pt-3 pt-2 text-primary_color font-medium pb-1"
               for="log-password"
-              >Password</label
+              >{{ $t("loginPage.password") }}</label
             >
             <input
               id="log-password"
-              class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]"
+              class="lg:py-3 py-2 ps-4 text-base rounded-lg border-border_color border-[1px]"
               type="password"
-              placeholder="Enter your password"
+              :placeholder="$t('loginPage.passwordPlaceholder')"
               v-model="form.password"
             />
           </div>
@@ -265,16 +273,20 @@
                   v-model="form.rememberUser"
                 />
               </label>
-              <p class="text-primary_color">Remember me</p>
+              <p class="text-primary_color">{{ $t("loginPage.rememberMe") }}</p>
             </div>
-            <p v-if="loginError" class="text-red">All fields are required</p>
-            <p v-if="worngPassword" class="text-red">Worng Email or Password</p>
+            <p v-if="loginError" class="text-red">
+              {{ $t("loginPage.allFieldsRequired") }}
+            </p>
+            <p v-if="worngPassword" class="text-red">
+              {{ $t("loginPage.wrongEmailOrPassword") }}
+            </p>
 
             <button
               type="submit"
               class="text-white text-base bg-primary_color w-full py-3 rounded-lg"
             >
-              login
+              {{ $t("loginPage.login") }}
             </button>
           </div>
         </form>
@@ -282,19 +294,19 @@
         <div class="lg:ml-9 mx-auto flex items-center pt-4 gap-3">
           <div class="h-[1px] w-full bg-border_color"></div>
 
-          <p class="text-base text-primary_color">Or</p>
+          <p class="text-base text-primary_color">{{ $t("loginPage.or") }}</p>
 
           <div class="h-[1px] w-full bg-border_color"></div>
         </div>
 
         <div class="lg:ml-9 mx-auto flex lg:pt-3 pt-2 justify-center">
           <p class="lg:text-xl text-lg text-primary_color">
-            Don’t have an account?
+            {{ $t("loginPage.dontHaveAccount") }}
             <button
               class="text-primary_color text-xl underline font-medium"
               @click="checkrole"
             >
-              Sign up
+              {{ $t("loginPage.signUp") }}
             </button>
           </p>
         </div>

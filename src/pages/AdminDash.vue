@@ -67,7 +67,7 @@
                 "
               />
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">Overview</p>
+            <p :class="fold ? 'hidden' : 'block'">{{ $t("adminDashboard.overview") }}</p>
           </div>
           <div
             @click="activeSection = 'users'"
@@ -93,7 +93,7 @@
                 "
               />
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">Users</p>
+            <p :class="fold ? 'hidden' : 'block'">{{ $t("adminDashboard.users") }}</p>
           </div>
         </div>
         <div class="flex flex-col gap-y-6">
@@ -102,7 +102,7 @@
             class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
           >
             <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-            <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+            <p :class="fold ? 'hidden' : 'text-primary_color'">{{ $t("adminDashboard.logout") }}</p>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
     <section class="mt-9 mx-5 w-full">
       <div class="flex justify-between">
         <h1 class="text-primary_color text-2xl mb-10">
-          <span class="font-bold">Hello, </span>
+          <span class="font-bold">{{ $t("adminDashboard.greeting") }} </span>
           {{ userName }}
         </h1>
         <label class="switch">
@@ -197,7 +197,7 @@ export default {
       }
     },
     logout() {
-      const logoutConfirm = confirm("Are you sure you want to log out?");
+      const logoutConfirm = confirm(this.$t("adminDashboard.confirm_logout"));
       if (logoutConfirm) {
         localStorage.removeItem("currentAdmin");
         sessionStorage.removeItem("currentAdmin");

@@ -200,7 +200,7 @@ export default {
     },
     openModal() {
       if (this.loggedIn) {
-        const logoutConfirm = confirm("Are you sure you want to log out?");
+        const logoutConfirm = confirm(this.$t("nav.logoutConfirm"));
         if (logoutConfirm) {
           localStorage.removeItem("currentUser");
           sessionStorage.removeItem("currentUser");

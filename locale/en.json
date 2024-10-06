@@ -1,0 +1,133 @@
+{
+  "home": {
+    "hello": "Rent your perfect car",
+    "welcome": "with a big discount",
+    "rent_now": "Rent now",
+
+    "easy_steps": "Easy steps to rent your perfect car",
+    "easy_steps_description": "Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.",
+    "choose_location": "Choose Location",
+    "choose_location_description": "Choose your desired pickup and drop-off from a wide range of locations to suit your needs.",
+    "choose_day_time": "Choose Day and Time",
+    "choose_day_time_description": "Select your preferred pick-up and drop-off dates and times, let's find your best availability.",
+    "choose_car": "Choose a Car",
+    "choose_car_description": "Browse our fleet and find the perfect vehicle with your preferred options.",
+    "most_popular_car_rentals": "Most popular car rentals",
+    "most_popular_car_rentals_description": "Renting a car with us is a breeze! Simply browse our extensive fleet to find the perfect vehicle for your needs.",
+    "rent_perfect_car": "Rent your perfect car with a big discount",
+    "why_choose_us": "Why choose us",
+    "unmatched_selection": "Unmatched Selection",
+    "unmatched_selection_description": "With a vast fleet of vehicles, we offer the perfect car for every preference.",
+    "competitive_pricing": "Competitive Pricing",
+    "competitive_pricing_description": "Enjoy affordable rental prices without compromising on quality or service.",
+    "convenient_locations": "Convenient Locations",
+    "convenient_locations_description": "We have convenient pickup and drop-off locations to suit your travel needs.",
+    "flexible_rental_options": "Flexible Rental Options",
+    "flexible_rental_options_description": "Need a car for a few hours, a day, or longer, we offer flexible rental options."
+  },
+
+  "searchCard" : {
+    "pickup_date": "Pick-up Date",
+    "pickup_location": "Pick-up Location",
+    "dropoff_location": "Drop-off Location",
+    "set_and_search": "Set and Search",
+    "error_location_date": "You must set your location and both dates first.",
+    "error_pickup_dropoff": "Pick-up date cannot be later than the drop-off date.",
+    "error_pickup_past": "Pick-up date cannot be in the past.",
+    "error_all_fields": "All fields must be filled."
+  },
+
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "cars": "Cars",
+    "logout": "Logout",
+    "login": "Login"
+  },
+
+  
+    "footer": {
+        "title": "Get the latest offers and updates",
+        "description": "Stay informed with our exclusive deals, latest car models, and special promotions tailored just for you. Subscribe now!",
+        "placeholder": "Enter your email",
+        "button": "Subscribe",
+        "logo_description": "Reliable car rentals, offering comfort and style for every journey you take.",
+
+        "support": "Support",
+        "pricing": "Pricing",
+        "insights": "Insights",
+        "plans": "Plans",
+
+        "company": "Company",
+        "about": "About Us",
+        "blog": "Blog",
+        "faq": "FAQ",
+
+        "contact_us": "Contact Us",
+        "copyright": "2024 Car Rento. All rights reserved."
+    },
+    
+      "about": {
+        "title": "About Us",
+        "ourStoryHeader": "Our Story",
+        "ourStoryText": "At Car Rento, we're passionate about providing hassle-free and enjoyable car rental experiences. With professionals having years of industry expertise, we've built a reputation for reliability, exceptional service, and a diverse fleet of vehicles to suit every need. Our team of dedicated professionals is committed to ensuring your journey is comfortable and memorable.",
+        "ourMissionHeader": "Our Mission",
+        "ourMissionText": "Our mission is to make car rental a seamless and enjoyable experience for everyone. We strive to offer a diverse range of vehicles to suit every need, competitive pricing, and exceptional customer service. We believe that travel should be accessible and hassle-free, and we're committed to making that a reality.",
+        "ourValuesHeader": "Our Values",
+        "values": {
+          "customerSatisfaction": {
+            "header": "Customer Satisfaction:",
+            "text": "We prioritize the needs and satisfaction of our customers above all else."
+          },
+          "reliability": {
+            "header": "Reliability:",
+            "text": "We are dedicated to providing reliable and well-maintained vehicles."
+          },
+          "innovation": {
+            "header": "Innovation:",
+            "text": "We continuously seek new ways to enhance the customer experience."
+          },
+          "integrity": {
+            "header": "Integrity:",
+            "text": "We conduct our business with honesty, transparency, and ethical standards."
+          }
+        },
+        "joinUsHeader": "Join Us",
+        "joinUsText": "We invite you to experience the difference of renting from Car Rento. Whether you're planning a vacation, business trip, or road trip, we're here to make your journey unforgettable.",
+        "rentNowButton": "Rent now"
+      },
+
+        "cities": {
+          "Cairo": "Cairo",
+          "Alexandria": "Alexandria",
+          "Giza": "Giza",
+          "Qalyubia": "Qalyubia",
+          "PortSaid": "Port Said",
+          "Suez": "Suez",
+          "Gharbia": "Gharbia",
+          "Dakahlia": "Dakahlia",
+          "Asyut": "Asyut",
+          "Fayoum": "Fayoum",
+          "Sharqia": "Sharqia",
+          "Ismailia": "Ismailia",
+          "Aswan": "Aswan",
+          "Beheira": "Beheira",
+          "Minya": "Minya",
+          "Damietta": "Damietta",
+          "Luxor": "Luxor",
+          "Qena": "Qena",
+          "BeniSuef": "Beni Suef",
+          "Sohag": "Sohag",
+          "Monufia": "Monufia",
+          "RedSea": "Red Sea",
+          "KafrElSheikh": "Kafr el-Sheikh",
+          "NorthSinai": "North Sinai",
+          "Matruh": "Matruh",
+          "NewValley": "New Valley",
+          "SouthSinai": "South Sinai"
+        }
+      
+    
+  
+  
+}

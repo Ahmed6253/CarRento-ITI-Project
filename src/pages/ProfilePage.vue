@@ -40,12 +40,12 @@
             <h1
               class="text-2xl text-primary_color font-medium text-center mt-12 mb-2"
             >
-              Please rate your order
+              {{ $t("profile.ratings.title") }}
             </h1>
             <p
               class="text-lg text-Paragraph_color font-medium text-center mb-10"
             >
-              Your evaluation of us helps us improve the service for you
+              {{ $t("profile.ratings.description") }}
             </p>
 
             <!--stars-->
@@ -58,7 +58,7 @@
                   value="5"
                   @click="rate = 5"
                 />
-                <label title="Excellent!" for="star5">
+                <label title='$t("profile.ratings.star")' for="star5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
@@ -174,21 +174,21 @@
     >
       <div class="flex justify-between">
         <p class="text-3xl font-semibold text-primary_color">
-          Basic Information
+          {{ $t("profile.basicInfo") }}
         </p>
       </div>
       <div class="flex flex-col md:flex-row justify-between pt-3">
         <div class="py-3">
-          <p class="text-base text-Paragraph_color">Name</p>
+          <p class="text-base text-Paragraph_color">{{ $t("profile.name") }}</p>
           <p class="text-xl text-primary_color">{{ name }}</p>
         </div>
         <div class="py-3">
-          <p class="text-base text-Paragraph_color">Email</p>
+          <p class="text-base text-Paragraph_color">{{ $t("profile.email") }}</p>
           <p class="text-xl text-primary_color">{{ email }}</p>
         </div>
         <div class="py-3 flex gap-4">
           <div class="flex flex-col gap-x-2">
-            <p class="text-base text-Paragraph_color">Account Verification</p>
+            <p class="text-base text-Paragraph_color">{{ $t("profile.accountVerification") }}</p>
             <p
               :class="
                 (user.status === 'Unverified' && 'text-xl text-red') ||
@@ -196,7 +196,7 @@
                 (user.status === 'Requested' && 'text-xl text-warning')
               "
             >
-              {{ user.status }}
+              {{  $t("profile."+user.status) }}
             </p>
           </div>
           <a
@@ -205,7 +205,7 @@
             href="#verify"
             class="text-slate-50 bg-green p-2.5 rounded-lg m-auto hover:bg-green_hover"
           >
-            Verify now
+            {{ $t("profile.verifyNow") }}
           </a>
         </div>
       </div>
@@ -213,14 +213,14 @@
       <div v-if="isVerify" class="mt-6">
         <section class="w-full md:w-1/2 md:pe-28">
           <h3 class="text-2xl mb-3 text-primary_color">
-            Front-side photo of ID
+            {{ $t("profile.frontId") }}
           </h3>
           <div class="upload-file mb-6">
             <label
               for="front-id"
               class="text-slate-50 bg-black rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer"
             >
-              <span>Upload Your Photo </span>
+              <span>{{ $t("profile.uploadYourPhoto") }} </span>
               <img
                 src="../assets/home-images/icons/document-upload.svg"
                 alt=""
@@ -241,14 +241,14 @@
 
         <section class="w-full md:w-1/2 md:pe-28">
           <h3 class="text-2xl mb-3 text-primary_color">
-            Back-side photo of ID
+            {{ $t("profile.uploadIdBack") }}
           </h3>
           <div class="upload-file mb-6">
             <label
               for="back-id"
               class="bg-black text-slate-50 rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer text-Paragraph_color"
             >
-              <span>Upload Your Photo </span>
+              <span>{{ $t("profile.uploadYourPhoto") }} </span>
               <img
                 src="../assets/home-images/icons/document-upload.svg"
                 alt=""
@@ -268,13 +268,13 @@
         </section>
 
         <section class="w-full md:w-1/2 md:pe-28">
-          <h3 class="text-2xl mb-3 text-primary_color">Driving license</h3>
+          <h3 class="text-2xl mb-3 text-primary_color">{{ $t("profile.uploadLicense") }}</h3>
           <div class="upload-file mb-6">
             <label
               for="license"
               class="bg-black text-slate-50 rounded-lg ps-2 pe-2 py-2 flex justify-between cursor-pointer text-Paragraph_color"
             >
-              <span>Upload Your Photo </span>
+              <span>{{ $t("profile.uploadYourPhoto") }} </span>
               <img
                 src="../assets/home-images/icons/document-upload.svg"
                 alt=""
@@ -298,13 +298,13 @@
           @click="requestVerify()"
           class="bg-green w-full md:w-auto px-6 py-2.5 my-2 hover:bg-green_hover text-slate-50 rounded-lg"
         >
-          Request Verification
+          {{ $t("profile.requestVerify") }}
         </button>
         <button
           v-if="loadVrify"
           class="bg-slate-400 w-full md:w-auto px-6 py-2.5 my-2 cursor-not-allowed text-slate-50 rounded-lg"
         >
-          Sending...
+          {{ $t("profile.sending") }}
         </button>
       </div>
       <!---upload files end-->
@@ -313,7 +313,7 @@
     <!--------------------- section two start --------------------->
     <div class="custom-shadow mt-6 rounded-2xl bg-white py-6 md:px-12 px-5">
       <div>
-        <p class="text-3xl font-semibold text-primary_color">Rentals History</p>
+        <p class="text-3xl font-semibold text-primary_color">{{ $t("profile.rentalsHistory") }}</p>
         <div
           class="custom-shadow rounded-xl py-6 px-6 mt-6"
           v-for="(order, index) in this.UserOrders"
@@ -324,28 +324,28 @@
           </p>
           <div class="flex flex-col lg:flex-row justify-between pt-3">
             <div class="py-3">
-              <p class="text-xl text-primary_color">Pick-up location</p>
+              <p class="text-xl text-primary_color">{{ $tc("profile.pickUpLocation") }}</p>
               <p class="text-base text-Paragraph_color">
                 {{ order.location }}
               </p>
             </div>
             <div class="py-3">
-              <p class="text-xl text-primary_color">Pick-up date</p>
+              <p class="text-xl text-primary_color">{{ $tc("profile.pickUpDate") }}</p>
               <p class="text-base text-Paragraph_color">
                 {{ order.pickUpDate }}
               </p>
             </div>
             <div class="py-3">
-              <p class="text-xl text-primary_color">Drop-off date</p>
+              <p class="text-xl text-primary_color">{{ $tc("profile.dropOffDate") }}</p>
               <p class="text-base text-Paragraph_color">
                 {{ order.dropOffDate }}
               </p>
             </div>
             <div class="py-3">
               <p class="text-xl text-primary_color">
-                {{ order.TotalPrice }} LE
+                {{ order.TotalPrice }} {{ $t("checkout.le") }}
               </p>
-              <p class="text-base text-Paragraph_color">Paid</p>
+              <p class="text-base text-Paragraph_color">{{ $t("profile.totalPrice") }}</p>
             </div>
             <div class="py-3">
               <button
@@ -353,26 +353,26 @@
                 class="bg-orange-300 rounded-lg ml-2 px-6 py-2.5 text-slate-50"
                 disabled
               >
-                Pending
+                {{ $t("profile.status.pending") }}
               </button>
               <button
                 @click="openRate(index)"
                 v-if="order.status === 'Accepted'"
                 class="bg-green hover:bg-green_hover rounded-lg ml-2 px-6 py-2.5 text-slate-50"
               >
-                Rate your order
+                {{ $t("profile.status.accepted") }}
               </button>
               <button
                 v-if="order.status === 'done'"
                 class="bg-primary_color rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-white"
               >
-                Order rated
+                {{ $t("profile.status.done") }}
               </button>
               <button
                 v-if="order.status === 'rejected'"
                 class="bg-red rounded-lg ml-2 px-6 py-2.5 cursor-not-allowed text-slate-50"
               >
-                Rejected
+                {{ $t("profile.status.rejected") }}
               </button>
             </div>
           </div>
@@ -384,10 +384,10 @@
     <div class="custom-shadow rounded-xl mb-24 py-6 px-12 mt-6 bg-white">
       <div class="border-b-[1px] border-line_color">
         <p class="text-3xl font-semibold text-primary_color">
-          Settings and Privacy
+          {{ $t("profile.settingsAndPrivacy") }}
         </p>
         <div class="flex gap-x-16 items-center py-5">
-          <p class="text-xl text-primary_color">Password</p>
+          <p class="text-xl text-primary_color">{{ $t("profile.password") }}</p>
           <p class="pt-2 text-primary_color">{{ password }}</p>
           <img class="w-8 h-8" src="../imagesNavfoot/edit.png" alt="" />
         </div>
@@ -395,11 +395,11 @@
       <div
         class="border-b-[1px] border-line_color py-6 flex gap-16 items-center"
       >
-        <p class="text-xl text-primary_color">Location Sharing</p>
+        <p class="text-xl text-primary_color">{{ $t("profile.locationSharing") }}</p>
         <img class="pt-2" src="../imagesNavfoot/togglebutton.png" alt="" />
       </div>
       <div class="border-b-[1px] border-line_color py-6">
-        <p class="text-xl text-primary_color">Payment details</p>
+        <p class="text-xl text-primary_color">{{ $t("profile.paymentDetails") }}</p>
         <div
           class="custom-shadow rounded-xl flex items-center justify-between py-6 px-6 mt-6"
         >
@@ -407,7 +407,7 @@
             <div class="flex-col md:flex-row gap-16">
               <div class="py-3">
                 <p class="text-xl font-semibold text-primary_color">
-                  card Number
+                  {{ $t("profile.cardNumber") }}
                 </p>
                 <p class="text-base text-Paragraph_color">
                   **** **** **** 9012
@@ -415,7 +415,7 @@
               </div>
               <div class="py-3">
                 <p class="text-xl font-semibold text-primary_color">
-                  Expiry date
+                  {{ $t("profile.expiryDate") }}
                 </p>
                 <p class="text-base text-Paragraph_color">28/08/2036</p>
               </div>
@@ -424,7 +424,7 @@
               <button
                 class="bg-red w-full md:w-auto px-6 py-2.5 hover:bg-red_hover text-slate-50 rounded-lg"
               >
-                Delete card
+                {{ $t("profile.deleteCard") }}
               </button>
             </div>
           </div>
@@ -441,7 +441,7 @@
         <button
           class="bg-red w-full md:w-auto px-6 py-2.5 my-6 hover:bg-red_hover text-slate-50 rounded-lg"
         >
-          Delete account
+          {{ $t("profile.deleteAccount") }}
         </button>
       </div>
     </div>
@@ -706,3 +706,15 @@ export default {
   fill: #ab68ff;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
