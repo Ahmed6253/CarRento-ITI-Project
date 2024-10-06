@@ -319,5 +319,91 @@
     "cong": "تهانينا",
     "completed": "تم الطلب بنجاح",
     "continue": "استمر"
+  },
+
+  "adminDashboard": {
+    "greeting": "مرحباً، ",
+    "overview": "نظرة عامة",
+    "users": "المستخدمين",
+    "logout": "تسجيل الخروج",
+    "screen_size_error": "لن يكون هذا اللوحة متاحًا مع هذا الحجم من الشاشة. تحتاج إلى استخدام شاشة أكبر!",
+    "confirm_logout": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+  },
+
+  "adminLogin" :{
+    "welcome_back": "مرحبًا بعودتك!",
+    "sign_in": "سجّل الدخول للوصول إلى لوحة التحكم الإدارية",
+    "username_label": "اسم المستخدم",
+    "username_placeholder": "أدخل اسم المستخدم الخاص بك",
+    "password_label": "كلمة المرور",
+    "password_placeholder": "أدخل كلمة المرور الخاصة بك",
+    "remember_me": "تذكرني",
+    "login_button": "تسجيل الدخول",
+    "wrong_credentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
+    "error_fetching_data": "حدث خطأ أثناء جلب البيانات"
+  },
+
+  "dashboard": {
+    "orders_done": "الطلبات المكتملة",
+    "pending_orders": "الطلبات المعلقة",
+    "earnings": "الأرباح",
+    "profit_share": "حصة الربح",
+    "recent_orders": "أحدث الطلبات",
+
+    "table_headers": {
+      "order_id": "رقم الطلب",
+      "car_id": "رقم السيارة",
+      "owner": "المالك",
+      "renter": "المستأجر",
+      "status": "الحالة",
+      "total_payment": "إجمالي الدفع"
+    },
+    "order_status": {
+      "done": "مكتمل",
+      "pending": "معلق",
+      "accepted": "مقبول",
+      "rejected": "مرفوض"
+    },
+    "chart_labels": {
+      "revenue": "العائد",
+      "orders": "الطلبات",
+      "users": "المستخدمين",
+      "metrics" : ""
+    },
+    "chart_months": {
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو",
+      "july": "يوليو",
+      "august": "أغسطس",
+      "september": "سبتمبر",
+      "october": "أكتوبر"
+    },
+    "users": {
+      "renters": "المستأجرين",
+      "owners": "المالكين",
+      "id": "معرف",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "status": "الحالة",
+      "block": "حظر",
+      "unblock": "إلغاء الحظر",
+      "blockAccount": "حظر الحساب",
+      "Verified": "مؤكد",
+      "Unverified": "غير مؤكد",
+      "Requested": "طلب",
+      "accept": "قبول",
+      "reject": "رفض",
+      "viewImages": "عرض الصور",
+      "close": "إغلاق"
+    },
+    "messages": {
+      "confirmBlock": "هل أنت متأكد أنك تريد حظر {userName}؟",
+      "confirmUnblock": "هل أنت متأكد أنك تريد إلغاء حظر {userName}؟",
+      "verifiedUser": "تم تأكيد المستخدم: {userName}",
+      "unverifiedUser": "المستخدم غير مؤكد: {userName}"
+    }
   }
 }

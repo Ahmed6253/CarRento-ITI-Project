@@ -11,7 +11,7 @@
             : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-black'
         "
       >
-        Renters
+        {{ $t("dashboard.users.renters") }}
       </button>
 
       <button
@@ -24,7 +24,7 @@
             : 'bg-gray-100 text-black hover:bg-gray-200 hover:text-black'
         "
       >
-        Owners
+        {{ $t("dashboard.users.owners") }}
       </button>
     </div>
 
@@ -54,25 +54,25 @@
             @click="acceptRenter()"
             class="bg-green hover:bg-green_hover text-slate-50 rounded p-2 mr-2"
           >
-            Accept
+            {{ $t("dashboard.users.accept") }}
           </button>
           <button
             @click="rejectRenter()"
             class="bg-red hover:bg-red_hover text-slate-50 rounded p-2"
           >
-            Reject
+            {{ $t("dashboard.users.reject") }}
           </button>
         </div>
       </div>
-      <h1 class="text-primary_color text-2xl my-10">Renters</h1>
+      <h1 class="text-primary_color text-2xl my-10">{{ $t("dashboard.users.renters") }}</h1>
       <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-base text-Paragraph_color uppercase">
           <tr>
-            <th scope="col" class="px-6 py-3">ID</th>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Email</th>
-            <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3">Block</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.id") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.name") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.email") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.status") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.block") }}</th>
           </tr>
         </thead>
         <tbody class="text-xs text-primary_color font-thin capitalize">
@@ -92,7 +92,7 @@
                     renter.status === 'Requested',
                 }"
               >
-                {{ renter.status }}
+                {{ $t("dashboard.users."+renter.status) }}
               </button>
             </th>
             <th scope="col" class="px-6 py-3">
@@ -104,7 +104,7 @@
                 class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(renter)"
               >
-                {{ renter.blocked ? "Unblock" : "Block account" }}
+                {{ renter.blocked ? this.$t("dashboard.users.unblock") : this.$t("dashboard.users.blockAccount") }}
               </button>
             </th>
           </tr>
@@ -114,14 +114,14 @@
 
     <!-- Owners Section -->
     <div v-if="shown === 'owner'" class="Owner relative overflow-x-auto w-full">
-      <h1 class="text-primary_color text-2xl my-10">Owners</h1>
+      <h1 class="text-primary_color text-2xl my-10">{{ $t("dashboard.users.owners") }}</h1>
       <table class="w-full text-sm text-left rtl:text-right text-primary_color">
         <thead class="text-base text-paragraph_color uppercase">
           <tr>
-            <th scope="col" class="px-6 py-3">ID</th>
-            <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Email</th>
-            <th scope="col" class="px-6 py-3">Block</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.id") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.name") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.email") }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t("dashboard.users.block") }}</th>
           </tr>
         </thead>
         <tbody class="text-xs text-primary_color font-thin capitalize">
@@ -138,7 +138,7 @@
                 class="py-2.5 px-5 hover:bg-gray-700 rounded-lg"
                 @click="toggleBlockUser(owner)"
               >
-                {{ owner.blocked ? "Unblock" : "Block account" }}
+                {{ owner.blocked ? this.$t("dashboard.users.unblock") : this.$t("dashboard.users.blockAccount")}}
               </button>
             </th>
           </tr>
@@ -194,8 +194,8 @@ export default {
 
     toggleBlockUser(user) {
       const confirmMessage = user.blocked
-        ? `Are you sure you want to unblock ${user.userName}?`
-        : `Are you sure you want to block ${user.userName}?`;
+      ? this.$t("dashboard.messages.confirmUnblock", { userName: user.userName })
+      : this.$t("dashboard.messages.confirmBlock", { userName: user.userName });
 
       const confirmAction = confirm(confirmMessage);
 

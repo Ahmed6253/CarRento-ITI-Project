@@ -315,5 +315,95 @@
     "cong": "Congratulation",
     "completed": "Your request is completed",
     "continue": "Continue"
+  },
+
+  "adminDashboard": {
+    "greeting": "Hello, ",
+    "overview": "Overview",
+    "users": "Users",
+    "logout": "Log out",
+    "screen_size_error" :"This dashboard won't be accessible with this screen size. You need to use a larger screen!",
+    "confirm_logout": "Are you sure you want to log out?"
+  },
+
+  "adminLogin" :{
+    "welcome_back": "Welcome back!",
+    "sign_in": "Sign in to Access your Admin dashboard",
+    "username_label": "User Name",
+    "username_placeholder": "Enter your User name",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "remember_me": "Remember me",
+    "login_button": "Login",
+    "wrong_credentials": "Wrong username or password",
+    "error_fetching_data": "Error fetching data"
+  },
+
+  "dashboard": {
+    "orders_done": "Orders done",
+    "pending_orders": "Pending Orders",
+    "earnings": "Earnings",
+    "profit_share": "Profit Share",
+    "recent_orders": "Recent Orders",
+    "table_headers": {
+      "order_id": "Order ID",
+      "car_id": "Car ID",
+      "owner": "Owner",
+      "renter": "Renter",
+      "status": "Status",
+      "total_payment": "Total Payment"
+    },
+    "order_status": {
+      "done": "Done",
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "rejected": "Rejected"
+    },
+    "chart_labels": {
+      "revenue": "Revenue",
+      "orders": "Orders",
+      "users": "Users",
+      "metrics" : "(metrics)"
+
+    },
+    "chart_months": {
+      "february": "Feb",
+      "march": "Mar",
+      "april": "Apr",
+      "may": "May",
+      "june": "Jun",
+      "july": "Jul",
+      "august": "Aug",
+      "september": "Sep",
+      "october": "Oct"
+    },
+
+    "users": {
+      "renters": "Renters",
+      "owners": "Owners",
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "status": "Status",
+      "block": "Block",
+      "unblock": "Unblock",
+      "blockAccount": "Block account",
+      "Verified": "Verified",
+      "Unverified": "Unverified",
+      "Requested": "Requested",
+      "accept": "Accept",
+      "reject": "Reject",
+      "viewImages": "View Images",
+      "close": "Close"
+    },
+    "messages": {
+      "confirmBlock": "Are you sure you want to block {userName}?",
+      "confirmUnblock": "Are you sure you want to unblock {userName}?",
+      "verifiedUser": "Verified user: {userName}",
+      "unverifiedUser": "Unverified user: {userName}"
+    }
   }
+
+  
+  
 }

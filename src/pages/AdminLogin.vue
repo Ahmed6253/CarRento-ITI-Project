@@ -4,34 +4,34 @@
       <p
         class="text-primary_color font-semibold lg:text-3xl text-2xl mb-3 text-center"
       >
-        welcome back!
+        {{ $t("adminLogin.welcome_back") }}
       </p>
       <p class="text-gray-500 lg:text-xl text-lg mb-3 text-center">
-        Sign in to Access your Admin dashboard
+        {{ $t("adminLogin.sign_in") }}
       </p>
       <form @submit.prevent="login">
         <div class="flex flex-col lg:ml-9 w-full">
           <label
             class="text-base lg:pt-5 pt-3 text-primary_color font-medium pb-1"
             for=""
-            >User Name</label
+            >{{ $t("adminLogin.username_label") }}</label
           >
           <input
-            class="py-3 pl-4 text-base rounded-lg border-border_color border-[1px]"
+            class="py-3 ps-4 text-base rounded-lg border-border_color border-[1px]"
             type="text"
-            placeholder="Enter your User name"
+            :placeholder='$t("adminLogin.username_placeholder")'
             v-model="loginName"
           />
 
           <label
             class="text-base lg:pt-5 pt-3 text-primary_color font-medium pb-1"
             for=""
-            >Password</label
+            >{{ $t("adminLogin.password_label") }}</label
           >
           <input
-            class="lg:py-3 py-2 pl-4 text-base rounded-lg border-border_color border-[1px]"
+            class="lg:py-3 py-2 ps-4 text-base rounded-lg border-border_color border-[1px]"
             type="password"
-            placeholder="Enter your password"
+            :placeholder='$t("adminLogin.password_placeholder")'
             v-model="loginPass"
           />
         </div>
@@ -47,13 +47,13 @@
                 v-model="rememberUser"
               />
             </label>
-            <p class="text-primary_color">Remember me</p>
+            <p class="text-primary_color">{{ $t("adminLogin.remember_me") }}</p>
           </div>
           <button
             type="submit"
-            class="text-white text-base bg-primary_color lg:py-3 py-2 pl-4 rounded-lg w-full"
+            class="text-white text-base bg-primary_color lg:py-3 py-2 ps-4 rounded-lg w-full"
           >
-            login
+            {{ $t("adminLogin.login_button") }}
           </button>
         </div>
       </form>
@@ -103,11 +103,11 @@ export default {
             // Redirect to admin dashboard
             this.$router.push("/admin");
           } else {
-            alert("Wrong username or password");
+            alert(this.$t("adminLogin.wrong_credentials"));
           }
         })
         .catch((error) => {
-          console.log(`Error fetching data: ${error}`);
+          console.log(`this.$t("adminLogin.error_fetching_data") :${error}`);
         });
     },
   },
