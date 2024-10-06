@@ -402,7 +402,91 @@
       "verifiedUser": "Verified user: {userName}",
       "unverifiedUser": "Unverified user: {userName}"
     }
+  },
+
+  "ownerNav": {
+    "overview": "Overview",
+    "orders": "Orders",
+    "cars": "Cars",
+    "greeting": "Hello, "
+  },
+
+  "ownerOverview": {
+    "ordersDone": "Orders done",
+    "pendingOrders": "Pending Orders",
+    "ordersEarnings": "Orders earnings",
+    "revenue": "Revenue",
+    "recentOrders": "Recent Orders",
+    "carNumber": "Car Number",
+    "carLocation": "Car Location",
+    "renterName": "Renter Name",
+    "pickUpDate": "Pick-up Date",
+    "dropOffDate": "Drop-off Date",
+    "totalPrice": "Total Price",
+    "status": "Status",
+    "done": "done",
+    "pending": "pending",
+    "Accepted": "Accepted",
+    "rejected": "Rejected"
+  },
+
+  "ownerOrders": {
+    "allOrders": "All Orders",
+    "carModel": "Car Model",
+    "renterName": "Renter Name",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "price": "Price",
+    "carNumber": "Car Number",
+    "accept": "Accept",
+    "reject": "Reject",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "rated": "Rated",
+    "pending": "Pending",
+    "confirmAccept": "Are you sure you want to accept this order?",
+    "confirmReject": "Are you sure you want to reject this order?"
+  },
+
+  "ownerCars": {
+    "addCar": "Add Car",
+    "carModel": "Car Model",
+    "brand": "Brand",
+    "color": "Color",
+    "type": "Type",
+    "price": "Price",
+    "number": "Number",
+    "rating": "Rating",
+    "setStatus": "Set Status",
+    "available": "Available",
+    "notAvailable": "Not Available",
+    "delete": "Delete",
+    "fuelType": "Fuel Type",
+    "electric": "Electric",
+    "gas": "Gas",
+    "petrol": "Petrol",
+    "location": "Location",
+    "next": "Next",
+    "cancel": "Cancel",
+    "allFieldsRequired": "All fields are required",
+    "gear": "Gear",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "img": "Image",
+    "addMoreFeatures": "Add More Features",
+    "airConditioning": "Air Conditioning",
+    "gps": "GPS",
+    "abs": "ABS",
+    "monitor": "Monitor",
+    "sunroof": "Sunroof",
+    "heater": "Heater",
+    "airbag": "Airbag",
+    "wifi": "WiFi",
+    "descriptioError" : "You need to add a description and an image",
+    "numberError": "A car with this number already exists",
+    "back" : "Back"
   }
+  
 
   
   

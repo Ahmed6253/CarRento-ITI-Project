@@ -74,7 +74,7 @@
                 "
               />
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">Overview</p>
+            <p :class="fold ? 'hidden' : 'block'">{{ $t("ownerNav.overview") }}</p>
           </div>
           <div
             @click="activeSection = 'orders'"
@@ -114,7 +114,7 @@
                 </g>
               </g>
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">Orders</p>
+            <p :class="fold ? 'hidden' : 'block'">{{ $t("ownerNav.orders") }}</p>
           </div>
           <div
             @click="activeSection = 'cars'"
@@ -154,7 +154,7 @@
                 </g>
               </g>
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">My Cars</p>
+            <p :class="fold ? 'hidden' : 'block'">{{ $t("ownerNav.cars") }}</p>
           </div>
         </div>
         <div class="flex flex-col gap-y-6">
@@ -163,7 +163,7 @@
             class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
           >
             <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-            <p :class="fold ? 'hidden' : 'text-primary_color'">Log out</p>
+            <p :class="fold ? 'hidden' : 'text-primary_color'">{{ $t("nav.logout") }}</p>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
     <section class="mx-5 mt-10 w-full">
       <div class="flex justify-between">
         <h1 class="text-primary_color text-2xl mb-10">
-          <span class="font-bold">Hello, </span>
+          <span class="font-bold">{{ $t("ownerNav.greeting") }} </span>
           {{ currUser.userName }}
         </h1>
         <label class="switch">
@@ -191,8 +191,7 @@
     <img class="w-1/2" src="../assets/error.png" alt="" />
 
     <h2 class="text-center">
-      This dashboard won't be accessible with this screen size you need to use
-      larger screen!
+      {{ $t("adminDashboard.screen_size_error") }}
     </h2>
   </div>
 </template>

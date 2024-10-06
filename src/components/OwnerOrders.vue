@@ -1,15 +1,15 @@
 <template>
-  <h2 class="text-xl font-semibold my-5 text-primary_color">All Orders</h2>
+  <h2 class="text-xl font-semibold my-5 text-primary_color">{{ $t("ownerOrders.allOrders") }}</h2>
 
   <table class="w-full text-sm text-left rtl:text-right text-Paragraph_color">
     <thead class="text-xs text-Paragraph_color uppercase">
       <tr>
-        <th scope="col" class="px-6 py-3">Car Model</th>
-        <th scope="col" class="px-6 py-3">Renter Name</th>
-        <th scope="col" class="px-6 py-3">Start Date</th>
-        <th scope="col" class="px-6 py-3">End Date</th>
-        <th scope="col" class="px-6 py-3">Price</th>
-        <th scope="col" class="px-6 py-3">Car Number</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.carModel") }}</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.renterName") }}</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.startDate") }}</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.endDate") }}</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.price") }}</th>
+        <th scope="col" class="px-6 py-3">{{ $t("ownerOrders.carNumber") }}</th>
       </tr>
     </thead>
     <tbody class="direction-rtl">
@@ -29,32 +29,32 @@
             @click="acceptOrder(order, key)"
             class="bg-green hover:bg-green_hover text-slate-50 rounded p-2"
           >
-            Accept
+            {{ $t("ownerOrders.accept") }}
           </button>
           <button
             @click="rejectOrder(order, key)"
             class="bg-red hover:bg-red_hover text-slate-50 rounded p-2"
           >
-            Reject
+            {{ $t("ownerOrders.reject") }}
           </button>
         </td>
         <td v-if="order.status === 'Accepted'" class="px-6 py-4">
           <button
             class="bg-blue-500 cursor-not-allowed text-slate-50 rounded p-2"
           >
-            Accepted
+            {{ $t("ownerOrders.accepted") }}
           </button>
         </td>
         <td v-if="order.status === 'done'" class="px-6 py-4">
           <button
             class="bg-primary_color cursor-not-allowed rounded text-white p-2"
           >
-            Rated
+            {{ $t("ownerOrders.rated") }}
           </button>
         </td>
         <td v-if="order.status === 'rejected'" class="px-6 py-4">
           <button class="bg-red cursor-not-allowed rounded text-slate-50 p-2">
-            Rejected
+            {{ $t("ownerOrders.rejected") }}
           </button>
         </td>
       </tr>
@@ -95,7 +95,7 @@ export default {
   methods: {
     acceptOrder(order, key) {
       const acceptConfirm = confirm(
-        "Are you sure you want to accept this order?"
+        this.$t("ownerOrders.confirmAccept")
       );
       if (!acceptConfirm) return;
       axios
@@ -136,7 +136,7 @@ export default {
     },
     rejectOrder(order, key) {
       const rejectConfirm = confirm(
-        "Are you sure you want to reject this order?"
+        this.$t("ownerOrders.confirmReject")
       );
       if (!rejectConfirm) return;
       axios
