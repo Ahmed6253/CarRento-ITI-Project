@@ -1,37 +1,64 @@
 <template>
   <!-- navbar start -->
 
-  <nav class="text-primary_color">
-    <div class="flex justify-start ps-6 pt-2 my-0 bg-none">
-      <button
-        :class="{ 'font-bold': locale === 'En', 'font-light': locale === 'Ar' }"
-        @click="setEn"
-      >
-        En
-      </button>
-      <span> /</span>
-      <button
-        :class="{ 'font-bold': locale === 'Ar', 'font-light': locale === 'En' }"
-        @click="setAr"
-      >
-        عربي
-      </button>
-    </div>
+  <nav class="text-primary_color pt-4">
     <div
       class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow bg-white opacity-90"
     >
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <router-link to="/">
-          <img :src="logo" alt="" />
-        </router-link>
-      </a>
+      <div class="flex justify-start gap-3">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <router-link to="/">
+            <img :src="logo" alt="" />
+          </router-link>
+        </a>
+
+        <details class="dropdown" ref="dropdown">
+          <summary class="m-1 hidden md:btn">
+            {{ locale }}
+            <img src="../assets/globe.png" alt="language" />
+          </summary>
+          <ul
+            class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
+          >
+            <li>
+              <button
+                :class="{
+                  'font-bold': locale === 'En',
+                  'font-light': locale === 'Ar',
+                }"
+                @click="setEn"
+              >
+                En <img src="../assets/En.png" alt="english" />
+              </button>
+            </li>
+            <li>
+              <button
+                :class="{
+                  'font-bold': locale === 'Ar',
+                  'font-light': locale === 'En',
+                }"
+                @click="setAr"
+              >
+                Ar <img src="../assets/Ar.png" alt="arabic" />
+              </button>
+            </li>
+          </ul>
+        </details>
+      </div>
+
       <div
         class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-3"
       >
+        <!-- <div class="flex justify-start ps-6 pt-2 my-0 bg-none">
+
+      <span> /</span>
+
+    </div> -->
         <label class="switch">
           <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
           <span class="slider"></span>
         </label>
+
         <!-- login button -->
         <button
           type="button"
@@ -71,6 +98,7 @@
           @click="showMenu = !showMenu"
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
+        
           <li>
             <router-link
               to="/"
@@ -111,6 +139,7 @@
               >Profile</a
             >
           </li>
+          
         </ul>
       </div>
     </div>
@@ -176,11 +205,13 @@ export default {
     setEn() {
       localStorage.setItem("lang", "En");
       this.locale = "En";
+      this.$refs.dropdown.open = false;
     },
 
     setAr() {
       localStorage.setItem("lang", "Ar");
       this.locale = "Ar";
+      this.$refs.dropdown.open = false;
     },
 
     toggleDarkMode() {
