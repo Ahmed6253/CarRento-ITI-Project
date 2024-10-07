@@ -3,6 +3,8 @@ module.exports = {
   purge: ["./src/**/*.html", "./src/**/*.vue"],
   content: [],
   theme: {
+    
+
     extend: {
       colors: {
         bg_color: "var(--bg)",
@@ -47,4 +49,8 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
+
+  daisyui: {
+    darkTheme: false,  // Disables Daisy UI's dark mode globally
+  },
 };
