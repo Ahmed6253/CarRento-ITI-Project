@@ -107,16 +107,51 @@
         </div>
       </div>
     </nav>
-    <section class="mt-9 mx-5 w-full">
+    <section class="mx-5 w-full">
       <div class="flex justify-between">
-        <h1 class="text-primary_color text-2xl mb-10">
+        <h1 class="text-primary_color text-2xl mb-10 pt-10">
           <span class="font-bold">{{ $t("adminDashboard.greeting") }} </span>
           {{ userName }}
         </h1>
-        <label class="switch">
-          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-          <span class="slider"></span>
-        </label>
+        <div class="flex justify-between items-center gap-3">
+          <details class="dropdown" ref="dropdown">
+            <summary class="btn">
+              {{ locale }}
+              <img src="../assets/globe.png" alt="language" class="p-0" />
+            </summary>
+            <ul
+              class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
+            >
+              <li>
+                <button
+                  :class="{
+                    'font-bold': locale === 'En',
+                    'font-light': locale === 'Ar',
+                  }"
+                  @click="setEn"
+                >
+                  En <img src="../assets/En.png" alt="english" />
+                </button>
+              </li>
+              <li>
+                <button
+                  :class="{
+                    'font-bold': locale === 'Ar',
+                    'font-light': locale === 'En',
+                  }"
+                  @click="setAr"
+                >
+                  Ar <img src="../assets/Ar.png" alt="arabic" />
+                </button>
+              </li>
+            </ul>
+          </details>
+
+          <label class="switch">
+            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
       <!-- <AdminOverview v-if="activeSection === 'overview'" /> -->
 
@@ -145,6 +180,9 @@ export default {
     DashUsers,
   },
   created() {
+    this.locale = localStorage.getItem("lang") || "En";
+    this.$i18n.locale = this.locale;
+
     if (localStorage.getItem("darkMode") === "true") {
       this.dark = true;
       this.logo = require("../assets/logoDark.svg");
@@ -179,10 +217,35 @@ export default {
       dark: false,
       logo: "",
       logoHalf: "",
+      locale: "",
     };
   },
 
+  watch: {
+    // Watch for locale changes
+    locale(newLocale) {
+      this.locale = newLocale;
+      this.$i18n.locale = newLocale; // Update i18n locale when locale data changes
+    },
+
+    "$i18n.locale"(newLang) {
+      document.documentElement.dir = newLang === "Ar" ? "rtl" : "ltr";
+    },
+  },
+
   methods: {
+    setEn() {
+      localStorage.setItem("lang", "En");
+      this.locale = "En";
+      this.$refs.dropdown.open = false;
+    },
+
+    setAr() {
+      localStorage.setItem("lang", "Ar");
+      this.locale = "Ar";
+      this.$refs.dropdown.open = false;
+    },
+
     toggleDarkMode() {
       this.dark = !this.dark;
       if (this.dark) {

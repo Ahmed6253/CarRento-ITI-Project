@@ -74,7 +74,9 @@
                 "
               />
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">{{ $t("ownerNav.overview") }}</p>
+            <p :class="fold ? 'hidden' : 'block'">
+              {{ $t("ownerNav.overview") }}
+            </p>
           </div>
           <div
             @click="activeSection = 'orders'"
@@ -114,7 +116,9 @@
                 </g>
               </g>
             </svg>
-            <p :class="fold ? 'hidden' : 'block'">{{ $t("ownerNav.orders") }}</p>
+            <p :class="fold ? 'hidden' : 'block'">
+              {{ $t("ownerNav.orders") }}
+            </p>
           </div>
           <div
             @click="activeSection = 'cars'"
@@ -163,22 +167,59 @@
             class="flex gap-x-4 p-[10px] rounded-lg hover:bg-card_hover cursor-pointer"
           >
             <img src="../assets/ownerDashImges/logOut.svg" alt="" />
-            <p :class="fold ? 'hidden' : 'text-primary_color'">{{ $t("nav.logout") }}</p>
+            <p :class="fold ? 'hidden' : 'text-primary_color'">
+              {{ $t("nav.logout") }}
+            </p>
           </div>
         </div>
       </div>
     </nav>
 
-    <section class="mx-5 mt-10 w-full">
+    <section class="mx-5 w-full">
       <div class="flex justify-between">
-        <h1 class="text-primary_color text-2xl mb-10">
+        <h1 class="text-primary_color text-2xl mb-10 pt-10">
           <span class="font-bold">{{ $t("ownerNav.greeting") }} </span>
           {{ currUser.userName }}
         </h1>
-        <label class="switch">
-          <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
-          <span class="slider"></span>
-        </label>
+        <div class="flex justify-between items-center gap-3">
+          <details class="dropdown" ref="dropdown">
+            <summary class="btn">
+              {{ locale }}
+              <img src="../assets/globe.png" alt="language" class="p-0" />
+            </summary>
+            <ul
+              class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
+            >
+              <li>
+                <button
+                  :class="{
+                    'font-bold': locale === 'En',
+                    'font-light': locale === 'Ar',
+                  }"
+                  @click="setEn"
+                >
+                  En <img src="../assets/En.png" alt="english" />
+                </button>
+              </li>
+              <li>
+                <button
+                  :class="{
+                    'font-bold': locale === 'Ar',
+                    'font-light': locale === 'En',
+                  }"
+                  @click="setAr"
+                >
+                  Ar <img src="../assets/Ar.png" alt="arabic" />
+                </button>
+              </li>
+            </ul>
+          </details>
+
+          <label class="switch">
+            <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
+            <span class="slider"></span>
+          </label>
+        </div>
       </div>
       <OwnerCars v-if="activeSection === 'cars'" :id="currUser.id" />
       <OwnerOrders v-if="activeSection === 'orders'" :id="currUser.id" />
@@ -216,9 +257,26 @@ export default {
       dark: false,
       logo: "",
       logoHalf: "",
+      locale: "",
     };
   },
+
+  watch: {
+    // Watch for locale changes
+    locale(newLocale) {
+      this.locale = newLocale;
+      this.$i18n.locale = newLocale; // Update i18n locale when locale data changes
+    },
+
+    "$i18n.locale"(newLang) {
+      document.documentElement.dir = newLang === "Ar" ? "rtl" : "ltr";
+    },
+  },
+
   created() {
+    this.locale = localStorage.getItem("lang") || "En";
+    this.$i18n.locale = this.locale;
+
     this.currUser =
       JSON.parse(localStorage.getItem("currentUser")) ||
       JSON.parse(sessionStorage.getItem("currentUser"));
@@ -245,6 +303,18 @@ export default {
     }
   },
   methods: {
+    setEn() {
+      localStorage.setItem("lang", "En");
+      this.locale = "En";
+      this.$refs.dropdown.open = false;
+    },
+
+    setAr() {
+      localStorage.setItem("lang", "Ar");
+      this.locale = "Ar";
+      this.$refs.dropdown.open = false;
+    },
+
     toggleDarkMode() {
       this.dark = !this.dark;
       if (this.dark) {
@@ -272,3 +342,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
