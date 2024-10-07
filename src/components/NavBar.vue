@@ -11,9 +11,9 @@
             <img :src="logo" alt="" />
           </router-link>
         </a>
-
+        
         <details class="dropdown" ref="dropdown">
-          <summary class="m-1 hidden md:btn">
+          <summary class="m-1 flex btn">
             {{ locale }}
             <img src="../assets/globe.png" alt="language" />
           </summary>
