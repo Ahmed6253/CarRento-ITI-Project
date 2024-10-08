@@ -170,6 +170,7 @@ export default {
   },
 
   created() {
+    this.showMenu = false;
     if (localStorage.getItem("darkMode") === "true") {
       this.dark = true;
     } else {
