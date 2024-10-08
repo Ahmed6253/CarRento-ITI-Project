@@ -58,7 +58,7 @@
                   value="5"
                   @click="rate = 5"
                 />
-                <label title='$t("profile.ratings.star")' for="star5">
+                <label title='Excellent' for="star5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
