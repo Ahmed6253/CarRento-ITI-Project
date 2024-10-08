@@ -9,7 +9,8 @@
       "
       class="bg-green hover:bg-green_hover text-slate-50 px-6 py-2.5 mb-8 rounded-lg self-end flex gap-2"
     >
-      <img src="../assets/ownerDashImges/add.svg" /> {{ $t("ownerCars.addCar") }}
+      <img src="../assets/ownerDashImges/add.svg" />
+      {{ $t("ownerCars.addCar") }}
     </button>
     <div class="overflow-x-auto">
       <table
@@ -17,14 +18,18 @@
       >
         <thead class="text-xs uppercase">
           <tr>
-            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.carModel") }}</th>
+            <th scope="col" class="px-6 py-3">
+              {{ $t("ownerCars.carModel") }}
+            </th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.brand") }}</th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.color") }}</th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.type") }}</th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.price") }}</th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.number") }}</th>
             <th scope="col" class="px-6 py-3">{{ $t("ownerCars.rating") }}</th>
-            <th scope="col" class="px-6 py-3">{{ $t("ownerCars.setStatus") }}</th>
+            <th scope="col" class="px-6 py-3">
+              {{ $t("ownerCars.setStatus") }}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +59,11 @@
                     : 'bg-gray-900 rounded text-slate-50 p-2 text-[10px]'
                 "
               >
-                {{ car.available ? this.$t("ownerCars.available") : this.$t("ownerCars.notAvailable") }}
+                {{
+                  car.available
+                    ? this.$t("ownerCars.available")
+                    : this.$t("ownerCars.notAvailable")
+                }}
               </button>
             </td>
             <td class="pr-6 py-4">
@@ -78,7 +87,8 @@
         <!-- first form -->
         <div v-if="!nextForm" class="flex justify-between flex-wrap">
           <div class="w-[47%]">
-            <label for="carModel">{{ $t("ownerCars.carModel") }}</label><br />
+            <label for="carModel">{{ $t("ownerCars.carModel") }}</label
+            ><br />
             <input
               type="text"
               v-model="carOptions.name"
@@ -164,10 +174,16 @@
             >
               <option value="Sedan">{{ $t("filterCard.sedan") }}</option>
               <option value="SUV">{{ $t("filterCard.suv") }}</option>
-              <option value="Hatchback">{{ $t("filterCard.hatchback") }}</option>
+              <option value="Hatchback">
+                {{ $t("filterCard.hatchback") }}
+              </option>
               <option value="Coupe">{{ $t("filterCard.coupe") }}</option>
-              <option value="Crossover">{{ $t("filterCard.crossover") }}</option>
-              <option value="Convertible">{{ $t("filterCard.convertible") }}</option>
+              <option value="Crossover">
+                {{ $t("filterCard.crossover") }}
+              </option>
+              <option value="Convertible">
+                {{ $t("filterCard.convertible") }}
+              </option>
               <option value="Truck">Truck</option>
               <option value="Van">{{ $t("filterCard.van") }}</option>
             </select>
@@ -268,13 +284,16 @@
             </button>
           </div>
         </div>
-        <p class="text-red" v-if="fformError">{{ $t("ownerCars.allFieldsRequired") }}</p>
+        <p class="text-red" v-if="fformError">
+          {{ $t("ownerCars.allFieldsRequired") }}
+        </p>
 
         <!-- second form -->
 
         <div v-if="nextForm" class="flex justify-between flex-wrap -m-4">
           <div class="w-full">
-            <label for="gear">{{ $t("ownerCars.gear") }}</label><br />
+            <label for="gear">{{ $t("ownerCars.gear") }}</label
+            ><br />
             <input
               @click="carOptions.manualOrAuto = 'Automatic'"
               name="gear"
@@ -301,7 +320,10 @@
             />
           </div>
           <div class="w-full">
-            <label for="morefeatures">{{ $t("ownerCars.addMoreFeatures") }}</label><br />
+            <label for="morefeatures">{{
+              $t("ownerCars.addMoreFeatures")
+            }}</label
+            ><br />
             <input
               @click="carFeatures.Airconditioner = !carFeatures.Airconditioner"
               name="morefeatures"
@@ -511,7 +533,6 @@ export default {
             for (let car in response.data) {
               if (response.data[car].owner === this.id) {
                 this.cars[car] = response.data[car];
-                console.log(Object.values(this.cars));
               }
             }
           }
@@ -549,6 +570,7 @@ export default {
         number: this.carOptions.number.replace(/ /g, ""),
         features: this.carFeatures,
         id: this.carOptions.number.replace(/ /g, ""),
+        owner: this.id,
       };
 
       if (newCar.description && this.$refs.image.files[0]) {
@@ -601,8 +623,6 @@ export default {
           airbag: false,
           wifi: false,
         };
-        console.log(newCar);
-
         this.sformError = false;
         this.carExists = false;
       } else {

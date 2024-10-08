@@ -230,9 +230,10 @@
               value="disability-adaptation"
               v-model="additionalFeatures.disability"
             />
-            <label class="text-primary_color mx-3" for="disability-adaptation">{{
-              $t("carPage.features.disability")
-            }}</label
+            <label
+              class="text-primary_color mx-3"
+              for="disability-adaptation"
+              >{{ $t("carPage.features.disability") }}</label
             ><br />
           </label>
           <p class="text-Paragraph_color">
@@ -309,10 +310,11 @@
         {{ $t("carPage.buttons.bookNow") }}
       </button>
       <button
+        @click="$router.push('/profile/' + currentUser.id)"
         v-if="
           currentUser && currentUser.status && currentUser.status !== 'Verified'
         "
-        class="bg-slate-400 rounded-lg font-medium text-slate-50 p-3 cursor-not-allowed w-full xl:w-[73%]"
+        class="bg-blue-500 rounded-lg font-medium text-slate-50 p-3 w-full xl:w-[73%]"
       >
         {{ $t("carPage.buttons.verifyAccount") }}
       </button>
@@ -351,6 +353,7 @@ export default {
     ...mapState(["loggedIn"]),
   },
   created() {
+    axios.get(`https://carrento-9ea05-default-rtdb.firebaseio.com/users/.json`);
     this.additionalFeatures = this.$store.getters.getfeatures;
     this.location = sessionStorage.getItem("orderLocation");
     this.pickUpDate = sessionStorage.getItem("orderPickUp");

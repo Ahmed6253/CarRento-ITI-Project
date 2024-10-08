@@ -43,7 +43,8 @@
     "cars": "Cars",
     "logout": "Logout",
     "login": "Login",
-    "logoutConfirm": "Are you sure you want to logout?"
+    "logoutConfirm": "Are you sure you want to logout?",
+    "profile": "Profile"
   },
 
   "footer": {
@@ -322,11 +323,11 @@
     "overview": "Overview",
     "users": "Users",
     "logout": "Log out",
-    "screen_size_error" :"This dashboard won't be accessible with this screen size. You need to use a larger screen!",
+    "screen_size_error": "This dashboard won't be accessible with this screen size. You need to use a larger screen!",
     "confirm_logout": "Are you sure you want to log out?"
   },
 
-  "adminLogin" :{
+  "adminLogin": {
     "welcome_back": "Welcome back!",
     "sign_in": "Sign in to Access your Admin dashboard",
     "username_label": "User Name",
@@ -363,8 +364,7 @@
       "revenue": "Revenue",
       "orders": "Orders",
       "users": "Users",
-      "metrics" : "(metrics)"
-
+      "metrics": "(metrics)"
     },
     "chart_months": {
       "february": "Feb",
@@ -482,12 +482,8 @@
     "heater": "Heater",
     "airbag": "Airbag",
     "wifi": "WiFi",
-    "descriptioError" : "You need to add a description and an image",
+    "descriptioError": "You need to add a description and an image",
     "numberError": "A car with this number already exists",
-    "back" : "Back"
+    "back": "Back"
   }
-  
-
-  
-  
 }

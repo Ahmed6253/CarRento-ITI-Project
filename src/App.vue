@@ -67,7 +67,6 @@ export default {
     ...mapState(["loggedIn"]),
   },
 
-
   created() {
     this.$store.dispatch("setInOrOut");
 
@@ -82,8 +81,6 @@ export default {
     }
   },
   methods: {
-
-
     getMessage() {
       const user =
         JSON.parse(localStorage.getItem("currentUser")) ||
@@ -109,10 +106,7 @@ export default {
     },
   },
 
-
-  
   updated() {
-
     if (this.loggedIn) {
       this.getMessage();
       if (this.message === "Verified" && localStorage.getItem("currentUser")) {

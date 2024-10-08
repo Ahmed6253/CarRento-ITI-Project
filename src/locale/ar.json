@@ -43,7 +43,8 @@
     "cars": "السيارات",
     "logout": "تسجيل الخروج",
     "login": "تسجيل الدخول",
-    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "profile": "الملف الشخصي"
   },
 
   "footer": {
@@ -205,31 +206,31 @@
   },
 
   "profile": {
-      "basicInfo": "معلومات أساسية",
-      "name": "الاسم",
-      "email": "البريد الإلكتروني",
-      "accountVerification": "التحقق من الحساب",
-      "Unverified": "غير موثق",
-      "Verified": "موثق",
-      "Requested": "مطلوب",
-      "verifyNow": "تحقق الآن",
-      "uploadIdFront": "صورة الجهة الأمامية من الهوية",
-      "uploadIdBack": "صورة الجهة الخلفية من الهوية",
-      "uploadLicense": "رخصة القيادة",
-      "uploadYourPhoto": "قم بتحميل صورتك",
-      "requestVerify": "طلب التحقق",
-      "sending": "جاري الارسال ...",
+    "basicInfo": "معلومات أساسية",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "accountVerification": "التحقق من الحساب",
+    "Unverified": "غير موثق",
+    "Verified": "موثق",
+    "Requested": "مطلوب",
+    "verifyNow": "تحقق الآن",
+    "uploadIdFront": "صورة الجهة الأمامية من الهوية",
+    "uploadIdBack": "صورة الجهة الخلفية من الهوية",
+    "uploadLicense": "رخصة القيادة",
+    "uploadYourPhoto": "قم بتحميل صورتك",
+    "requestVerify": "طلب التحقق",
+    "sending": "جاري الارسال ...",
 
-      "settingsAndPrivacy": "الإعدادات والخصوصية",
-      "password": "كلمة المرور",
-      "locationSharing": "مشاركة الموقع",
-      "paymentDetails": "تفاصيل الدفع",
-      "cardNumber": "رقم البطاقة",
-      "expiryDate": "تاريخ الانتهاء",
-      "deleteCard": "حذف البطاقة",
-      "deleteAccount": "حذف الحساب",
+    "settingsAndPrivacy": "الإعدادات والخصوصية",
+    "password": "كلمة المرور",
+    "locationSharing": "مشاركة الموقع",
+    "paymentDetails": "تفاصيل الدفع",
+    "cardNumber": "رقم البطاقة",
+    "expiryDate": "تاريخ الانتهاء",
+    "deleteCard": "حذف البطاقة",
+    "deleteAccount": "حذف الحساب",
 
-      "rentalsHistory": "سجل الإيجارات",
+    "rentalsHistory": "سجل الإيجارات",
     "pickUpLocation": "موقع الاستلام",
     "pickUpDate": "تاريخ الاستلام",
     "dropOffDate": "تاريخ التسليم",
@@ -240,7 +241,6 @@
       "done": "تم تقييم الطلب",
       "rejected": "مرفوض"
     },
-  
 
     "ratings": {
       "title": "يرجى تقييم طلبك",
@@ -330,7 +330,7 @@
     "confirm_logout": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
   },
 
-  "adminLogin" :{
+  "adminLogin": {
     "welcome_back": "مرحبًا بعودتك!",
     "sign_in": "سجّل الدخول للوصول إلى لوحة التحكم الإدارية",
     "username_label": "اسم المستخدم",
@@ -368,7 +368,7 @@
       "revenue": "العائد",
       "orders": "الطلبات",
       "users": "المستخدمين",
-      "metrics" : ""
+      "metrics": ""
     },
     "chart_months": {
       "february": "فبراير",
@@ -415,7 +415,6 @@
     "settings": "الإعدادات",
     "support": "الدعم",
     "greeting": "مرحباً، "
-
   },
 
   "ownerOverview": {
@@ -437,7 +436,7 @@
     "rejected": "مرفوض"
   },
 
-  "ownerOrders":{
+  "ownerOrders": {
     "allOrders": "جميع الطلبات",
     "carModel": "موديل السيارة",
     "renterName": "اسم المستأجر",
@@ -489,9 +488,8 @@
     "heater": "مدفأة",
     "airbag": "وسادة هوائية",
     "wifi": "واي فاي",
-    "descriptioError" : " يرجى كتابة وصف للسيارة واختيار صورة",
+    "descriptioError": " يرجى كتابة وصف للسيارة واختيار صورة",
     "numberError": "يوجد سيارة مسجلة بهذا الرقم",
     "back": "عودة للسابق"
   }
-  
 }
