@@ -599,6 +599,10 @@ export default {
         this.nextForm = false;
 
         this.carOptions = {
+          available: true,
+          rating: "Not rated",
+          ratingCount: 0,
+          ratingSum: 0,
           price: "",
           brand: "",
           name: "",
@@ -606,10 +610,9 @@ export default {
           type: "",
           number: "",
           description: "",
+          location: "",
           fuel: "",
           manualOrAuto: "Automatic",
-          ratingSum: 0,
-          ratingCount: 0,
         };
 
         this.carFeatures = {
