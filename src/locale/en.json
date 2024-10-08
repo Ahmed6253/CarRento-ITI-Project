@@ -268,7 +268,7 @@
     "features": {
       "privateDriver": "Private driver",
       "toddlerSeat": "Toddler Child Seat",
-      "infantSeat": "Infant Child Seat",
+      "disability": "Disability adaptation",
       "protection": "Collision Damage Protection",
       "price": " LE",
       "perDay": "/day"
@@ -297,7 +297,7 @@
     "submit": "Pay Now",
     "driver": "Private Driver",
     "protection": "Damage Protection",
-    "infantSeat": "Infant Seat",
+    "disability": "Disability adaptation",
     "toddlerSeat": "Toddler Seat"
   },
 

@@ -11,13 +11,13 @@ let store = createStore({
       additionalFeatures: {
         driver: false,
         protection: false,
-        infantSeat: false,
+        disability: false,
         toddlerSeat: false,
       },
       additionalFeaturesPrices: {
         driver: 500,
         protection: 1500,
-        infantSeat: 150,
+        disability: 150,
         toddlerSeat: 200,
       },
       LegalName: "",

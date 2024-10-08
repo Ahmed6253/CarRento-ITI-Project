@@ -13,7 +13,7 @@
         </a>
         
         <details class="dropdown" ref="dropdown">
-          <summary class="m-1 flex btn">
+          <summary class="m-1 hidden md:btn">
             {{ locale }}
             <img src="../assets/globe.png" alt="language" />
           </summary>
@@ -139,29 +139,6 @@
               >Profile</a
             >
           </li>
-
-          <li class="md:hidden">
-              <button
-                :class="{
-                  'font-bold': locale === 'En',
-                  'font-light': locale === 'Ar',
-                }"
-                @click="setEn"
-              >
-                En <img src="../assets/En.png" alt="english" />
-              </button>
-            </li>
-            <li class="md:hidden">
-              <button
-                :class="{
-                  'font-bold': locale === 'Ar',
-                  'font-light': locale === 'En',
-                }"
-                @click="setAr"
-              >
-                Ar <img src="../assets/Ar.png" alt="arabic" />
-              </button>
-            </li>
           
         </ul>
       </div>
