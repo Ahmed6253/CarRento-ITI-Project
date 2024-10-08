@@ -95,21 +95,21 @@
             <router-link
               to="/"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
               >{{ $t("nav.home") }}</router-link>
           </li>
           <li>
             <router-link
               to="/cars"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
               >{{ $t("nav.cars") }}</router-link>
           </li>
           <li>
             <router-link
               to="/about"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
               >{{ $t("nav.about") }}</router-link>
           </li>
 
