@@ -474,7 +474,6 @@ export default {
         type: "",
         number: "",
         description: "",
-        owner: this.id,
         location: "",
         fuel: "",
         manualOrAuto: "Automatic",
