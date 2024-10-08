@@ -76,7 +76,7 @@
           @click="showMenu = !showMenu"
           data-collapse-toggle="navbar-user"
           type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          :class="showMenu ? 'hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600  inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden' : 'inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden'"
         >
           <img src="../imagesNavfoot/menu.png" alt="" />
         </button>
@@ -95,21 +95,21 @@
             <router-link
               to="/"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               >{{ $t("nav.home") }}</router-link>
           </li>
           <li>
             <router-link
               to="/cars"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               >{{ $t("nav.cars") }}</router-link>
           </li>
           <li>
             <router-link
               to="/about"
               active-class="border-b-2 border-Placeholder_color"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-6 md:py-7 lg:px-8"
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
               >{{ $t("nav.about") }}</router-link>
           </li>
 
