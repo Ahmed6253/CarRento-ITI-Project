@@ -27,9 +27,9 @@
 
   <!-- --------------------------------------chart--------------------------------- -->
   <div class="mx-0 w-full">
-    <div id="chart" class="w-full mx-0 bg-slate-50">
+    <div id="chart" class="w-full mx-0  ">
       <apexchart
-        class="text-Paragraph_color"
+        class="text-black"
         type="bar"
         height="300"
         width="95%"
