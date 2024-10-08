@@ -406,11 +406,11 @@ export default {
       }
     },
     signUp() {
-      this.form.id = this.form.email.replace(/[@.]/g, "");
+      this.form.id = this.form.email.replace(/[@.]/g, "").toLowerCase();
       const userData = {
         id: this.form.id,
         userName: this.form.userName,
-        email: this.form.email,
+        email: this.form.email.toLowerCase(),
         password: this.form.password,
         role: this.form.role,
         blocked: false,
@@ -430,6 +430,9 @@ export default {
       } else if (!this.agree) {
         this.agreeError = true;
         return;
+      }
+      if (this.form.role == "renter") {
+        userData.status = "Unverified";
       }
 
       axios
@@ -459,6 +462,7 @@ export default {
                   console.log(userData.id);
                 }
                 this.closeModal();
+                window.location.reload();
               })
               .catch((error) => {
                 console.error(error);
@@ -475,7 +479,7 @@ export default {
       } else {
         this.loginError = false;
       }
-      const id = this.form.email.replace(/[@.]/g, "");
+      const id = this.form.email.replace(/[@.]/g, "").toLowerCase();
 
       axios
         .get(
@@ -483,7 +487,8 @@ export default {
         )
         .then((response) => {
           this.form.currentUser = response.data;
-          if (this.form.currentUser.blocked) {
+
+          if (this.form.currentUser && this.form.currentUser.blocked) {
             alert(
               "Your account has been blocked. Please contact us for more details."
             );
@@ -510,6 +515,7 @@ export default {
             //redirect based on role
             if (this.form.currentUser.role == "renter") {
               this.closeModal();
+              window.location.reload();
             } else if (this.form.currentUser.role == "owner") {
               this.closeModal();
               console.log(this.form.currentUser.id);
