@@ -1,6 +1,4 @@
 <template>
-  <!-- navbar start -->
-
   <nav class="text-primary_color pt-4">
     <div
       class="py-4 md:py-0 md:h-20 flex flex-wrap px-8 items-center justify-between rounded-lg md:rounded-full custom-shadow bg-white opacity-90"
@@ -11,55 +9,48 @@
             <img :src="logo" alt="" />
           </router-link>
         </a>
-
         <details class="dropdown" ref="dropdown">
-          <summary class="m-1 hidden md:btn">
-            {{ locale }}
-            <img src="../assets/globe.png" alt="language" />
-          </summary>
-          <ul
-            class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
-          >
-            <li>
-              <button
-                :class="{
-                  'font-bold': locale === 'En',
-                  'font-light': locale === 'Ar',
-                }"
-                @click="setEn"
+              <summary class="m-1 hidden md:btn">
+                {{ locale }}
+                <img src="../assets/globe.png" alt="language" class="lg:inline-block hidden">
+              </summary>
+              <ul
+                class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
               >
-                En <img src="../assets/En.png" alt="english" />
-              </button>
-            </li>
-            <li>
-              <button
-                :class="{
-                  'font-bold': locale === 'Ar',
-                  'font-light': locale === 'En',
-                }"
-                @click="setAr"
-              >
-                Ar <img src="../assets/Ar.png" alt="arabic" />
-              </button>
-            </li>
-          </ul>
-        </details>
+                <li>
+                  <button
+                    :class="{
+                      'font-bold': locale === 'En',
+                      'font-light': locale === 'Ar',
+                    }"
+                    @click="setEn"
+                  >
+                    En <img src="../assets/En.png" alt="english" />
+                  </button>
+                </li>
+                <li>
+                  <button
+                    :class="{
+                      'font-bold': locale === 'Ar',
+                      'font-light': locale === 'En',
+                    }"
+                    @click="setAr"
+                  >
+                    Ar <img src="../assets/Ar.png" alt="arabic" />
+                  </button>
+                </li>
+              </ul>
+            </details>
       </div>
 
       <div
         class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-3"
       >
-        <!-- <div class="flex justify-start ps-6 pt-2 my-0 bg-none">
-
-      <span> /</span>
-
-    </div> -->
         <label class="switch">
           <input type="checkbox" @click="toggleDarkMode" v-model="dark" />
           <span class="slider"></span>
         </label>
 
-        <!-- login button -->
         <button
           type="button"
           class="px-8 py-3 bg-primary_color hidden lg:block text-white font-medium rounded-full"
@@ -67,7 +58,7 @@
         >
           {{ loggedIn ? $t("nav.logout") : $t("nav.login") }}
         </button>
-        <!-- user picture  -->
+
         <a
           @click="showProfile()"
           type="button"
@@ -79,7 +70,8 @@
             alt="user photo"
           />
         </a>
-        <!-- Dropdown menu -->
+
+        <!-- Hamburger menu button -->
         <button
           @click="showMenu = !showMenu"
           data-collapse-toggle="navbar-user"
@@ -89,6 +81,7 @@
           <img src="../imagesNavfoot/menu.png" alt="" />
         </button>
       </div>
+
       <div
         class="items-center justify-between w-full md:flex md:w-auto md:order-1"
         :class="showMenu ? 'block' : 'hidden'"
@@ -98,77 +91,61 @@
           @click="showMenu = !showMenu"
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-border_color rounded-lg md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
         >
-        
           <li>
             <router-link
               to="/"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
-              active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
-              aria-current="page"
-              >{{ $t("nav.home") }}</router-link
-            >
+              >{{ $t("nav.home") }}</router-link>
           </li>
           <li>
             <router-link
               to="/cars"
-              href="/cars"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
-              active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
-              >{{ $t("nav.cars") }}</router-link
-            >
+              >{{ $t("nav.cars") }}</router-link>
           </li>
           <li>
             <router-link
               to="/about"
               class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-gray-300 md:hover:text-white md:px-8 md:py-7"
-              active-class=" text-white bg-primary_color rounded md:bg-transparent md:text-primary_color md:border-b-2 md:border-primary_color md:p-0 md:rounded-none md:px-8 md:py-7 box-border"
-              >{{ $t("nav.about") }}</router-link
-            >
+              >{{ $t("nav.about") }}</router-link>
           </li>
+
+          <!-- Add the language selection dropdown here for smaller screens -->
+        
+
           <li>
             <a
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-              @click="openModal()"
-              >{{ loggedIn ? "Logout" : "Login" }}</a
-            >
-          </li>
-          <li>
-            <a
-              @click="showProfile()"
-              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-300 md:hidden md:hover:text-white md:px-8 md:py-8"
-              >Profile</a
+              class="block py-2 px-3 text-primary_color hover:bg-gray-100 md:hidden"
+              @click="openModal"
+              >{{ loggedIn ? $t("nav.logout") : $t("nav.login") }}</a
             >
           </li>
 
-          <li class="md:hidden">
-              <button
-                :class="{
-                  'font-bold': locale === 'En',
-                  'font-light': locale === 'Ar',
-                }"
-                @click="setEn"
-              >
-                En <img src="../assets/En.png" alt="english" />
-              </button>
-            </li>
-            <li class="md:hidden">
-              <button
-                :class="{
-                  'font-bold': locale === 'Ar',
-                  'font-light': locale === 'En',
-                }"
-                @click="setAr"
-              >
-                Ar <img src="../assets/Ar.png" alt="arabic" />
-              </button>
-            </li>
-          
+          <li class="md:hidden ps-3 pt-2">
+                  <button
+                    :class="{
+                      'font-bold': locale === 'En',
+                      'font-light': locale === 'Ar',
+                    }"
+                    @click="setEn"
+                  >
+                    En 
+                  </button>
+                  <span> / </span>
+                  <button
+                    :class="{
+                      'font-bold': locale === 'Ar',
+                      'font-light': locale === 'En',
+                    }"
+                    @click="setAr"
+                  >
+                    Ar
+                  </button>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-
-  <!-- navbar end -->
 </template>
 
 <script>
