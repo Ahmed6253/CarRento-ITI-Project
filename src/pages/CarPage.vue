@@ -226,12 +226,12 @@
             <input
               type="checkbox"
               class="accent-gray-900"
-              id="infant-seat"
-              value="infant-seat"
-              v-model="additionalFeatures.infantSeat"
+              id="disability-adaptation"
+              value="disability-adaptation"
+              v-model="additionalFeatures.disability"
             />
-            <label class="text-primary_color mx-3" for="infant-seat">{{
-              $t("carPage.features.infantSeat")
+            <label class="text-primary_color mx-3" for="disability-adaptation">{{
+              $t("carPage.features.disability")
             }}</label
             ><br />
           </label>
@@ -333,7 +333,7 @@ export default {
       additionalFeatures: {
         driver: false,
         protection: false,
-        infantSeat: false,
+        disability: false,
         toddlerSeat: false,
       },
 

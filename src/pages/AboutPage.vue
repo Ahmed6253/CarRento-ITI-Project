@@ -34,7 +34,9 @@
         <img src="../assets/images/our_values.png" class="mx-auto lg:mx-0" />
         <div class="lg:ms-6 md:mx-auto">
           <h3
-            class="res-header md:text-left text-center md:ms-2 ms-4 lg:ms-0 mt-10 lg:mt-0 mb-6"
+            :class=" this.$i18n.locale === 'Ar' 
+            ? 'res-header md:text-right text-center md:ms-2 ms-4 lg:ms-0 mt-10 lg:mt-0 mb-6 '
+            : 'res-header md:text-left text-center md:ms-2 ms-4 lg:ms-0 mt-10 lg:mt-0 mb-6'"
           >
             {{ $t("about.ourValuesHeader") }}
           </h3>

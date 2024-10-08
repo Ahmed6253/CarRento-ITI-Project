@@ -278,7 +278,7 @@
     "features": {
       "privateDriver": "سائق خاص",
       "toddlerSeat": "مقعد طفل صغير",
-      "infantSeat": "مقعد طفل رضيع",
+      "disability": "التكيف مع الإعاقة",
       "protection": "حماية من أضرار الاصطدام",
       "price": "جنيه",
       "perDay": "/يوم"
@@ -301,7 +301,7 @@
     "submit": "ادفع الان",
     "driver": "سائق خاص",
     "protection": "حماية من الاصطدام",
-    "infantSeat": " مقعد رضيع",
+    "disability": " التكيف مع الإعاقة",
     "toddlerSeat": "مقعد طفل"
   },
 
