@@ -29,7 +29,7 @@
   "searchCard": {
     "pickup_date": "Pick-up Date",
     "pickup_location": "Pick-up Location",
-    "dropoff_location": "Drop-off Location",
+    "dropoff_location": "Drop-off Date",
     "set_and_search": "Set and Search",
     "error_location_date": "You must set your location and both dates first.",
     "error_pickup_dropoff": "Pick-up date cannot be later than the drop-off date.",
