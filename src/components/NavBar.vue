@@ -19,7 +19,7 @@
             />
           </summary>
           <ul
-            class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow"
+            class="menu dropdown-content bg-base-100 rounded-box z-[1] p-2 shadow text-slate-900"
           >
             <li>
               <button
