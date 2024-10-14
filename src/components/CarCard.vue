@@ -23,15 +23,21 @@
         {{ car.rating }}
       </p>
     </div>
-
-    <img src="../assets/Imgerror.png" v-if="imageError" class="w-3/4 m-auto" />
-    <img
-      v-if="!imageError"
+    <div
       :class="
-        fullWidth ? 'mt-2 h-[180px] w-full' : 'mt-2 h-[180px] max-w-[308px]'
+        fullWidth
+          ? 'flex mt-2 h-[180px] w-full object-cover'
+          : 'flex mt-2 h-[180px] max-w-[308px]'
       "
-      :src="url"
-    />
+    >
+      <img
+        src="../assets/Imgerror.png"
+        v-if="imageError"
+        class="w-3/4 m-auto"
+      />
+      <img v-if="!imageError" :src="url" class="object-cover" />
+    </div>
+
     <h3
       class="mt-4 text-[18px] font-medium text-start pb-0.5 text-primary_color"
     >
