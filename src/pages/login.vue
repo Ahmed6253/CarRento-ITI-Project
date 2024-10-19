@@ -459,7 +459,8 @@ export default {
                 if (this.form.role == "owner") {
                   this.$store.dispatch("setInOrOut");
                   this.$router.push("/ownerDash/" + userData.id);
-                  console.log(userData.id);
+                } else if (this.form.role == "renter") {
+                  this.$store.dispatch("setInOrOut");
                 }
                 this.closeModal();
               })

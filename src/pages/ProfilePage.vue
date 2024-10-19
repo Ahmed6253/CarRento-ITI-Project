@@ -58,7 +58,7 @@
                   value="5"
                   @click="rate = 5"
                 />
-                <label title='Excellent' for="star5">
+                <label title="Excellent" for="star5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="1em"
@@ -183,12 +183,16 @@
           <p class="text-xl text-primary_color">{{ name }}</p>
         </div>
         <div class="py-3">
-          <p class="text-base text-Paragraph_color">{{ $t("profile.email") }}</p>
+          <p class="text-base text-Paragraph_color">
+            {{ $t("profile.email") }}
+          </p>
           <p class="text-xl text-primary_color">{{ email }}</p>
         </div>
         <div class="py-3 flex gap-4">
           <div class="flex flex-col gap-x-2">
-            <p class="text-base text-Paragraph_color">{{ $t("profile.accountVerification") }}</p>
+            <p class="text-base text-Paragraph_color">
+              {{ $t("profile.accountVerification") }}
+            </p>
             <p
               :class="
                 (user.status === 'Unverified' && 'text-xl text-red') ||
@@ -196,7 +200,7 @@
                 (user.status === 'Requested' && 'text-xl text-warning')
               "
             >
-              {{  $t("profile."+user.status) }}
+              {{ $t("profile." + user.status) }}
             </p>
           </div>
           <a
@@ -213,7 +217,7 @@
       <div v-if="isVerify" class="mt-6">
         <section class="w-full md:w-1/2 md:pe-28">
           <h3 class="text-2xl mb-3 text-primary_color">
-            {{ $t("profile.frontId") }}
+            {{ $t("profile.uploadIdFront") }}
           </h3>
           <div class="upload-file mb-6">
             <label
@@ -268,7 +272,9 @@
         </section>
 
         <section class="w-full md:w-1/2 md:pe-28">
-          <h3 class="text-2xl mb-3 text-primary_color">{{ $t("profile.uploadLicense") }}</h3>
+          <h3 class="text-2xl mb-3 text-primary_color">
+            {{ $t("profile.uploadLicense") }}
+          </h3>
           <div class="upload-file mb-6">
             <label
               for="license"
@@ -313,7 +319,9 @@
     <!--------------------- section two start --------------------->
     <div class="custom-shadow mt-6 rounded-2xl bg-white py-6 md:px-12 px-5">
       <div>
-        <p class="text-3xl font-semibold text-primary_color">{{ $t("profile.rentalsHistory") }}</p>
+        <p class="text-3xl font-semibold text-primary_color">
+          {{ $t("profile.rentalsHistory") }}
+        </p>
         <div
           class="custom-shadow rounded-xl py-6 px-6 mt-6"
           v-for="(order, index) in this.UserOrders"
@@ -324,19 +332,25 @@
           </p>
           <div class="flex flex-col lg:flex-row justify-between pt-3">
             <div class="py-3">
-              <p class="text-xl text-primary_color">{{ $tc("profile.pickUpLocation") }}</p>
+              <p class="text-xl text-primary_color">
+                {{ $tc("profile.pickUpLocation") }}
+              </p>
               <p class="text-base text-Paragraph_color">
                 {{ order.location }}
               </p>
             </div>
             <div class="py-3">
-              <p class="text-xl text-primary_color">{{ $tc("profile.pickUpDate") }}</p>
+              <p class="text-xl text-primary_color">
+                {{ $tc("profile.pickUpDate") }}
+              </p>
               <p class="text-base text-Paragraph_color">
                 {{ order.pickUpDate }}
               </p>
             </div>
             <div class="py-3">
-              <p class="text-xl text-primary_color">{{ $tc("profile.dropOffDate") }}</p>
+              <p class="text-xl text-primary_color">
+                {{ $tc("profile.dropOffDate") }}
+              </p>
               <p class="text-base text-Paragraph_color">
                 {{ order.dropOffDate }}
               </p>
@@ -345,7 +359,9 @@
               <p class="text-xl text-primary_color">
                 {{ order.TotalPrice }} {{ $t("checkout.le") }}
               </p>
-              <p class="text-base text-Paragraph_color">{{ $t("profile.totalPrice") }}</p>
+              <p class="text-base text-Paragraph_color">
+                {{ $t("profile.totalPrice") }}
+              </p>
             </div>
             <div class="py-3">
               <button
@@ -395,11 +411,15 @@
       <div
         class="border-b-[1px] border-line_color py-6 flex gap-16 items-center"
       >
-        <p class="text-xl text-primary_color">{{ $t("profile.locationSharing") }}</p>
+        <p class="text-xl text-primary_color">
+          {{ $t("profile.locationSharing") }}
+        </p>
         <img class="pt-2" src="../imagesNavfoot/togglebutton.png" alt="" />
       </div>
       <div class="border-b-[1px] border-line_color py-6">
-        <p class="text-xl text-primary_color">{{ $t("profile.paymentDetails") }}</p>
+        <p class="text-xl text-primary_color">
+          {{ $t("profile.paymentDetails") }}
+        </p>
         <div
           class="custom-shadow rounded-xl flex items-center justify-between py-6 px-6 mt-6"
         >
@@ -706,15 +726,3 @@ export default {
   fill: #ab68ff;
 }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
