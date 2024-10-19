@@ -462,7 +462,6 @@ export default {
                   console.log(userData.id);
                 }
                 this.closeModal();
-                window.location.reload();
               })
               .catch((error) => {
                 console.error(error);
@@ -515,7 +514,6 @@ export default {
             //redirect based on role
             if (this.form.currentUser.role == "renter") {
               this.closeModal();
-              window.location.reload();
             } else if (this.form.currentUser.role == "owner") {
               this.closeModal();
               console.log(this.form.currentUser.id);
